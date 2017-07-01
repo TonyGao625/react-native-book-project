@@ -1,0 +1,13 @@
+﻿
+.book-div {
+    margin-top: 50px;
+}
+.book-div table {
+    width: 100%;
+}
+
+.book-div label{ margin-bottom: 0;}
+.book-div table tr .name { text-align: right;}
+.book-div table tr td{ padding: 10px 0;}
+
+
