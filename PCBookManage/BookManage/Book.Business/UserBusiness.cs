@@ -33,5 +33,35 @@ namespace Book.Business
             }
             return result;
         }
+
+        public async Task<ViewResult<UsersModel>> LoginUser(UsersModel userModel)
+        {
+            var result=new ViewResult<UsersModel>();
+            try
+            {
+                var user = await _usersAgent.FindUser(userModel.UserName);
+                if (user == null)
+                {
+                    result.Status = -2;
+                    result.Message = "不存在该用户";
+                    return result;
+                }
+
+                if (user.Password != userModel.Password)
+                {
+                    result.Status = -2;
+                    result.Message = "密码错误";
+                    return result;
+                }
+
+                result.Data = user.ToUsersModel();
+            }
+            catch (Exception ex)
+            {
+                result.Status = -1;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
     }
 }

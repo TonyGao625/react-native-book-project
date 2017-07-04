@@ -1,6 +1,10 @@
 import axios from 'axios';
 import store from '../store';
 import { showToast } from '../actions/toast.action';
+import {
+  Alert
+} from 'react-native';
+
 
 export default (obj) => {
     var p = new Promise((resolve, reject) => {
@@ -12,19 +16,13 @@ export default (obj) => {
             data: obj.data
         }).then((response) => {
             if (response.data.Status<0) {
-                 store.dispatch(showToast({
-                    className: 'error-toast',
-                    message: response.data.errors
-                }))
+                Alert.alert('', response.data.Message,[],{ cancelable: true });
             } else {
                 resolve(response.data);
             }
         }).catch((err) => {
             //need to be do with toast
-            store.dispatch(showToast({
-                className: 'error-toast',
-                message: 'Opps,内部出现问题了，我们会尽快解决'
-            }))
+             Alert.alert('','Opps,内部出现问题了，我们会尽快解决',[],{ cancelable: true });
             reject(err);
         });
     })

@@ -1,15 +1,14 @@
 
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import Main from './components-page/main'
-import Menu from './components-page/menu'
+import Route from './components-page/route'
 import store from './store';
 
 export default class App extends Component {
   render() {
     return (
         <Provider store={store}>
-            <Menu/>
+            <Route/>
         </Provider>
       );
   }

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import userReducer from './user.reducer';
+import accountReducer from './account.reducer';
 import bookReducer from './book.reducer'
 
 export default combineReducers({
-    userReducer,
+    accountReducer,
     bookReducer
 })
 

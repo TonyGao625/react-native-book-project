@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
-import { getBookList } from '../../actions/book.action';
+import { getBookList } from '../actions/book.action';
 import axios from 'axios';
 
 @connect((store) => {
@@ -28,16 +28,14 @@ export default class BookAll extends Component {
   }
   render() {
     return (
-      <View>
-          <ScrollView contentContainerStyle={styles.contentContainer}>
-                {
-                  this.props.BookList.map((val) => {
-                    return <Text style={styles.item}>{val.BookName}</Text>
-                  })
-                }
-          </ScrollView>
-      </View>
-    );
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+            {
+              this.props.BookList.map((val) => {
+                return <Text style={styles.item}>{val.BookName}</Text>
+              })
+            }
+      </ScrollView>
+  );
   }
 }
 

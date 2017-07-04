@@ -28,6 +28,12 @@ namespace Book.WebApi.Controllers
             return await _userBusiness.Register(userModel);
         }
 
-
+        [Route("login")]
+        [HttpPost]
+        public async Task<ViewResult<UsersModel>> Login(JObject paramter)
+        {
+            var userModel = paramter["UsersModel"].ToObject<UsersModel>();
+            return await _userBusiness.LoginUser(userModel);
+        }
     }
 }

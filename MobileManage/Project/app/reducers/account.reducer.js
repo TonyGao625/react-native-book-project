@@ -1,19 +1,13 @@
-import storage from 'store2';
-
 export default function reducer(state = {
     loginUser: {
-        email: '',
-        password: ''
+        UserName: '',
+        Password: ''
     },
     validation: {
-        email: false,
-        password: false
+        UserName: '',
+        Password: ''
     },
     loggedUser: {
-        email: '',
-        _id: '',
-        isAuthorize: storage.local('isAuthorize'),
-        userRole: 0 //0 for normal,1 for admin
     },
 }, action) {
     switch (action.type) {
@@ -44,7 +38,7 @@ export default function reducer(state = {
         case 'USER_LOGIN':
             return {
                 ...state,
-                loggedUser: action.payload
+                loggedUser: action.payload,
             }
         default:
             return state;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
@@ -18,5 +19,13 @@ namespace Book.DataAccess
                 await context.SaveChangesAsync();
             }
         }
+
+        public async Task<User> FindUser(string userName)
+        {
+            using (var context=new BookProjectEntities())
+            {
+                return await context.Users.FirstOrDefaultAsync(x => x.UserName == userName);
+            }
+        } 
     }
 }
