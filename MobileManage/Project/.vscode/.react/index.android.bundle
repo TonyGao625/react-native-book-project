@@ -54110,9 +54110,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _reactRedux = require(556          ); // 556 = react-redux
 
-var _menu = require(585                     ); // 585 = ./components-page/menu
+var _route = require(585                      ); // 585 = ./components-page/route
 
-var _menu2 = _interopRequireDefault(_menu);
+var _route2 = _interopRequireDefault(_route);
 
 var _store = require(673      ); // 673 = ./store
 
@@ -54164,7 +54164,7 @@ var App = _wrapComponent('App')(function (_Component) {
             lineNumber: 10
           }
         },
-        _react3.default.createElement(_menu2.default, {
+        _react3.default.createElement(_route2.default, {
           __source: {
             fileName: _jsxFileName,
             lineNumber: 11
@@ -55835,39 +55835,137 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
   verify(mergeProps, 'mergeProps', displayName);
 }
 }, 584, null, "react-redux/lib/connect/verifySubselectors.js");
-__d(/* Project/app/components-page/menu.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+__d(/* Project/app/components-page/route.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _react2 = require(12     ); // 12 = react
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require(26                                                     ); // 26 = ./../../node_modules/react-transform-hmr/lib/index.js
+
+var _index2 = _interopRequireDefault(_index);
+
+var _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\components-page\\route.js';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _reactNavigation = require(586               ); // 586 = react-navigation
+
+var _reactNative = require(180           ); // 180 = react-native
 
 var _main = require(643     ); // 643 = ./main
 
 var _main2 = _interopRequireDefault(_main);
 
-var _account = require(685        ); // 685 = ./account
+var _account = require(693        ); // 693 = ./account
 
 var _account2 = _interopRequireDefault(_account);
 
+var _bookAdd = require(744         ); // 744 = ./book-add
+
+var _bookAdd2 = _interopRequireDefault(_bookAdd);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Menu = (0, _reactNavigation.StackNavigator)({
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  Route: {
+    displayName: 'Route'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/components-page/route.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var Route = _wrapComponent('Route')(function (_Component) {
+  _inherits(Route, _Component);
+
+  function Route(props) {
+    _classCallCheck(this, Route);
+
+    return _possibleConstructorReturn(this, (Route.__proto__ || Object.getPrototypeOf(Route)).call(this, props));
+  }
+
+  _createClass(Route, [{
+    key: 'render',
+    value: function render() {
+      return _react3.default.createElement(RouteItem, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 14
+        }
+      });
+    }
+  }]);
+
+  return Route;
+}(_react2.Component));
+
+exports.default = Route;
+
+
+var RouteItem = (0, _reactNavigation.StackNavigator)({
   Account: {
     screen: _account2.default,
     navigationOptions: {
-      title: '登录'
+      headerTitle: '登录'
     }
   },
   Main: {
     screen: _main2.default,
     navigationOptions: {
-      title: '主界面'
+      headerTitle: _react3.default.createElement(
+        _reactNative.Text,
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 29
+          }
+        },
+        '\u5168\u90E8'
+      ),
+      headerRight: _react3.default.createElement(
+        _reactNative.Text,
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 31
+          }
+        },
+        '\u7BA1\u7406\u5458'
+      ),
+      headerStyle: {
+        paddingRight: 10
+      }
     }
+  },
+  BookAdd: {
+    screen: _bookAdd2.default
   }
+}, {
+  cardStyle: {
+    backgroundColor: 'white'
+  },
+  initialRouteName: 'Main'
 });
-
-exports.default = Menu;
-}, 585, null, "Project/app/components-page/menu.js");
+}, 585, null, "Project/app/components-page/route.js");
 __d(/* react-navigation/src/react-navigation.js */function(global, require, module, exports) {
 
 module.exports = {
@@ -63334,31 +63432,101 @@ __d(/* Project/app/components-page/main.js */function(global, require, module, e
   value: true
 });
 
+var _react2 = require(12     ); // 12 = react
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require(26                                                     ); // 26 = ./../../node_modules/react-transform-hmr/lib/index.js
+
+var _index2 = _interopRequireDefault(_index);
+
+var _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\components-page\\main.js';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _reactNavigation = require(586               ); // 586 = react-navigation
 
-var _bookAll = require(697                                 ); // 697 = ./../compponents-template/book-all
+var _bookAll = require(644                                 ); // 644 = ./../compponents-template/book-all
 
 var _bookAll2 = _interopRequireDefault(_bookAll);
 
-var _bookBorrow = require(698                                    ); // 698 = ./../compponents-template/book-borrow
+var _bookBorrow = require(681                                    ); // 681 = ./../compponents-template/book-borrow
 
 var _bookBorrow2 = _interopRequireDefault(_bookBorrow);
 
-var _borrowHistory = require(699                                       ); // 699 = ./../compponents-template/borrow-history
+var _borrowHistory = require(682                                       ); // 682 = ./../compponents-template/borrow-history
 
 var _borrowHistory2 = _interopRequireDefault(_borrowHistory);
 
-var _bookCollection = require(700                                        ); // 700 = ./../compponents-template/book-collection
+var _bookCollection = require(683                                        ); // 683 = ./../compponents-template/book-collection
 
 var _bookCollection2 = _interopRequireDefault(_bookCollection);
 
-var _usersInfo = require(701                                   ); // 701 = ./../compponents-template/users-info
+var _usersInfo = require(684                                   ); // 684 = ./../compponents-template/users-info
 
 var _usersInfo2 = _interopRequireDefault(_usersInfo);
 
+var _reactNative = require(180           ); // 180 = react-native
+
+var _login = require(685                              ); // 685 = ./../compponents-template/login
+
+var _login2 = _interopRequireDefault(_login);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Menu = (0, _reactNavigation.TabNavigator)({
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  Menu: {
+    displayName: 'Menu'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/components-page/main.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var Menu = _wrapComponent('Menu')(function (_Component) {
+  _inherits(Menu, _Component);
+
+  function Menu(props) {
+    _classCallCheck(this, Menu);
+
+    return _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).call(this, props));
+  }
+
+  _createClass(Menu, [{
+    key: 'render',
+    value: function render() {
+      return _react3.default.createElement(MenuBottom, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 18
+        }
+      });
+    }
+  }]);
+
+  return Menu;
+}(_react2.Component));
+
+exports.default = Menu;
+
+
+var MenuBottom = (0, _reactNavigation.TabNavigator)({
   BookAll: {
     screen: _bookAll2.default
   },
@@ -63383,8 +63551,6 @@ var Menu = (0, _reactNavigation.TabNavigator)({
   },
   tabBarPosition: 'bottom'
 });
-
-exports.default = Menu;
 }, 643, null, "Project/app/components-page/main.js");
 __d(/* Project/app/compponents-template/book-all.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
@@ -63401,7 +63567,7 @@ var _index2 = _interopRequireDefault(_index);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _class,
-    _temp,
+    _temp2,
     _dec,
     _class2,
     _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\compponents-template\\book-all.js';
@@ -63417,6 +63583,10 @@ var _book = require(645                     ); // 645 = ../actions/book.action
 var _axios = require(647    ); // 647 = axios
 
 var _axios2 = _interopRequireDefault(_axios);
+
+var _button = require(687                           ); // 687 = ./../components-smart/button
+
+var _button2 = _interopRequireDefault(_button);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -63445,7 +63615,7 @@ function _wrapComponent(id) {
   };
 }
 
-var BookAll = _wrapComponent('BookAll')((_temp = _class = (_dec = (0, _reactRedux.connect)(function (store) {
+var BookAll = _wrapComponent('BookAll')((_temp2 = _class = (_dec = (0, _reactRedux.connect)(function (store) {
   return {
     BookList: store.bookReducer.BookList
   };
@@ -63453,9 +63623,21 @@ var BookAll = _wrapComponent('BookAll')((_temp = _class = (_dec = (0, _reactRedu
   _inherits(BookAll, _Component);
 
   function BookAll() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, BookAll);
 
-    return _possibleConstructorReturn(this, (BookAll.__proto__ || Object.getPrototypeOf(BookAll)).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BookAll.__proto__ || Object.getPrototypeOf(BookAll)).call.apply(_ref, [this].concat(args))), _this), _this._addBook = function () {
+      var navigate = _this.props.navigation.navigate;
+
+      navigate('BookAdd');
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(BookAll, [{
@@ -63470,18 +63652,45 @@ var BookAll = _wrapComponent('BookAll')((_temp = _class = (_dec = (0, _reactRedu
         _reactNative.ScrollView,
         { contentContainerStyle: styles.contentContainer, __source: {
             fileName: _jsxFileName,
-            lineNumber: 31
+            lineNumber: 36
           }
         },
+        _react3.default.createElement(_button2.default, {
+          title: '\u6DFB\u52A0',
+          onPress: this._addBook,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 37
+          }
+        }),
         this.props.BookList.map(function (val) {
           return _react3.default.createElement(
-            _reactNative.Text,
+            _reactNative.View,
             { style: styles.item, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 34
+                lineNumber: 43
               }
             },
-            val.BookName
+            _react3.default.createElement(
+              _reactNative.Text,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 44
+                }
+              },
+              val.BookName
+            ),
+            _react3.default.createElement(
+              _reactNative.Text,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 45
+                }
+              },
+              '\u67E5\u770B'
+            )
           );
         })
       );
@@ -63491,7 +63700,7 @@ var BookAll = _wrapComponent('BookAll')((_temp = _class = (_dec = (0, _reactRedu
   return BookAll;
 }(_react2.Component)) || _class2), _class.navigationOptions = {
   tabBarLabel: '全部'
-}, _temp));
+}, _temp2));
 
 exports.default = BookAll;
 
@@ -63506,7 +63715,7 @@ var styles = _reactNative.StyleSheet.create({
     marginRight: 15
   }
 });
-}, 697, null, "Project/app/compponents-template/book-all.js");
+}, 644, null, "Project/app/compponents-template/book-all.js");
 __d(/* Project/app/actions/book.action.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -63545,7 +63754,9 @@ var _store = require(673       ); // 673 = ../store
 
 var _store2 = _interopRequireDefault(_store);
 
-var _toast = require(681                      ); // 681 = ../actions/toast.action
+var _toast = require(680                      ); // 680 = ../actions/toast.action
+
+var _reactNative = require(180           ); // 180 = react-native
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -63553,24 +63764,18 @@ exports.default = function (obj) {
     var p = new Promise(function (resolve, reject) {
         (0, _axios2.default)({
             url: obj.url,
-            baseURL: 'http://192.168.1.116:8001/api/',
+            baseURL: 'http://192.168.1.254:8001/api/',
             method: obj.method ? obj.method : 'GET',
             params: obj.params,
             data: obj.data
         }).then(function (response) {
             if (response.data.Status < 0) {
-                _store2.default.dispatch((0, _toast.showToast)({
-                    className: 'error-toast',
-                    message: response.data.errors
-                }));
+                _reactNative.Alert.alert('', response.data.Message, [], { cancelable: true });
             } else {
                 resolve(response.data);
             }
         }).catch(function (err) {
-            _store2.default.dispatch((0, _toast.showToast)({
-                className: 'error-toast',
-                message: 'Opps,内部出现问题了，我们会尽快解决'
-            }));
+            _reactNative.Alert.alert('', 'Opps,内部出现问题了，我们会尽快解决', [], { cancelable: true });
             reject(err);
         });
     });
@@ -64739,11 +64944,11 @@ __d(/* Project/app/reducers/index.js */function(global, require, module, exports
 
 var _redux = require(567    ); // 567 = redux
 
-var _account = require(690                ); // 690 = ./account.reducer
+var _account = require(678                ); // 678 = ./account.reducer
 
 var _account2 = _interopRequireDefault(_account);
 
-var _book = require(680             ); // 680 = ./book.reducer
+var _book = require(679             ); // 679 = ./book.reducer
 
 var _book2 = _interopRequireDefault(_book);
 
@@ -64761,13 +64966,6 @@ __d(/* Project/app/reducers/account.reducer.js */function(global, require, modul
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 exports.default = reducer;
-
-var _store = require(679     ); // 679 = store2
-
-var _store2 = _interopRequireDefault(_store);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function reducer() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
         loginUser: {
@@ -64778,11 +64976,7 @@ function reducer() {
             UserName: '',
             Password: ''
         },
-        loggedUser: {
-            UserName: '',
-            _id: '',
-            isAuthorize: _store2.default.local('isAuthorize'),
-            userRole: 0 }
+        loggedUser: {}
     };
     var action = arguments[1];
 
@@ -64813,7 +65007,777 @@ function reducer() {
             return state;
     }
 }
-}, 690, null, "Project/app/reducers/account.reducer.js");
+}, 678, null, "Project/app/reducers/account.reducer.js");
+__d(/* Project/app/reducers/book.reducer.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = reducer;
+function reducer() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+        BookList: []
+    };
+    var action = arguments[1];
+
+    switch (action.type) {
+        case 'GET_BOOK_LIST':
+            return _extends({}, state, {
+                BookList: action.payload
+            });
+        default:
+            return state;
+    }
+}
+}, 679, null, "Project/app/reducers/book.reducer.js");
+__d(/* Project/app/actions/toast.action.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.showToast = showToast;
+function showToast(toast) {
+    return {
+        type: 'SHOW_TOAST',
+        payload: toast
+    };
+}
+}, 680, null, "Project/app/actions/toast.action.js");
+__d(/* Project/app/components-smart/button.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react2 = require(12     ); // 12 = react
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require(26                                                     ); // 26 = ./../../node_modules/react-transform-hmr/lib/index.js
+
+var _index2 = _interopRequireDefault(_index);
+
+var _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\components-smart\\button.js';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _reactNative = require(180           ); // 180 = react-native
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+    FormButton: {
+        displayName: 'FormButton'
+    }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+    filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/components-smart/button.js',
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+    return function (Component) {
+        return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+    };
+}
+
+var FormButton = _wrapComponent('FormButton')(function (_Component) {
+    _inherits(FormButton, _Component);
+
+    function FormButton() {
+        _classCallCheck(this, FormButton);
+
+        return _possibleConstructorReturn(this, (FormButton.__proto__ || Object.getPrototypeOf(FormButton)).apply(this, arguments));
+    }
+
+    _createClass(FormButton, [{
+        key: 'render',
+        value: function render() {
+            return _react3.default.createElement(_reactNative.Button, {
+                title: this.props.title,
+                color: this.props.color,
+                onPress: this.props.onPress,
+                style: this.props.style,
+                __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 7
+                }
+            });
+        }
+    }]);
+
+    return FormButton;
+}(_react2.Component));
+
+exports.default = FormButton;
+}, 687, null, "Project/app/components-smart/button.js");
+__d(/* Project/app/compponents-template/book-borrow.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require(12     ); // 12 = react
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require(26                                                     ); // 26 = ./../../node_modules/react-transform-hmr/lib/index.js
+
+var _index2 = _interopRequireDefault(_index);
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _class,
+    _temp,
+    _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\compponents-template\\book-borrow.js';
+
+var _reactNative = require(180           ); // 180 = react-native
+
+var _reactNavigation = require(586               ); // 586 = react-navigation
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  BookBorrow: {
+    displayName: 'BookBorrow'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/compponents-template/book-borrow.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var BookBorrow = _wrapComponent('BookBorrow')((_temp = _class = function (_Component) {
+  _inherits(BookBorrow, _Component);
+
+  function BookBorrow() {
+    _classCallCheck(this, BookBorrow);
+
+    return _possibleConstructorReturn(this, (BookBorrow.__proto__ || Object.getPrototypeOf(BookBorrow)).apply(this, arguments));
+  }
+
+  _createClass(BookBorrow, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react3.default.createElement(_reactNative.Button, {
+        onPress: function onPress() {
+          return _this2.props.navigation.navigate('Notifications');
+        },
+        title: 'Go to notifications',
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 27
+        }
+      });
+    }
+  }]);
+
+  return BookBorrow;
+}(_react2.Component), _class.navigationOptions = {
+  tabBarLabel: '已借阅',
+  tabBarIcon: function tabBarIcon(_ref) {
+    var tintColor = _ref.tintColor;
+    return _react3.default.createElement(_reactNative.Image, {
+      style: [styles.icon, { tintColor: tintColor }],
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 19
+      }
+    });
+  }
+}, _temp));
+
+exports.default = BookBorrow;
+
+
+var styles = _reactNative.StyleSheet.create({
+  icon: {
+    width: 26,
+    height: 26
+  }
+});
+}, 681, null, "Project/app/compponents-template/book-borrow.js");
+__d(/* Project/app/compponents-template/borrow-history.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require(12     ); // 12 = react
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require(26                                                     ); // 26 = ./../../node_modules/react-transform-hmr/lib/index.js
+
+var _index2 = _interopRequireDefault(_index);
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _class,
+    _temp,
+    _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\compponents-template\\borrow-history.js';
+
+var _reactNative = require(180           ); // 180 = react-native
+
+var _reactNavigation = require(586               ); // 586 = react-navigation
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  BorrowHistory: {
+    displayName: 'BorrowHistory'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/compponents-template/borrow-history.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var BorrowHistory = _wrapComponent('BorrowHistory')((_temp = _class = function (_Component) {
+  _inherits(BorrowHistory, _Component);
+
+  function BorrowHistory() {
+    _classCallCheck(this, BorrowHistory);
+
+    return _possibleConstructorReturn(this, (BorrowHistory.__proto__ || Object.getPrototypeOf(BorrowHistory)).apply(this, arguments));
+  }
+
+  _createClass(BorrowHistory, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react3.default.createElement(_reactNative.Button, {
+        onPress: function onPress() {
+          return _this2.props.navigation.navigate('Notifications');
+        },
+        title: 'Go to notifications',
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 27
+        }
+      });
+    }
+  }]);
+
+  return BorrowHistory;
+}(_react2.Component), _class.navigationOptions = {
+  tabBarLabel: '借阅记录',
+  tabBarIcon: function tabBarIcon(_ref) {
+    var tintColor = _ref.tintColor;
+    return _react3.default.createElement(_reactNative.Image, {
+      style: [styles.icon, { tintColor: tintColor }],
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 19
+      }
+    });
+  }
+}, _temp));
+
+exports.default = BorrowHistory;
+
+
+var styles = _reactNative.StyleSheet.create({
+  icon: {
+    width: 26,
+    height: 26
+  }
+});
+}, 682, null, "Project/app/compponents-template/borrow-history.js");
+__d(/* Project/app/compponents-template/book-collection.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require(12     ); // 12 = react
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require(26                                                     ); // 26 = ./../../node_modules/react-transform-hmr/lib/index.js
+
+var _index2 = _interopRequireDefault(_index);
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _class,
+    _temp,
+    _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\compponents-template\\book-collection.js';
+
+var _reactNative = require(180           ); // 180 = react-native
+
+var _reactNavigation = require(586               ); // 586 = react-navigation
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  BookCollection: {
+    displayName: 'BookCollection'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/compponents-template/book-collection.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var BookCollection = _wrapComponent('BookCollection')((_temp = _class = function (_Component) {
+  _inherits(BookCollection, _Component);
+
+  function BookCollection() {
+    _classCallCheck(this, BookCollection);
+
+    return _possibleConstructorReturn(this, (BookCollection.__proto__ || Object.getPrototypeOf(BookCollection)).apply(this, arguments));
+  }
+
+  _createClass(BookCollection, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react3.default.createElement(_reactNative.Button, {
+        onPress: function onPress() {
+          return _this2.props.navigation.navigate('Notifications');
+        },
+        title: 'Go to notifications',
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 27
+        }
+      });
+    }
+  }]);
+
+  return BookCollection;
+}(_react2.Component), _class.navigationOptions = {
+  tabBarLabel: '收藏',
+  tabBarIcon: function tabBarIcon(_ref) {
+    var tintColor = _ref.tintColor;
+    return _react3.default.createElement(_reactNative.Image, {
+      style: [styles.icon, { tintColor: tintColor }],
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 19
+      }
+    });
+  }
+}, _temp));
+
+exports.default = BookCollection;
+
+
+var styles = _reactNative.StyleSheet.create({
+  icon: {
+    width: 26,
+    height: 26
+  }
+});
+}, 683, null, "Project/app/compponents-template/book-collection.js");
+__d(/* Project/app/compponents-template/users-info.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require(12     ); // 12 = react
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require(26                                                     ); // 26 = ./../../node_modules/react-transform-hmr/lib/index.js
+
+var _index2 = _interopRequireDefault(_index);
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _class,
+    _temp,
+    _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\compponents-template\\users-info.js';
+
+var _reactNative = require(180           ); // 180 = react-native
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  UserInfo: {
+    displayName: 'UserInfo'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/compponents-template/users-info.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var UserInfo = _wrapComponent('UserInfo')((_temp = _class = function (_Component) {
+  _inherits(UserInfo, _Component);
+
+  function UserInfo() {
+    _classCallCheck(this, UserInfo);
+
+    return _possibleConstructorReturn(this, (UserInfo.__proto__ || Object.getPrototypeOf(UserInfo)).apply(this, arguments));
+  }
+
+  _createClass(UserInfo, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react3.default.createElement(_reactNative.Button, {
+        onPress: function onPress() {
+          return _this2.props.navigation.navigate('Account');
+        },
+        title: '\u9000\u51FA',
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 11
+        }
+      });
+    }
+  }]);
+
+  return UserInfo;
+}(_react2.Component), _class.navigationOptions = {
+  tabBarLabel: '用户'
+}, _temp));
+
+exports.default = UserInfo;
+}, 684, null, "Project/app/compponents-template/users-info.js");
+__d(/* Project/app/compponents-template/login.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require(12     ); // 12 = react
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require(26                                                     ); // 26 = ./../../node_modules/react-transform-hmr/lib/index.js
+
+var _index2 = _interopRequireDefault(_index);
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dec,
+    _class2,
+    _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\compponents-template\\login.js';
+
+var _reactNative = require(180           ); // 180 = react-native
+
+var _textInput = require(686                               ); // 686 = ./../components-smart/text-input
+
+var _textInput2 = _interopRequireDefault(_textInput);
+
+var _button = require(687                           ); // 687 = ./../components-smart/button
+
+var _button2 = _interopRequireDefault(_button);
+
+var _themes = require(688                     ); // 688 = ./../src/themes/themes
+
+var _themes2 = _interopRequireDefault(_themes);
+
+var _reactRedux = require(556          ); // 556 = react-redux
+
+var _account = require(689                        ); // 689 = ../actions/account.action
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  Login: {
+    displayName: 'Login'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/compponents-template/login.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var Login = _wrapComponent('Login')((_dec = (0, _reactRedux.connect)(function (store) {
+  return {
+    loggedUser: store.accountReducer.loggedUser
+  };
+}), _dec(_class2 = function (_Component) {
+  _inherits(Login, _Component);
+
+  function Login(props) {
+    _classCallCheck(this, Login);
+
+    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
+
+    _this._loginAccount = function () {
+      _this.props.dispatch((0, _account.AccountLogin)({
+        UsersModel: _this.state
+      }));
+    };
+
+    _this.componentWillReceiveProps = function () {
+      var navigate = _this.props.navigation.navigate;
+
+      navigate('Main');
+    };
+
+    _this.state = {
+      UserName: '',
+      Password: '' };
+    return _this;
+  }
+
+  _createClass(Login, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react3.default.createElement(
+        _reactNative.View,
+        { style: styles.formLogin, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 41
+          }
+        },
+        _react3.default.createElement(
+          _reactNative.View,
+          { style: styles.formInput, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 42
+            }
+          },
+          _react3.default.createElement(_textInput2.default, {
+            placeholder: '\u7528\u6237\u540D',
+            isPasswod: false,
+            value: this.state.UserName,
+            onChangeText: function onChangeText(val) {
+              return _this2.setState({ UserName: val });
+            }, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 43
+            }
+          }),
+          _react3.default.createElement(_textInput2.default, {
+            placeholder: '\u5BC6\u7801',
+            isPasswod: true,
+            value: this.state.Password,
+            onChangeText: function onChangeText(val) {
+              return _this2.setState({ Password: val });
+            }, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 48
+            }
+          })
+        ),
+        _react3.default.createElement(_button2.default, {
+          title: '\u767B\u5F55',
+          color: _themes2.default.color,
+          onPress: this._loginAccount,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 54
+          }
+        })
+      );
+    }
+  }]);
+
+  return Login;
+}(_react2.Component)) || _class2));
+
+exports.default = Login;
+
+
+var styles = _reactNative.StyleSheet.create({
+  formLogin: {
+    marginTop: 200,
+    marginLeft: 10,
+    marginRight: 10
+  },
+  formInput: {
+    marginBottom: 30
+  }
+});
+}, 685, null, "Project/app/compponents-template/login.js");
+__d(/* Project/app/components-smart/text-input.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react2 = require(12     ); // 12 = react
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require(26                                                     ); // 26 = ./../../node_modules/react-transform-hmr/lib/index.js
+
+var _index2 = _interopRequireDefault(_index);
+
+var _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\components-smart\\text-input.js';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _reactNative = require(180           ); // 180 = react-native
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+    FormTextInput: {
+        displayName: 'FormTextInput'
+    }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+    filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/components-smart/text-input.js',
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+    return function (Component) {
+        return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+    };
+}
+
+var FormTextInput = _wrapComponent('FormTextInput')(function (_Component) {
+    _inherits(FormTextInput, _Component);
+
+    function FormTextInput() {
+        _classCallCheck(this, FormTextInput);
+
+        return _possibleConstructorReturn(this, (FormTextInput.__proto__ || Object.getPrototypeOf(FormTextInput)).apply(this, arguments));
+    }
+
+    _createClass(FormTextInput, [{
+        key: 'render',
+        value: function render() {
+            return _react3.default.createElement(_reactNative.TextInput, {
+                placeholder: this.props.placeholder,
+                onChangeText: this.props.onChangeText,
+                value: this.props.value,
+                secureTextEntry: this.props.isPasswod,
+                __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 7
+                }
+            });
+        }
+    }]);
+
+    return FormTextInput;
+}(_react2.Component));
+
+exports.default = FormTextInput;
+}, 686, null, "Project/app/components-smart/text-input.js");
+__d(/* Project/app/src/themes/themes.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = Themes = {
+    color: '#43A047'
+};
+}, 688, null, "Project/app/src/themes/themes.js");
+__d(/* Project/app/actions/account.action.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.AccountLogin = AccountLogin;
+
+var _axios = require(646                 ); // 646 = ../unilities/axios
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _store = require(690     ); // 690 = store2
+
+var _store2 = _interopRequireDefault(_store);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function AccountLogin(obj) {
+    return function (dispatch) {
+        (0, _axios2.default)({
+            url: 'account/login',
+            method: 'POST',
+            data: obj
+        }).then(function (res) {
+            dispatch({
+                type: 'USER_LOGIN',
+                payload: res.Data
+            });
+        });
+    };
+}
+}, 689, null, "Project/app/actions/account.action.js");
 __d(/* store2/dist/store2.js */function(global, require, module, exports) {
 ;(function (window, define) {
     var _ = {
@@ -65099,425 +66063,7 @@ __d(/* store2/dist/store2.js */function(global, require, module, exports) {
         window.store = store;
     }
 })(this, this.define);
-}, 679, null, "store2/dist/store2.js");
-__d(/* Project/app/reducers/book.reducer.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports.default = reducer;
-function reducer() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-        BookList: []
-    };
-    var action = arguments[1];
-
-    switch (action.type) {
-        case 'GET_BOOK_LIST':
-            return _extends({}, state, {
-                BookList: action.payload
-            });
-        default:
-            return state;
-    }
-}
-}, 680, null, "Project/app/reducers/book.reducer.js");
-__d(/* Project/app/actions/toast.action.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.showToast = showToast;
-function showToast(toast) {
-    return {
-        type: 'SHOW_TOAST',
-        payload: toast
-    };
-}
-}, 681, null, "Project/app/actions/toast.action.js");
-__d(/* Project/app/compponents-template/book-borrow.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react2 = require(12     ); // 12 = react
-
-var _react3 = _interopRequireDefault(_react2);
-
-var _index = require(26                                                     ); // 26 = ./../../node_modules/react-transform-hmr/lib/index.js
-
-var _index2 = _interopRequireDefault(_index);
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _class,
-    _temp,
-    _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\compponents-template\\book-borrow.js';
-
-var _reactNative = require(180           ); // 180 = react-native
-
-var _reactNavigation = require(586               ); // 586 = react-navigation
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _components = {
-  BookBorrow: {
-    displayName: 'BookBorrow'
-  }
-};
-
-var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
-  filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/compponents-template/book-borrow.js',
-  components: _components,
-  locals: [module],
-  imports: [_react3.default]
-});
-
-function _wrapComponent(id) {
-  return function (Component) {
-    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
-  };
-}
-
-var BookBorrow = _wrapComponent('BookBorrow')((_temp = _class = function (_Component) {
-  _inherits(BookBorrow, _Component);
-
-  function BookBorrow() {
-    _classCallCheck(this, BookBorrow);
-
-    return _possibleConstructorReturn(this, (BookBorrow.__proto__ || Object.getPrototypeOf(BookBorrow)).apply(this, arguments));
-  }
-
-  _createClass(BookBorrow, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      return _react3.default.createElement(_reactNative.Button, {
-        onPress: function onPress() {
-          return _this2.props.navigation.navigate('Notifications');
-        },
-        title: 'Go to notifications',
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 27
-        }
-      });
-    }
-  }]);
-
-  return BookBorrow;
-}(_react2.Component), _class.navigationOptions = {
-  tabBarLabel: '已借阅',
-  tabBarIcon: function tabBarIcon(_ref) {
-    var tintColor = _ref.tintColor;
-    return _react3.default.createElement(_reactNative.Image, {
-      style: [styles.icon, { tintColor: tintColor }],
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 19
-      }
-    });
-  }
-}, _temp));
-
-exports.default = BookBorrow;
-
-
-var styles = _reactNative.StyleSheet.create({
-  icon: {
-    width: 26,
-    height: 26
-  }
-});
-}, 698, null, "Project/app/compponents-template/book-borrow.js");
-__d(/* Project/app/compponents-template/borrow-history.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react2 = require(12     ); // 12 = react
-
-var _react3 = _interopRequireDefault(_react2);
-
-var _index = require(26                                                     ); // 26 = ./../../node_modules/react-transform-hmr/lib/index.js
-
-var _index2 = _interopRequireDefault(_index);
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _class,
-    _temp,
-    _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\compponents-template\\borrow-history.js';
-
-var _reactNative = require(180           ); // 180 = react-native
-
-var _reactNavigation = require(586               ); // 586 = react-navigation
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _components = {
-  BorrowHistory: {
-    displayName: 'BorrowHistory'
-  }
-};
-
-var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
-  filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/compponents-template/borrow-history.js',
-  components: _components,
-  locals: [module],
-  imports: [_react3.default]
-});
-
-function _wrapComponent(id) {
-  return function (Component) {
-    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
-  };
-}
-
-var BorrowHistory = _wrapComponent('BorrowHistory')((_temp = _class = function (_Component) {
-  _inherits(BorrowHistory, _Component);
-
-  function BorrowHistory() {
-    _classCallCheck(this, BorrowHistory);
-
-    return _possibleConstructorReturn(this, (BorrowHistory.__proto__ || Object.getPrototypeOf(BorrowHistory)).apply(this, arguments));
-  }
-
-  _createClass(BorrowHistory, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      return _react3.default.createElement(_reactNative.Button, {
-        onPress: function onPress() {
-          return _this2.props.navigation.navigate('Notifications');
-        },
-        title: 'Go to notifications',
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 27
-        }
-      });
-    }
-  }]);
-
-  return BorrowHistory;
-}(_react2.Component), _class.navigationOptions = {
-  tabBarLabel: '借阅记录',
-  tabBarIcon: function tabBarIcon(_ref) {
-    var tintColor = _ref.tintColor;
-    return _react3.default.createElement(_reactNative.Image, {
-      style: [styles.icon, { tintColor: tintColor }],
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 19
-      }
-    });
-  }
-}, _temp));
-
-exports.default = BorrowHistory;
-
-
-var styles = _reactNative.StyleSheet.create({
-  icon: {
-    width: 26,
-    height: 26
-  }
-});
-}, 699, null, "Project/app/compponents-template/borrow-history.js");
-__d(/* Project/app/compponents-template/book-collection.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react2 = require(12     ); // 12 = react
-
-var _react3 = _interopRequireDefault(_react2);
-
-var _index = require(26                                                     ); // 26 = ./../../node_modules/react-transform-hmr/lib/index.js
-
-var _index2 = _interopRequireDefault(_index);
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _class,
-    _temp,
-    _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\compponents-template\\book-collection.js';
-
-var _reactNative = require(180           ); // 180 = react-native
-
-var _reactNavigation = require(586               ); // 586 = react-navigation
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _components = {
-  BookCollection: {
-    displayName: 'BookCollection'
-  }
-};
-
-var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
-  filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/compponents-template/book-collection.js',
-  components: _components,
-  locals: [module],
-  imports: [_react3.default]
-});
-
-function _wrapComponent(id) {
-  return function (Component) {
-    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
-  };
-}
-
-var BookCollection = _wrapComponent('BookCollection')((_temp = _class = function (_Component) {
-  _inherits(BookCollection, _Component);
-
-  function BookCollection() {
-    _classCallCheck(this, BookCollection);
-
-    return _possibleConstructorReturn(this, (BookCollection.__proto__ || Object.getPrototypeOf(BookCollection)).apply(this, arguments));
-  }
-
-  _createClass(BookCollection, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      return _react3.default.createElement(_reactNative.Button, {
-        onPress: function onPress() {
-          return _this2.props.navigation.navigate('Notifications');
-        },
-        title: 'Go to notifications',
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 27
-        }
-      });
-    }
-  }]);
-
-  return BookCollection;
-}(_react2.Component), _class.navigationOptions = {
-  tabBarLabel: '收藏',
-  tabBarIcon: function tabBarIcon(_ref) {
-    var tintColor = _ref.tintColor;
-    return _react3.default.createElement(_reactNative.Image, {
-      style: [styles.icon, { tintColor: tintColor }],
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 19
-      }
-    });
-  }
-}, _temp));
-
-exports.default = BookCollection;
-
-
-var styles = _reactNative.StyleSheet.create({
-  icon: {
-    width: 26,
-    height: 26
-  }
-});
-}, 700, null, "Project/app/compponents-template/book-collection.js");
-__d(/* Project/app/compponents-template/users-info.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react2 = require(12     ); // 12 = react
-
-var _react3 = _interopRequireDefault(_react2);
-
-var _index = require(26                                                     ); // 26 = ./../../node_modules/react-transform-hmr/lib/index.js
-
-var _index2 = _interopRequireDefault(_index);
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _class,
-    _temp,
-    _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\compponents-template\\users-info.js';
-
-var _reactNative = require(180           ); // 180 = react-native
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _components = {
-  UserInfo: {
-    displayName: 'UserInfo'
-  }
-};
-
-var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
-  filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/compponents-template/users-info.js',
-  components: _components,
-  locals: [module],
-  imports: [_react3.default]
-});
-
-function _wrapComponent(id) {
-  return function (Component) {
-    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
-  };
-}
-
-var UserInfo = _wrapComponent('UserInfo')((_temp = _class = function (_Component) {
-  _inherits(UserInfo, _Component);
-
-  function UserInfo() {
-    _classCallCheck(this, UserInfo);
-
-    return _possibleConstructorReturn(this, (UserInfo.__proto__ || Object.getPrototypeOf(UserInfo)).apply(this, arguments));
-  }
-
-  _createClass(UserInfo, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      return _react3.default.createElement(_reactNative.Button, {
-        onPress: function onPress() {
-          return _this2.props.navigation.navigate('Account');
-        },
-        title: '\u9000\u51FA',
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 11
-        }
-      });
-    }
-  }]);
-
-  return UserInfo;
-}(_react2.Component), _class.navigationOptions = {
-  tabBarLabel: '用户'
-}, _temp));
-
-exports.default = UserInfo;
-}, 701, null, "Project/app/compponents-template/users-info.js");
+}, 690, null, "store2/dist/store2.js");
 __d(/* Project/app/components-page/account.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -65536,7 +66082,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _reactNative = require(180           ); // 180 = react-native
 
-var _login = require(696                              ); // 696 = ./../compponents-template/login
+var _login = require(685                              ); // 685 = ./../compponents-template/login
 
 var _login2 = _interopRequireDefault(_login);
 
@@ -65600,8 +66146,8 @@ var Account = _wrapComponent('Account')(function (_Component) {
 }(_react2.Component));
 
 exports.default = Account;
-}, 685, null, "Project/app/components-page/account.js");
-__d(/* Project/app/compponents-template/login.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+}, 693, null, "Project/app/components-page/account.js");
+__d(/* Project/app/components-page/book-add.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
@@ -65613,29 +66159,11 @@ var _index = require(26                                                     ); /
 
 var _index2 = _interopRequireDefault(_index);
 
+var _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\components-page\\book-add.js';
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec,
-    _class2,
-    _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\compponents-template\\login.js';
-
 var _reactNative = require(180           ); // 180 = react-native
-
-var _textInput = require(687                               ); // 687 = ./../components-smart/text-input
-
-var _textInput2 = _interopRequireDefault(_textInput);
-
-var _button = require(688                           ); // 688 = ./../components-smart/button
-
-var _button2 = _interopRequireDefault(_button);
-
-var _themes = require(689                     ); // 689 = ./../src/themes/themes
-
-var _themes2 = _interopRequireDefault(_themes);
-
-var _reactRedux = require(556          ); // 556 = react-redux
-
-var _account = require(703                        ); // 703 = ../actions/account.action
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -65646,13 +66174,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _components = {
-  Login: {
-    displayName: 'Login'
+  BookAdd: {
+    displayName: 'BookAdd'
   }
 };
 
 var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
-  filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/compponents-template/login.js',
+  filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/components-page/book-add.js',
   components: _components,
   locals: [module],
   imports: [_react3.default]
@@ -65664,283 +66192,36 @@ function _wrapComponent(id) {
   };
 }
 
-var Login = _wrapComponent('Login')((_dec = (0, _reactRedux.connect)(function (store) {
-  return {
-    UsersModel: store.accountReducer.loginUser
-  };
-}), _dec(_class2 = function (_Component) {
-  _inherits(Login, _Component);
+var BookAdd = _wrapComponent('BookAdd')(function (_Component) {
+  _inherits(BookAdd, _Component);
 
-  function Login(props) {
-    _classCallCheck(this, Login);
+  function BookAdd() {
+    _classCallCheck(this, BookAdd);
 
-    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
-
-    _this._loginAccount = function () {
-
-      _this.props.dispatch((0, _account.AccountLogin)({
-        UsersModel: _this.state
-      }));
-    };
-
-    _this.state = {
-      UserName: '',
-      Password: '' };
-    return _this;
+    return _possibleConstructorReturn(this, (BookAdd.__proto__ || Object.getPrototypeOf(BookAdd)).apply(this, arguments));
   }
 
-  _createClass(Login, [{
+  _createClass(BookAdd, [{
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       return _react3.default.createElement(
-        _reactNative.View,
-        { style: styles.formLogin, __source: {
-            fileName: _jsxFileName,
-            lineNumber: 41
-          }
-        },
-        _react3.default.createElement(
-          _reactNative.View,
-          { style: styles.formInput, __source: {
-              fileName: _jsxFileName,
-              lineNumber: 42
-            }
-          },
-          _react3.default.createElement(_textInput2.default, {
-            placeholder: '\u7528\u6237\u540D',
-            value: this.state.UserName,
-            onChangeText: function onChangeText(val) {
-              return _this2.setState({ UserName: val });
-            }, __source: {
-              fileName: _jsxFileName,
-              lineNumber: 43
-            }
-          }),
-          _react3.default.createElement(_textInput2.default, {
-            placeholder: '\u5BC6\u7801',
-            value: this.state.Password,
-            onChangeText: function onChangeText(val) {
-              return _this2.setState({ Password: val });
-            }, __source: {
-              fileName: _jsxFileName,
-              lineNumber: 47
-            }
-          })
-        ),
-        _react3.default.createElement(_button2.default, {
-          title: '\u767B\u5F55',
-          color: _themes2.default.color,
-          onPress: this._loginAccount,
+        _reactNative.Text,
+        {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 52
+            lineNumber: 7
           }
-        })
+        },
+        'sasasasasasa'
       );
     }
   }]);
 
-  return Login;
-}(_react2.Component)) || _class2));
-
-exports.default = Login;
-
-
-var styles = _reactNative.StyleSheet.create({
-  formLogin: {
-    marginTop: 200,
-    marginLeft: 10,
-    marginRight: 10
-  },
-  formInput: {
-    marginBottom: 30
-  }
-});
-}, 696, null, "Project/app/compponents-template/login.js");
-__d(/* Project/app/components-smart/text-input.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react2 = require(12     ); // 12 = react
-
-var _react3 = _interopRequireDefault(_react2);
-
-var _index = require(26                                                     ); // 26 = ./../../node_modules/react-transform-hmr/lib/index.js
-
-var _index2 = _interopRequireDefault(_index);
-
-var _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\components-smart\\text-input.js';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _reactNative = require(180           ); // 180 = react-native
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _components = {
-    FormTextInput: {
-        displayName: 'FormTextInput'
-    }
-};
-
-var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
-    filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/components-smart/text-input.js',
-    components: _components,
-    locals: [module],
-    imports: [_react3.default]
-});
-
-function _wrapComponent(id) {
-    return function (Component) {
-        return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
-    };
-}
-
-var FormTextInput = _wrapComponent('FormTextInput')(function (_Component) {
-    _inherits(FormTextInput, _Component);
-
-    function FormTextInput() {
-        _classCallCheck(this, FormTextInput);
-
-        return _possibleConstructorReturn(this, (FormTextInput.__proto__ || Object.getPrototypeOf(FormTextInput)).apply(this, arguments));
-    }
-
-    _createClass(FormTextInput, [{
-        key: 'render',
-        value: function render() {
-            return _react3.default.createElement(_reactNative.TextInput, {
-                placeholder: this.props.placeholder,
-                onChangeText: this.props.onChangeText,
-                value: this.props.value,
-                __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 7
-                }
-            });
-        }
-    }]);
-
-    return FormTextInput;
+  return BookAdd;
 }(_react2.Component));
 
-exports.default = FormTextInput;
-}, 687, null, "Project/app/components-smart/text-input.js");
-__d(/* Project/app/components-smart/button.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react2 = require(12     ); // 12 = react
-
-var _react3 = _interopRequireDefault(_react2);
-
-var _index = require(26                                                     ); // 26 = ./../../node_modules/react-transform-hmr/lib/index.js
-
-var _index2 = _interopRequireDefault(_index);
-
-var _jsxFileName = 'G:\\ReactNative\\BookManage\\MobileManage\\Project\\app\\components-smart\\button.js';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _reactNative = require(180           ); // 180 = react-native
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _components = {
-    FormButton: {
-        displayName: 'FormButton'
-    }
-};
-
-var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
-    filename: 'G:/ReactNative/BookManage/MobileManage/Project/app/components-smart/button.js',
-    components: _components,
-    locals: [module],
-    imports: [_react3.default]
-});
-
-function _wrapComponent(id) {
-    return function (Component) {
-        return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
-    };
-}
-
-var FormButton = _wrapComponent('FormButton')(function (_Component) {
-    _inherits(FormButton, _Component);
-
-    function FormButton() {
-        _classCallCheck(this, FormButton);
-
-        return _possibleConstructorReturn(this, (FormButton.__proto__ || Object.getPrototypeOf(FormButton)).apply(this, arguments));
-    }
-
-    _createClass(FormButton, [{
-        key: 'render',
-        value: function render() {
-            return _react3.default.createElement(_reactNative.Button, {
-                title: this.props.title,
-                color: this.props.color,
-                onPress: this.props.onPress,
-                style: this.props.style,
-                __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 7
-                }
-            });
-        }
-    }]);
-
-    return FormButton;
-}(_react2.Component));
-
-exports.default = FormButton;
-}, 688, null, "Project/app/components-smart/button.js");
-__d(/* Project/app/src/themes/themes.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = Themes = {
-    color: '#43A047'
-};
-}, 689, null, "Project/app/src/themes/themes.js");
-__d(/* Project/app/actions/account.action.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.AccountLogin = AccountLogin;
-
-var _axios = require(646                 ); // 646 = ../unilities/axios
-
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function AccountLogin(obj) {
-    return function (dispatch) {
-        (0, _axios2.default)({
-            url: 'account/login',
-            method: 'POST',
-            data: obj
-        }).then(function (res) {
-            dispatch({
-                type: 'USER_LOGIN',
-                payload: res.Data
-            });
-        });
-    };
-}
-}, 703, null, "Project/app/actions/account.action.js");
+exports.default = BookAdd;
+}, 744, null, "Project/app/components-page/book-add.js");
 ;require(274);
 ;require(0);
 //# sourceMappingURL=index.android.map

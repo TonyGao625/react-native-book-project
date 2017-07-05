@@ -12,6 +12,9 @@ import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
 import { getBookList } from '../actions/book.action';
 import axios from 'axios';
+import FormButton from './../components-smart/button'
+
+import BookAdd from './../components-page/book-add'
 
 @connect((store) => {
   return {
@@ -20,21 +23,32 @@ import axios from 'axios';
 })
 
 export default class BookAll extends Component {
-  static navigationOptions = {
-    tabBarLabel: '全部'
-  };
   componentWillMount() {
     this.props.dispatch(getBookList());
+  }
+  _addBook= () => {
+    const { navigate } = this.props.navigation;
+    navigate('BookAdd')
   }
   render() {
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
+          <FormButton 
+              title='添加' 
+              onPress={this._addBook}
+          />
+          <View>
             {
-              this.props.BookList.map((val) => {
-                return <Text style={styles.item}>{val.BookName}</Text>
-              })
-            }
-      </ScrollView>
+                this.props.BookList.map((val) => {
+                  return <View style={styles.item}>
+                    <Text>{val.BookName}
+                        <Text style={{textAlign:'right',color:'red'}}>查看</Text>
+                    </Text>
+                  </View>
+                })
+              }
+          </View>  
+        </ScrollView>
   );
   }
 }
@@ -43,8 +57,8 @@ const styles = StyleSheet.create({
   item: {
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
-    height: 50,
-    lineHeight: 40,
+    height: 40,
+    paddingTop:10,
     marginLeft: 15,
     marginRight: 15
   }

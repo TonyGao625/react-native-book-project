@@ -5,9 +5,7 @@ import Login from './../compponents-template/login'
 export default class Account extends Component {
   render() {
     return (
-        <View>
-           <Login navigation={this.props.navigation}/>
-        </View>
+        <Login navigation={this.props.navigation}/>
     );
   }
 }

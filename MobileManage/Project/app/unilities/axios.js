@@ -8,6 +8,7 @@ import {
 
 export default (obj) => {
     var p = new Promise((resolve, reject) => {
+        
         axios({
             url: obj.url,
             baseURL: 'http://192.168.1.116:8001/api/',

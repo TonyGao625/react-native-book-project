@@ -1,5 +1,5 @@
 import {TabNavigator} from 'react-navigation'
-import BookAll from './../compponents-template/book-all';
+import BookAll from './book-all';
 import BookBorrow from './../compponents-template/book-borrow';
 import BookHistory from './../compponents-template/borrow-history';
 import BookCollection from './../compponents-template/book-collection';
@@ -7,18 +7,6 @@ import UserInfo from './../compponents-template/users-info';
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Login from './../compponents-template/login'
-
-
-export default class Menu extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-         <MenuBottom/>
-    );
-  }
-}
 
 const MenuBottom = TabNavigator({
   BookAll: {
@@ -45,4 +33,6 @@ const MenuBottom = TabNavigator({
   },
   tabBarPosition: 'bottom'
 });
+
+export default MenuBottom;
 

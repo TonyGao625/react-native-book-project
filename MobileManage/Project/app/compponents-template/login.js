@@ -5,7 +5,8 @@ import {
   View,
   Modal,
   TouchableHighlight,
-  Alert
+  Alert,
+  TabBarIOS
 } from 'react-native';
 import FormTextInput from './../components-smart/text-input'
 import FormButton from './../components-smart/button'
