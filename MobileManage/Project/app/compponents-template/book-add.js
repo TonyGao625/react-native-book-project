@@ -1,14 +1,3 @@
-
-
-import { StackNavigator, TabNavigator } from 'react-navigation'
-import { connect } from 'react-redux';
-import { getBookList } from '../actions/book.action';
-import axios from 'axios';
-import FormButton from './../components-smart/button'
-
-import BookAdd from './../components-page/book-add'
-
-
 import React, { Component } from 'react';
 import { View, StyleSheet,Text,Image,
   Dimensions,
@@ -16,49 +5,41 @@ import { View, StyleSheet,Text,Image,
   Button,
   TouchableOpacity,
 ScrollView } from 'react-native';
+import { StackNavigator, TabNavigator } from 'react-navigation'
+import { connect } from 'react-redux';
+import { getBookCategoryList } from '../actions/book.action';
+import FormButton from './../components-smart/button'
 import FormTextInput from './../components-smart/text-input'
-import FormDatePicker from './../components-smart/datepicker'
+import FormDatePicker from './../components-smart/date-picker'
+import FormModelPicker from './../components-smart/model-picker'
 const { width, height } = Dimensions.get("window");
-import ModalPicker from 'react-native-modal-picker'
 
 @connect((store) => {
   return {
-    BookList: store.bookReducer.BookList
+    BookCategoryList:store.bookReducer.BookCategoryList,
   }
 })
 
 export default class BookAll extends Component {
-  constructor() {
+    constructor() {
         super();
-
         this.state = {
-            textInputValue: ''
+           book:{
+            BookName:'aaaa'
+           }
         }
     }
-    
+    componentWillMount() {
+      this.props.dispatch(getBookCategoryList());
+    }
     _saveBook= () => {
-         const { navigate } = this.props.navigation;
-         navigate('Main');
+      this.props.dispatch(addBookInfo().then(function(){
+        const { navigate } = this.props.navigation;
+        navigate('Main');
+      }));
     }
     render() {
-        let index = 0;
-        const data = [
-            { key: index++, section: true, label: 'Fruits' },
-            { key: index++, label: 'Red Apples' },
-            { key: index++, label: 'Cherries' },
-            { key: index++, label: 'Cranberries' },
-            { key: index++, label: 'Pink Grapefruit' },
-            { key: index++, label: 'Raspberries' },
-            { key: index++, section: true, label: 'Vegetables' },
-            { key: index++, label: 'Beets' },
-            { key: index++, label: 'Red Peppers' },
-            { key: index++, label: 'Radishes' },
-            { key: index++, label: 'Radicchio' },
-            { key: index++, label: 'Red Onions' },
-            { key: index++, label: 'Red Potatoes' },
-            { key: index++, label: 'Rhubarb' },
-            { key: index++, label: 'Tomatoes' }
-        ];
+        book=this.state;
         return (
         <ScrollView style={styles.container}>
           <View style={styles.wrapper}>
@@ -67,6 +48,7 @@ export default class BookAll extends Component {
                 <Text>书名:</Text>
               </View>
               <FormTextInput 
+                value={book.BookName}
                 style={styles.input}  />
             </View>
             <View style={styles.inputWrap}>
@@ -94,19 +76,10 @@ export default class BookAll extends Component {
                 <Text>分类:</Text>
               </View>
 
-              <View style={{width:'100%'}}>
-                <ModalPicker
-                    data={data}
-                    initValue="Select book category!"
-                    onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
-                    
-                    <FormTextInput
-                       editable={false}
-                        placeholder="Select book category!"
-                        value={this.state.textInputValue} />
-                        
-                </ModalPicker>
-               </View>
+              <FormModelPicker 
+                initValue='select book category'
+                value=''
+                data={this.props.BookCategoryList}/>
             </View>
 
             <View style={styles.inputWrap}>

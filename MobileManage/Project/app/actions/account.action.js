@@ -3,12 +3,13 @@ import storage from 'store2';
 import validator from 'validator';
 
 export function AccountLogin(obj) {
-    return function (dispatch) {
+    return new Promise(function (dispatch) {
         thaxios({
             url: 'account/login',
             method: 'POST',
             data: obj
         }).then((res) => {
+            storage.set('RoleId', res.Data.RoleId);
             dispatch({
                 type: 'USER_LOGIN',
                 payload: res.Data
@@ -16,6 +17,7 @@ export function AccountLogin(obj) {
         });
     }
 }
+
 
 export function editEmail(val) {
     return {
@@ -35,4 +37,6 @@ export function editPassword(val) {
             isPassword: !validator.isEmpty(val)
         }
     }
+
+    });
 }
