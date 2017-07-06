@@ -10,7 +10,7 @@ import {
   Button,
   TouchableOpacity
 } from 'react-native';
-
+import Icon from 'react-native-vector-icons/Ionicons';
 const { width, height } = Dimensions.get("window");
 
 const background = require("./login_bg.png");
@@ -57,7 +57,7 @@ export default class Login extends Component {
           <View style={styles.wrapper}>
             <View style={styles.inputWrap}>
               <View style={styles.iconWrap}>
-                <Image source={personIcon} style={styles.icon} resizeMode="contain" />
+                <Icon name="md-person" size={25} color='white' />
               </View>
               <FormTextInput 
                 placeholder='用户名'
@@ -68,7 +68,7 @@ export default class Login extends Component {
             </View>
             <View style={styles.inputWrap}>
               <View style={styles.iconWrap}>
-                <Image source={lockIcon} style={styles.icon} resizeMode="contain" />
+               <Icon name="md-lock" size={25} color='white' />
               </View>
               <FormTextInput
                 placeholder='密码'
