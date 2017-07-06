@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 
-class FormTextInput extends Component {
+export default class FormTextInput extends Component {
     render() {
         return (
              <TextInput
@@ -15,5 +15,3 @@ class FormTextInput extends Component {
         );
     }
 }
-
-export default FormTextInput;
