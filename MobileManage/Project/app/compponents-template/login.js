@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -16,10 +15,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const { width, height } = Dimensions.get("window");
 
 const background = require("./login_bg.png");
-const mark = require("./login_mark.png");
-const lockIcon = require("./login_lock.png");
-const personIcon = require("./login_person.png");
-
 
 import FormTextField from './../components-smart/text-input'
 import FormButton from './../components-smart/button'
@@ -47,9 +42,12 @@ export default class Login extends Component {
     this.setState({
       submitted: true
     });
-    // this.props.dispatch(AccountLogin({
-    //   UsersModel: this.state
-    // }));
+    const { navigate } = this.props.navigation;
+      AccountLogin({
+        UsersModel: this.state
+      }).then(function(){ 
+        navigate('Main')
+      })
   }
   // componentWillReceiveProps = () => {
   //   const { navigate } = this.props.navigation;
@@ -61,7 +59,7 @@ export default class Login extends Component {
       <View style={styles.container}>
         <Image source={background} style={styles.background} resizeMode="cover">
           <View style={styles.markWrap}>
-            <Image source={mark} style={styles.mark} resizeMode="contain" />
+            <Icon name="laptop-chromebook" size={120} color='white' />
           </View>
           <View style={styles.wrapper}>
             <View style={styles.inputWrap}>
@@ -115,7 +113,9 @@ const styles = StyleSheet.create({
   },
   markWrap: {
     flex: 1,
-    paddingVertical: 30,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   mark: {
     width: null,

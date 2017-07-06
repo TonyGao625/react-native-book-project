@@ -1,20 +1,7 @@
 import React, { Component } from 'react';
 import { TextInput, StyleSheet, ScrollView, Text } from 'react-native';
 
-class FormTextInput extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            focused: false,
-            blured: false
-        };
-    }
-    _focus = () => {
-        this.setState({ focused: true });
-    }
-    _blur = () => {
-        this.setState({ blured: true })
-    }
+export default class FormTextInput extends Component {
     render() {
         const color = this.props.white ? '#FAFAFA' : '#2196F3';
         const placeColor = this.props.white ? '#E0E0E0' : '#9E9E9E';
@@ -48,7 +35,6 @@ class FormTextInput extends Component {
         );
     }
 }
-
 Styles = StyleSheet.create({
     view: {
         width: '100%',
@@ -56,4 +42,3 @@ Styles = StyleSheet.create({
     }
 })
 export default FormTextInput;
-
