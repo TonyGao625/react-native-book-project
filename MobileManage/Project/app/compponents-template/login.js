@@ -9,7 +9,8 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  AsyncStorage
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 const { width, height } = Dimensions.get("window");
@@ -38,8 +39,6 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // UserName: '',
-      // Password: ''
       submitted: false
     };
 
