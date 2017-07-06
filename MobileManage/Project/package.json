@@ -19,6 +19,7 @@
     "react-native-scrollable-tab-view": "^0.6.7",
     "react-native-spinkit": "^1.0.3",
     "react-native-sqlite-storage": "^3.3.1",
+    "react-native-storage": "^0.2.2",
     "react-native-tabbar": "^1.0.0",
     "react-native-vector-icons": "^4.2.0",
     "react-navigation": "^1.0.0-beta.11",
@@ -28,7 +29,8 @@
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^4.3.0",
     "redux-thunk": "^2.2.0",
-    "store2": "^2.5.1"
+    "store2": "^2.5.1",
+    "validator": "^7.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
