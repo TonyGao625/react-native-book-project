@@ -8,9 +8,10 @@ import {
   Dimensions,
   TextInput,
   Button,
-  TouchableOpacity
+  TouchableOpacity,
+  KeyboardAvoidingView
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 const { width, height } = Dimensions.get("window");
 
 const background = require("./login_bg.png");
@@ -19,37 +20,46 @@ const lockIcon = require("./login_lock.png");
 const personIcon = require("./login_person.png");
 
 
-import FormTextInput from './../components-smart/text-input'
+import FormTextField from './../components-smart/text-input'
 import FormButton from './../components-smart/button'
 import Themes from './../src/themes/themes'
 import { connect } from 'react-redux'
-import { AccountLogin } from '../actions/account.action';
+import { AccountLogin,editEmail,editPassword } from '../actions/account.action';
 
 @connect((store) => {
-    return {
-        loggedUser: store.accountReducer.loggedUser
-    }
+  return {
+    loggedUser: store.accountReducer.loggedUser,
+    loginUser: store.accountReducer.loginUser,
+    validation: store.accountReducer.validation
+  }
 })
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
-      this.state = {
-        UserName: '',
-        Password: ''};
+    this.state = {
+      // UserName: '',
+      // Password: ''
+      submitted: false
+    };
+
   }
   _loginAccount = () => {
-      this.props.dispatch(AccountLogin({
-        UsersModel: this.state
-      }));
+    this.setState({
+      submitted: true
+    });
+    // this.props.dispatch(AccountLogin({
+    //   UsersModel: this.state
+    // }));
   }
-  componentWillReceiveProps=()=>{
-     const { navigate } = this.props.navigation;
-     navigate('Main')
-  }
+  // componentWillReceiveProps = () => {
+  //   const { navigate } = this.props.navigation;
+  //   navigate('Main')
+  // }
   render() {
+    const { loginUser, validation } = this.props;
     return (
-       <View style={styles.container}>
+      <View style={styles.container}>
         <Image source={background} style={styles.background} resizeMode="cover">
           <View style={styles.markWrap}>
             <Image source={mark} style={styles.mark} resizeMode="contain" />
@@ -57,25 +67,31 @@ export default class Login extends Component {
           <View style={styles.wrapper}>
             <View style={styles.inputWrap}>
               <View style={styles.iconWrap}>
-                <Icon name="md-person" size={25} color='white' />
+                <Icon name="person" size={25} color='white' />
               </View>
-              <FormTextInput 
-                placeholder='用户名'
-                isPasswod={false}
-                style={styles.input} 
-                value={this.state.UserName}
-                onChangeText={(val) => this.setState({ UserName: val })} />
+              <FormTextField
+                value={loginUser.Email}
+                placeholder='Email'
+                white={true}
+                submitted={this.state.submitted}
+                keyboardType='phone-pad'
+                errorText='Please type in valid Email'
+                validated={validation.Email}
+                onChangeText={(val) => this.props.dispatch(editEmail(val))} />
             </View>
             <View style={styles.inputWrap}>
               <View style={styles.iconWrap}>
-               <Icon name="md-lock" size={25} color='white' />
+                <Icon name="lock" size={25} color='white' />
               </View>
-              <FormTextInput
-                placeholder='密码'
-                isPasswod= {true}
-                style={styles.input} 
-                value={this.state.Password}
-                onChangeText={(val) => this.setState({ Password: val })}  />
+                <FormTextField
+                value={loginUser.Password}
+                placeholder='Password'
+                white={true}
+                submitted={this.state.submitted}
+                keyboardType='phone-pad'
+                errorText='Password is required'
+                validated={validation.Password}
+                onChangeText={(val) => this.props.dispatch(editPassword(val))} />
             </View>
             <TouchableOpacity activeOpacity={.5} onPress={this._loginAccount}>
               <View style={styles.button}>
@@ -117,9 +133,7 @@ const styles = StyleSheet.create({
   inputWrap: {
     flexDirection: "row",
     marginVertical: 10,
-    height: 40,
-    borderBottomWidth: 1,
-    borderBottomColor: "#CCC"
+    height: 70,
   },
   iconWrap: {
     paddingHorizontal: 7,
