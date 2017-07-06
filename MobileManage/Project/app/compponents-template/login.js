@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
 import {
+  AppRegistry,
   StyleSheet,
   Text,
   View,
-  Modal,
-  TouchableHighlight,
-  Alert,
-  TabBarIOS
+  Image,
+  Dimensions,
+  TextInput,
+  Button,
+  TouchableOpacity
 } from 'react-native';
+
+const { width, height } = Dimensions.get("window");
+
+const background = require("./login_bg.png");
+const mark = require("./login_mark.png");
+const lockIcon = require("./login_lock.png");
+const personIcon = require("./login_person.png");
+
+
 import FormTextInput from './../components-smart/text-input'
 import FormButton from './../components-smart/button'
 import Themes from './../src/themes/themes'
@@ -38,36 +49,119 @@ export default class Login extends Component {
   }
   render() {
     return (
-      <View style={styles.formLogin}>
-        <View style={styles.formInput}>
-          <FormTextInput 
-          placeholder='用户名'
-          isPasswod={false}
-          value={this.state.UserName}
-          onChangeText={(val) => this.setState({ UserName: val })} />
-          <FormTextInput
-          placeholder='密码'
-          isPasswod= {true}
-          value={this.state.Password}
-          onChangeText={(val) => this.setState({ Password: val })}  />
-        </View>
-        <FormButton 
-        title='登录' 
-        color={Themes.color}
-        onPress={this._loginAccount}
-        />
+       <View style={styles.container}>
+        <Image source={background} style={styles.background} resizeMode="cover">
+          <View style={styles.markWrap}>
+            <Image source={mark} style={styles.mark} resizeMode="contain" />
+          </View>
+          <View style={styles.wrapper}>
+            <View style={styles.inputWrap}>
+              <View style={styles.iconWrap}>
+                <Image source={personIcon} style={styles.icon} resizeMode="contain" />
+              </View>
+              <FormTextInput 
+                placeholder='用户名'
+                isPasswod={false}
+                style={styles.input} 
+                value={this.state.UserName}
+                onChangeText={(val) => this.setState({ UserName: val })} />
+            </View>
+            <View style={styles.inputWrap}>
+              <View style={styles.iconWrap}>
+                <Image source={lockIcon} style={styles.icon} resizeMode="contain" />
+              </View>
+              <FormTextInput
+                placeholder='密码'
+                isPasswod= {true}
+                style={styles.input} 
+                value={this.state.Password}
+                onChangeText={(val) => this.setState({ Password: val })}  />
+            </View>
+            <TouchableOpacity activeOpacity={.5} onPress={this._loginAccount}>
+              <View style={styles.button}>
+                <Text style={styles.buttonText}>登录</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.container}>
+            <View style={styles.signupWrap}>
+              <Text style={styles.accountText}>Book Management</Text>
+            </View>
+          </View>
+        </Image>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  formLogin: {
-    marginTop: 200,
-    marginLeft:10,
-    marginRight:10,
+  container: {
+    flex: 1,
   },
-  formInput:{
-    marginBottom:30
+  markWrap: {
+    flex: 1,
+    paddingVertical: 30,
+  },
+  mark: {
+    width: null,
+    height: null,
+    flex: 1,
+  },
+  background: {
+    width,
+    height,
+  },
+  wrapper: {
+    paddingVertical: 30,
+  },
+  inputWrap: {
+    flexDirection: "row",
+    marginVertical: 10,
+    height: 40,
+    borderBottomWidth: 1,
+    borderBottomColor: "#CCC"
+  },
+  iconWrap: {
+    paddingHorizontal: 7,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  icon: {
+    height: 20,
+    width: 20,
+  },
+  input: {
+    flex: 1,
+    paddingHorizontal: 10,
+  },
+  button: {
+    backgroundColor: "#43A047",
+    paddingVertical: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 30,
+  },
+  buttonText: {
+    color: "#FFF",
+    fontSize: 18,
+  },
+  forgotPasswordText: {
+    color: "#D8D8D8",
+    backgroundColor: "transparent",
+    textAlign: "right",
+    paddingRight: 15,
+  },
+  signupWrap: {
+    backgroundColor: "transparent",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  accountText: {
+    color: "#D8D8D8"
+  },
+  signupLinkText: {
+    color: "#FFF",
+    marginLeft: 5,
   }
 });

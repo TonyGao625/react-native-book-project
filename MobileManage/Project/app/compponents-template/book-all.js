@@ -41,9 +41,9 @@ export default class BookAll extends Component {
             {
                 this.props.BookList.map((val) => {
                   return <View style={styles.item}>
-                    <Text>{val.BookName}
-                        <Text style={{textAlign:'right',color:'red'}}>查看</Text>
-                    </Text>
+                    <Text>{val.BookName}</Text>
+                    <Text style={{color:'red'}}>借阅</Text>
+                    <Text style={{color:'red'}}>收藏</Text>
                   </View>
                 })
               }
@@ -55,6 +55,8 @@ export default class BookAll extends Component {
 
 const styles = StyleSheet.create({
   item: {
+    flex: 1,
+    flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
     height: 40,

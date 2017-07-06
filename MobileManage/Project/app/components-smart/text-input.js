@@ -5,6 +5,8 @@ class FormTextInput extends Component {
     render() {
         return (
              <TextInput
+                editable={this.props.editable}
+                style={this.props.style}
                 placeholder={this.props.placeholder}
                 onChangeText={this.props.onChangeText}
                 value={this.props.value}

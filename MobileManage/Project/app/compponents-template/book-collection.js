@@ -3,38 +3,57 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View, 
+  View,
   TouchableOpacity,
   ScrollView,
   ListView,
-  Image,
-  Button
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
+import { connect } from 'react-redux';
+import { getBookList } from '../actions/book.action';
+import axios from 'axios';
+import FormButton from './../components-smart/button'
+
+import BookAdd from './../components-page/book-add'
+
+@connect((store) => {
+  return {
+    BookList: store.bookReducer.BookList
+  }
+})
 
 export default class BookCollection extends Component {
-    static navigationOptions = {
-    tabBarLabel: '收藏',
-    tabBarIcon: ({ tintColor }) => (
-      <Image
-        style={[styles.icon, {tintColor: tintColor}]}
-      />
-    ),
-  };
-
+  componentWillMount() {
+    this.props.dispatch(getBookList());
+  }
   render() {
     return (
-      <Button
-        onPress={() => this.props.navigation.navigate('Notifications')}
-        title="Go to notifications"
-      />
-    );
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+          <View>
+            {
+                this.props.BookList.map((val) => {
+                  return <View style={styles.item}>
+                    <Text>{val.BookName}</Text>
+                  </View>
+                })
+              }
+          </View>  
+        </ScrollView>
+  );
   }
 }
 
 const styles = StyleSheet.create({
-  icon: {
-    width: 26,
-    height: 26,
-  },
+  item: {
+    flex: 1,
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+    height: 40,
+    paddingTop:10,
+    marginLeft: 15,
+    marginRight: 15
+  }
 });
+
+

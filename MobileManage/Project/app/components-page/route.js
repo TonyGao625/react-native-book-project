@@ -41,6 +41,8 @@ const RouteItem = StackNavigator({
   cardStyle:{
     backgroundColor:'white'
   },
-  initialRouteName:'Main',
+  //initialRouteName:'Main',
   //headerMode:'none'
 });
+
+
