@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -10,14 +9,10 @@ import {
   Button,
   TouchableOpacity
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 const { width, height } = Dimensions.get("window");
 
 const background = require("./login_bg.png");
-const mark = require("./login_mark.png");
-const lockIcon = require("./login_lock.png");
-const personIcon = require("./login_person.png");
-
 
 import FormTextInput from './../components-smart/text-input'
 import FormButton from './../components-smart/button'
@@ -39,25 +34,26 @@ export default class Login extends Component {
         Password: ''};
   }
   _loginAccount = () => {
-      this.props.dispatch(AccountLogin({
+      const { navigate } = this.props.navigation;
+      AccountLogin({
         UsersModel: this.state
-      }));
+      }).then(function(){ 
+        navigate('Main')
+      })
   }
   componentWillReceiveProps=()=>{
-     const { navigate } = this.props.navigation;
-     navigate('Main')
   }
   render() {
     return (
        <View style={styles.container}>
         <Image source={background} style={styles.background} resizeMode="cover">
           <View style={styles.markWrap}>
-            <Image source={mark} style={styles.mark} resizeMode="contain" />
+            <Icon name="laptop-chromebook" size={120} color='white' />
           </View>
           <View style={styles.wrapper}>
             <View style={styles.inputWrap}>
               <View style={styles.iconWrap}>
-                <Icon name="md-person" size={25} color='white' />
+                <Icon name="person" size={25} color='white' />
               </View>
               <FormTextInput 
                 placeholder='用户名'
@@ -68,7 +64,7 @@ export default class Login extends Component {
             </View>
             <View style={styles.inputWrap}>
               <View style={styles.iconWrap}>
-               <Icon name="md-lock" size={25} color='white' />
+               <Icon name="lock" size={25} color='white' />
               </View>
               <FormTextInput
                 placeholder='密码'
@@ -100,7 +96,9 @@ const styles = StyleSheet.create({
   },
   markWrap: {
     flex: 1,
-    paddingVertical: 30,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   mark: {
     width: null,

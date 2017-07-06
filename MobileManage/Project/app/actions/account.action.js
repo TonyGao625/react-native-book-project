@@ -1,17 +1,18 @@
 import thaxios from '../unilities/axios';
-import storage from 'store2';
+import storage from '../async-storage';
 
 export function AccountLogin(obj) {
-    return function (dispatch) {
+    return new Promise(function (dispatch) {
         thaxios({
             url: 'account/login',
             method: 'POST',
             data: obj
         }).then((res) => {
+            storage.set('RoleId', res.Data.RoleId);
             dispatch({
                 type: 'USER_LOGIN',
                 payload: res.Data
             })
         });
-    }
+    });
 }
