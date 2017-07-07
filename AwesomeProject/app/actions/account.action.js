@@ -1,7 +1,8 @@
 import thaxios from '../unilities/axios';
 import { AsyncStorage } from 'react-native';
+import validator from 'validator';
 
-export function AccountLogin(obj) {
+export function accountLogin(obj) {
     return new Promise(function (dispatch) {
         thaxios({
             url: 'account/login',
@@ -22,3 +23,34 @@ export function AccountLogin(obj) {
         });
     });
 }
+
+export function editEmail(val) {
+    var emailError = '';
+    if (!val) {
+        emailError = 'Required'
+    } else if (!validator.isEmail(val)) {
+        emailError = 'Not valid'
+    }
+    return {
+        type: 'EDIT_EMAIL',
+        payload: {
+            val: val,
+            emailError: emailError
+        }
+    }
+}
+
+export function editPassword(val) {
+    var passwordError = '';
+    if (!val) {
+        passwordError = 'Required'
+    }
+    return {
+        type: 'EDIT_PASSWORD',
+        payload: {
+            val: val,
+            passwordError: passwordError
+        }
+    }
+
+};

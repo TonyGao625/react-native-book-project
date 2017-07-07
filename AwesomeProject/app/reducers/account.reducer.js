@@ -1,12 +1,14 @@
 export default function reducer(state = {
     loginUser: {
-        UserName: '',
-        Password: ''
+        Email: '',
+        Password: '',
+        emailError:'',
+        passwordError:''
     },
-    validation: {
-        UserName: '',
-        Password: ''
-    },
+    // validation: {
+    //     UserName: '',
+    //     Password: ''
+    // },
     loggedUser: {
     },
 }, action) {
@@ -16,24 +18,27 @@ export default function reducer(state = {
                 ...state,
                 loginUser: {
                     ...state.loginUser,
-                    email: action.payload.val
+                    Email: action.payload.val,
+                    emailError: action.payload.emailError,
+                    
                 },
-                validation: {
-                    ...state.validation,
-                    email: action.payload.isValidated
-                }
+                // validation: {
+                //     ...state.validation,
+                //     email: action.payload.isValidated
+                // }
             }
         case 'EDIT_PASSWORD':
             return {
                 ...state,
                 loginUser: {
                     ...state.loginUser,
-                    password: action.payload.val
+                    Password: action.payload.val,
+                    passwordError:action.payload.passwordError,
                 },
-                validation: {
-                    ...state.validation,
-                    password: action.payload.isValidated
-                }
+                // validation: {
+                //     ...state.validation,
+                //     password: action.payload.isValidated
+                // }
             }
         case 'USER_LOGIN':
             return {
