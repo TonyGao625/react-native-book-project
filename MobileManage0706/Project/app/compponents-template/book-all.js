@@ -33,10 +33,6 @@ export default class BookAll extends Component {
   render() {
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
-          <FormButton 
-              title='添加' 
-              onPress={this._addBook}
-          />
           <View>
             {
                 this.props.BookList.map((val) => {

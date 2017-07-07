@@ -4,7 +4,7 @@ import Collection from './../compponents-template/book-collection'
 
 export default class BookHistory extends Component {
   static navigationOptions = {
-    tabBarLabel: '收藏',
+    tabBarLabel: '个人',
     tabBarIcon: ({ tintColor }) => (
       <Image
         style={[styles.icon, {tintColor: tintColor}]}

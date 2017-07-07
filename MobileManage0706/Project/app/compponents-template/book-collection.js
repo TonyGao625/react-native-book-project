@@ -26,18 +26,17 @@ export default class BookCollection extends Component {
   componentWillMount() {
     this.props.dispatch(getBookList());
   }
+  _logout=()=>{
+    const { navigate } = this.props.navigation;
+    navigate('Account');
+  }
   render() {
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
-          <View>
-            {
-                this.props.BookList.map((val) => {
-                  return <View style={styles.item}>
-                    <Text>{val.BookName}</Text>
-                  </View>
-                })
-              }
-          </View>  
+          <FormButton 
+              title='退出' 
+              onPress={this._logout}
+          /> 
         </ScrollView>
   );
   }

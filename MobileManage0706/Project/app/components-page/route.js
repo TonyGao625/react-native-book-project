@@ -4,6 +4,7 @@ import { Button,Text, View } from 'react-native';
 import Main from './main';
 import Account from './account';
 import BookAdd from './book-add';
+import MainAdd from './../compponents-template/main-add';
 
 export default class Route extends Component {
   constructor(props) {
@@ -16,6 +17,15 @@ export default class Route extends Component {
   }
 }
 
+const mainNavigationOptions = ({ navigation }) => ({
+    headerTitle: <Text>全部</Text>,
+    headerRight: 
+      <MainAdd navigation={navigation}/>,
+    headerStyle:{
+      paddingRight:10
+    }
+  });
+
 const RouteItem = StackNavigator({
   Account:{
     screen: Account,
@@ -25,14 +35,7 @@ const RouteItem = StackNavigator({
   },
   Main: {
     screen: Main,
-    navigationOptions:{
-      headerTitle: <Text>全部</Text>,
-      headerRight: 
-       <Text >管理员</Text>,
-      headerStyle:{
-        paddingRight:10
-      }
-    }
+    navigationOptions:mainNavigationOptions
   },
   BookAdd:{
     screen: BookAdd
