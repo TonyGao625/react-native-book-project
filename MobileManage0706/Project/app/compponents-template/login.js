@@ -70,6 +70,7 @@ export default class Login extends Component {
                 <Icon name="person" size={25} color='white' />
               </View>
               <FormTextField
+              isPasswod={false}
                 value={loginUser.Email}
                 placeholder='Email'
                 white={true}
@@ -84,6 +85,7 @@ export default class Login extends Component {
                 <Icon name="lock" size={25} color='white' />
               </View>
                 <FormTextField
+                isPasswod={true}
                 value={loginUser.Password}
                 placeholder='Password'
                 white={true}

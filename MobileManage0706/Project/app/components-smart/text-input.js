@@ -31,16 +31,16 @@ export default class FormTextInput extends Component {
                 <TextInput
                     value={this.props.value}
                     autoCorrect={false}
-                    keyboardType={this.props.keyboardType ? this.props.keyboardType : 'default'}
+                    //keyboardType={this.props.keyboardType ? this.props.keyboardType : 'default'}
                     placeholderTextColor={placeColor}
                     selectionColor={color}
                     style={{ color: color }}
                     placeholder={this.props.placeholder}
-                    secureTextEntry={this.props.secure}
                     underlineColorAndroid={this.state.focused ? color : '#ccc'}
                     onBlur={this._blur}
                     onFocus={this._focus}
-                    onChangeText={this.props.onChangeText} />
+                    onChangeText={this.props.onChangeText}
+                    secureTextEntry={this.props.isPasswod} />
                 <Text style={{ color: '#D50000' }}>
                     {(this.state.focused && this.state.blured || this.props.submitted) && !this.props.validated ? this.props.errorText : ''}
                 </Text>

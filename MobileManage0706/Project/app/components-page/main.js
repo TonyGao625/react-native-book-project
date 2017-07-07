@@ -12,11 +12,20 @@ import storage from 'store2';
 
 // export default class Main extends Component {
 //   componentWillMount() {
-//     //const RoleId = storage.get('RoleId');
-//     AsyncStorage.getItem("myKey").then((value) => {
-//       alert(value);
-//     });
+//     AsyncStorage.getItem('permission').then((value) => {
+//       const { navigate } = this.props.navigation;
+//       if(value==null){
+//         alert(value);
+//          // navigate('Account');
+//       }
 
+//       // const permission = JSON.parse(value);
+//       // alert(permission.IsAuthened);
+//       // if(!permission.IsAuthened){
+//       //     navigate('Account');
+//       // }
+      
+//     });
 //   }
 //   render() {
 //     return (
@@ -24,6 +33,24 @@ import storage from 'store2';
 //     );
 //   }
 // }
+
+
+    AsyncStorage.getItem('permission').then((value) => {
+       alert(value);
+      //const { navigate } = this.props.navigation;
+      if(value==null){
+        alert(value);
+         // navigate('Account');
+      }
+
+      //const permission = JSON.parse(value);
+      alert(permission.IsAuthened);
+      if(!permission.IsAuthened){
+          //navigate('Account');
+      }
+      
+    });
+
  const MenuBottom = TabNavigator({
   BookAll: {
     screen: BookAll,

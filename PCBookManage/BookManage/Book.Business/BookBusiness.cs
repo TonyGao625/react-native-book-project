@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Book.Business.ConvertModel;
 using Book.DataAccess;
 using Book.EntityModel;
 
@@ -35,6 +36,22 @@ namespace Book.Business
                     CreateDate = x.CreateDate,
                     CreateBy = x.CreateBy
                 }).ToList();
+            }
+            catch (Exception ex)
+            {
+                result.Status = -1;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
+
+        public async Task<Operate> AddOrUpdate(BookInfoModel bookInfoModel)
+        {
+            var result=new Operate();
+            try
+            {
+                var bookInfo = bookInfoModel.ToBookInfo();
+                await _bookAgent.AddOrUpdate(bookInfo);
             }
             catch (Exception ex)
             {

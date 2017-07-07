@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   ListView,
+  AsyncStorage
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
@@ -27,6 +28,7 @@ export default class BookCollection extends Component {
     this.props.dispatch(getBookList());
   }
   _logout=()=>{
+    AsyncStorage.removeItem('permission');
     const { navigate } = this.props.navigation;
     navigate('Account');
   }
