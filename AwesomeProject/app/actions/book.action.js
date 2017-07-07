@@ -50,3 +50,13 @@ export function addBookInfo(obj) {
         });
     });
 }
+
+export function borrowBook(obj) {
+   return new Promise(function (dispatch) {
+        thaxios({
+            url: 'book/borrowBook',
+            method: 'Post',
+            data: obj
+        });
+    });
+}

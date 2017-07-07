@@ -12,10 +12,12 @@ namespace Book.Business
     public class BookBusiness
     {
         private readonly BookAgent _bookAgent;
+        private readonly BookBorrowAgent _bookBorrowAgent;
 
         public BookBusiness()
         {
             _bookAgent = new BookAgent();
+            _bookBorrowAgent=new BookBorrowAgent();
         }
 
         public async Task<MuliResult<BookInfoModel>> GetBookList()
@@ -52,6 +54,31 @@ namespace Book.Business
             {
                 var bookInfo = bookInfoModel.ToBookInfo();
                 await _bookAgent.AddOrUpdate(bookInfo);
+            }
+            catch (Exception ex)
+            {
+                result.Status = -1;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
+
+        public async Task<Operate> BorrowBook(BookBorrowModel bookBorrowModel)
+        {
+            var result=new Operate();
+            try
+            {
+                var borrow = bookBorrowModel.ToBookBorrow();
+
+                var hasBorrow = await _bookBorrowAgent.GetBorrowBook(borrow.BookId);
+                if (hasBorrow != null)
+                {
+                    result.Status = -2;
+                    result.Message = "此书已被借阅";
+                    return result;
+                }
+
+                await _bookBorrowAgent.AddOrUpdate(borrow);
             }
             catch (Exception ex)
             {

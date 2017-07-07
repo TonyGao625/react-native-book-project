@@ -33,5 +33,13 @@ namespace Book.WebApi.Controllers
             var bookInfoModel = paramters["BookInfoModel"].ToObject<BookInfoModel>();
             return await _bookBusiness.AddOrUpdate(bookInfoModel);
         }
+
+        [Route("borrowBook")]
+        [HttpPost]
+        public async Task<Operate> BookBorrow(JObject paramters)
+        {
+            var bookBorrowModel = paramters["BookBorrowModel"].ToObject<BookBorrowModel>();
+            return await _bookBusiness.BorrowBook(bookBorrowModel);
+        }
     }
 }

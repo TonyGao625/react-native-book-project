@@ -4,11 +4,12 @@ import {
   Text,
   View,
   ListView,
-  Modal
+  Modal,
+  AsyncStorage
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
-import { getBookList } from '../actions/book.action';
+import { getBookList,borrowBook } from '../actions/book.action';
 import FormButton from './../components-smart/button'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -28,11 +29,23 @@ export default class BookAll extends Component {
     navigate('BookAdd')
   }
   _borrowBook=(id)=>{
-    alert(id);
-
+    AsyncStorage.getItem('permission').then((value) => {
+      const permission = JSON.parse(value);
+      
+      var data={
+          BookBorrowModel:{
+            BookId:id,
+            UserId:permission.UserId,
+            BorrowDate: new Date()
+          }
+        };
+      borrowBook(data).then(function(){
+        alert("success");
+      });
+    });
   }
   _collectBook=()=>{
-
+    alert("2222");
   }
   render() {
     return (
