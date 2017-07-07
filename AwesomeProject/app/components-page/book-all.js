@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet,Button,AsyncStorage } from 'react-native';
+import {AsyncStorage,ScrollView } from 'react-native';
 import BookList from './../compponents-template/book-all'
 
 export default class BookAll extends Component {
@@ -21,7 +21,9 @@ export default class BookAll extends Component {
   }
   render() {
     return (
+      <ScrollView>
         <BookList navigation={this.props.navigation}/>
+      </ScrollView>
     );
   }
 }
