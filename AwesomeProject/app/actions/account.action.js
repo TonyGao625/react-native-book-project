@@ -1,5 +1,5 @@
 import thaxios from '../unilities/axios';
-import storage from '../async-storage';
+import { AsyncStorage } from 'react-native';
 
 export function AccountLogin(obj) {
     return new Promise(function (dispatch) {
@@ -7,8 +7,14 @@ export function AccountLogin(obj) {
             url: 'account/login',
             method: 'POST',
             data: obj
-        }).then((res) => {
-            storage.set('RoleId', res.Data.RoleId);
+        }).then((res) => { 
+            var permission={
+                IsAuthened:true,
+                RoleId:res.Data.RoleId,
+                UserId:res.Data.Id,
+                UserName:res.Data.UserName
+            };
+            AsyncStorage.setItem('permission', JSON.stringify(permission));
             dispatch({
                 type: 'USER_LOGIN',
                 payload: res.Data

@@ -33,10 +33,10 @@ export default class BookAll extends Component {
       this.props.dispatch(getBookCategoryList());
     }
     _saveBook= () => {
-      this.props.dispatch(addBookInfo().then(function(){
-        const { navigate } = this.props.navigation;
-        navigate('Main');
-      }));
+      // this.props.dispatch(addBookInfo().then(function(){
+      //   const { navigate } = this.props.navigation;
+      //   navigate('Main');
+      // }));
     }
     render() {
         book=this.state;

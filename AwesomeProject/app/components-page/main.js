@@ -3,23 +3,6 @@ import BookAll from './book-all';
 import BookBorrow from './book-borrow';
 import BookHistory from './borrow-history';
 import BookCollection from './book-collection';
-import UserInfo from './../compponents-template/users-info';
-import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
-import storage from 'store2';
-
-
-export default class Main extends Component {
-  componentWillMount() {
-    const RoleId = storage.get('RoleId');
-    alert(aaa.name);
-  }
-  render() {
-    return (
-      <MenuBottom/>
-  );
-  }
-}
 
 const MenuBottom = TabNavigator({
   BookAll: {
@@ -47,4 +30,4 @@ const MenuBottom = TabNavigator({
   tabBarPosition: 'bottom'
 });
 
-
+export default MenuBottom;
