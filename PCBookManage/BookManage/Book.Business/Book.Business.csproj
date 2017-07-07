@@ -53,6 +53,7 @@
     <Compile Include="BookCategoryBusiness.cs" />
     <Compile Include="ConvertModel\BookBorrowModel.cs" />
     <Compile Include="ConvertModel\BookCategoryModel.cs" />
+    <Compile Include="ConvertModel\BookCollectionModel.cs" />
     <Compile Include="ConvertModel\BookInfoModel.cs" />
     <Compile Include="ConvertModel\ConvertModel.cs" />
     <Compile Include="ConvertModel\UsersModel.cs" />

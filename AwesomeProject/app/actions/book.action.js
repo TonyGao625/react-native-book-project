@@ -60,3 +60,13 @@ export function borrowBook(obj) {
         });
     });
 }
+
+export function collectBook(obj) {
+   return new Promise(function (dispatch) {
+        thaxios({
+            url: 'book/collectBook',
+            method: 'Post',
+            data: obj
+        });
+    });
+}

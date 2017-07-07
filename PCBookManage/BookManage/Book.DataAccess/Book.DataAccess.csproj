@@ -52,6 +52,7 @@
     <Compile Include="BookAgent.cs" />
     <Compile Include="BookBorrowAgent.cs" />
     <Compile Include="BookCategoryAgent.cs" />
+    <Compile Include="BookCollectionAgent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsersAgent.cs" />
   </ItemGroup>

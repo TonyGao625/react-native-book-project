@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
-import { getBookList,borrowBook } from '../actions/book.action';
+import { getBookList, borrowBook, collectBook } from '../actions/book.action';
 import FormButton from './../components-smart/button'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -40,12 +40,25 @@ export default class BookAll extends Component {
           }
         };
       borrowBook(data).then(function(){
-        alert("success");
+        alert("借阅成功");
       });
     });
   }
-  _collectBook=()=>{
-    alert("2222");
+  _collectBook=(id)=>{
+    AsyncStorage.getItem('permission').then((value) => {
+      const permission = JSON.parse(value);
+      
+      var data={
+          BookCollectionModel:{
+            BookId:id,
+            UserId:permission.UserId,
+            CollectionDate: new Date()
+          }
+        };
+      collectBook(data).then(function(){
+        alert("收藏成功");
+      });
+    });
   }
   render() {
     return (
@@ -63,7 +76,7 @@ export default class BookAll extends Component {
                     size={20} 
                     color='pink' />
                   <Icon 
-                    onPress={this._collectBook}
+                    onPress={() => this._collectBook(val.Id)}
                     name="favorite" 
                     size={20} 
                     color='pink' />

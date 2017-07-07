@@ -13,13 +13,19 @@ namespace Book.Business
     {
         private readonly BookAgent _bookAgent;
         private readonly BookBorrowAgent _bookBorrowAgent;
+        private readonly BookCollectionAgent _bookCollectionAgent;
 
         public BookBusiness()
         {
             _bookAgent = new BookAgent();
             _bookBorrowAgent=new BookBorrowAgent();
+            _bookCollectionAgent=new BookCollectionAgent();
         }
 
+        /// <summary>
+        /// 获取所有图书信息
+        /// </summary>
+        /// <returns></returns>
         public async Task<MuliResult<BookInfoModel>> GetBookList()
         {
             var result = new MuliResult<BookInfoModel>();
@@ -47,6 +53,11 @@ namespace Book.Business
             return result;
         }
 
+        /// <summary>
+        /// 添加图书
+        /// </summary>
+        /// <param name="bookInfoModel"></param>
+        /// <returns></returns>
         public async Task<Operate> AddOrUpdate(BookInfoModel bookInfoModel)
         {
             var result=new Operate();
@@ -63,6 +74,11 @@ namespace Book.Business
             return result;
         }
 
+        /// <summary>
+        /// 借阅图书
+        /// </summary>
+        /// <param name="bookBorrowModel"></param>
+        /// <returns></returns>
         public async Task<Operate> BorrowBook(BookBorrowModel bookBorrowModel)
         {
             var result=new Operate();
@@ -79,6 +95,36 @@ namespace Book.Business
                 }
 
                 await _bookBorrowAgent.AddOrUpdate(borrow);
+            }
+            catch (Exception ex)
+            {
+                result.Status = -1;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 收藏图书
+        /// </summary>
+        /// <param name="bookCollectionModel"></param>
+        /// <returns></returns>
+        public async Task<Operate> CollectBook(BookCollectionModel bookCollectionModel)
+        {
+            var result=new Operate();
+            try
+            {
+                var collect = bookCollectionModel.ToBookCollection();
+
+                var hasCollect = await _bookCollectionAgent.GetBookCollect(collect.BookId, collect.UserId);
+                if (hasCollect != null)
+                {
+                    result.Status = -2;
+                    result.Message = "此书已被收藏";
+                    return result;
+                }
+
+                await _bookCollectionAgent.AddOrUpdate(collect);
             }
             catch (Exception ex)
             {
