@@ -20,13 +20,29 @@ namespace Book.DataAccess
             }
         }
 
-        public async Task<BookBorrow> GetBorrowBook(long bookId)
+        public async Task<BookBorrow> GetBorrowBookByBookId(long bookId)
         {
             using (var context=new BookProjectEntities())
             {
                 return
                     await context.BookBorrows.Where(x => x.BookId == bookId && x.IsReturn == false)
                         .FirstOrDefaultAsync();
+            }
+        }
+
+        public async Task<List<V_BookBorrow>> GetBookBorrowList()
+        {
+            using (var context=new BookProjectEntities())
+            {
+                return await context.V_BookBorrow.ToListAsync();
+            }
+        }
+
+        public async Task<BookBorrow> GetBorrowById(long id)
+        {
+            using (var context=new BookProjectEntities())
+            {
+                return await context.BookBorrows.FirstOrDefaultAsync(x => x.Id == id);
             }
         }
     }

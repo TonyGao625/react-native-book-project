@@ -68,18 +68,18 @@ export default class BookAll extends Component {
               return <View 
               key={val.Id}
               style={styles.item}>
-                <Text>{val.BookName}</Text>
+                <Text style={styles.title}>{val.BookName}</Text>
                 <View style={styles.statusIcon}>
                   <Icon style={styles.icon} 
                     onPress={() => this._borrowBook(val.Id)}
                     name="library-books" 
                     size={20} 
-                    color='pink' />
+                    color='red' />
                   <Icon 
                     onPress={() => this._collectBook(val.Id)}
                     name="favorite" 
                     size={20} 
-                    color='pink' />
+                    color='red' />
                 </View>
               </View>
             })
@@ -93,18 +93,21 @@ const styles = StyleSheet.create({
   item: {
     flex: 1,
     flexDirection: 'row',
-    
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
-    height: 40,
     paddingTop:10,
+    paddingBottom:10,
     marginLeft: 15,
     marginRight: 15
+  },
+  title:{
+    marginRight:80
   },
   statusIcon:{
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    width:200
   },
   icon:{
     marginRight:10

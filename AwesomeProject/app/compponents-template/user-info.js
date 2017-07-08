@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   ListView,
+  AsyncStorage
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
@@ -22,30 +23,23 @@ import BookAdd from './../components-page/book-add'
   }
 })
 
-export default class BorrowHistory extends Component {
+export default class UserDeatil extends Component {
   componentWillMount() {
     this.props.dispatch(getBookList());
   }
-  _addBook= () => {
+  _logout=()=>{
+    AsyncStorage.removeItem('permission');
     const { navigate } = this.props.navigation;
-    navigate('BookAdd')
+    navigate('Account')
   }
   render() {
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
-          <View>
-            {
-                this.props.BookList.map((val) => {
-                  return <View 
-                  key={val.Id}
-                  style={styles.item}>
-                    <Text>{val.BookName}</Text>
-                    <Text style={{color:'red'}}>张山</Text>
-                  </View>
-                })
-              }
-          </View>  
-        </ScrollView>
+           <FormButton 
+              title='退出' 
+              onPress={this._logout}
+          />
+      </ScrollView>
   );
   }
 }
@@ -62,5 +56,6 @@ const styles = StyleSheet.create({
     marginRight: 15
   }
 });
+
 
 

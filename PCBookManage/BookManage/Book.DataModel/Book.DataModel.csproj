@@ -82,6 +82,9 @@
     <Compile Include="User.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="V_BookBorrow.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="DataModel.edmx">

@@ -19,6 +19,7 @@ namespace Book.DataModel
         public int UserId { get; set; }
         public Nullable<System.DateTime> CollectionDate { get; set; }
     
+        public virtual BookInfo BookInfo { get; set; }
         public virtual User User { get; set; }
     }
 }

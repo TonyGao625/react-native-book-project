@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
-import {AsyncStorage,ScrollView } from 'react-native';
+import {AsyncStorage,ScrollView,StyleSheet } from 'react-native';
 import BookList from './../compponents-template/book-all'
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class BookAll extends Component {
     static navigationOptions = {
     tabBarLabel: '全部',
+    tabBarIcon: ({ tintColor }) => (
+      <Icon 
+        name="library-books" 
+        size={20} 
+        style={[{tintColor: tintColor}]}
+        color='white' />
+    ),
   };
   componentWillMount() {
     AsyncStorage.getItem('permission').then((value) => {
@@ -27,5 +35,6 @@ export default class BookAll extends Component {
     );
   }
 }
+
 
 

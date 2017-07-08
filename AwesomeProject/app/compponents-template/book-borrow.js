@@ -1,50 +1,60 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
-  ScrollView,
-  ListView,
+  AsyncStorage
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
-import { getBookList } from '../actions/book.action';
-import axios from 'axios';
-import FormButton from './../components-smart/button'
-
-import BookAdd from './../components-page/book-add'
+import { getBookBorrowList } from '../actions/book.action';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import CheckBox from 'react-native-check-box'
 
 @connect((store) => {
   return {
-    BookList: store.bookReducer.BookList
+    BookBorrowList: store.bookReducer.BookBorrowList
   }
 })
 
 export default class BookBorrow extends Component {
   componentWillMount() {
-    this.props.dispatch(getBookList());
+    this.props.dispatch(getBookBorrowList());
   }
-  _addBook= () => {
-    const { navigate } = this.props.navigation;
-    navigate('BookAdd')
+  _onClick=(val)=>{
+    val.isCheck=true;
   }
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.contentContainer}>
-          <View>
-            {
-                this.props.BookList.map((val) => {
-                  return <View style={styles.item}>
-                    <Text>{val.BookName}</Text>
-                    <Text style={{color:'red'}}>还书</Text>
-                    <Text style={{color:'red'}}>收藏</Text>
-                  </View>
-                })
-              }
-          </View>  
-        </ScrollView>
+      <View>
+        {
+            this.props.BookBorrowList.map((val) => {
+              return <View 
+              key={val.Id}
+              style={styles.item}>
+                {/*<Text>{val.BookName}</Text>
+                <View style={styles.statusIcon}>
+                  <Icon style={styles.icon} 
+                    onPress={() => this._backBook(val.Id)}
+                    name="keyboard-return" 
+                    size={20} 
+                    color='red' />
+                  <Icon 
+                    onPress={() => this._collectBook(val.Id)}
+                    name="favorite" 
+                    size={20} 
+                    color='red' />
+                </View>*/}
+                <CheckBox
+                  style={{flex: 1, padding: 10}}
+                  onClick={()=>val.isCheck==!val.isCheck}
+                  isChecked={val.isCheck}
+                  leftText={val.BookName}
+                />
+              </View>
+            })
+          }
+      </View>
   );
   }
 }
@@ -57,8 +67,17 @@ const styles = StyleSheet.create({
     borderBottomColor: '#ddd',
     height: 40,
     paddingTop:10,
+    paddingBottom:10,
     marginLeft: 15,
     marginRight: 15
+  },
+  statusIcon:{
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
+  },
+  icon:{
+    marginRight:10
   }
 });
 

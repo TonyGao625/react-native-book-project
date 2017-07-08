@@ -49,5 +49,20 @@ namespace Book.WebApi.Controllers
             var bookCollectionModel = paramters["BookCollectionModel"].ToObject<BookCollectionModel>();
             return await _bookBusiness.CollectBook(bookCollectionModel);
         }
+
+        [Route("getBookBorrowList")]
+        [HttpGet]
+        public async Task<MuliResult<BookBorrowModel>> GetBookBorrowList()
+        {
+            return await _bookBusiness.GetBookBorrowList();
+        }
+
+        [Route("backBook")]
+        [HttpPost]
+        public async Task<Operate> BackBook(JObject paramters)
+        {
+            var backBookModel = paramters["BookBorrowModel"].ToObject<BookBorrowModel>();
+            return await _bookBusiness.BackBook(backBookModel);
+        }
     }
 }

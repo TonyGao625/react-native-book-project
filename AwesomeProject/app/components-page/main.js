@@ -3,6 +3,8 @@ import BookAll from './book-all';
 import BookBorrow from './book-borrow';
 import BookHistory from './borrow-history';
 import BookCollection from './book-collection';
+import UserInfo from './user-info';
+
 
 const MenuBottom = TabNavigator({
   BookAll: {
@@ -16,6 +18,9 @@ const MenuBottom = TabNavigator({
   },
   BookCollection: {
     screen: BookCollection,
+  },
+  UserInfo: {
+    screen: UserInfo,
   }
 }, {
   tabBarOptions: {
@@ -26,6 +31,7 @@ const MenuBottom = TabNavigator({
     style: {
         backgroundColor: '#43A047',
     },
+    showIcon: true
   },
   tabBarPosition: 'bottom'
 });

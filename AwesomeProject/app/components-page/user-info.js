@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { View, StyleSheet,Button } from 'react-native';
-import Collection from './../compponents-template/book-collection'
+import { View, StyleSheet } from 'react-native';
+import UserDeatil from './../compponents-template/user-info'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export default class BookHistory extends Component {
+export default class UserInfo extends Component {
   static navigationOptions = {
-    tabBarLabel: '收藏',
+    tabBarLabel: '我',
     tabBarIcon: ({ tintColor }) => (
       <Icon 
-        name="favorite" 
+        name="person" 
         size={20} 
         style={[{tintColor: tintColor}]}
         color='white' />
@@ -16,9 +16,7 @@ export default class BookHistory extends Component {
   };
   render() {
     return (
-        <Collection navigation={this.props.navigation}/>
+        <UserDeatil navigation={this.props.navigation}/>
     );
   }
 }
-
-

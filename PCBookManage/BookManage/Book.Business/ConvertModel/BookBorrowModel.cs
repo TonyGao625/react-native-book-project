@@ -35,5 +35,26 @@ namespace Book.Business.ConvertModel
                 ReturnDate = model.ReturnDate
             };
         }
+
+        public static BookBorrowModel ToBorrowModel(this V_BookBorrow borrow)
+        {
+            return new BookBorrowModel()
+            {
+                Id = borrow.Id,
+                BookId = borrow.BookId,
+                UserId = borrow.UserId,
+                BorrowDate = borrow.BorrowDate,
+                IsReturn = borrow.IsReturn,
+                ReturnDate = borrow.ReturnDate,
+                BookName = borrow.BookName,
+                Author = borrow.Author,
+                PublicDate = borrow.PublicDate,
+                PublicAddress = borrow.PublicAddress,
+                CategoryId = borrow.CategoryId,
+                Remark = borrow.Remark,
+                CreateDate = borrow.CreateDate,
+                CreateBy = borrow.CreateBy
+            };
+        }
     }
 }

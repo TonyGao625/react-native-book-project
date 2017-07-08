@@ -18,8 +18,8 @@ namespace Book.Business
         public BookBusiness()
         {
             _bookAgent = new BookAgent();
-            _bookBorrowAgent=new BookBorrowAgent();
-            _bookCollectionAgent=new BookCollectionAgent();
+            _bookBorrowAgent = new BookBorrowAgent();
+            _bookCollectionAgent = new BookCollectionAgent();
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Book.Business
         /// <returns></returns>
         public async Task<Operate> AddOrUpdate(BookInfoModel bookInfoModel)
         {
-            var result=new Operate();
+            var result = new Operate();
             try
             {
                 var bookInfo = bookInfoModel.ToBookInfo();
@@ -81,12 +81,12 @@ namespace Book.Business
         /// <returns></returns>
         public async Task<Operate> BorrowBook(BookBorrowModel bookBorrowModel)
         {
-            var result=new Operate();
+            var result = new Operate();
             try
             {
                 var borrow = bookBorrowModel.ToBookBorrow();
 
-                var hasBorrow = await _bookBorrowAgent.GetBorrowBook(borrow.BookId);
+                var hasBorrow = await _bookBorrowAgent.GetBorrowBookByBookId(borrow.BookId);
                 if (hasBorrow != null)
                 {
                     result.Status = -2;
@@ -111,7 +111,7 @@ namespace Book.Business
         /// <returns></returns>
         public async Task<Operate> CollectBook(BookCollectionModel bookCollectionModel)
         {
-            var result=new Operate();
+            var result = new Operate();
             try
             {
                 var collect = bookCollectionModel.ToBookCollection();
@@ -125,6 +125,49 @@ namespace Book.Business
                 }
 
                 await _bookCollectionAgent.AddOrUpdate(collect);
+            }
+            catch (Exception ex)
+            {
+                result.Status = -1;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 查询借阅列表
+        /// </summary>
+        /// <returns></returns>
+        public async Task<MuliResult<BookBorrowModel>> GetBookBorrowList()
+        {
+            var result = new MuliResult<BookBorrowModel>();
+            try
+            {
+                var datalist = await _bookBorrowAgent.GetBookBorrowList();
+                result.Datas = datalist.Select(x => x.ToBorrowModel()).ToList();
+            }
+            catch (Exception ex)
+            {
+                result.Status = -1;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 还书
+        /// </summary>
+        /// <param name="bookBorrowModel"></param>
+        /// <returns></returns>
+        public async Task<Operate> BackBook(BookBorrowModel bookBorrowModel)
+        {
+            var result=new Operate();
+            try
+            {
+                var borrow = await _bookBorrowAgent.GetBorrowById(bookBorrowModel.Id);
+                borrow.IsReturn = bookBorrowModel.IsReturn;
+                borrow.ReturnDate = bookBorrowModel.ReturnDate;
+                await _bookBorrowAgent.AddOrUpdate(borrow);
             }
             catch (Exception ex)
             {
