@@ -70,7 +70,7 @@ export default class BookAll extends Component {
               style={styles.item}>
                 <Text style={styles.title}>{val.BookName}</Text>
                 <View style={styles.statusIcon}>
-                  <Icon style={styles.icon} 
+                  {/*<Icon style={styles.icon} 
                     onPress={() => this._borrowBook(val.Id)}
                     name="library-books" 
                     size={20} 
@@ -79,7 +79,13 @@ export default class BookAll extends Component {
                     onPress={() => this._collectBook(val.Id)}
                     name="favorite" 
                     size={20} 
-                    color='red' />
+                    color='red' />*/}
+
+                     <Icon 
+                    onPress={() => this._collectBook(val.Id)}
+                    name="search" 
+                    size={20} 
+                    />
                 </View>
               </View>
             })
