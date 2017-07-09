@@ -32,7 +32,8 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      submitted: false
+      submitted: false,
+
     };
   }
   _loginAccount = () => {
@@ -52,7 +53,7 @@ export default class Login extends Component {
           Password: this.props.loginUser.Password
         }
       }).then(function () {
-        navigate('Main')
+        navigate('Main');
       })
     });
 
@@ -68,7 +69,7 @@ export default class Login extends Component {
             <Icon name="laptop-chromebook" size={120} color='white' />
           </View>
           <View style={styles.wrapper}>
-            <View style={styles.inputWrap}>
+            <View style={styles.logininputWrap}>
               <View style={styles.iconWrap}>
                 <Icon name="person" size={25} color='white' />
               </View>
@@ -81,7 +82,7 @@ export default class Login extends Component {
                 errorText={loginUser.emailError}
                 onChangeText={(val) => this.props.dispatch(editEmail(val))} />
             </View>
-            <View style={styles.inputWrap}>
+            <View style={styles.logininputWrap}>
               <View style={styles.iconWrap}>
                 <Icon name="lock" size={25} color='white' />
               </View>
@@ -136,9 +137,14 @@ const styles = StyleSheet.create({
   inputWrap: {
     flexDirection: "row",
     marginVertical: 10,
-    height: 70,
+    height: 40,
     borderBottomWidth: 1,
     borderBottomColor: "#CCC"
+  },
+  logininputWrap: {
+    flexDirection: "row",
+    marginVertical: 10,
+    height: 70,
   },
   iconWrap: {
     paddingHorizontal: 7,

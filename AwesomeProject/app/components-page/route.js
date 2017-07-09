@@ -30,7 +30,8 @@ const RouteItem = StackNavigator({
   Account:{
     screen: Account,
     navigationOptions:{
-      headerTitle:'登录'
+      //headerTitle:'登录'
+      header:null
     }
   },
   Main: {

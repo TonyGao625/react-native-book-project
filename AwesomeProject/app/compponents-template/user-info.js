@@ -14,12 +14,12 @@ import { connect } from 'react-redux';
 import { getBookList } from '../actions/book.action';
 import axios from 'axios';
 import FormButton from './../components-smart/button'
-
+import { accountLogin, editEmail, editPassword } from '../actions/account.action';
 import BookAdd from './../components-page/book-add'
 
 @connect((store) => {
   return {
-    BookList: store.bookReducer.BookList
+    BookList: store.bookReducer.BookList,
   }
 })
 
@@ -29,6 +29,8 @@ export default class UserDeatil extends Component {
   }
   _logout=()=>{
     AsyncStorage.removeItem('permission');
+    this.props.dispatch(editEmail(''));
+    this.props.dispatch(editPassword(''));
     const { navigate } = this.props.navigation;
     navigate('Account')
   }
