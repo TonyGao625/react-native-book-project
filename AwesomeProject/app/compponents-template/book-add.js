@@ -9,11 +9,12 @@ import {
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
-import { getBookCategoryList, editBookName,editAuthor } from '../actions/book.action';
+import { getBookCategoryList, VerifyBookName, VerifyAuthor, VerifyCategory, editRemark, editPublicAddress, addBookInfo } from '../actions/book.action';
 import FormButton from './../components-smart/button'
 import FormTextField from './../components-smart/text-input'
 import FormDatePicker from './../components-smart/date-picker'
 import FormModelPicker from './../components-smart/model-picker'
+import ModalPicker from 'react-native-modal-picker'
 const { width, height } = Dimensions.get("window");
 
 @connect((store) => {
@@ -27,7 +28,7 @@ export default class BookAll extends Component {
   constructor() {
     super();
     this.state = {
-      submitted: false
+      submitted: false,
     };
   }
   componentWillMount() {
@@ -37,19 +38,25 @@ export default class BookAll extends Component {
     this.setState({
       submitted: true
     });
-    this.props.dispatch(editBookName(this.props.Book.BookName))
-    this.props.dispatch(editAuthor(this.props.Book.Author))
+    this.props.dispatch(VerifyBookName(this.props.Book.BookName))
+    this.props.dispatch(VerifyAuthor(this.props.Book.Author))
+    this.props.dispatch(VerifyCategory(this.props.Book.CategoryId))
     setTimeout(() => {
-      if (this.props.Book.BookNameError || this.props.Book.AuthorError) {
+      if (this.props.Book.BookNameError || this.props.Book.AuthorError || this.props.Book.CategoryIDError) {
         return;
       }
+      const { navigate } = this.props.navigation;
+      addBookInfo({
+        BookInfoModel: {
+          BookName: this.props.Book.BookName,
+          Author: this.props.Book.Author,
+          PublicDate: this.props.Book.PublicDate,
+          CategoryId: this.props.Book.CategoryId,
+        }
+      }).then(function () {
+        navigate('Main');
+      })
     })
-
-
-    // this.props.dispatch(addBookInfo().then(function(){
-    //   const { navigate } = this.props.navigation;
-    //   navigate('Main');
-    // }));
   }
   render() {
     const { Book } = this.props;
@@ -65,6 +72,7 @@ export default class BookAll extends Component {
               submitted={this.state.submitted}
               keyboardType='phone-pad'
               errorText={Book.BookNameError}
+              onChangeText={(val) => this.props.dispatch(VerifyBookName(val))}
             />
           </View>
           <View style={styles.inputWrap}>
@@ -75,7 +83,8 @@ export default class BookAll extends Component {
               value={Book.Author}
               submitted={this.state.submitted}
               keyboardType='phone-pad'
-              errorText={Book.AuthorError} />
+              errorText={Book.AuthorError}
+              onChangeText={(val) => this.props.dispatch(VerifyAuthor(val))} />
           </View>
           <View style={styles.inputWrap}>
             <View style={styles.name}>
@@ -87,33 +96,35 @@ export default class BookAll extends Component {
             <View style={styles.name}>
               <Text>出版地址:</Text>
             </View>
-            {/*<FormTextField
-              value={book.PublicAddress}
+            <FormTextField
+              value={Book.PublicAddress}
               submitted={this.state.submitted}
               keyboardType='phone-pad'
-              errorText={book.PublicAddressError}
-              onChangeText={(val) => this.props.dispatch(editPublicAddress(val))} />*/}
+              onChangeText={(val) => this.props.dispatch(editPublicAddress(val))} />
           </View>
           <View style={styles.inputWrap}>
-            <View style={styles.name}>
+            <View style={[styles.name]}>
               <Text>分类:</Text>
             </View>
-            <FormModelPicker
-              initValue='select book category'
-              value={this.props.CategoryID}
-              data={this.props.BookCategoryList}
-              errorText='this is an error.' />
+            <View style={{ alignItems: "center", justifyContent: "center", height: 40, backgroundColor: 'red' }}>
+              <ModalPicker
+                data={this.props.BookCategoryList}
+                initValue="Select a category!"
+                onChange={(option) => this.props.dispatch(VerifyCategory(option.key))} />
+            </View>
           </View>
+          <Text style={{ color: '#D50000' }}>
+            {(this.state.submitted) ? Book.CategoryIDError : ''}
+          </Text>
           <View style={styles.inputWrap}>
             <View style={styles.name}>
               <Text>简介:</Text>
             </View>
-            {/*<FormTextField
-              value={book.Remark}
+            <FormTextField
+              value={Book.Remark}
               submitted={this.state.submitted}
               keyboardType='phone-pad'
-              errorText={book.Remark}
-              onChangeText={(val) => this.props.dispatch(editRemark(val))} />*/}
+              onChangeText={(val) => this.props.dispatch(editRemark(val))} />
           </View>
         </View>
 
