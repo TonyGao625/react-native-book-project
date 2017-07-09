@@ -1,104 +1,130 @@
 import React, { Component } from 'react';
-import { View, StyleSheet,Text,Image,
+import {
+  View, StyleSheet, Text, Image,
   Dimensions,
   TextInput,
   Button,
   TouchableOpacity,
-ScrollView } from 'react-native';
+  ScrollView
+} from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
-import { getBookCategoryList } from '../actions/book.action';
+import { getBookCategoryList, editBookName,editAuthor } from '../actions/book.action';
 import FormButton from './../components-smart/button'
-import FormTextInput from './../components-smart/text-input'
+import FormTextField from './../components-smart/text-input'
 import FormDatePicker from './../components-smart/date-picker'
 import FormModelPicker from './../components-smart/model-picker'
 const { width, height } = Dimensions.get("window");
 
 @connect((store) => {
   return {
-    BookCategoryList:store.bookReducer.BookCategoryList,
+    BookCategoryList: store.bookReducer.BookCategoryList,
+    Book: store.bookReducer.Book
   }
 })
 
 export default class BookAll extends Component {
-    constructor() {
-        super();
-        this.state = {
-           book:{
-            BookName:'aaaa'
-           }
-        }
-    }
-    componentWillMount() {
-      this.props.dispatch(getBookCategoryList());
-    }
-    _saveBook= () => {
-      // this.props.dispatch(addBookInfo().then(function(){
-      //   const { navigate } = this.props.navigation;
-      //   navigate('Main');
-      // }));
-    }
-    render() {
-        book=this.state;
-        return (
-        <ScrollView style={styles.container}>
-          <View style={styles.wrapper}>
-            <View style={styles.inputWrap}>
-              <View style={styles.name}>
-                <Text>书名:</Text>
-              </View>
-              <FormTextInput 
-                value={book.BookName}
-                style={styles.input}  />
-            </View>
-            <View style={styles.inputWrap}>
-              <View style={styles.name}>
-                <Text>作者:</Text>
-              </View>
-              <FormTextInput
-                style={styles.input}  />
-            </View>
-            <View style={styles.inputWrap}>
-              <View style={styles.name}>
-                <Text>出版时间:</Text>
-              </View>
-              <FormDatePicker/>
-            </View>
-            <View style={styles.inputWrap}>
-              <View style={styles.name}>
-                <Text>出版地址:</Text>
-              </View>
-              <FormTextInput
-                style={styles.input}  />
-            </View>
-            <View style={styles.inputWrap}>
-              <View style={styles.name}>
-                <Text>分类:</Text>
-              </View>
+  constructor() {
+    super();
+    this.state = {
+      submitted: false
+    };
+  }
+  componentWillMount() {
+    this.props.dispatch(getBookCategoryList());
+  }
+  _saveBook = () => {
+    this.setState({
+      submitted: true
+    });
+    this.props.dispatch(editBookName(this.props.Book.BookName))
+    this.props.dispatch(editAuthor(this.props.Book.Author))
+    setTimeout(() => {
+      if (this.props.Book.BookNameError || this.props.Book.AuthorError) {
+        return;
+      }
+    })
 
-              <FormModelPicker 
-                initValue='select book category'
-                value=''
-                data={this.props.BookCategoryList}/>
-            </View>
 
-            <View style={styles.inputWrap}>
-                <View style={styles.name}>
-                    <Text>简介:</Text>
-                </View>
-                <FormTextInput
-                    style={styles.input}  />
-               </View>
+    // this.props.dispatch(addBookInfo().then(function(){
+    //   const { navigate } = this.props.navigation;
+    //   navigate('Main');
+    // }));
+  }
+  render() {
+    const { Book } = this.props;
+    return (
+      <ScrollView style={styles.container}>
+        <View style={styles.wrapper}>
+          <View style={styles.inputWrap}>
+            <View style={styles.name}>
+              <Text>书名:</Text>
+            </View>
+            <FormTextField
+              value={Book.BookName}
+              submitted={this.state.submitted}
+              keyboardType='phone-pad'
+              errorText={Book.BookNameError}
+            />
           </View>
-
-          <View>
-             <FormButton 
-             onPress={this._saveBook}
-             title='保存'/>
+          <View style={styles.inputWrap}>
+            <View style={styles.name}>
+              <Text>作者:</Text>
+            </View>
+            <FormTextField
+              value={Book.Author}
+              submitted={this.state.submitted}
+              keyboardType='phone-pad'
+              errorText={Book.AuthorError} />
           </View>
+          <View style={styles.inputWrap}>
+            <View style={styles.name}>
+              <Text>出版时间:</Text>
+            </View>
+            <FormDatePicker />
+          </View>
+          <View style={styles.inputWrap}>
+            <View style={styles.name}>
+              <Text>出版地址:</Text>
+            </View>
+            {/*<FormTextField
+              value={book.PublicAddress}
+              submitted={this.state.submitted}
+              keyboardType='phone-pad'
+              errorText={book.PublicAddressError}
+              onChangeText={(val) => this.props.dispatch(editPublicAddress(val))} />*/}
+          </View>
+          <View style={styles.inputWrap}>
+            <View style={styles.name}>
+              <Text>分类:</Text>
+            </View>
+            <FormModelPicker
+              initValue='select book category'
+              value={this.props.CategoryID}
+              data={this.props.BookCategoryList}
+              errorText='this is an error.' />
+          </View>
+          <View style={styles.inputWrap}>
+            <View style={styles.name}>
+              <Text>简介:</Text>
+            </View>
+            {/*<FormTextField
+              value={book.Remark}
+              submitted={this.state.submitted}
+              keyboardType='phone-pad'
+              errorText={book.Remark}
+              onChangeText={(val) => this.props.dispatch(editRemark(val))} />*/}
+          </View>
+        </View>
+
+        <View>
+          <FormButton
+            onPress={this._saveBook}
+            title='保存' />
+        </View>
       </ScrollView>
-        );
-    }
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -123,8 +149,8 @@ const styles = StyleSheet.create({
   },
   inputWrap: {
     flexDirection: "row",
-    marginVertical: 10,
-    height: 40,
+    //marginVertical: 10,
+    height: 80,
     borderBottomWidth: 0
   },
   name: {

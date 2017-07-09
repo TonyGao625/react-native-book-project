@@ -29,7 +29,7 @@ export function editEmail(val) {
     if (!val) {
         emailError = 'Required'
     } else if (!validator.isEmail(val)) {
-        emailError = 'Not valid'
+        emailError = 'Must be a valid email'
     }
     return {
         type: 'EDIT_EMAIL',
