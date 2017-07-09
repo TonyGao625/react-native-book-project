@@ -80,7 +80,6 @@ export default class BookAll extends Component {
                     name="favorite" 
                     size={20} 
                     color='red' />*/}
-
                      <Icon 
                     onPress={() => this._collectBook(val.Id)}
                     name="search" 
