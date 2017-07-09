@@ -12,7 +12,7 @@ namespace Book.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class BookBorrow
+    public partial class V_BookBorrow
     {
         public long Id { get; set; }
         public long BookId { get; set; }
@@ -20,8 +20,14 @@ namespace Book.DataModel
         public Nullable<System.DateTime> BorrowDate { get; set; }
         public bool IsReturn { get; set; }
         public Nullable<System.DateTime> ReturnDate { get; set; }
-    
-        public virtual BookInfo BookInfo { get; set; }
-        public virtual User User { get; set; }
+        public string UserName { get; set; }
+        public string BookName { get; set; }
+        public string Author { get; set; }
+        public Nullable<System.DateTime> PublicDate { get; set; }
+        public string PublicAddress { get; set; }
+        public Nullable<int> CategoryId { get; set; }
+        public string Remark { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public string CreateBy { get; set; }
     }
 }
