@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {StackNavigator} from 'react-navigation'
-import { Button,Text, View } from 'react-native';
+import { StackNavigator } from 'react-navigation'
+import { Button, Text, View } from 'react-native';
 import Main from './main';
 import Account from './account';
 import BookAdd from './book-add';
@@ -12,41 +12,42 @@ export default class Route extends Component {
   }
   render() {
     return (
-        <RouteItem />
+      <RouteItem />
     );
   }
 }
 
 const mainNavigationOptions = ({ navigation }) => ({
-    headerTitle: <Text>全部</Text>,
-    headerRight: 
-      <MainAdd navigation={navigation}/>,
-    headerStyle:{
-      paddingRight:10
-    }
-  });
+  // headerTitle: <Text>全部</Text>,
+  // headerRight: 
+  //   <MainAdd navigation={navigation}/>,
+  // headerStyle:{
+  //   paddingRight:10
+  // }
+  headerLeft: null
+});
 
 const RouteItem = StackNavigator({
-  Account:{
+  Account: {
     screen: Account,
-    navigationOptions:{
+    navigationOptions: {
       //headerTitle:'登录'
-      header:null
+      header: null
     }
   },
   Main: {
     screen: Main,
     navigationOptions: mainNavigationOptions
   },
-  BookAdd:{
+  BookAdd: {
     screen: BookAdd
   }
-},{
-  cardStyle:{
-    backgroundColor:'white'
-  },
-  initialRouteName:'Main',
-  //headerMode:'none'
-});
+}, {
+    cardStyle: {
+      backgroundColor: 'white'
+    },
+    initialRouteName: 'Main',
+    //headerMode:'none'
+  });
 
 
