@@ -21,6 +21,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class BookAll extends Component {
   componentWillMount() {
+    //alert(1);
     this.props.dispatch(getBookList());
 
   }
@@ -60,6 +61,10 @@ export default class BookAll extends Component {
       });
     });
   }
+ _showDetailBook=(id)=>{
+    const { navigate } = this.props.navigation;
+    navigate('BookAdd')
+ }
   render() {
     return (
       <View>
@@ -70,21 +75,16 @@ export default class BookAll extends Component {
               style={styles.item}>
                 <Text style={styles.title}>{val.BookName}</Text>
                 <View style={styles.statusIcon}>
-                  {/*<Icon style={styles.icon} 
-                    onPress={() => this._borrowBook(val.Id)}
+                  <Icon style={styles.icon} 
+                    onPress={() => this._showDetailBook(val.Id)}
                     name="library-books" 
                     size={20} 
                     color='red' />
                   <Icon 
                     onPress={() => this._collectBook(val.Id)}
-                    name="favorite" 
+                    name="add-shopping-cart" 
                     size={20} 
-                    color='red' />*/}
-                     <Icon 
-                    onPress={() => this._collectBook(val.Id)}
-                    name="search" 
-                    size={20} 
-                    />
+                    color='red' />
                 </View>
               </View>
             })

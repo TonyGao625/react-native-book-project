@@ -16,9 +16,9 @@ const MenuBottom = TabNavigator({
   BookHistory: {
     screen: BookHistory,
   },
-  BookCollection: {
-    screen: BookCollection,
-  },
+  // BookCollection: {
+  //   screen: BookCollection,
+  // },
   UserInfo: {
     screen: UserInfo,
   }

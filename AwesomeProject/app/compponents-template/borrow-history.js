@@ -24,6 +24,7 @@ import BookAdd from './../components-page/book-add'
 
 export default class BorrowHistory extends Component {
   componentWillMount() {
+    //alert(3);
     this.props.dispatch(getBookList());
   }
   _addBook= () => {
