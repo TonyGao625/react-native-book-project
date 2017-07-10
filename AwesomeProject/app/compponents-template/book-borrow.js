@@ -23,10 +23,10 @@ export default class BookBorrow extends Component {
     //alert(2);
     this.props.dispatch(getBookBorrowList());
   }
-  _checkBookItem = (check) => {
-    this.setState({
-      check:true
-    });
+  _onClick = (val) => {
+    val.isCheck = true;
+
+
   }
   _selectAll=()=>{
     this.props.dispatch(selectALL(this.props.BookBorrowList));

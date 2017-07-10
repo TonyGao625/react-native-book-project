@@ -23,7 +23,6 @@ export default class BookAll extends Component {
   componentWillMount() {
     //alert(1);
     this.props.dispatch(getBookList());
-
   }
   _addBook= () => {
     const { navigate } = this.props.navigation;
