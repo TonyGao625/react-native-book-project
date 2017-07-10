@@ -1,4 +1,4 @@
-import {TabNavigator} from 'react-navigation'
+import { TabNavigator } from 'react-navigation'
 import BookAll from './book-all';
 import BookBorrow from './book-borrow';
 import BookHistory from './borrow-history';
@@ -23,17 +23,18 @@ const MenuBottom = TabNavigator({
     screen: UserInfo,
   }
 }, {
-  tabBarOptions: {
-    activeTintColor: '#e91e63',
-    labelStyle: {
-        fontWeight:'bold'
-    },
-    style: {
+    lazy: true,
+    tabBarOptions: {
+      activeTintColor: '#e91e63',
+      labelStyle: {
+        fontWeight: 'bold'
+      },
+      style: {
         backgroundColor: '#43A047',
+      },
+      showIcon: true
     },
-    showIcon: true
-  },
-  tabBarPosition: 'bottom'
-});
+    tabBarPosition: 'bottom'
+  });
 
 export default MenuBottom;

@@ -22,7 +22,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 export default class BookAll extends Component {
   componentWillMount() {
     this.props.dispatch(getBookList());
-
   }
   _addBook= () => {
     const { navigate } = this.props.navigation;

@@ -21,18 +21,18 @@ export default class BookBorrow extends Component {
   componentWillMount() {
     this.props.dispatch(getBookBorrowList());
   }
-  _onClick=(val)=>{
-    val.isCheck=true;
+  _onClick = (val) => {
+    val.isCheck = true;
   }
   render() {
     return (
       <View>
         {
-            this.props.BookBorrowList.map((val) => {
-              return <View 
+          this.props.BookBorrowList.map((val) => {
+            return <View
               key={val.Id}
               style={styles.item}>
-                {/*<Text>{val.BookName}</Text>
+              {/*<Text>{val.BookName}</Text>
                 <View style={styles.statusIcon}>
                   <Icon style={styles.icon} 
                     onPress={() => this._backBook(val.Id)}
@@ -45,17 +45,17 @@ export default class BookBorrow extends Component {
                     size={20} 
                     color='red' />
                 </View>*/}
-                <CheckBox
-                  style={{flex: 1, padding: 10}}
-                  onClick={()=>val.isCheck==!val.isCheck}
-                  isChecked={val.isCheck}
-                  leftText={val.BookName}
-                />
-              </View>
-            })
-          }
+              <CheckBox
+                style={{ flex: 1, padding: 10 }}
+                onClick={() => val.isCheck == !val.isCheck}
+                isChecked={val.isCheck}
+                leftText={val.BookName}
+              />
+            </View>
+          })
+        }
       </View>
-  );
+    );
   }
 }
 
@@ -66,18 +66,18 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
     height: 40,
-    paddingTop:10,
-    paddingBottom:10,
+    paddingTop: 10,
+    paddingBottom: 10,
     marginLeft: 15,
     marginRight: 15
   },
-  statusIcon:{
+  statusIcon: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-end'
   },
-  icon:{
-    marginRight:10
+  icon: {
+    marginRight: 10
   }
 });
 
