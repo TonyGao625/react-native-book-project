@@ -11,6 +11,11 @@ export default function reducer(state = {
             return {
                 ...state,
                 BookBorrowList: action.payload
+            } 
+        case 'UNSELECT_ALL_BOOK_LIST':
+            return {
+                ...state,
+                BookBorrowList: action.payload
             }    
         default:
             return state;

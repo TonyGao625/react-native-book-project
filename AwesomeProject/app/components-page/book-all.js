@@ -8,7 +8,7 @@ export default class BookAll extends Component {
     tabBarLabel: '全部',
     tabBarIcon: ({ tintColor }) => (
       <Icon
-        name="library-books"
+        name="apps"
         size={20}
         style={[{ tintColor: tintColor }]}
         color='white' />

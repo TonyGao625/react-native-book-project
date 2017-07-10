@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CheckBox from 'react-native-check-box'
 import FormButton from './../components-smart/button'
-import { getBookBorrowList, selectALL } from '../actions/book.borrow.action'
+import { getBookBorrowList, selectALL, unSelectALL } from '../actions/book.borrow.action'
 
 @connect((store) => {
   return {
@@ -30,10 +30,9 @@ export default class BookBorrow extends Component {
   }
   _selectAll=()=>{
     this.props.dispatch(selectALL(this.props.BookBorrowList));
-    alert(this.props.BookBorrowList[1].checked)
   }
   _unSelectAll=()=>{
-    alert(2);
+    this.props.dispatch(unSelectALL(this.props.BookBorrowList));
   }
   render() {
     return (
