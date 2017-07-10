@@ -96,11 +96,21 @@ export function backBook(obj) {
     });
 }
 
-export function VerifyBookName(val) {
+export function VerifyBookName(val, BookList) {
+    debugger;
     var BookNameError = '';
     if (!val) {
         BookNameError = 'Book name is Required'
     }
+    if (BookList) {
+        var duplicatedName = BookList.filter((item) => {
+            return item.BookName === val;
+        })
+        if (duplicatedName.length !== 0) {
+            BookNameError = 'This name is already taken.'
+        }
+    }
+
     return {
         type: 'VERYFY_BOOKNAME',
         payload: {
@@ -154,13 +164,23 @@ export function editPublicAddress(val) {
             val: val,
         }
     }
-} 
+}
 
-export function clearBook(val){
-  return {
-      type: "CLEAR",
+export function editDate(val) {
+    return {
+        type: "EDIT_DATE",
         payload: {
             val: val,
         }
-  }
+    }
+
+}
+
+export function clearBook(val) {
+    return {
+        type: "CLEAR",
+        payload: {
+            val: val,
+        }
+    }
 }
