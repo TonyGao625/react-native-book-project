@@ -27,5 +27,14 @@ namespace Book.DataAccess
                 return await context.BookCollections.Where(x => x.BookId == bookId && x.UserId == userId).FirstOrDefaultAsync();
             }
         }
+
+        public async Task<List<V_BookCollection>> GetCollectList(int userId)
+        {
+            using (var context=new BookProjectEntities())
+            {
+                return await context.V_BookCollection.Where(x => x.UserId == userId).ToListAsync();
+            }
+        }
+
     }
 }

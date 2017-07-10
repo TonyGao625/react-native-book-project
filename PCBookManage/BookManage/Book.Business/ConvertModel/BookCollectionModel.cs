@@ -31,5 +31,24 @@ namespace Book.Business.ConvertModel
                 CollectionDate = model.CollectionDate
             };
         }
+
+        public static BookCollectionModel ToBookCollectionModel(this V_BookCollection collect)
+        {
+            return new BookCollectionModel()
+            {
+                Id = collect.Id,
+                BookId = collect.BookId,
+                UserId = collect.UserId,
+                CollectionDate = collect.CollectionDate,
+                BookName = collect.BookName,
+                Author = collect.Author,
+                PublicDate = collect.PublicDate,
+                PublicAddress = collect.PublicAddress,
+                CategoryId = collect.CategoryId,
+                Remark = collect.Remark,
+                CreateDate = collect.CreateDate,
+                CreateBy = collect.CreateBy
+            };
+        }
     }
 }

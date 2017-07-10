@@ -16,6 +16,7 @@
         <AssociationConnector Association="BookProjectModel.FK_Book_BookCategory" />
         <AssociationConnector Association="BookProjectModel.FK_BookCollection_BookInfo" />
         <AssociationConnector Association="BookProjectModel.FK_BookCollection_Users" />
+        <EntityTypeShape EntityType="BookProjectModel.V_BookCollection" Width="1.5" PointX="8.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

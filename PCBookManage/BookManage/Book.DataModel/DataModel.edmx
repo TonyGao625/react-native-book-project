@@ -83,6 +83,28 @@ warning 6002: The table/view 'BookProject.dbo.V_BookBorrow' does not have a prim
           <Property Name="CreateDate" Type="datetime" />
           <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_BookCollection">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="BookId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="BookName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Author" Type="nvarchar" MaxLength="50" />
+          <Property Name="PublicDate" Type="datetime" />
+          <Property Name="PublicAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="BookId" Type="bigint" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CollectionDate" Type="datetime" />
+        </EntityType>
         <Association Name="FK_Book_BookCategory">
           <End Role="BookCategory" Type="Self.BookCategory" Multiplicity="0..1" />
           <End Role="BookInfo" Type="Self.BookInfo" Multiplicity="*" />
@@ -168,6 +190,23 @@ warning 6002: The table/view 'BookProject.dbo.V_BookBorrow' does not have a prim
     [V_BookBorrow].[CreateBy] AS [CreateBy]
     FROM [dbo].[V_BookBorrow] AS [V_BookBorrow]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="V_BookCollection" EntityType="Self.V_BookCollection" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_BookCollection].[BookName] AS [BookName], 
+    [V_BookCollection].[Author] AS [Author], 
+    [V_BookCollection].[PublicDate] AS [PublicDate], 
+    [V_BookCollection].[PublicAddress] AS [PublicAddress], 
+    [V_BookCollection].[CategoryId] AS [CategoryId], 
+    [V_BookCollection].[Remark] AS [Remark], 
+    [V_BookCollection].[CreateDate] AS [CreateDate], 
+    [V_BookCollection].[CreateBy] AS [CreateBy], 
+    [V_BookCollection].[Id] AS [Id], 
+    [V_BookCollection].[BookId] AS [BookId], 
+    [V_BookCollection].[UserId] AS [UserId], 
+    [V_BookCollection].[UserName] AS [UserName], 
+    [V_BookCollection].[CollectionDate] AS [CollectionDate]
+    FROM [dbo].[V_BookCollection] AS [V_BookCollection]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Book_BookCategory" Association="Self.FK_Book_BookCategory">
             <End Role="BookCategory" EntitySet="BookCategory" />
             <End Role="BookInfo" EntitySet="BookInfo" />
@@ -220,6 +259,7 @@ warning 6002: The table/view 'BookProject.dbo.V_BookBorrow' does not have a prim
             <End Role="User" EntitySet="Users" />
             <End Role="BookCollection" EntitySet="BookCollections" />
           </AssociationSet>
+          <EntitySet Name="V_BookCollection" EntityType="BookProjectModel.V_BookCollection" />
         </EntityContainer>
         <EntityType Name="BookBorrow">
           <Key>
@@ -367,6 +407,26 @@ warning 6002: The table/view 'BookProject.dbo.V_BookBorrow' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="V_BookCollection">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="BookId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="BookName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PublicDate" Type="DateTime" Precision="3" />
+          <Property Name="PublicAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="BookId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CollectionDate" Type="DateTime" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -449,6 +509,25 @@ warning 6002: The table/view 'BookProject.dbo.V_BookBorrow' does not have a prim
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="BookId" ColumnName="BookId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_BookCollection">
+            <EntityTypeMapping TypeName="BookProjectModel.V_BookCollection">
+              <MappingFragment StoreEntitySet="V_BookCollection">
+                <ScalarProperty Name="CollectionDate" ColumnName="CollectionDate" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="PublicAddress" ColumnName="PublicAddress" />
+                <ScalarProperty Name="PublicDate" ColumnName="PublicDate" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="BookName" ColumnName="BookName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
