@@ -21,7 +21,7 @@ import FormButton from './../components-smart/button'
 import Themes from './../src/themes/themes'
 import { connect } from 'react-redux'
 import { accountLogin, editEmail, editPassword } from '../actions/account.action';
-
+import {batchActions, enableBatching} from 'redux-batched-actions';
 @connect((store) => {
   return {
     loginUser: store.accountReducer.loginUser,
@@ -40,8 +40,7 @@ export default class Login extends Component {
     this.setState({
       submitted: true
     });
-    this.props.dispatch(editEmail(this.props.loginUser.Email));
-    this.props.dispatch(editPassword(this.props.loginUser.Password));
+    this.props.dispatch(batchActions([editEmail(this.props.loginUser.Email),editPassword(this.props.loginUser.Password)]))
     setTimeout(() => {
       if (this.props.loginUser.emailError || this.props.loginUser.passwordError) {
         return;

@@ -5,11 +5,12 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  Alert
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
-import { getBookCategoryList, VerifyBookName, VerifyAuthor, VerifyCategory, editRemark, editPublicAddress, addBookInfo } from '../actions/book.action';
+import { getBookCategoryList, VerifyBookName, VerifyAuthor, VerifyCategory, editRemark, editPublicAddress, addBookInfo, editDate } from '../actions/book.action';
 import FormButton from './../components-smart/button'
 import FormTextField from './../components-smart/text-input'
 import FormDatePicker from './../components-smart/date-picker'
@@ -20,6 +21,7 @@ const { width, height } = Dimensions.get("window");
 @connect((store) => {
   return {
     BookCategoryList: store.bookReducer.BookCategoryList,
+    BookList: store.bookReducer.BookList,
     Book: store.bookReducer.Book
   }
 })
@@ -52,14 +54,16 @@ export default class BookAll extends Component {
           Author: this.props.Book.Author,
           PublicDate: this.props.Book.PublicDate,
           CategoryId: this.props.Book.CategoryId,
+          PublicAddress: this.props.Book.PublicAddress,
+          Remark: this.props.Book.PublicAddress
         }
-      }).then(function () {
-        navigate('Main');
+      }).then(function (res) {
+        Alert.alert('', 'Book was saved successfully.', [{ text: 'OK', onPress: () =>  navigate('Main') },], { cancelable: true });
       })
     })
   }
   render() {
-    const { Book } = this.props;
+    const { Book, BookList } = this.props;
     return (
       <ScrollView style={styles.container}>
         <View style={styles.wrapper}>
@@ -72,7 +76,7 @@ export default class BookAll extends Component {
               submitted={this.state.submitted}
               keyboardType='phone-pad'
               errorText={Book.BookNameError}
-              onChangeText={(val) => this.props.dispatch(VerifyBookName(val))}
+              onChangeText={(val) => this.props.dispatch(VerifyBookName(val, BookList))}
             />
           </View>
           <View style={styles.inputWrap}>
@@ -90,7 +94,10 @@ export default class BookAll extends Component {
             <View style={styles.name}>
               <Text>出版时间:</Text>
             </View>
-            <FormDatePicker />
+            <FormDatePicker
+              date={Book.PublicDate}
+              onDateChange={(val) => this.props.dispatch(editDate(val))}
+            />
           </View>
           <View style={styles.inputWrap}>
             <View style={styles.name}>
@@ -106,14 +113,14 @@ export default class BookAll extends Component {
             <View style={[styles.name]}>
               <Text>分类:</Text>
             </View>
-            <View style={{ alignItems: "center", justifyContent: "center", height: 40, backgroundColor: 'red' }}>
+            <View style={{ alignItems: "center", justifyContent: "flex-end", height: 40, marginTop: 15, marginLeft: 50 }}>
               <ModalPicker
                 data={this.props.BookCategoryList}
                 initValue="Select a category!"
                 onChange={(option) => this.props.dispatch(VerifyCategory(option.key))} />
             </View>
           </View>
-          <Text style={{ color: '#D50000' }}>
+          <Text style={{ color: '#D50000', marginLeft: 40 }}>
             {(this.state.submitted) ? Book.CategoryIDError : ''}
           </Text>
           <View style={styles.inputWrap}>
@@ -168,6 +175,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: 15
   },
   input: {
     flex: 1,

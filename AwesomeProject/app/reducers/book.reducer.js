@@ -73,6 +73,14 @@ export default function reducer(state = {
                     PublicAddress: action.payload.val
                 }
             }
+        case 'EDIT_DATE':
+            return {
+                ...state,
+                Book: {
+                    ...state.Book,
+                    PublicDate: action.payload.val
+                }
+            }
         case 'ADD_BOOKINFO':
             return {
                 ...state,

@@ -3,16 +3,22 @@ import ModalPicker from 'react-native-modal-picker'
 import { TextInput } from 'react-native';
 
 export default class FormModelPicker extends Component {
-  render(){
+  constructor() {
+    super();
+    this.state = {
+      value: ''
+    }
+  }
+  render() {
     return (
-      <ModalPicker style={{width:'100%'}}
+      <ModalPicker style={{ width: '100%' }}
         data={this.props.data}
         initValue={this.props.initValue}
-        onChange={(option)=>{ this.setState({value:option.label})}}>       
-          <TextInput
-              editable={false}
-              placeholder={this.props.placeholder}
-              value={this.props.value} />
+        onChange={(option) => { this.setState({ value: option.Name }) }}>
+        <TextInput
+          editable={false}
+          placeholder={this.props.placeholder}
+          value={this.state.value} />
       </ModalPicker>
     )
   }

@@ -11,13 +11,13 @@ export default class FormDatePicker extends Component {
     return (
       <DatePicker
         style={{width: 200}}
-        date={this.state.date}
+        date={this.props.date}
         mode="date"
         androidMode="spinner"
         placeholder="select date"
         format="YYYY-MM-DD"
-        minDate="2016-05-01"
-        maxDate="2016-06-01"
+        minDate="1970-05-01"
+        maxDate="2017-06-01"
         confirmBtnText="Confirm"
         cancelBtnText="Cancel"
         customStyles={{
@@ -32,7 +32,7 @@ export default class FormDatePicker extends Component {
           }
           // ... You can check the source to find the other keys.
         }}
-        onDateChange={(date) => {this.setState({date: date})}}
+        onDateChange={this.props.onDateChange}
       />
     )
   }
