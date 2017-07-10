@@ -7,16 +7,16 @@ export default class UserInfo extends Component {
   static navigationOptions = {
     tabBarLabel: '我',
     tabBarIcon: ({ tintColor }) => (
-      <Icon 
-        name="person" 
-        size={20} 
-        style={[{tintColor: tintColor}]}
+      <Icon
+        name="person"
+        size={20}
+        style={[{ tintColor: tintColor }]}
         color='white' />
     ),
   };
   render() {
     return (
-        <UserDeatil navigation={this.props.navigation}/>
+      <UserDeatil navigation={this.props.navigation} />
     );
   }
 }

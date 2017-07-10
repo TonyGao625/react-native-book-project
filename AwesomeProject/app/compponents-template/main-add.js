@@ -11,7 +11,7 @@ export default class MainAdd extends Component {
       <Icon 
         name="add" 
         onPress={this._addBook}
-        size={25} 
+        size={40} 
         color='#43A047' />
     );
   }

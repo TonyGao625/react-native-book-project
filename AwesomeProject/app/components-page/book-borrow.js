@@ -7,17 +7,20 @@ export default class BookBorrow extends Component {
   static navigationOptions = {
     tabBarLabel: '借阅',
     tabBarIcon: ({ tintColor }) => (
-      <Icon 
-        name="local-grocery-store" 
-        size={20} 
-        style={[{tintColor: tintColor}]}
+      <Icon
+        name="local-grocery-store"
+        size={20}
+        style={[{ tintColor: tintColor }]}
         color='white' />
     ),
+    headerRight: (
+       <Icon name="person" size={40} color='red' />
+    )
   };
   render() {
     return (
       <ScrollView>
-        <Borrow navigation={this.props.navigation}/>
+        <Borrow navigation={this.props.navigation} />
       </ScrollView>
     );
   }
