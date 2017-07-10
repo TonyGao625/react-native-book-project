@@ -91,7 +91,7 @@ export default function reducer(state = {
         case 'CLEAR_BOOK':
             return {
                 ...state,
-                Book: action.payload.val
+                Book: {}
             }
         default:
             return state;

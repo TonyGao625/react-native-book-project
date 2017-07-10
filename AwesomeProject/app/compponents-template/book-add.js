@@ -16,6 +16,7 @@ import FormTextField from './../components-smart/text-input'
 import FormDatePicker from './../components-smart/date-picker'
 import FormModelPicker from './../components-smart/model-picker'
 import ModalPicker from 'react-native-modal-picker'
+import {batchActions, enableBatching} from 'redux-batched-actions';
 const { width, height } = Dimensions.get("window");
 
 @connect((store) => {
@@ -57,8 +58,11 @@ export default class BookAll extends Component {
           PublicAddress: this.props.Book.PublicAddress,
           Remark: this.props.Book.PublicAddress
         }
-      }).then(function (res) {
-        Alert.alert('', 'Book was saved successfully.', [{ text: 'OK', onPress: () =>  navigate('Main') },], { cancelable: true });
+      }).then((res) => {
+        this.props.dispatch({
+          type: 'CLEAR_BOOK'
+        })
+        Alert.alert('', 'Book was saved successfully.', [{ text: 'OK', onPress: () => navigate('Main') },], { cancelable: true });
       })
     })
   }
