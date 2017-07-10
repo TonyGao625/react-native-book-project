@@ -22,11 +22,11 @@ export function getBookCategoryList(obj) {
             method: 'GET',
             params: obj
         }).then((res) => {
-           res.Datas= res.Datas.map(function(item,index){
-            return {
-                key:index,
-                label:item.Name
-            }
+            res.Datas = res.Datas.map(function (item, index) {
+                return {
+                    key: index,
+                    label: item.Name
+                }
             });
             dispatch({
                 type: 'GET_BOOK_CATEGORY_LIST',
@@ -37,7 +37,7 @@ export function getBookCategoryList(obj) {
 }
 
 export function addBookInfo(obj) {
-   return new Promise(function (dispatch) {
+    return new Promise(function (dispatch) {
         thaxios({
             url: 'book/addOrUpdate',
             method: 'Post',
@@ -52,7 +52,7 @@ export function addBookInfo(obj) {
 }
 
 export function borrowBook(obj) {
-   return new Promise(function (dispatch) {
+    return new Promise(function (dispatch) {
         thaxios({
             url: 'book/borrowBook',
             method: 'Post',
@@ -62,7 +62,7 @@ export function borrowBook(obj) {
 }
 
 export function collectBook(obj) {
-   return new Promise(function (dispatch) {
+    return new Promise(function (dispatch) {
         thaxios({
             url: 'book/collectBook',
             method: 'Post',
@@ -87,11 +87,80 @@ export function getBookBorrowList(obj) {
 }
 
 export function backBook(obj) {
-   return new Promise(function (dispatch) {
+    return new Promise(function (dispatch) {
         thaxios({
             url: 'book/backBook',
             method: 'Post',
             data: obj
         });
     });
+}
+
+export function VerifyBookName(val) {
+    var BookNameError = '';
+    if (!val) {
+        BookNameError = 'Book name is Required'
+    }
+    return {
+        type: 'VERYFY_BOOKNAME',
+        payload: {
+            val: val,
+            BookNameError: BookNameError
+        }
+    }
+}
+
+export function VerifyAuthor(val) {
+    var AuthorError = '';
+    if (!val) {
+        AuthorError = 'Author is Required'
+    }
+    return {
+        type: 'VERYFY_AUTHOR',
+        payload: {
+            val: val,
+            AuthorError: AuthorError
+        }
+    }
+}
+
+export function VerifyCategory(val) {
+    var CategoryIDError = '';
+    if (!val) {
+        CategoryIDError = 'You must select a category for this book.'
+    }
+    return {
+        type: 'VERYFY_CATEGORYID',
+        payload: {
+            val: val,
+            CategoryIDError: CategoryIDError
+        }
+    }
+}
+
+export function editRemark(val) {
+    return {
+        type: "EDIT_REMARK",
+        payload: {
+            val: val,
+        }
+    }
+}
+
+export function editPublicAddress(val) {
+    return {
+        type: "EDIT_PUBLICADDRESS",
+        payload: {
+            val: val,
+        }
+    }
+} 
+
+export function clearBook(val){
+  return {
+      type: "CLEAR",
+        payload: {
+            val: val,
+        }
+  }
 }

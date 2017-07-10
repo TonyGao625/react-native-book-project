@@ -8,8 +8,7 @@ export default class FormModelPicker extends Component {
       <ModalPicker style={{width:'100%'}}
         data={this.props.data}
         initValue={this.props.initValue}
-        onChange={(option)=>{ this.setState({value:option.label})}}>
-        
+        onChange={(option)=>{ this.setState({value:option.label})}}>       
           <TextInput
               editable={false}
               placeholder={this.props.placeholder}

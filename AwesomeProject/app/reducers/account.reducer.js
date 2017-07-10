@@ -5,10 +5,6 @@ export default function reducer(state = {
         emailError:'',
         passwordError:''
     },
-    // validation: {
-    //     UserName: '',
-    //     Password: ''
-    // },
     loggedUser: {
     },
 }, action) {
@@ -22,10 +18,6 @@ export default function reducer(state = {
                     emailError: action.payload.emailError,
                     
                 },
-                // validation: {
-                //     ...state.validation,
-                //     email: action.payload.isValidated
-                // }
             }
         case 'EDIT_PASSWORD':
             return {
@@ -35,10 +27,6 @@ export default function reducer(state = {
                     Password: action.payload.val,
                     passwordError:action.payload.passwordError,
                 },
-                // validation: {
-                //     ...state.validation,
-                //     password: action.payload.isValidated
-                // }
             }
         case 'USER_LOGIN':
             return {
