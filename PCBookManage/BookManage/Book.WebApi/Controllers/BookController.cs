@@ -50,11 +50,11 @@ namespace Book.WebApi.Controllers
             return await _bookBusiness.CollectBook(bookCollectionModel);
         }
 
-        [Route("getBookBorrowList")]
+        [Route("GetBookBorrowListByUserId")]
         [HttpGet]
-        public async Task<MuliResult<BookBorrowModel>> GetBookBorrowList()
+        public async Task<MuliResult<BookBorrowModel>> GetBookBorrowListByUserId(int userId)
         {
-            return await _bookBusiness.GetBookBorrowList();
+            return await _bookBusiness.GetBookBorrowListByUserId(userId);
         }
 
         [Route("backBook")]

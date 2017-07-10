@@ -138,12 +138,12 @@ namespace Book.Business
         /// 查询借阅列表
         /// </summary>
         /// <returns></returns>
-        public async Task<MuliResult<BookBorrowModel>> GetBookBorrowList()
+        public async Task<MuliResult<BookBorrowModel>> GetBookBorrowListByUserId(int userId)
         {
             var result = new MuliResult<BookBorrowModel>();
             try
             {
-                var datalist = await _bookBorrowAgent.GetBookBorrowList();
+                var datalist = await _bookBorrowAgent.GetBookBorrowList(userId);
                 result.Datas = datalist.Select(x => x.ToBorrowModel()).ToList();
             }
             catch (Exception ex)

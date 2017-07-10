@@ -58,8 +58,8 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'BookProject.dbo.V_BookBorrow' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“BookProject.dbo.V_BookBorrow”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_BookBorrow">
           <Key>
             <PropertyRef Name="Id" />
