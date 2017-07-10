@@ -3,6 +3,7 @@ import BookAll from './book-all';
 import BookBorrow from './book-borrow';
 import BookHistory from './borrow-history';
 import BookCollection from './book-collection';
+import BookReturn from './book-return';
 import UserInfo from './user-info';
 
 
@@ -13,12 +14,12 @@ const MenuBottom = TabNavigator({
   BookBorrow: {
     screen: BookBorrow,
   },
-  BookHistory: {
-    screen: BookHistory,
-  },
-  // BookCollection: {
-  //   screen: BookCollection,
+  // BookHistory: {
+  //   screen: BookHistory,
   // },
+  BookReturn: {
+    screen: BookReturn,
+  },
   UserInfo: {
     screen: UserInfo,
   }
