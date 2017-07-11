@@ -3,9 +3,9 @@ import thaxios from '../unilities/axios';
 export function getBookBorrowList(obj) {
     return function (dispatch) {
         thaxios({
-            url: 'book/getBookBorrowList',
+            url: 'collect/getCollectList?userId='+obj,
             method: 'GET',
-            params: obj
+            //params: obj
         }).then((res) => {
             res.Datas = res.Datas.map(function (item, index) {
                 item.checked=false;
@@ -20,7 +20,7 @@ export function getBookBorrowList(obj) {
 }
 
 export function checkSelectItem(val){
-    
+
 }
 
 export function selectALL(datas) {

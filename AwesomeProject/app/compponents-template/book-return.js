@@ -24,7 +24,6 @@ export default class BookBorrow extends Component {
             const permission = JSON.parse(value);           
             this.props.dispatch(GetBookBorrowListByUserId(permission.UserId));
         });
-
     }
     //   _onClick = (val) => {
     //     val.isCheck = true;

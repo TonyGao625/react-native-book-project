@@ -21,11 +21,13 @@ import { getBookBorrowList, selectALL, unSelectALL } from '../actions/book.borro
 export default class BookBorrow extends Component {
   componentWillMount() {
     //alert(2);
-    this.props.dispatch(getBookBorrowList());
+    AsyncStorage.getItem('permission').then((value) => {
+        const permission = JSON.parse(value);         
+        this.props.dispatch(getBookBorrowList(permission.UserId));
+    });
   }
   _onClick = (val) => {
     val.isCheck = true;
-
 
   }
   _selectAll=()=>{

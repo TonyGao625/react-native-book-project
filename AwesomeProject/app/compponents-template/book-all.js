@@ -23,6 +23,7 @@ export default class BookAll extends Component {
   componentWillMount() {
     //alert(1);
     this.props.dispatch(getBookList());
+    
   }
   _addBook= () => {
     const { navigate } = this.props.navigation;
@@ -67,23 +68,22 @@ export default class BookAll extends Component {
   render() {
     return (
       <View>
-        {
+          {
             this.props.BookList.map((val) => {
               return <View 
               key={val.Id}
               style={styles.item}>
-                <Text style={styles.title}>{val.BookName}</Text>
+                <Text style={styles.title}
+                onPress={() => this._showDetailBook(val.Id)}>{val.BookName}</Text>
                 <View style={styles.statusIcon}>
-                  <Icon style={styles.icon} 
+                  {/*<Icon style={styles.icon} 
                     onPress={() => this._showDetailBook(val.Id)}
                     name="library-books" 
-                    size={20} 
-                    color='red' />
+                    size={20} />*/}
                   <Icon 
                     onPress={() => this._collectBook(val.Id)}
                     name="add-shopping-cart" 
-                    size={20} 
-                    color='red' />
+                    size={20} />
                 </View>
               </View>
             })

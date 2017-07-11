@@ -4,7 +4,9 @@ import { Button, Text, View } from 'react-native';
 import Main from './main';
 import Account from './account';
 import BookAdd from './book-add';
-import MainAdd from './../compponents-template/main-add';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import FormTextInput from '../components-smart/text-input'
+var SearchBar = require('react-native-search-bar');
 
 export default class Route extends Component {
   constructor(props) {
@@ -18,8 +20,27 @@ export default class Route extends Component {
 }
 
 const mainNavigationOptions = ({ navigation }) => ({
-  // headerTitle: <Text>全部</Text>,
-  // headerRight: 
+  headerTitle: <View style={{
+    flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop:10,
+        marginBottom:-10
+  }}>
+                  <Icon 
+                  style={{marginLeft:10, marginBottom:20}}
+                  name="crop-free" 
+                  size={25}
+                  color='#43A047'/>
+                  <FormTextInput 
+                  placeholder='search'></FormTextInput>
+  </View>,
+  
+   headerRight: <Icon 
+                  style={{marginRight:10}}
+                  name="dehaze" 
+                  size={20}/>,
   //   <MainAdd navigation={navigation}/>,
   // headerStyle:{
   //   paddingRight:10
@@ -31,7 +52,6 @@ const RouteItem = StackNavigator({
   Account: {
     screen: Account,
     navigationOptions: {
-      //headerTitle:'登录'
       header: null
     }
   },
