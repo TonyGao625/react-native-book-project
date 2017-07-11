@@ -5,7 +5,8 @@ import {
   View,
   ListView,
   Modal,
-  AsyncStorage
+  AsyncStorage,
+  TouchableHighlight
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
@@ -80,7 +81,7 @@ export default class BookAll extends Component {
                     onPress={() => this._showDetailBook(val.Id)}
                     name="library-books" 
                     size={20} />*/}
-                  <Icon 
+                      <Icon 
                     onPress={() => this._collectBook(val.Id)}
                     name="add-shopping-cart" 
                     size={20} />

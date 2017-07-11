@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation'
-import { Button, Text, View } from 'react-native';
+import { Button, Text, View,TouchableHighlight } from 'react-native';
 import Main from './main';
 import Account from './account';
 import BookAdd from './book-add';
@@ -36,10 +36,12 @@ const mainNavigationOptions = ({ navigation }) => ({
                   placeholder='search'></FormTextInput>
   </View>,
   
-   headerRight: <Icon 
+   headerRight: <TouchableHighlight>
+     <Icon 
                   style={{marginRight:10}}
                   name="dehaze" 
-                  size={20}/>,
+                  size={20}/>
+     </TouchableHighlight>,
   //   <MainAdd navigation={navigation}/>,
   // headerStyle:{
   //   paddingRight:10

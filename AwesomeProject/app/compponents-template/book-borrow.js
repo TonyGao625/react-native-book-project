@@ -35,34 +35,6 @@ export default class BookBorrow extends Component {
             this.props.dispatch(getBookBorrowList(permission.UserId));
         });
     }
-    renderView() {
-        if (!this.props.BookBorrowList || this.props.BookBorrowList.length === 0) {
-            return;
-        }
-        var len = this.props.BookBorrowList.length;
-        var views = [];
-        for (var i = 0; i < len; i++) {
-            views.push(
-                <View key={i}>
-                    <View style={styles.item}>
-                        {this.renderCheckBox(this.props.BookBorrowList[i])}
-                    </View>
-                    <View style={styles.line} />
-                </View>
-            )
-        }
-        return views;
-    }
-    renderCheckBox(data) {
-        var leftText = data.BookName;
-        return (
-            <CheckBox
-                style={{ flex: 1, padding: 10}}
-                onClick={() => this._onClick(data)}
-                isChecked={data.isCheck}
-                leftText={leftText}
-            />);
-    }
     _onClick = (data) => {
         data.isCheck = !data.isCheck;
         if(data.isCheck){
@@ -79,46 +51,60 @@ export default class BookBorrow extends Component {
       this.setState({
         checkedAll: !this.state.checkedAll
       });
-      // if(!this.state.checkedAll){//select all
-      //   this.setState({
-      //     sum: this.props.BookBorrowList.length
-      //   });
-      // this.props.dispatch(selectALL(this.props.BookBorrowList));
-      // }else{
-      //   this.setState({//select all
-      //     sum: 0
-      //   });
-      // }
-      this._onClick(this.props.BookBorrowList[0]);
+      if(!this.state.checkedAll){//select all
+        this.setState({
+          sum: this.props.BookBorrowList.length
+        });
+        this.props.dispatch(selectALL(this.props.BookBorrowList));
+      }else{
+        this.setState({//select all
+          sum: 0
+        });
+        this.props.dispatch(unSelectALL(this.props.BookBorrowList));
+      }
     }
     _onBorrowBook=()=>{
-       var BookCollectionList=this.props.BookBorrowList.filter(x=>x.isCheck==true);
-      // if(BookCollectionList.length<1){
-      //   Alert.alert('', '请选择要借阅的图书',[]);
-      //   return;
-      // }
+      var BookCollectionList=this.props.BookBorrowList.filter(x=>x.isCheck==true);
+      if(BookCollectionList.length<1){
+        Alert.alert('', '请选择要借阅的图书',[]);
+        return;
+      }
       
-      // AsyncStorage.getItem('permission').then((value) => {
-      //     const permission = JSON.parse(value);
+      AsyncStorage.getItem('permission').then((value) => {
+          const permission = JSON.parse(value);
 
-      //     var data={
-      //       BookCollectionList:BookCollectionList,
-      //       UserId:permission.UserId,
-      //       BorrowDate:new Date()
-      //     }
-      //     BookBorrowList(data).then(function(item){
-      //        Alert.alert('', '借阅成功',[]);
-      //        this.props.dispatch(getBookBorrowList(permission.UserId));
-      //     });
-      // }); 
+          var data={
+            BookCollectionList:BookCollectionList,
+            UserId:permission.UserId,
+            BorrowDate:new Date()
+          }
+          BookBorrowList(data).then(function(item){
+             Alert.alert('', '借阅成功',[]);
+             this.props.dispatch(getBookBorrowList(permission.UserId));
+          });
+      }); 
     }
     render() {
         return (
             <View>
                 <View style={styles.container}>
-                    <ScrollView>
-                        {this.renderView()}
-                    </ScrollView>
+                    {
+                        this.props.BookBorrowList.map((val) => {
+                        return <View 
+                        key={val.Id}
+                        style={styles.item}>
+                            <Text style={styles.title}
+                            onPress={() => this._showDetailBook(val.Id)}>{val.BookName}</Text>
+                            <View style={styles.statusIcon}>
+                                <Icon 
+                                onPress={() => this._onClick(val)}
+                                name={val.isCheck?'check-box':'check-box-outline-blank'}
+                                color='black'
+                                size={20} />
+                            </View>
+                        </View>
+                        })
+                    }
                 </View>
                 <View style={styles.bottomOperation}>
                   <View style={styles.operation}>
@@ -150,18 +136,27 @@ export default class BookBorrow extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#f3f2f2',
-    },
     item: {
+        flex: 1,
         flexDirection: 'row',
         borderBottomWidth: 1,
         borderBottomColor: '#ddd',
+        paddingTop:10,
+        paddingBottom:10,
+        marginLeft: 15,
+        marginRight: 15
     },
-    line: {
+    title:{
+        marginRight:80
+    },
+    statusIcon:{
         flex: 1,
-        height: 0.3,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        width:200
+    },
+    icon:{
+        marginRight:10
     },
     bottomOperation:{
       position:'absolute',

@@ -38,7 +38,7 @@ export function selectALL(datas) {
 
 export function unSelectALL(datas) {
     datas = datas.map(function (item, index) {
-        item.checked=false;
+        item.isCheck=false;
         return item;
     });
     return {
