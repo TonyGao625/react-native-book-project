@@ -27,7 +27,7 @@ export function BookBorrowList(obj) {
 
 export function selectALL(datas) {
     datas = datas.map(function (item, index) {
-        item.checked=true;
+        item.isCheck=true;
         return item;
     });
     return {

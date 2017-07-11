@@ -5,6 +5,7 @@ import {
     View,
     AsyncStorage,
     ScrollView,
+    TouchableHighlight,
     Alert
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
@@ -78,36 +79,38 @@ export default class BookBorrow extends Component {
       this.setState({
         checkedAll: !this.state.checkedAll
       });
-      if(!this.state.checkedAll){
-        this.setState({
-          sum: this.props.BookBorrowList.length
-        });
-      }else{
-        this.setState({
-          sum: 0
-        });
-      }
+      // if(!this.state.checkedAll){//select all
+      //   this.setState({
+      //     sum: this.props.BookBorrowList.length
+      //   });
+      // this.props.dispatch(selectALL(this.props.BookBorrowList));
+      // }else{
+      //   this.setState({//select all
+      //     sum: 0
+      //   });
+      // }
+      this._onClick(this.props.BookBorrowList[0]);
     }
     _onBorrowBook=()=>{
-      var BookCollectionList=this.props.BookBorrowList.filter(x=>x.isCheck==true);
-      if(BookCollectionList.length<1){
-        Alert.alert('', '请选择要借阅的图书',[]);
-        return;
-      }
+       var BookCollectionList=this.props.BookBorrowList.filter(x=>x.isCheck==true);
+      // if(BookCollectionList.length<1){
+      //   Alert.alert('', '请选择要借阅的图书',[]);
+      //   return;
+      // }
       
-      AsyncStorage.getItem('permission').then((value) => {
-          const permission = JSON.parse(value);
+      // AsyncStorage.getItem('permission').then((value) => {
+      //     const permission = JSON.parse(value);
 
-          var data={
-            BookCollectionList:BookCollectionList,
-            UserId:permission.UserId,
-            BorrowDate:new Date()
-          }
-          BookBorrowList(data).then(function(item){
-             Alert.alert('', '借阅成功',[]);
-             this.props.dispatch(getBookBorrowList(permission.UserId));
-          });
-      }); 
+      //     var data={
+      //       BookCollectionList:BookCollectionList,
+      //       UserId:permission.UserId,
+      //       BorrowDate:new Date()
+      //     }
+      //     BookBorrowList(data).then(function(item){
+      //        Alert.alert('', '借阅成功',[]);
+      //        this.props.dispatch(getBookBorrowList(permission.UserId));
+      //     });
+      // }); 
     }
     render() {
         return (
@@ -128,7 +131,10 @@ export default class BookBorrow extends Component {
                         />
                     </View>
                     <View style={styles.operateItem}>
-                      <Text>总计：{this.state.sum}</Text>
+                      <TouchableHighlight>
+<Text>总计：{this.state.sum}</Text>
+                      </TouchableHighlight>
+                      
                     </View>
                     <View style={styles.operateItem}>
                       <FormButton 
