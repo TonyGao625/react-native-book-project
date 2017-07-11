@@ -36,5 +36,14 @@ namespace Book.DataAccess
             }
         }
 
+        public async Task DeleteById(long id)
+        {
+            using (var context=new BookProjectEntities())
+            {
+                var data = context.BookCollections.FirstOrDefault(x => x.Id == id);
+                if (data != null) context.BookCollections.Remove(data);
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }

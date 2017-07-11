@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure.Interception;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using Book.Business.ConvertModel;
 using Book.DataAccess;
 using Book.DataModel;
@@ -49,15 +51,24 @@ namespace Book.Business
             var result=new Operate();
             try
             {
-                foreach (var item in collectList)
+                using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                 {
-                    var borrow=new BookBorrow()
+                    foreach (var item in collectList)
                     {
-                        BookId = item.BookId,
-                        UserId = userId,
-                        BorrowDate = borrowDate
-                    };
-                    await _bookBorrowAgent.AddOrUpdate(borrow);
+                        var borrow = new BookBorrow()
+                        {
+                            BookId = item.BookId,
+                            UserId = userId,
+                            BorrowDate = borrowDate
+                        };
+                        //add book to borrow list
+                        await _bookBorrowAgent.AddOrUpdate(borrow);
+                        //delete book from borrow order
+                        await _bookCollectionAgent.DeleteById(item.Id);
+                    }
+                    scope.Complete();
+
+                    result.Message = "借阅成功";
                 }
             }
             catch (Exception ex)
