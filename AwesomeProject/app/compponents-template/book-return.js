@@ -19,7 +19,7 @@ import { GetBookBorrowListByUserId } from '../actions/book.return.action'
     }
 })
 
-export default class BookBorrow extends Component {
+export default class BookReturn extends Component {
     componentWillMount() {
         AsyncStorage.getItem('permission').then((value) => {
             const permission = JSON.parse(value);

@@ -11,7 +11,7 @@ export default (obj) => {
         
         axios({
             url: obj.url,
-            baseURL: 'http://192.168.1.116:8001/api/',
+            baseURL: 'http://192.168.1.117:8001/api/',
             method: obj.method ? obj.method : 'GET',
             params:obj.params,
             data: obj.data

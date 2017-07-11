@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView} from 'react-native';
+import { ScrollView,View} from 'react-native';
 import Borrow from './../compponents-template/book-borrow'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FormButton from '../components-smart/button';

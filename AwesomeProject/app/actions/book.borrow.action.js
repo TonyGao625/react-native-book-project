@@ -7,10 +7,6 @@ export function getBookBorrowList(obj) {
             method: 'GET',
             //params: obj
         }).then((res) => {
-            res.Datas = res.Datas.map(function (item, index) {
-                item.checked=false;
-                return item;
-            });
             dispatch({
                 type: 'GET_BOOK_BORROW_LIST',
                 payload: res.Datas
