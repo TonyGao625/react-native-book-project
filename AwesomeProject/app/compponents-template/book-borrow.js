@@ -4,14 +4,15 @@ import {
     Text,
     View,
     AsyncStorage,
-    ScrollView
+    ScrollView,
+    Alert
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CheckBox from 'react-native-check-box'
 import FormButton from './../components-smart/button'
-import { getBookBorrowList, selectALL, unSelectALL } from '../actions/book.borrow.action'
+import { getBookBorrowList, BookBorrowList, selectALL, unSelectALL } from '../actions/book.borrow.action'
 
 @connect((store) => {
     return {
@@ -24,7 +25,7 @@ export default class BookBorrow extends Component {
       super(props);
       this.state = {
         checkedAll: false,
-        sum:0
+        sum:0,
       };
     }
     componentWillMount() {
@@ -88,7 +89,25 @@ export default class BookBorrow extends Component {
       }
     }
     _onBorrowBook=()=>{
-       
+      var BookCollectionList=this.props.BookBorrowList.filter(x=>x.isCheck==true);
+      if(BookCollectionList.length<1){
+        Alert.alert('', '请选择要借阅的图书',[]);
+        return;
+      }
+      
+      AsyncStorage.getItem('permission').then((value) => {
+          const permission = JSON.parse(value);
+
+          var data={
+            BookCollectionList:BookCollectionList,
+            UserId:permission.UserId,
+            BorrowDate:new Date()
+          }
+          BookBorrowList(data).then(function(item){
+             Alert.alert('', '借阅成功',[]);
+             this.props.dispatch(getBookBorrowList(permission.UserId));
+          });
+      }); 
     }
     render() {
         return (

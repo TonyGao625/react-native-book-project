@@ -15,8 +15,14 @@ export function getBookBorrowList(obj) {
     }
 }
 
-export function checkSelectItem(val){
-
+export function BookBorrowList(obj) {
+    return new Promise(function (dispatch) {
+        thaxios({
+            url: 'collect/borrowBook',
+            method: 'POST',
+            data: obj
+        });
+    }); 
 }
 
 export function selectALL(datas) {

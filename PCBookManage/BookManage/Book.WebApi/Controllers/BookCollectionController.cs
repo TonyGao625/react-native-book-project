@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Http;
 using Book.Business;
 using Book.EntityModel;
+using Newtonsoft.Json.Linq;
 
 namespace Book.WebApi.Controllers
 {
@@ -24,6 +25,16 @@ namespace Book.WebApi.Controllers
         public async Task<MuliResult<BookCollectionModel>> GetCollectList(int userId)
         {
             return await _bookCollectionBusiness.GetCollectionList(userId);
+        }
+
+        [Route("borrowBook")]
+        [HttpPost]
+        public async Task<Operate> BorrowBook(JObject paramters)
+        {
+            var bookCollectionList = paramters["BookCollectionList"].ToObject<List<BookCollectionModel>>();
+            var userId = paramters["UserId"].ToObject<int>();
+            var borrowDate = paramters["BorrowDate"].ToObject<DateTime>();
+            return await _bookCollectionBusiness.BorrowBook(bookCollectionList, userId, borrowDate);
         }
     }
 }
