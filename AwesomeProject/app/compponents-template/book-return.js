@@ -3,7 +3,8 @@ import {
     StyleSheet,
     Text,
     View,
-    AsyncStorage
+    AsyncStorage,
+    ScrollView
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
@@ -21,43 +22,55 @@ import { GetBookBorrowListByUserId } from '../actions/book.return.action'
 export default class BookBorrow extends Component {
     componentWillMount() {
         AsyncStorage.getItem('permission').then((value) => {
-            const permission = JSON.parse(value);           
+            const permission = JSON.parse(value);
             this.props.dispatch(GetBookBorrowListByUserId(permission.UserId));
         });
     }
-    //   _onClick = (val) => {
-    //     val.isCheck = true;
-    //   }
-    //   _selectAll=()=>{
-    //     this.props.dispatch(selectALL(this.props.BookBorrowList));
-    //     alert(this.props.BookBorrowList[1].checked)
-    //   }
-    //   _unSelectAll=()=>{
-    //     alert(2);
-    //   }
+    renderView() {
+        if (!this.props.BookReturnListByUserId || this.props.BookReturnListByUserId.length === 0) {
+            return;
+        }
+        var len = this.props.BookReturnListByUserId.length;
+        var views = [];
+        for (var i = 0; i < len; i++) {
+            views.push(
+                <View key={i}>
+                    <View style={styles.item}>
+                        {this.renderCheckBox(this.props.BookReturnListByUserId[i])}
+                    </View>
+                    <View style={styles.line} />
+                </View>
+            )
+        }
+        return views;
+    }
+    renderCheckBox(data) {
+        var leftText = data.BookName;
+        return (
+            <CheckBox
+                style={{ flex: 1, padding: 10 }}
+                onClick={() => this._onClick(data)}
+                isChecked={data.isCheck}
+                leftText={leftText}
+            />);
+    }
+    _onClick = (data) => {
+        data.isCheck = !data.isCheck;
+    }
+    _selectAll = () => {
+        this.props.dispatch(selectALL(this.props.BookBorrowList));
+
+    }
+    _unSelectAll = () => {
+
+    }
     render() {
-        console.log(this.props.BookReturnListByUserId);
         return (
             <View>
-                <View>
-                    {
-                        this.props.BookReturnListByUserId.map((val) => {
-                            return <View
-                                key={val.Id}
-                                style={styles.item}>
-                                <Text>{val.BookName}</Text>
-                                <View style={styles.statusIcon}>
-                                    <Icon
-                                        onPress={(val) => {
-                                            var check = val.checked
-                                            this.setState({ check: true })
-                                        }}
-                                        name={val.checked ? 'check-box' : 'check-box-outline-blank'}
-                                        size={20} />
-                                </View>
-                            </View>
-                        })
-                    }
+                <View style={styles.container}>
+                    <ScrollView>
+                        {this.renderView()}
+                    </ScrollView>
                 </View>
                 <View style={styles.operation}>
                     <FormButton style={styles.operateItem}
@@ -75,34 +88,18 @@ export default class BookBorrow extends Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#f3f2f2',
+    },
     item: {
-        flex: 1,
         flexDirection: 'row',
-        borderBottomWidth: 1,
-        borderBottomColor: '#ddd',
-        height: 40,
-        paddingTop: 10,
-        paddingBottom: 10,
-        marginLeft: 15,
-        marginRight: 15
     },
-    statusIcon: {
+    line: {
         flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-end'
+        height: 0.3,
+        backgroundColor: 'darkgray',
     },
-    icon: {
-        marginRight: 10
-    },
-    operation: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        margin: 10
-    },
-    operateItem: {
-        marginRight: 10
-    }
 });
 
 
