@@ -19,7 +19,7 @@ namespace Book.WebApi.Controllers
             this._bookCollectionBusiness=new BookCollectionBusiness();
         }
 
-        [Route("getCollectList/{userId}")]
+        [Route("getCollectList")]
         [HttpGet]
         public async Task<MuliResult<BookCollectionModel>> GetCollectList(int userId)
         {

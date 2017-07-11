@@ -74,6 +74,21 @@ namespace Book.Business
             return result;
         }
 
+        public async Task<ViewResult<BookInfoModel>> GetBookById(long id)
+        {
+            var result=new ViewResult<BookInfoModel>();
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                result.Status = -1;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
+
         /// <summary>
         /// 借阅图书
         /// </summary>
