@@ -113,7 +113,6 @@ const styles = StyleSheet.create({
   operation:{
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-end',
     margin:10
   },
   operateItem:{

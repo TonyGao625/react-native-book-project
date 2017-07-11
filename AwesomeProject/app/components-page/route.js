@@ -6,7 +6,6 @@ import Account from './account';
 import BookAdd from './book-add';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FormTextInput from '../components-smart/text-input'
-var SearchBar = require('react-native-search-bar');
 
 export default class Route extends Component {
   constructor(props) {
