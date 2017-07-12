@@ -27,7 +27,7 @@ export default class BookOperation extends Component {
             <View style={styles.operate}>
               <TouchableOpacity activeOpacity={.5} onPress={this.props.onBorrowBook}>
                 <View style={styles.button}>
-                  <Text style={styles.buttonText}>借阅</Text>
+                  <Text style={styles.buttonText}>{this.props.lable}</Text>
                 </View>
               </TouchableOpacity>
             </View>

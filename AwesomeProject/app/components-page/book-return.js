@@ -16,9 +16,7 @@ export default class BookBorrow extends Component {
   };
   render() {
     return (
-      <ScrollView>
         <Return navigation={this.props.navigation} />
-      </ScrollView>
     );
   }
 }
