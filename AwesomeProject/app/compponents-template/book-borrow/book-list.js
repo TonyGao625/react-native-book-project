@@ -70,8 +70,7 @@ export default class BookList extends Component {
         Alert.alert('', '请选择要借阅的图书',[]);
         return;
       }
-      setTimeout(() => {
-        AsyncStorage.getItem('permission').then((value) => {
+      AsyncStorage.getItem('permission').then((value) => {
           const permission = JSON.parse(value);
 
           var data={
@@ -88,8 +87,6 @@ export default class BookList extends Component {
               });
           });
       }); 
-      });
-      
     }
     render() {
         return (

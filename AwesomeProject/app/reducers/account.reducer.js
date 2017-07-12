@@ -7,6 +7,7 @@ export default function reducer(state = {
     },
     loggedUser: {
     },
+    permission:{}
 }, action) {
     switch (action.type) {
         case 'EDIT_EMAIL':
@@ -32,6 +33,11 @@ export default function reducer(state = {
             return {
                 ...state,
                 loggedUser: action.payload,
+            }
+        case 'GET_PERMISSION':
+            return {
+                ...state,
+                permission: action.payload,
             }
         default:
             return state;
