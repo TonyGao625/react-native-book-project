@@ -29,13 +29,17 @@ export default class BookAll extends Component {
     const { navigate } = this.props.navigation;
     navigate('BookAdd')
   }
-  _collectBook=(id)=>{
+  _collectBook=(val)=>{
+    if(!val.CanOrder){
+      return;
+    }
+
     AsyncStorage.getItem('permission').then((value) => {
       const permission = JSON.parse(value);
       
       var data={
           BookCollectionModel:{
-            BookId:id,
+            BookId:val.Id,
             UserId:permission.UserId,
             CollectionDate: new Date()
           }
@@ -61,9 +65,9 @@ export default class BookAll extends Component {
                 onPress={() => this._showDetailBook(val.Id)}>{val.BookName}</Text>
                 <View style={styles.statusIcon}>
                     <Icon 
-                    onPress={() => this._collectBook(val.Id)}
+                    onPress={() => this._collectBook(val)}
                     name="add-shopping-cart" 
-                    color="#ddd"
+                    color={val.CanOrder?'black':'#ddd'}
                     size={20} />
                 </View>
               </View>

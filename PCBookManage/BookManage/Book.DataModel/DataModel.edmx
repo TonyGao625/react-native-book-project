@@ -58,8 +58,31 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“BookProject.dbo.V_BookBorrow”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BookProject.dbo.V_BookAll' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_BookAll">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CanOrder" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="BookName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Author" Type="nvarchar" MaxLength="50" />
+          <Property Name="PublicDate" Type="datetime" />
+          <Property Name="PublicAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="BorrowDate" Type="datetime" />
+          <Property Name="IsReturn" Type="bit" />
+          <Property Name="ReturnDate" Type="datetime" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CanOrder" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BookProject.dbo.V_BookBorrow' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="V_BookBorrow">
           <Key>
             <PropertyRef Name="Id" />
@@ -171,6 +194,25 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
           <EntitySet Name="BookCollection" EntityType="Self.BookCollection" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookInfo" EntityType="Self.BookInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="V_BookAll" EntityType="Self.V_BookAll" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_BookAll].[Id] AS [Id], 
+    [V_BookAll].[BookName] AS [BookName], 
+    [V_BookAll].[Author] AS [Author], 
+    [V_BookAll].[PublicDate] AS [PublicDate], 
+    [V_BookAll].[PublicAddress] AS [PublicAddress], 
+    [V_BookAll].[CategoryId] AS [CategoryId], 
+    [V_BookAll].[Remark] AS [Remark], 
+    [V_BookAll].[CreateDate] AS [CreateDate], 
+    [V_BookAll].[UserId] AS [UserId], 
+    [V_BookAll].[BorrowDate] AS [BorrowDate], 
+    [V_BookAll].[IsReturn] AS [IsReturn], 
+    [V_BookAll].[ReturnDate] AS [ReturnDate], 
+    [V_BookAll].[UserName] AS [UserName], 
+    [V_BookAll].[CreateBy] AS [CreateBy], 
+    [V_BookAll].[CanOrder] AS [CanOrder]
+    FROM [dbo].[V_BookAll] AS [V_BookAll]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="V_BookBorrow" EntityType="Self.V_BookBorrow" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [V_BookBorrow].[Id] AS [Id], 
@@ -238,7 +280,9 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
           <EntitySet Name="BookCollections" EntityType="BookProjectModel.BookCollection" />
           <EntitySet Name="BookInfoes" EntityType="BookProjectModel.BookInfo" />
           <EntitySet Name="Users" EntityType="BookProjectModel.User" />
+          <EntitySet Name="V_BookAll" EntityType="BookProjectModel.V_BookAll" />
           <EntitySet Name="V_BookBorrow" EntityType="BookProjectModel.V_BookBorrow" />
+          <EntitySet Name="V_BookCollection" EntityType="BookProjectModel.V_BookCollection" />
           <AssociationSet Name="FK_BookBorrow_Book" Association="BookProjectModel.FK_BookBorrow_Book">
             <End Role="BookInfo" EntitySet="BookInfoes" />
             <End Role="BookBorrow" EntitySet="BookBorrows" />
@@ -259,7 +303,6 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
             <End Role="User" EntitySet="Users" />
             <End Role="BookCollection" EntitySet="BookCollections" />
           </AssociationSet>
-          <EntitySet Name="V_BookCollection" EntityType="BookProjectModel.V_BookCollection" />
         </EntityContainer>
         <EntityType Name="BookBorrow">
           <Key>
@@ -324,6 +367,27 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
           <NavigationProperty Name="BookBorrows" Relationship="BookProjectModel.FK_BookBorrow_Users" FromRole="User" ToRole="BookBorrow" />
           <NavigationProperty Name="BookCollections" Relationship="BookProjectModel.FK_BookCollection_Users" FromRole="User" ToRole="BookCollection" />
         </EntityType>
+        <EntityType Name="V_BookAll">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CanOrder" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="BookName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PublicDate" Type="DateTime" Precision="3" />
+          <Property Name="PublicAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="BorrowDate" Type="DateTime" Precision="3" />
+          <Property Name="IsReturn" Type="Boolean" />
+          <Property Name="ReturnDate" Type="DateTime" Precision="3" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CanOrder" Type="Boolean" Nullable="false" />
+        </EntityType>
         <EntityType Name="V_BookBorrow">
           <Key>
             <PropertyRef Name="Id" />
@@ -346,6 +410,26 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
           <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
           <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="V_BookCollection">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="BookId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="BookName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PublicDate" Type="DateTime" Precision="3" />
+          <Property Name="PublicAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="BookId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CollectionDate" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_BookBorrow_Book">
           <End Type="BookProjectModel.BookInfo" Role="BookInfo" Multiplicity="1" />
@@ -407,26 +491,6 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="V_BookCollection">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="BookId" />
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="BookName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PublicDate" Type="DateTime" Precision="3" />
-          <Property Name="PublicAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="CategoryId" Type="Int32" />
-          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Id" Type="Int64" Nullable="false" />
-          <Property Name="BookId" Type="Int64" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CollectionDate" Type="DateTime" Precision="3" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -487,6 +551,27 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="RealName" ColumnName="RealName" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_BookAll">
+            <EntityTypeMapping TypeName="BookProjectModel.V_BookAll">
+              <MappingFragment StoreEntitySet="V_BookAll">
+                <ScalarProperty Name="CanOrder" ColumnName="CanOrder" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="IsReturn" ColumnName="IsReturn" />
+                <ScalarProperty Name="BorrowDate" ColumnName="BorrowDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="PublicAddress" ColumnName="PublicAddress" />
+                <ScalarProperty Name="PublicDate" ColumnName="PublicDate" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="BookName" ColumnName="BookName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

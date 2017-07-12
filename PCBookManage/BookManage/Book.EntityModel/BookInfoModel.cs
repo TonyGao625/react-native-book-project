@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Book.EntityModel
 {
-    public class BookInfoModel
+    public partial class BookInfoModel
     {
         public long Id { get; set; }
         public string BookName { get; set; }
@@ -17,5 +17,15 @@ namespace Book.EntityModel
         public string Remark { get; set; }
         public DateTime? CreateDate { get; set; }
         public string CreateBy { get; set; }
+    }
+
+    public partial class BookInfoModel
+    {
+        public int? UserId { get; set; }
+        public string UserName { get; set; }
+        public DateTime? BorrowDate { get; set; }
+        public bool? IsReturn { get; set; }
+        public DateTime? ReturnDate { get; set; }
+        public bool CanOrder { get; set; }
     }
 }

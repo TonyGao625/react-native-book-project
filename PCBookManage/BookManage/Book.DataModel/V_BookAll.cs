@@ -12,15 +12,8 @@ namespace Book.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class BookInfo
+    public partial class V_BookAll
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BookInfo()
-        {
-            this.BookBorrows = new HashSet<BookBorrow>();
-            this.BookCollections = new HashSet<BookCollection>();
-        }
-    
         public long Id { get; set; }
         public string BookName { get; set; }
         public string Author { get; set; }
@@ -29,12 +22,12 @@ namespace Book.DataModel
         public Nullable<int> CategoryId { get; set; }
         public string Remark { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<int> UserId { get; set; }
+        public Nullable<System.DateTime> BorrowDate { get; set; }
+        public Nullable<bool> IsReturn { get; set; }
+        public Nullable<System.DateTime> ReturnDate { get; set; }
+        public string UserName { get; set; }
         public string CreateBy { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookBorrow> BookBorrows { get; set; }
-        public virtual BookCategory BookCategory { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookCollection> BookCollections { get; set; }
+        public bool CanOrder { get; set; }
     }
 }

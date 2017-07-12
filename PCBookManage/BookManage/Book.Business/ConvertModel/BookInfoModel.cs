@@ -41,5 +41,27 @@ namespace Book.Business.ConvertModel
                 CreateBy = book.CreateBy
             };
         }
+
+        public static BookInfoModel ToBookInfoModel(this V_BookAll book)
+        {
+            return new BookInfoModel()
+            {
+                Id = book.Id,
+                BookName = book.BookName,
+                Author = book.Author,
+                PublicDate = book.PublicDate,
+                PublicAddress = book.PublicAddress,
+                CategoryId = book.CategoryId,
+                Remark = book.Remark,
+                CreateDate = book.CreateDate,
+                CreateBy = book.CreateBy,
+                UserId = book.UserId,
+                UserName = book.UserName,
+                BorrowDate=book.BorrowDate,
+                IsReturn=book.IsReturn,
+                ReturnDate=book.ReturnDate,
+                CanOrder = book.CanOrder
+            };
+        }
     }
 }

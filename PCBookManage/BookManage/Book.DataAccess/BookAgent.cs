@@ -11,11 +11,14 @@ namespace Book.DataAccess
 {
     public class BookAgent
     {
-        public async Task<List<BookInfo>> GetBookList()
+        public async Task<List<V_BookAll>> GetBookList()
         {
             using (var context = new BookProjectEntities())
             {
-                return await context.BookInfoes.ToListAsync();
+                return await context.V_BookAll
+                    .OrderByDescending(x=>x.CanOrder)
+                    .ThenBy(x=>x.BookName)
+                    .ToListAsync();
             }
         }
 
