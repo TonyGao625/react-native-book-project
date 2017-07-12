@@ -45,5 +45,13 @@ namespace Book.DataAccess
                 return await context.BookBorrows.FirstOrDefaultAsync(x => x.Id == id);
             }
         }
+
+        public async Task<BookBorrow> GetBorrowBookById(long id)
+        {
+            using (var context = new BookProjectEntities())
+            {
+                return await context.BookBorrows.FirstOrDefaultAsync(x => x.Id==id);
+            }
+        }
     }
 }

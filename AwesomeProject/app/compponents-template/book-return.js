@@ -5,14 +5,15 @@ import {
     View,
     AsyncStorage,
     ScrollView,
-    TouchableHighlight
+    TouchableHighlight,
+    Alert
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CheckBox from 'react-native-check-box'
 import FormButton from './../components-smart/button'
-import { GetBookBorrowListByUserId } from '../actions/book.return.action'
+import { GetBookBorrowListByUserId, BookReturnList } from '../actions/book.return.action'
 import { selectALL, unSelectALL } from '../actions/book.borrow.action';
 import BookOperation from '../components-smart/book-operation';
 @connect((store) => {
@@ -58,38 +59,28 @@ export default class BookReturn extends Component {
 
     }
     _onReturnBook = () => {
-
+        var BookReturnModelList = this.props.BookReturnListByUserId.filter(x => x.isCheck == true);
+        if (BookReturnModelList.length < 1) {
+            Alert.alert('', '请选择要借阅的图书', []);
+            return;
+        }
+        var data = {
+            BookReturnModelList: BookReturnModelList,
+        }
+        BookReturnList(data).then(() => {
+            alert("借阅成功");
+            AsyncStorage.getItem('permission').then((value) => {
+                const permission = JSON.parse(value);
+                this.props.dispatch(GetBookBorrowListByUserId(permission.UserId));
+                this.setState({
+                    checkedAll: false,
+                    sum: 0
+                });
+            });
+        });
     }
     render() {
         return (
-            // <View style={styles.borrow}>
-            //     <ScrollView>
-            //         <View style={styles.container}>
-            //             {
-            //                 this.props.BookReturnListByUserId.map((val) => {
-            //                     return <View
-            //                         key={val.Id}
-            //                         style={styles.item}>
-            //                         <Text style={styles.title}>{val.BookName}</Text>
-            //                         <View style={styles.statusIcon}>
-            //                             <Icon
-            //                                 onPress={() => this._onClick(val)}
-            //                                 name={val.isCheck ? 'check-box' : 'check-box-outline-blank'}
-            //                                 color='black'
-            //                                 size={20} />
-            //                         </View>
-            //                     </View>
-            //                 })
-            //             }
-            //         </View>
-            //     </ScrollView>
-            //     <BookOperation
-            //         isCheckAll={this.state.checkedAll}
-            //         total={this.state.sum}
-            //         onCheckAll={this._onCheckAll}
-            //         onBorrowBook={this._onReturnBook}
-            //         lable={'还书'} />
-            // </View>
             <View style={styles.return}>
                 <ScrollView>
                     <View style={styles.container}>

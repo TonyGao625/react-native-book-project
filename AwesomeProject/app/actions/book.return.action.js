@@ -3,12 +3,12 @@ import thaxios from '../unilities/axios';
 export function GetBookBorrowListByUserId(obj) {
     return function (dispatch) {
         thaxios({
-            url: 'book/GetBookBorrowListByUserId?userId='+obj,
+            url: 'book/GetBookBorrowListByUserId?userId=' + obj,
             method: 'GET',
-           // params: obj
+            // params: obj
         }).then((res) => {
             res.Datas = res.Datas.map(function (item, index) {
-                item.checked=false;
+                item.checked = false;
                 return item;
             });
             dispatch({
@@ -17,4 +17,19 @@ export function GetBookBorrowListByUserId(obj) {
             })
         });
     }
+}
+
+export function BookReturnList(obj) {
+    return new Promise(function (dispatch) {
+        thaxios({
+            url: 'book/BookReturn',
+            method: 'POST',
+            data: obj
+        }).then((res)=>{
+            dispatch({
+                type: 'BOOK_RETURN',
+                payload: res
+            })
+        });
+    }); 
 }

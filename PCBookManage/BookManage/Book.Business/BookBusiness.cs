@@ -76,10 +76,10 @@ namespace Book.Business
 
         public async Task<ViewResult<BookInfoModel>> GetBookById(long id)
         {
-            var result=new ViewResult<BookInfoModel>();
+            var result = new ViewResult<BookInfoModel>();
             try
             {
-                
+
             }
             catch (Exception ex)
             {
@@ -169,6 +169,27 @@ namespace Book.Business
             return result;
         }
 
+        public async Task<Operate> BookReturn(List<BookBorrowModel> bookReturnModelList)
+        {
+            var result = new Operate();
+            try
+            {
+                foreach (var item in bookReturnModelList)
+                {
+                    var borrow = await _bookBorrowAgent.GetBorrowBookById(item.Id);
+                    borrow.IsReturn = true;
+                    borrow.ReturnDate = DateTime.Now;
+                    await _bookBorrowAgent.AddOrUpdate(borrow);
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Status = -1;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
+
         /// <summary>
         /// 还书
         /// </summary>
@@ -176,7 +197,7 @@ namespace Book.Business
         /// <returns></returns>
         public async Task<Operate> BackBook(BookBorrowModel bookBorrowModel)
         {
-            var result=new Operate();
+            var result = new Operate();
             try
             {
                 var borrow = await _bookBorrowAgent.GetBorrowById(bookBorrowModel.Id);
