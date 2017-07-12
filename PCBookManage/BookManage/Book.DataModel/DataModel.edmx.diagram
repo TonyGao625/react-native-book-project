@@ -9,14 +9,15 @@
         <EntityTypeShape EntityType="BookProjectModel.BookCategory" Width="1.5" PointX="0.75" PointY="3" />
         <EntityTypeShape EntityType="BookProjectModel.BookCollection" Width="1.5" PointX="8.25" PointY="2.75" />
         <EntityTypeShape EntityType="BookProjectModel.BookInfo" Width="1.5" PointX="3" PointY="2.125" />
-        <EntityTypeShape EntityType="BookProjectModel.User" Width="1.5" PointX="3" PointY="7.375" />
-        <EntityTypeShape EntityType="BookProjectModel.V_BookBorrow" Width="1.5" PointX="5.75" PointY="5.75" />
+        <EntityTypeShape EntityType="BookProjectModel.User" Width="1.5" PointX="3" PointY="7.5" />
+        <EntityTypeShape EntityType="BookProjectModel.V_BookAll" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BookProjectModel.V_BookBorrow" Width="1.5" PointX="7.75" PointY="5.75" />
+        <EntityTypeShape EntityType="BookProjectModel.V_BookCollection" Width="1.5" PointX="9.75" PointY="5.75" />
         <AssociationConnector Association="BookProjectModel.FK_BookBorrow_Book" />
         <AssociationConnector Association="BookProjectModel.FK_BookBorrow_Users" />
         <AssociationConnector Association="BookProjectModel.FK_Book_BookCategory" />
         <AssociationConnector Association="BookProjectModel.FK_BookCollection_BookInfo" />
         <AssociationConnector Association="BookProjectModel.FK_BookCollection_Users" />
-        <EntityTypeShape EntityType="BookProjectModel.V_BookCollection" Width="1.5" PointX="8.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

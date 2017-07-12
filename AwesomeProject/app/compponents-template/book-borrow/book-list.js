@@ -119,7 +119,8 @@ export default class BookList extends Component {
             isCheckAll={this.state.checkedAll}
             total={this.state.sum} 
             onCheckAll={this._onCheckAll} 
-            onBorrowBook={this._onBorrowBook}/>
+            onBorrowBook={this._onBorrowBook}
+            lable='借阅'/>
           </View>
         );
     }

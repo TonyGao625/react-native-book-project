@@ -32,18 +32,7 @@ namespace Book.Business
             try
             {
                 var dataList = await _bookAgent.GetBookList();
-                result.Datas = dataList.Select(x => new BookInfoModel()
-                {
-                    Id = x.Id,
-                    BookName = x.BookName,
-                    Author = x.Author,
-                    PublicDate = x.PublicDate,
-                    PublicAddress = x.PublicAddress,
-                    CategoryId = x.CategoryId,
-                    Remark = x.Remark,
-                    CreateDate = x.CreateDate,
-                    CreateBy = x.CreateBy
-                }).ToList();
+                result.Datas = dataList.Select(x => x.ToBookInfoModel()).ToList();
             }
             catch (Exception ex)
             {
