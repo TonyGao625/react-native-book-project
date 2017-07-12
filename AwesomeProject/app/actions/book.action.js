@@ -51,22 +51,17 @@ export function addBookInfo(obj) {
     });
 }
 
-export function borrowBook(obj) {
-    return new Promise(function (dispatch) {
-        thaxios({
-            url: 'book/borrowBook',
-            method: 'Post',
-            data: obj
-        });
-    });
-}
-
 export function collectBook(obj) {
     return new Promise(function (dispatch) {
         thaxios({
             url: 'book/collectBook',
             method: 'Post',
             data: obj
+        }).then((res)=>{
+            dispatch({
+                type: 'BOOK_COLLECT',
+                payload: res
+            })
         });
     });
 }

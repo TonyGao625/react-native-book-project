@@ -24,7 +24,7 @@ export default function reducer(state = {
             return {
                 ...state,
                 BookCategoryList: action.payload
-            }
+            }  
         case 'GET_BOOK_BORROW_LIST':
             return {
                 ...state,

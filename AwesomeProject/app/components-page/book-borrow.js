@@ -12,12 +12,6 @@ export default class BookBorrow extends Component {
         size={20}
         style={[{ tintColor: tintColor }]}
         color='white' />
-    ),
-    headerRight: (
-        <Icon 
-          style={{marginRight:10}}
-          name="dehaze" 
-          size={20}/>
     )
   };
   render() {

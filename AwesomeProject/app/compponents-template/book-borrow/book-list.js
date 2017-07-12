@@ -18,8 +18,7 @@ import BookOperation from './../../components-smart/book-operation'
 
 @connect((store) => {
     return {
-        BookBorrowList: store.bookBorrowReducer.BookBorrowList,
-        Opearation: store.bookBorrowReducer.Opearation
+        BookBorrowList: store.bookBorrowReducer.BookBorrowList
     }
 })
 
@@ -83,6 +82,10 @@ export default class BookList extends Component {
           BookBorrowList(data).then(()=>{
              alert("借阅成功");
              this.props.dispatch(getBookBorrowList(permission.UserId));
+              this.setState({
+                 checkedAll: false,
+                 sum:0
+              });
           });
       }); 
       });

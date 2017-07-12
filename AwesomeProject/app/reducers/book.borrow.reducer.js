@@ -8,11 +8,6 @@ export default function reducer(state = {
                 ...state,
                 BookBorrowList: action.payload
             }
-        case 'BOOK_BORROW':
-            return {
-                ...state,
-                Opearation: action.payload
-            }
         case 'SELECT_ALL_BOOK_LIST':
             return {
                 ...state,

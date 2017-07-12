@@ -24,27 +24,10 @@ export default class BookAll extends Component {
   componentWillMount() {
     //alert(1);
     this.props.dispatch(getBookList());
-    
   }
   _addBook= () => {
     const { navigate } = this.props.navigation;
     navigate('BookAdd')
-  }
-  _borrowBook=(id)=>{
-    AsyncStorage.getItem('permission').then((value) => {
-      const permission = JSON.parse(value);
-      
-      var data={
-          BookBorrowModel:{
-            BookId:id,
-            UserId:permission.UserId,
-            BorrowDate: new Date()
-          }
-        };
-      borrowBook(data).then(function(){
-        alert("借阅成功");
-      });
-    });
   }
   _collectBook=(id)=>{
     AsyncStorage.getItem('permission').then((value) => {
@@ -57,8 +40,8 @@ export default class BookAll extends Component {
             CollectionDate: new Date()
           }
         };
-      collectBook(data).then(function(){
-        alert("收藏成功");
+      collectBook(data).then(()=>{
+        alert("添加借阅车成功");
       });
     });
   }
@@ -77,13 +60,10 @@ export default class BookAll extends Component {
                 <Text style={styles.title}
                 onPress={() => this._showDetailBook(val.Id)}>{val.BookName}</Text>
                 <View style={styles.statusIcon}>
-                  {/*<Icon style={styles.icon} 
-                    onPress={() => this._showDetailBook(val.Id)}
-                    name="library-books" 
-                    size={20} />*/}
-                      <Icon 
+                    <Icon 
                     onPress={() => this._collectBook(val.Id)}
                     name="add-shopping-cart" 
+                    color="#ddd"
                     size={20} />
                 </View>
               </View>
