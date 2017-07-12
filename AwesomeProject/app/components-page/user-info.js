@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class UserInfo extends Component {
   static navigationOptions = {
-    tabBarLabel: '我',
+    tabBarLabel: '我的',
     tabBarIcon: ({ tintColor }) => (
       <Icon
         name="person"
