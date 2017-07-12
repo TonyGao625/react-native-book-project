@@ -4,6 +4,7 @@ import { Button, Text, View,TouchableHighlight } from 'react-native';
 import Main from './main';
 import Account from './account';
 import BookAdd from './book-add';
+import BookDetail from './book-detail';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
@@ -33,6 +34,9 @@ const RouteItem = StackNavigator({
   },
   BookAdd: {
     screen: BookAdd
+  },
+  BookDetail:{
+    screen:BookDetail
   }
 }, {
     cardStyle: {
