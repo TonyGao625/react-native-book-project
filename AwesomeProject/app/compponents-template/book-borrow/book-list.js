@@ -80,10 +80,9 @@ export default class BookList extends Component {
             UserId:permission.UserId,
             BorrowDate:new Date()
           }
-          BookBorrowList(data).then(function(){
-              alert(11111);
-             //Alert.alert('', this.props.Opearation.Message,[]);
-             //this.props.dispatch(getBookBorrowList(permission.UserId));
+          BookBorrowList(data).then(()=>{
+             alert("借阅成功");
+             this.props.dispatch(getBookBorrowList(permission.UserId));
           });
       }); 
       });

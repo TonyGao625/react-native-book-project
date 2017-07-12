@@ -37,10 +37,10 @@ export default class UserDeatil extends Component {
   render() {
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
-           <FormButton 
+           {/*<FormButton 
               title='退出' 
               onPress={this._logout}
-          />
+          />*/}
       </ScrollView>
   );
   }

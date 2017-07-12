@@ -14,7 +14,10 @@ export default class BookBorrow extends Component {
         color='white' />
     ),
     headerRight: (
-       <Icon name="person" size={40} color='red' />
+        <Icon 
+          style={{marginRight:10}}
+          name="dehaze" 
+          size={20}/>
     )
   };
   render() {
