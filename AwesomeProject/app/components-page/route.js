@@ -26,7 +26,10 @@ const RouteItem = StackNavigator({
     }
   },
   Main: {
-    screen: Main
+    screen: Main,
+    navigationOptions: {
+      headerLeft:null
+    }
   },
   BookAdd: {
     screen: BookAdd
