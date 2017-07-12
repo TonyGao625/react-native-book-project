@@ -11,7 +11,7 @@ import {
   KeyboardAvoidingView,
   AsyncStorage
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/Octicons';
 const { width, height } = Dimensions.get("window");
 
 const background = require("./login_bg.png");
@@ -65,7 +65,7 @@ export default class Login extends Component {
       <View style={styles.container}>
         <Image source={background} style={styles.background} resizeMode="cover">
           <View style={styles.markWrap}>
-            <Icon name="laptop-chromebook" size={120} color='white' />
+            <Icon name="book" size={120} color='white' />
           </View>
           <View style={styles.wrapper}>
             <View style={styles.logininputWrap}>
