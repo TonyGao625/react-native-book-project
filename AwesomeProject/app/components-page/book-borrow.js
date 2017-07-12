@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { ScrollView,View} from 'react-native';
-import Borrow from './../compponents-template/book-borrow'
+import {View} from 'react-native';
+import BookList from './../compponents-template/book-borrow/book-list'
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import FormButton from '../components-smart/button';
 
 export default class BookBorrow extends Component {
   static navigationOptions = {
@@ -20,9 +19,7 @@ export default class BookBorrow extends Component {
   };
   render() {
     return (
-      <ScrollView>
-        <Borrow navigation={this.props.navigation} />
-      </ScrollView>
+      <BookList navigation={this.props.navigation} />
     );
   }
 }

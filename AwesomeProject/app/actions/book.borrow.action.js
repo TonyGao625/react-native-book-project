@@ -21,6 +21,11 @@ export function BookBorrowList(obj) {
             url: 'collect/borrowBook',
             method: 'POST',
             data: obj
+        }).then((res)=>{
+            dispatch({
+                type: 'BOOK_BORROW',
+                payload: res
+            })
         });
     }); 
 }
