@@ -61,7 +61,7 @@ export default class BookReturn extends Component {
     _onReturnBook = () => {
         var BookReturnModelList = this.props.BookReturnListByUserId.filter(x => x.isCheck == true);
         if (BookReturnModelList.length < 1) {
-            Alert.alert('', '请选择要借阅的图书', []);
+            Alert.alert('', '请选择要还的图书', []);
             return;
         }
         var data = {
