@@ -56,6 +56,13 @@ namespace Book.WebApi.Controllers
         {
             return await _bookBusiness.GetBookBorrowListByUserId(userId);
         }
+        [Route("BookReturn")]
+        [HttpPost]
+        public async Task<Operate> BookReturn(JObject paramters)
+        {
+            var bookReturnModelList= paramters["BookReturnModelList"].ToObject<List<BookBorrowModel>>();
+            return await _bookBusiness.BookReturn(bookReturnModelList);
+        }
 
         [Route("backBook")]
         [HttpPost]
