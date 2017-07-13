@@ -28,6 +28,7 @@ import Collapsible from 'react-native-collapsible';
 import Accordion from 'react-native-collapsible/Accordion';
 import { getBookById } from '../actions/book.detail.action';
 import Moment from 'moment';
+import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-view';
 var WINDOW_WIDTH = Dimensions.get('window').width;
 var BASE_PADDING = 10;
 
@@ -41,47 +42,28 @@ class LightboxView extends Component {
     componentWillMount() {
         this.props.dispatch(getBookById(this.props.id));
     }
-    state = {
-        profileCollapsed: true,
-        borrowHistoryCollapsed: true
-    };
-
-    _toggleProfileExpanded = () => {
-        this.setState({ profileCollapsed: !this.state.profileCollapsed });
-    }
-    _toggleBorrowHistoryExpanded = () => {
-        this.setState({ borrowHistoryCollapsed: !this.state.borrowHistoryCollapsed });
-    }
     render() {
         const { BookDetail } = this.props;
         console.log(BookDetail);
         return (
-            <ScrollView style={styles.container}>
-                <View style={styles.row}>
-                    {/* <Lightbox style={styles.col} navigator={this.props.navigator}>
-                        <Image
-                            style={styles.contain}
-                            resizeMode="contain"
-                            source={{ uri: 'https://www.yayomg.com/wp-content/uploads/2014/04/yayomg-pig-wearing-party-hat.jpg' }}
-                        />
-                    </Lightbox> */}
-                    <Lightbox style={styles.col}>
-                        <Image
-                            style={styles.contain}
-                            resizeMode="contain"
-                            source={{ uri: 'https://www.yayomg.com/wp-content/uploads/2014/04/yayomg-pig-wearing-party-hat.jpg' }}
-                        />
-                    </Lightbox>
-                </View>
-                <Text style={styles.title}>{BookDetail.BookName}</Text>
-                <TouchableHighlight onPress={this._toggleProfileExpanded}>
-                    <View style={styles.header}>
-                        <Text style={styles.headerText}>简介</Text>
+            <ScrollableTabView
+                style={styles.container}
+                renderTabBar={() => <DefaultTabBar backgroundColor='rgba(255, 255, 255, 0.7)' />}
+                tabBarPosition='overlayTop'
+            >
+                <ScrollView tabLabel='简介'>
+                    <View style={styles.row}>
+                        <Lightbox style={styles.col}>
+                            <Image
+                                style={styles.contain}
+                                resizeMode="contain"
+                                source={{ uri: 'https://www.yayomg.com/wp-content/uploads/2014/04/yayomg-pig-wearing-party-hat.jpg' }}
+                            />
+                        </Lightbox>
                     </View>
-                </TouchableHighlight>
-                <Collapsible collapsed={this.state.profileCollapsed} align="center">
+                    <Text style={styles.title}>{BookDetail.BookName}</Text>
                     <View style={styles.content}>
-                        <View style={styles.contentField} >
+                        <View >
                             <View style={styles.rowDirection} >
                                 <Icon
                                     name={'event-note'}
@@ -122,21 +104,16 @@ class LightboxView extends Component {
                             <Text>{BookDetail.CategoryName}</Text>
                         </View>
                     </View>
-                </Collapsible>
-                <TouchableHighlight onPress={this._toggleBorrowHistoryExpanded}>
-                    <View style={styles.header}>
-                        <Text style={styles.headerText}>借阅记录</Text>
-                    </View>
-                </TouchableHighlight>
-                <Collapsible collapsed={this.state.borrowHistoryCollapsed} align="center">
-                    <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                        <View style={{ flex: 1, marginLeft: 18 }}>
+                </ScrollView>
+                <ScrollView tabLabel='借阅记录'>
+                    <View style={{ flexDirection: 'row', marginTop: 70 }}>
+                        <View style={{ flex: 1, marginLeft: 18, }}>
                             <Text style={styles.boldText}>借阅起始日</Text>
                         </View>
-                        <View style={{ flex: 1 }}>
+                        <View style={{ flex: 1 ,}}>
                             <Text style={styles.boldText}>还书日</Text>
                         </View>
-                        <View style={{ flex: 1, marginRight: 0 }}>
+                        <View style={{ flex: 1, marginRight: 0, }}>
                             <Text style={styles.boldText}>借阅人</Text>
                         </View>
                     </View>
@@ -154,14 +131,8 @@ class LightboxView extends Component {
                             </View>
                         </View>
                     })}
-                    {/* {BookDetail.BookBorrowList? <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                        <View style={{ flex: 1, marginLeft: 18 }}>
-                            <Text style={styles.boldText}>无记录....</Text>
-                        </View>
-                    </View> : <Text>""</Text>
-                    } */}
-                </Collapsible>
-            </ScrollView>
+                </ScrollView>
+            </ScrollableTabView>
         );
     }
 }
@@ -224,7 +195,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginLeft: -BASE_PADDING,
         marginRight: -BASE_PADDING,
-        marginTop: 10
+        marginTop: 70
     },
     col: {
         flex: 1,
@@ -260,8 +231,8 @@ const styles = StyleSheet.create({
     title: {
         textAlign: 'center',
         fontSize: 22,
-        fontWeight: '300',
-        marginBottom: 20,
+        fontWeight: '500',
+        marginTop: 10,
     },
     header: {
         backgroundColor: '#F5FCFF',
