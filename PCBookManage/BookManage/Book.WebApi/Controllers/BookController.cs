@@ -21,9 +21,12 @@ namespace Book.WebApi.Controllers
         }
 
         [Route("getList")]
-        public async Task<MuliResult<BookInfoModel>> GetBookList()
+        [HttpPost]
+        public async Task<MuliResult<BookInfoModel>> GetBookList(JObject paramters)
         {
-            return await _bookBusiness.GetBookList();
+            var bookName = paramters["BookName"].ToObject<string>();
+            var categoryId= paramters["CategoryId"].ToObject<int>();
+            return await _bookBusiness.GetBookList(bookName, categoryId);
         }
 
         [Route("addOrUpdate")]

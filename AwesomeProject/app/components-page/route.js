@@ -6,7 +6,7 @@ import Account from './account';
 import BookAdd from './book-add';
 import BookDetail from './book-detail';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
+import Search from './book-search';
 
 export default class Route extends Component {
   constructor(props) {
@@ -37,6 +37,9 @@ const RouteItem = StackNavigator({
   },
   BookDetail:{
     screen:BookDetail
+  },
+  Search:{
+    screen:Search
   }
 }, {
     cardStyle: {

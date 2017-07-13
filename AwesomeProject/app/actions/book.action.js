@@ -4,8 +4,8 @@ export function getBookList(obj) {
     return function (dispatch) {
         thaxios({
             url: 'book/getList',
-            method: 'GET',
-            params: obj
+            method: 'POST',
+            data: obj
         }).then((res) => {
             dispatch({
                 type: 'GET_BOOK_LIST',
@@ -25,7 +25,9 @@ export function getBookCategoryList(obj) {
             res.Datas = res.Datas.map(function (item, index) {
                 return {
                     key: index,
-                    label: item.Name
+                    label: item.Name,
+                    Name: item.Name,
+                    Id:item.Id
                 }
             });
             dispatch({

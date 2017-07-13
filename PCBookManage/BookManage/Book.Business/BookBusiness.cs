@@ -26,12 +26,20 @@ namespace Book.Business
         /// 获取所有图书信息
         /// </summary>
         /// <returns></returns>
-        public async Task<MuliResult<BookInfoModel>> GetBookList()
+        public async Task<MuliResult<BookInfoModel>> GetBookList(string bookName="", int categoryId=0)
         {
             var result = new MuliResult<BookInfoModel>();
             try
             {
                 var dataList = await _bookAgent.GetBookList();
+                if (bookName != "")
+                {
+                    dataList = dataList.Where(x => x.BookName.Contains(bookName)).ToList();
+                }
+                if (categoryId != 0)
+                {
+                    dataList = dataList.Where(x => x.CategoryId == categoryId).ToList();
+                }
                 result.Datas = dataList.Select(x => x.ToBookInfoModel()).ToList();
             }
             catch (Exception ex)
@@ -124,7 +132,7 @@ namespace Book.Business
                 if (hasCollect != null)
                 {
                     result.Status = -2;
-                    result.Message = "此书已被收藏";
+                    result.Message = "此书已被添加到借阅车";
                     return result;
                 }
 

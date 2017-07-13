@@ -30,8 +30,8 @@ export default class FormTextInput extends Component {
                     placeholder={this.props.placeholder}
                     secureTextEntry={this.props.secure}
                     underlineColorAndroid={this.state.focused ? color : '#ccc'}
-                    onBlur={this._blur}
-                    onFocus={this._focus}
+                    onBlur={this.props.onBlur}
+                    onFocus={this.props.onFocus}
                     onChangeText={this.props.onChangeText} />
                 <Text style={{ color: '#D50000' }}>
                     {(this.state.focused && this.state.blured || this.props.submitted)? this.props.errorText : ''}                
