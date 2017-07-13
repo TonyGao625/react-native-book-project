@@ -30,5 +30,16 @@ namespace Book.DataAccess
                 await context.SaveChangesAsync();
             }
         }
+
+        public async Task<BookInfo> GetBookIncludeById(long id)
+        {
+            using (var context=new BookProjectEntities())
+            {
+                return await context.BookInfoes
+                    .Include(x=>x.BookBorrows)
+                    .Include(y=>y.BookImages)
+                    .FirstOrDefaultAsync(x => x.Id == id);
+            }
+        }
     }
 }

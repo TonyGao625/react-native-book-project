@@ -76,7 +76,8 @@ namespace Book.Business
             var result = new ViewResult<BookInfoModel>();
             try
             {
-
+                var data = await _bookAgent.GetBookIncludeById(id);
+                result.Data = data.ToBookInfoModel();
             }
             catch (Exception ex)
             {

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Book.EntityModel
 {
+    /// <summary>
+    /// for table
+    /// </summary>
     public partial class BookInfoModel
     {
         public long Id { get; set; }
@@ -19,6 +22,18 @@ namespace Book.EntityModel
         public string CreateBy { get; set; }
     }
 
+    /// <summary>
+    /// for include list
+    /// </summary>
+    public partial class BookInfoModel
+    {
+        public List<BookBorrowModel> BookBorrowList { get; set; }
+        public List<BookImageModel> BookImageList { get; set; }
+    }
+
+    /// <summary>
+    /// for book view
+    /// </summary>
     public partial class BookInfoModel
     {
         public int? UserId { get; set; }

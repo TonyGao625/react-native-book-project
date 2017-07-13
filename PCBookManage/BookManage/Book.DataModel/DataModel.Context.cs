@@ -28,6 +28,7 @@ namespace Book.DataModel
         public virtual DbSet<BookBorrow> BookBorrows { get; set; }
         public virtual DbSet<BookCategory> BookCategories { get; set; }
         public virtual DbSet<BookCollection> BookCollections { get; set; }
+        public virtual DbSet<BookImage> BookImages { get; set; }
         public virtual DbSet<BookInfo> BookInfoes { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<V_BookAll> V_BookAll { get; set; }

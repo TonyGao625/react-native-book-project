@@ -60,6 +60,9 @@
     <Compile Include="BookCollection.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BookImage.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="BookInfo.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>

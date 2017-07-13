@@ -28,7 +28,7 @@ namespace Book.Business.ConvertModel
 
         public static BookInfoModel ToBookInfoModel(this BookInfo book)
         {
-            return new BookInfoModel()
+            var result = new BookInfoModel()
             {
                 Id = book.Id,
                 BookName = book.BookName,
@@ -40,6 +40,15 @@ namespace Book.Business.ConvertModel
                 CreateDate = book.CreateDate,
                 CreateBy = book.CreateBy
             };
+            if (IsLoaded(book, entity => entity.BookBorrows))
+            {
+                result.BookBorrowList = book.BookBorrows.Select(x => x.ToBorrowModel()).ToList();
+            }
+            if (IsLoaded(book, entity => entity.BookImages))
+            {
+                result.BookImageList = book.BookImages.Select(x => x.ToBookImageModel()).ToList();
+            }
+            return result;
         }
 
         public static BookInfoModel ToBookInfoModel(this V_BookAll book)

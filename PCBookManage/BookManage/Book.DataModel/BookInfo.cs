@@ -19,6 +19,7 @@ namespace Book.DataModel
         {
             this.BookBorrows = new HashSet<BookBorrow>();
             this.BookCollections = new HashSet<BookCollection>();
+            this.BookImages = new HashSet<BookImage>();
         }
     
         public long Id { get; set; }
@@ -36,5 +37,7 @@ namespace Book.DataModel
         public virtual BookCategory BookCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookCollection> BookCollections { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BookImage> BookImages { get; set; }
     }
 }

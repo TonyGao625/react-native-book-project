@@ -32,6 +32,16 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="CollectionDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="BookImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookId" Type="bigint" Nullable="false" />
+          <Property Name="IsCover" Type="bit" Nullable="false" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="BookInfo">
           <Key>
             <PropertyRef Name="Id" />
@@ -188,10 +198,23 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BookImage_BookInfo">
+          <End Role="BookInfo" Type="Self.BookInfo" Multiplicity="1" />
+          <End Role="BookImage" Type="Self.BookImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookImage">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BookProjectModelStoreContainer">
           <EntitySet Name="BookBorrow" EntityType="Self.BookBorrow" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookCategory" EntityType="Self.BookCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookCollection" EntityType="Self.BookCollection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookImage" EntityType="Self.BookImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookInfo" EntityType="Self.BookInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="V_BookAll" EntityType="Self.V_BookAll" store:Type="Views" store:Schema="dbo">
@@ -269,6 +292,10 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
             <End Role="Users" EntitySet="Users" />
             <End Role="BookCollection" EntitySet="BookCollection" />
           </AssociationSet>
+          <AssociationSet Name="FK_BookImage_BookInfo" Association="Self.FK_BookImage_BookInfo">
+            <End Role="BookInfo" EntitySet="BookInfo" />
+            <End Role="BookImage" EntitySet="BookImage" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -278,6 +305,7 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
           <EntitySet Name="BookBorrows" EntityType="BookProjectModel.BookBorrow" />
           <EntitySet Name="BookCategories" EntityType="BookProjectModel.BookCategory" />
           <EntitySet Name="BookCollections" EntityType="BookProjectModel.BookCollection" />
+          <EntitySet Name="BookImages" EntityType="BookProjectModel.BookImage" />
           <EntitySet Name="BookInfoes" EntityType="BookProjectModel.BookInfo" />
           <EntitySet Name="Users" EntityType="BookProjectModel.User" />
           <EntitySet Name="V_BookAll" EntityType="BookProjectModel.V_BookAll" />
@@ -302,6 +330,10 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
           <AssociationSet Name="FK_BookCollection_Users" Association="BookProjectModel.FK_BookCollection_Users">
             <End Role="User" EntitySet="Users" />
             <End Role="BookCollection" EntitySet="BookCollections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookImage_BookInfo" Association="BookProjectModel.FK_BookImage_BookInfo">
+            <End Role="BookInfo" EntitySet="BookInfoes" />
+            <End Role="BookImage" EntitySet="BookImages" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="BookBorrow">
@@ -336,6 +368,17 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
           <NavigationProperty Name="BookInfo" Relationship="BookProjectModel.FK_BookCollection_BookInfo" FromRole="BookCollection" ToRole="BookInfo" />
           <NavigationProperty Name="User" Relationship="BookProjectModel.FK_BookCollection_Users" FromRole="BookCollection" ToRole="User" />
         </EntityType>
+        <EntityType Name="BookImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookId" Type="Int64" Nullable="false" />
+          <Property Name="IsCover" Type="Boolean" Nullable="false" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="ImagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BookInfo" Relationship="BookProjectModel.FK_BookImage_BookInfo" FromRole="BookImage" ToRole="BookInfo" />
+        </EntityType>
         <EntityType Name="BookInfo">
           <Key>
             <PropertyRef Name="Id" />
@@ -352,6 +395,7 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
           <NavigationProperty Name="BookBorrows" Relationship="BookProjectModel.FK_BookBorrow_Book" FromRole="BookInfo" ToRole="BookBorrow" />
           <NavigationProperty Name="BookCategory" Relationship="BookProjectModel.FK_Book_BookCategory" FromRole="BookInfo" ToRole="BookCategory" />
           <NavigationProperty Name="BookCollections" Relationship="BookProjectModel.FK_BookCollection_BookInfo" FromRole="BookInfo" ToRole="BookCollection" />
+          <NavigationProperty Name="BookImages" Relationship="BookProjectModel.FK_BookImage_BookInfo" FromRole="BookInfo" ToRole="BookImage" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -491,6 +535,18 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BookImage_BookInfo">
+          <End Type="BookProjectModel.BookInfo" Role="BookInfo" Multiplicity="1" />
+          <End Type="BookProjectModel.BookImage" Role="BookImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookImage">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -522,6 +578,17 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
               <MappingFragment StoreEntitySet="BookCollection">
                 <ScalarProperty Name="CollectionDate" ColumnName="CollectionDate" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookImages">
+            <EntityTypeMapping TypeName="BookProjectModel.BookImage">
+              <MappingFragment StoreEntitySet="BookImage">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="IsCover" ColumnName="IsCover" />
                 <ScalarProperty Name="BookId" ColumnName="BookId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

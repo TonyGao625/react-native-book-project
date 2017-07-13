@@ -74,5 +74,12 @@ namespace Book.WebApi.Controllers
             var backBookModel = paramters["BookBorrowModel"].ToObject<BookBorrowModel>();
             return await _bookBusiness.BackBook(backBookModel);
         }
+
+        [Route("getBookById/{id}")]
+        [HttpGet]
+        public async Task<ViewResult<BookInfoModel>> GetBookById(long id)
+        {
+            return await _bookBusiness.GetBookById(id);
+        }
     }
 }
