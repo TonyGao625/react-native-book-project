@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { TextInput, StyleSheet, ScrollView, Text } from 'react-native';
+import { TextInput, StyleSheet, View, Text } from 'react-native';
+import { Hoshi } from 'react-native-textinput-effects';
 
 export default class FormTextInput extends Component {
     constructor(props) {
@@ -9,21 +10,15 @@ export default class FormTextInput extends Component {
             blured: false
         };
     }
-    _focus = () => {
-        this.setState({ focused: true });
-    }
-    _blur = () => {
-        this.setState({ blured: true })
-    }
     render() {
         const color = this.props.white ? '#FAFAFA' : '#2196F3';
         const placeColor = this.props.white ? '#E0E0E0' : '#9E9E9E';
         return (
-            <ScrollView style={[Styles.view, this.props.viewStyle]} keyboardShouldPersistTaps='handled'>
+            <View style={[Styles.view, this.props.viewStyle]}>
                 <TextInput
                     value={this.props.value}
                     autoCorrect={false}
-                    keyboardType={this.props.keyboardType ? this.props.keyboardType : 'default'}
+                    keyboardType={'default'}
                     placeholderTextColor={placeColor}
                     selectionColor={color}
                     style={{ color: color }}
@@ -36,7 +31,13 @@ export default class FormTextInput extends Component {
                 <Text style={{ color: '#D50000' }}>
                     {(this.state.focused && this.state.blured || this.props.submitted)? this.props.errorText : ''}                
                 </Text>
-            </ScrollView>
+                {/*<Hoshi 
+                label={this.props.placeholder} 
+                borderColor={this.props.borderColor}/>
+                <Text style={{ color: '#D50000' }}>
+                    {(this.state.focused && this.state.blured || this.props.submitted)? this.props.errorText : ''}                
+                </Text>*/}
+            </View>
         );
     }
 }

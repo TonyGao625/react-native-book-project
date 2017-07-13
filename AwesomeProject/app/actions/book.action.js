@@ -120,7 +120,7 @@ export function VerifyAuthor(val) {
 
 export function VerifyCategory(val) {
     var CategoryIDError = '';
-    if (!val) {
+    if (!val || val==null) {
         CategoryIDError = 'You must select a category for this book.'
     }
     return {

@@ -16,13 +16,12 @@ import FormTextField from './../components-smart/text-input'
 import FormDatePicker from './../components-smart/date-picker'
 import FormModelPicker from './../components-smart/model-picker'
 import ModalPicker from 'react-native-modal-picker'
-import {batchActions, enableBatching} from 'redux-batched-actions';
+import { batchActions, enableBatching } from 'redux-batched-actions';
 const { width, height } = Dimensions.get("window");
 
 @connect((store) => {
   return {
     BookCategoryList: store.bookReducer.BookCategoryList,
-    BookList: store.bookReducer.BookList,
     Book: store.bookReducer.Book
   }
 })
@@ -50,14 +49,7 @@ export default class BookAll extends Component {
       }
       const { navigate } = this.props.navigation;
       addBookInfo({
-        BookInfoModel: {
-          BookName: this.props.Book.BookName,
-          Author: this.props.Book.Author,
-          PublicDate: this.props.Book.PublicDate,
-          CategoryId: this.props.Book.CategoryId,
-          PublicAddress: this.props.Book.PublicAddress,
-          Remark: this.props.Book.PublicAddress
-        }
+        BookInfoModel: this.props.Book
       }).then((res) => {
         this.props.dispatch({
           type: 'CLEAR_BOOK'
@@ -71,79 +63,50 @@ export default class BookAll extends Component {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.wrapper}>
-          <View style={styles.inputWrap}>
-            <View style={styles.name}>
-              <Text>书名:</Text>
-            </View>
-            <FormTextField
-              value={Book.BookName}
-              submitted={this.state.submitted}
-              keyboardType='phone-pad'
-              errorText={Book.BookNameError}
-              onChangeText={(val) => this.props.dispatch(VerifyBookName(val, BookList))}
-            />
-          </View>
-          <View style={styles.inputWrap}>
-            <View style={styles.name}>
-              <Text>作者:</Text>
-            </View>
-            <FormTextField
-              value={Book.Author}
-              submitted={this.state.submitted}
-              keyboardType='phone-pad'
-              errorText={Book.AuthorError}
-              onChangeText={(val) => this.props.dispatch(VerifyAuthor(val))} />
-          </View>
-          <View style={styles.inputWrap}>
-            <View style={styles.name}>
-              <Text>出版时间:</Text>
-            </View>
+          <FormModelPicker
+            initValue="分类"
+            errorText={Book.CategoryIDError}
+            submitted={this.state.submitted}
+            onChange={(option) => this.props.dispatch(VerifyCategory(option.key))}
+            data={this.props.BookCategoryList} />
+          <FormTextField
+            placeholder='书名'
+            value={Book.BookName}
+            submitted={this.state.submitted}
+            keyboardType='phone-pad'
+            errorText={Book.BookNameError}
+            onChangeText={(val) => this.props.dispatch(VerifyBookName(val, BookList))}
+          />
+          <FormTextField
+            placeholder='作者'
+            value={Book.Author}
+            submitted={this.state.submitted}
+            keyboardType='phone-pad'
+            errorText={Book.AuthorError}
+            onChangeText={(val) => this.props.dispatch(VerifyAuthor(val))} />
             <FormDatePicker
-              date={Book.PublicDate}
-              onDateChange={(val) => this.props.dispatch(editDate(val))}
-            />
-          </View>
-          <View style={styles.inputWrap}>
-            <View style={styles.name}>
-              <Text>出版地址:</Text>
-            </View>
-            <FormTextField
-              value={Book.PublicAddress}
-              submitted={this.state.submitted}
-              keyboardType='phone-pad'
-              onChangeText={(val) => this.props.dispatch(editPublicAddress(val))} />
-          </View>
-          <View style={styles.inputWrap}>
-            <View style={[styles.name]}>
-              <Text>分类:</Text>
-            </View>
-            <View style={{ alignItems: "center", justifyContent: "flex-end", height: 40, marginTop: 15, marginLeft: 50 }}>
-              <ModalPicker
-                data={this.props.BookCategoryList}
-                initValue="Select a category!"
-                onChange={(option) => this.props.dispatch(VerifyCategory(option.key))} />
-            </View>
-          </View>
-          <Text style={{ color: '#D50000', marginLeft: 40 }}>
-            {(this.state.submitted) ? Book.CategoryIDError : ''}
-          </Text>
-          <View style={styles.inputWrap}>
-            <View style={styles.name}>
-              <Text>简介:</Text>
-            </View>
-            <FormTextField
-              value={Book.Remark}
-              submitted={this.state.submitted}
-              keyboardType='phone-pad'
-              onChangeText={(val) => this.props.dispatch(editRemark(val))} />
-          </View>
+            placeholder='出版日期'
+            showIcon={false}
+            date={Book.PublicDate}
+            onDateChange={(val) => this.props.dispatch(editDate(val))} />
+          <FormTextField
+            placeholder='出版地址'
+            value={Book.PublicAddress}
+            submitted={this.state.submitted}
+            keyboardType='phone-pad'
+            onChangeText={(val) => this.props.dispatch(editPublicAddress(val))} />
+          <FormTextField
+            placeholder='简介'
+            value={Book.Remark}
+            submitted={this.state.submitted}
+            keyboardType='phone-pad'
+            onChangeText={(val) => this.props.dispatch(editRemark(val))} />
         </View>
-
-        <View>
-          <FormButton
-            onPress={this._saveBook}
-            title='保存' />
-        </View>
+        <TouchableOpacity activeOpacity={.5} onPress={this._saveBook}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>保存</Text>
+          </View>
+        </TouchableOpacity>
       </ScrollView>
     );
   }
@@ -152,10 +115,6 @@ export default class BookAll extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  markWrap: {
-    flex: 1,
-    paddingVertical: 30,
   },
   mark: {
     width: null,
@@ -167,11 +126,10 @@ const styles = StyleSheet.create({
     height,
   },
   wrapper: {
-    paddingVertical: 30,
+    marginTop: 10
   },
   inputWrap: {
     flexDirection: "row",
-    //marginVertical: 10,
     height: 80,
     borderBottomWidth: 0
   },

@@ -2,36 +2,30 @@ import React, { Component } from 'react'
 import DatePicker from 'react-native-datepicker'
 
 export default class FormDatePicker extends Component {
-  constructor(props){
-    super(props)
-    this.state = {date:"2016-05-15"}
-  }
-
   render(){
     return (
       <DatePicker
-        style={{width: 200}}
+        style={{width:'100%',marginBottom:20}}
         date={this.props.date}
         mode="date"
+        customStyles={{
+          dateInput: {
+            borderTopWidth:0,
+            borderLeftWidth:0,
+            borderRightWidth:0,
+            borderBottomColor:'#ddd',
+            alignItems:'flex-start',
+            paddingLeft:5
+          }
+        }}
+        showIcon={this.props.showIcon}
         androidMode="spinner"
-        placeholder="select date"
+        placeholder={this.props.placeholder}
         format="YYYY-MM-DD"
         minDate="1970-05-01"
         maxDate="2017-06-01"
         confirmBtnText="Confirm"
         cancelBtnText="Cancel"
-        customStyles={{
-          dateIcon: {
-            position: 'absolute',
-            left: 0,
-            top: 4,
-            marginLeft: 0
-          },
-          dateInput: {
-            marginLeft: 36
-          }
-          // ... You can check the source to find the other keys.
-        }}
         onDateChange={this.props.onDateChange}
       />
     )
