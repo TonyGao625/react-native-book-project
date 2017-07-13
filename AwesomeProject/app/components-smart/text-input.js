@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TextInput, StyleSheet, View, Text } from 'react-native';
-import { Hoshi } from 'react-native-textinput-effects';
+//import { Hoshi } from 'react-native-textinput-effects';
 
 export default class FormTextInput extends Component {
     constructor(props) {
