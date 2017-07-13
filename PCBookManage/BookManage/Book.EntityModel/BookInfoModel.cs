@@ -42,5 +42,6 @@ namespace Book.EntityModel
         public bool? IsReturn { get; set; }
         public DateTime? ReturnDate { get; set; }
         public bool CanOrder { get; set; }
+        public string CategoryName { get; set; }
     }
 }

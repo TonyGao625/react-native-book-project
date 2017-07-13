@@ -38,7 +38,8 @@ namespace Book.Business.ConvertModel
                 CategoryId = book.CategoryId,
                 Remark = book.Remark,
                 CreateDate = book.CreateDate,
-                CreateBy = book.CreateBy
+                CreateBy = book.CreateBy,
+                CategoryName = book.BookCategory?.Name
             };
             if (IsLoaded(book, entity => entity.BookBorrows))
             {

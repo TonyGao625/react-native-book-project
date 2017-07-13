@@ -37,7 +37,8 @@ namespace Book.DataAccess
             {
                 return await context.BookInfoes
                     .Include(x=>x.BookBorrows)
-                    .Include(y=>y.BookImages)
+                    .Include(x=>x.BookImages)
+                    .Include(x=>x.BookCategory)
                     .FirstOrDefaultAsync(x => x.Id == id);
             }
         }
