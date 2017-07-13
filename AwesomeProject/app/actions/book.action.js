@@ -1,4 +1,5 @@
 import thaxios from '../unilities/axios';
+import storage from 'store2';
 
 export function getBookList(obj) {
     return function (dispatch) {
@@ -7,12 +8,13 @@ export function getBookList(obj) {
             method: 'POST',
             data: obj
         }).then((res) => {
+            storage.session('CategoryId', 0);
             dispatch({
                 type: 'GET_BOOK_LIST',
                 payload: res.Datas
             })
         });
-    }
+    };
 }
 
 export function getBookCategoryList(obj) {

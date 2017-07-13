@@ -42,13 +42,10 @@ class BookSearchText extends Component {
 export default class BookAll extends Component {
   static navigationOptions = ({ navigation }) => ({
     tabBarLabel: '全部',
-    tabBarIcon: ({ tintColor }) => (
-      <Icon
+    tabBarIcon:  <Icon
         name="apps"
         size={20}
-        style={[{ tintColor: tintColor }]}
-        color='white' />
-    ),
+        color='white' />,
     headerTitle: <BookSearchText navigation={navigation}/>,
     headerRight: 
       <TouchableHighlight>

@@ -7,13 +7,10 @@ import UserLogout from './../components-smart/user-logout'
 export default class UserInfo extends Component {
   static navigationOptions  = ({ navigation }) =>({
     tabBarLabel: '我的',
-    tabBarIcon: ({ tintColor }) => (
-      <Icon
+    tabBarIcon: <Icon
         name="person"
         size={20}
-        style={[{ tintColor: tintColor }]}
-        color='white' />
-    ),
+        color='white' />,
     headerRight: (
       <UserLogout navigation={navigation}/>)
   });

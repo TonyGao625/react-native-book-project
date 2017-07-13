@@ -6,13 +6,10 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 export default class BookBorrow extends Component {
   static navigationOptions = {
     tabBarLabel: '借阅车',
-    tabBarIcon: ({ tintColor }) => (
-      <Icon
+    tabBarIcon: <Icon
         name="local-grocery-store"
         size={20}
-        style={[{ tintColor: tintColor }]}
         color='white' />
-    )
   };
   render() {
     return (

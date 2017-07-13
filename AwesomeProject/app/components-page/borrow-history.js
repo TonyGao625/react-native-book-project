@@ -6,13 +6,10 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 export default class BookHistory extends Component {
   static navigationOptions = {
     tabBarLabel: '还书',
-    tabBarIcon: ({ tintColor }) => (
-      <Icon 
+    tabBarIcon: <Icon 
         name="remove-shopping-cart" 
         size={20} 
-        style={[{tintColor: tintColor}]}
         color='white' />
-    ),
   };
   render() {
     return (
