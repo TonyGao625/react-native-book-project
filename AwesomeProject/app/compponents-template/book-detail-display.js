@@ -127,7 +127,7 @@ class LightboxView extends Component {
                                 <Text style={styles.boldText}>{!val.ReturnDate ? "未还" : Moment(val.ReturnDate).format('MM/DD/YYYY')}</Text>
                             </View>
                             <View style={{ flex: 1, marginRight: 0 }}>
-                                <Text style={styles.boldText}>借阅人</Text>
+                                <Text style={styles.boldText}>{!val.UserName?"":val.UserName}</Text>
                             </View>
                         </View>
                     })}
