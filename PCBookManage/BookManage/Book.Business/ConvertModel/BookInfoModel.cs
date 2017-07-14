@@ -43,7 +43,7 @@ namespace Book.Business.ConvertModel
             };
             if (IsLoaded(book, entity => entity.BookBorrows))
             {
-                result.BookBorrowList = book.BookBorrows.Select(x => x.ToBorrowModel()).ToList();
+                result.BookBorrowList = book.BookBorrows.Select(x => x.ToBorrowModel()).OrderByDescending(x=>x.BorrowDate).ToList();
             }
             if (IsLoaded(book, entity => entity.BookImages))
             {

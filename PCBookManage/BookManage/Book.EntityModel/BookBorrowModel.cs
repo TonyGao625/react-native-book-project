@@ -26,6 +26,6 @@ namespace Book.EntityModel
         public string Remark { get; set; }
         public DateTime? CreateDate { get; set; }
         public string CreateBy { get; set; }
-
+        public string UserName { get; set; }
     }
 }
