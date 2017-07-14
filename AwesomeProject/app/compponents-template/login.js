@@ -5,23 +5,19 @@ import {
   View,
   Image,
   Dimensions,
-  TextInput,
-  Button,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  AsyncStorage
+  TouchableOpacity
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Octicons';
-const { width, height } = Dimensions.get("window");
-
-const background = require("./../src/images/login_bg.png");
-
-import FormTextField from './../components-cell/form-text-input'
 import FormIconTextInput from './../components-cell/form-icon-text-input'
+import FormCustomButton from './../components-cell/form-custom-botton'
 import Themes from './../src/themes/themes'
 import { connect } from 'react-redux'
 import { accountLogin, editEmail, editPassword } from '../actions/account.action';
 import { batchActions, enableBatching} from 'redux-batched-actions';
+
+const background = require("./../src/images/login_bg.png");
+const { width, height } = Dimensions.get("window");
+
 @connect((store) => {
   return {
     loginUser: store.accountReducer.loginUser,
@@ -63,7 +59,7 @@ export default class Login extends Component {
           <View style={styles.markWrap}>
             <Icon name="book" size={120} color='white' />
           </View>
-          <View style={styles.wrapper}>
+          <View style={styles.form}>
             <FormIconTextInput 
               iconName='person'
               iconSize={25}
@@ -84,17 +80,16 @@ export default class Login extends Component {
               errorText={loginUser.passwordError}
               value={loginUser.Password}
               onChangeText={(val) => this.props.dispatch(editPassword(val))} />
-
-           
-            <TouchableOpacity activeOpacity={.5} onPress={this._loginAccount}>
-              <View style={styles.button}>
-                <Text style={styles.buttonText}>登录</Text>
-              </View>
-            </TouchableOpacity>
+            <FormCustomButton 
+              activeOpacity={.5}
+              text='登录'
+              styleView={styles.button}
+              styleText={styles.buttonText}
+              onPress={this._loginAccount}/>
           </View>
           <View style={styles.container}>
-            <View style={styles.signupWrap}>
-              <Text style={styles.accountText}>Book Management</Text>
+            <View style={styles.remarkWrap}>
+              <Text style={styles.remarkText}>Book Management</Text>
             </View>
           </View>
         </Image>
@@ -113,72 +108,29 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  mark: {
-    width: null,
-    height: null,
-    flex: 1,
-  },
   background: {
     width,
     height,
   },
-  wrapper: {
+  form: {
     paddingVertical: 30,
-  },
-  inputWrap: {
-    flexDirection: "row",
-    marginVertical: 10,
-    height: 40,
-    borderBottomWidth: 1,
-    borderBottomColor: "#CCC"
-  },
-  logininputWrap: {
-    flexDirection: "row",
-    marginVertical: 10,
-    height: 70,
-  },
-  iconWrap: {
-    paddingHorizontal: 7,
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom:15
-  },
-  icon: {
-    height: 20,
-    width: 20,
-  },
-  input: {
-    flex: 1,
-    paddingHorizontal: 10,
   },
   button: {
     backgroundColor: "#43A047",
     paddingVertical: 20,
-    alignItems: "center",
-    justifyContent: "center",
     marginTop: 30,
   },
   buttonText: {
     color: "#FFF",
     fontSize: 18,
   },
-  forgotPasswordText: {
-    color: "#D8D8D8",
-    backgroundColor: "transparent",
-    textAlign: "right",
-    paddingRight: 15,
-  },
-  signupWrap: {
+  remarkWrap: {
     backgroundColor: "transparent",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
-  accountText: {
+  remarkText: {
     color: "#D8D8D8"
-  },
-  signupLinkText: {
-    color: "#FFF",
-    marginLeft: 5,
   }
 });
