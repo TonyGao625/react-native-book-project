@@ -3,7 +3,7 @@ import { AsyncStorage, ScrollView, StyleSheet, View, TouchableHighlight} from 'r
 import BookList from './../compponents-template/book-all'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MainAdd from './../compponents-template/main-add';
-import FormTextInput from '../components-smart/text-input'
+import FormTextInput from '../components-smart/form-text-input'
 
 class BookSearchText extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class BookSearchText extends Component {
                 marginBottom:-10
           }}>
           <Icon 
-            style={{marginLeft:10, marginBottom:20}}
+            style={{marginLeft:40, marginBottom:20}}
             name="crop-free" 
             size={25}
             color='#43A047'/>

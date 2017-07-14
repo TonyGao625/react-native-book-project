@@ -12,13 +12,16 @@ import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CheckBox from 'react-native-check-box'
-import FormButton from './../../components-smart/button'
+import FormButton from './../../components-smart/form-button'
 import { getBookBorrowList, BookBorrowList, selectALL, unSelectALL } from '../../actions/book.borrow.action'
+import { getPermission } from '../../actions/account.action'
 import BookOperation from './../../components-smart/book-operation'
+
 
 @connect((store) => {
   return {
-    BookBorrowList: store.bookBorrowReducer.BookBorrowList
+    BookBorrowList: store.bookBorrowReducer.BookBorrowList,
+    permission: store.accountReducer.permission
   }
 })
 
@@ -31,6 +34,10 @@ export default class BookList extends Component {
     };
   }
   componentWillMount() {
+    
+    getPermission().then(()=>{
+      alert(this.props.permission.UserId);
+    });
     AsyncStorage.getItem('permission').then((value) => {
       const permission = JSON.parse(value);
       this.props.dispatch(getBookBorrowList(permission.UserId));

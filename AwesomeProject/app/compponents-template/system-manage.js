@@ -10,7 +10,7 @@ import {
   AsyncStorage
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
-import FormButton from './../components-smart/button'
+import FormButton from './../components-smart/form-button'
 
 export default class SystemManage extends Component {
   _addBookInfo=()=>{

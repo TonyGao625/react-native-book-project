@@ -16,8 +16,8 @@ const { width, height } = Dimensions.get("window");
 
 const background = require("./login_bg.png");
 
-import FormTextField from './../components-smart/text-input'
-import FormButton from './../components-smart/button'
+import FormTextField from './../components-smart/form-text-input'
+import FormButton from './../components-smart/form-button'
 import Themes from './../src/themes/themes'
 import { connect } from 'react-redux'
 import { accountLogin, editEmail, editPassword } from '../actions/account.action';

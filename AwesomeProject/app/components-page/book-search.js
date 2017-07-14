@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AsyncStorage, ScrollView, StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import FormTextInput from '../components-smart/text-input'
+import FormTextInput from '../components-smart/form-text-input'
 import BookCategory from './../compponents-template/book-category'
 import storage from 'store2';
 

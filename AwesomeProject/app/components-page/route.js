@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation'
 import { Button, Text, View,TouchableHighlight } from 'react-native';
-import Main from './main';
+import Main from './main-tab';
 import Account from './account';
 import BookAdd from './book-add';
 import BookDetail from './book-detail';

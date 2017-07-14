@@ -24,13 +24,15 @@ export function accountLogin(obj) {
     });
 }
 
-export function getPermission(val) {
-     AsyncStorage.getItem('permission').then((value) => {
-        const permission = JSON.parse(value);
-        return {
-        type: 'GET_PERMISSION',
-        payload: permission
-        }
+export function getPermission() {
+    return new Promise(function (dispatch) {
+        AsyncStorage.getItem('permission').then((value) => {
+            const permission = JSON.parse(value);
+            return {
+            type: 'GET_PERMISSION',
+            payload: permission
+            }
+        })
     });
 }
 
