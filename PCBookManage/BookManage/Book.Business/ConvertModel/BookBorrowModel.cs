@@ -12,7 +12,7 @@ namespace Book.Business.ConvertModel
     {
         public static BookBorrowModel ToBorrowModel(this BookBorrow borrow)
         {
-            return new BookBorrowModel()
+            var result = new BookBorrowModel()
             {
                 Id = borrow.Id,
                 BookId = borrow.BookId,
@@ -21,6 +21,11 @@ namespace Book.Business.ConvertModel
                 IsReturn = borrow.IsReturn,
                 ReturnDate = borrow.ReturnDate
             };
+            if (IsLoaded(borrow, entity => entity.User))
+            {
+                result.UserName = borrow.User?.UserName;
+            }
+            return result;
         }
 
         public static BookBorrow ToBookBorrow(this BookBorrowModel model)

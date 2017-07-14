@@ -36,7 +36,7 @@ namespace Book.DataAccess
             using (var context=new BookProjectEntities())
             {
                 return await context.BookInfoes
-                    .Include(x=>x.BookBorrows)
+                    .Include(x=>x.BookBorrows.Select(y=>y.User))
                     .Include(x=>x.BookImages)
                     .Include(x=>x.BookCategory)
                     .FirstOrDefaultAsync(x => x.Id == id);
