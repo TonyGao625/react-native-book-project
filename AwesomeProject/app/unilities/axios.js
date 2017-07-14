@@ -4,9 +4,10 @@ import { showToast } from '../actions/toast.action';
 import {
   Alert
 } from 'react-native';
-
+import loading from 'fs-loading'
 
 export default (obj) => {
+    loading.show()
     var p = new Promise((resolve, reject) => {
         
         axios({
@@ -16,13 +17,14 @@ export default (obj) => {
             params:obj.params,
             data: obj.data
         }).then((response) => {
+            loading.hide()
             if (response.data.Status<0) {
                 Alert.alert('', response.data.Message,[],{ cancelable: true });
             } else {
                 resolve(response.data);
             }
         }).catch((err) => {
-            //need to be do with toast
+            loading.hide()
              Alert.alert('','Opps,内部出现问题了，我们会尽快解决',[],{ cancelable: true });
             reject(err);
         });
