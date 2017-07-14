@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ModalPicker from 'react-native-modal-picker'
 import { TextInput,Text,View,ScrollView } from 'react-native';
-import { Hoshi } from 'react-native-textinput-effects';
+// import { Hoshi } from 'react-native-textinput-effects';
 
 export default class FormModelPicker extends Component {
   constructor(props) {
