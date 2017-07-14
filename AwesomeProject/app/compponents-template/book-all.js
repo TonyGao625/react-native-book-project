@@ -4,9 +4,9 @@ import {
   Text,
   View,
   ListView,
-  Modal,
   AsyncStorage,
-  TouchableHighlight
+  TouchableHighlight,
+  Alert
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
@@ -51,7 +51,7 @@ export default class BookAll extends Component {
         }
       };
       collectBook(data).then(() => {
-        alert("添加借阅车成功");
+        Alert.alert('', '添加到借阅车成功', []);
       });
     });
   }

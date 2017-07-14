@@ -1,7 +1,0 @@
-{
-  "presets": ["react-native"],
-  "plugins": [
-    "babel-plugin-transform-class-properties",
-    "transform-decorators-legacy"
-  ]
-}

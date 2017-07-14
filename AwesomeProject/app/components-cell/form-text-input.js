@@ -7,7 +7,7 @@ export default class FormTextInput extends Component {
     }
     render() {
         return (
-            <View style={[styles.view, this.props.style]}>
+            <View style={styles.formView}>
                 <TextInput
                     value={this.props.value}
                     autoCorrect={false}
@@ -29,8 +29,8 @@ export default class FormTextInput extends Component {
     }
 }
 var styles = StyleSheet.create({
-    view: {
+    formView: {
         width: '100%',
-        height: 75
+        height: 85
     }
 })

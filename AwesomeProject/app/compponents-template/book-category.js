@@ -4,7 +4,6 @@ import {
     Text,
     View,
     ListView,
-    Modal,
     AsyncStorage,
     TouchableHighlight,
     ScrollView,
