@@ -12,10 +12,10 @@ import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CheckBox from 'react-native-check-box'
-import FormButton from './../components-smart/form-button'
+import FormButton from './../components-cell/form-button'
 import { GetBookBorrowListByUserId, BookReturnList } from '../actions/book.return.action'
 import { selectALL, unSelectALL } from '../actions/book.borrow.action';
-import BookOperation from '../components-smart/book-operation';
+import BookOperation from '../components-cell/book-operation';
 @connect((store) => {
     return {
         BookReturnListByUserId: store.bookReturnReducer.BookReturnListByUserId

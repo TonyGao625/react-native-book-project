@@ -12,11 +12,10 @@ import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CheckBox from 'react-native-check-box'
-import FormButton from './../../components-smart/form-button'
+import FormButton from './../../components-cell/form-button'
 import { getBookBorrowList, BookBorrowList, selectALL, unSelectALL } from '../../actions/book.borrow.action'
 import { getPermission } from '../../actions/account.action'
-import BookOperation from './../../components-smart/book-operation'
-
+import BookOperation from './../../components-cell/book-operation'
 
 @connect((store) => {
   return {
@@ -34,7 +33,6 @@ export default class BookList extends Component {
     };
   }
   componentWillMount() {
-    
     getPermission().then(()=>{
       alert(this.props.permission.UserId);
     });

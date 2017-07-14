@@ -12,7 +12,7 @@ import {
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
 import axios from 'axios';
-import FormButton from './../components-smart/form-button'
+import FormButton from './../components-cell/form-button'
 import { accountLogin, editEmail, editPassword } from '../actions/account.action';
 import BookAdd from './../components-page/book-add'
 

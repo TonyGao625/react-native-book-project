@@ -11,10 +11,10 @@ import {
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
 import { getBookCategoryList, VerifyBookName, VerifyAuthor, VerifyCategory, editRemark, editPublicAddress, addBookInfo, editDate } from '../actions/book.action';
-import FormButton from './../components-smart/form-button'
-import FormTextField from './../components-smart/form-text-input'
-import FormDatePicker from './../components-smart/form-date-picker'
-import FormModelPicker from './../components-smart/form-model-picker'
+import FormButton from './../components-cell/form-button'
+import FormTextField from './../components-cell/form-text-input'
+import FormDatePicker from './../components-cell/form-date-picker'
+import FormModelPicker from './../components-cell/form-model-picker'
 import ModalPicker from 'react-native-modal-picker'
 import { batchActions, enableBatching } from 'redux-batched-actions';
 const { width, height } = Dimensions.get("window");

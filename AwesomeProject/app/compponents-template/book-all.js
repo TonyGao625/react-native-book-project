@@ -11,7 +11,7 @@ import {
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
 import { getBookList, borrowBook, collectBook } from '../actions/book.action';
-import FormButton from './../components-smart/form-button'
+import FormButton from './../components-cell/form-button'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import storage from 'store2';
 

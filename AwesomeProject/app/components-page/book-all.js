@@ -3,7 +3,7 @@ import { AsyncStorage, ScrollView, StyleSheet, View, TouchableHighlight} from 'r
 import BookList from './../compponents-template/book-all'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MainAdd from './../compponents-template/main-add';
-import FormTextInput from '../components-smart/form-text-input'
+import FormTextInput from '../components-cell/form-text-input'
 
 class BookSearchText extends Component {
   constructor(props) {

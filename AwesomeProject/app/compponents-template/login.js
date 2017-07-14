@@ -14,14 +14,14 @@ import {
 import Icon from 'react-native-vector-icons/Octicons';
 const { width, height } = Dimensions.get("window");
 
-const background = require("./login_bg.png");
+const background = require("./../src/images/login_bg.png");
 
-import FormTextField from './../components-smart/form-text-input'
-import FormButton from './../components-smart/form-button'
+import FormTextField from './../components-cell/form-text-input'
+import FormIconTextInput from './../components-cell/form-icon-text-input'
 import Themes from './../src/themes/themes'
 import { connect } from 'react-redux'
 import { accountLogin, editEmail, editPassword } from '../actions/account.action';
-import {batchActions, enableBatching} from 'redux-batched-actions';
+import { batchActions, enableBatching} from 'redux-batched-actions';
 @connect((store) => {
   return {
     loginUser: store.accountReducer.loginUser,
@@ -33,7 +33,6 @@ export default class Login extends Component {
     super(props);
     this.state = {
       submitted: false,
-
     };
   }
   _loginAccount = () => {
@@ -55,9 +54,6 @@ export default class Login extends Component {
         navigate('Main');
       })
     });
-
-  }
-  componentWillReceiveProps = () => {
   }
   render() {
     const { loginUser } = this.props;
@@ -68,32 +64,28 @@ export default class Login extends Component {
             <Icon name="book" size={120} color='white' />
           </View>
           <View style={styles.wrapper}>
-            <View style={styles.logininputWrap}>
-              <View style={styles.iconWrap}>
-                <Icon name="person" size={25} color='white' />
-              </View>
-              <FormTextField
-                value={loginUser.Email}
-                placeholder='Email'
-                white={true}
-                submitted={this.state.submitted}
-                keyboardType='phone-pad'
-                errorText={loginUser.emailError}
-                onChangeText={(val) => this.props.dispatch(editEmail(val))} />
-            </View>
-            <View style={styles.logininputWrap}>
-              <View style={styles.iconWrap}>
-                <Icon name="lock" size={25} color='white' />
-              </View>
-              <FormTextField
-                value={loginUser.Password}
-                placeholder='Password'
-                white={true}
-                submitted={this.state.submitted}
-                keyboardType='phone-pad'
-                errorText={loginUser.passwordError}
-                onChangeText={(val) => this.props.dispatch(editPassword(val))} />
-            </View>
+            <FormIconTextInput 
+              iconName='person'
+              iconSize={25}
+              color='white'
+              placeholder='Email'
+              keyboardType='phone-pad'
+              submitted={this.state.submitted}
+              errorText={loginUser.emailError}
+              value={loginUser.Email}
+              onChangeText={(val) => this.props.dispatch(editEmail(val))}/>
+            <FormIconTextInput 
+              iconName='lock'
+              iconSize={25}
+              color='white'
+              placeholder='Password'
+              keyboardType='phone-pad'
+              submitted={this.state.submitted}
+              errorText={loginUser.passwordError}
+              value={loginUser.Password}
+              onChangeText={(val) => this.props.dispatch(editPassword(val))} />
+
+           
             <TouchableOpacity activeOpacity={.5} onPress={this._loginAccount}>
               <View style={styles.button}>
                 <Text style={styles.buttonText}>登录</Text>
@@ -149,6 +141,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 7,
     alignItems: "center",
     justifyContent: "center",
+    marginBottom:15
   },
   icon: {
     height: 20,
