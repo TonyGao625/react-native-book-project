@@ -16,7 +16,7 @@ import { accountLogin, editEmail, editPassword } from '../actions/account.action
 import { batchActions, enableBatching} from 'redux-batched-actions';
 
 const background = require("./../src/images/login_bg.png");
-const { width, height } = Dimensions.get("window");
+import Styles from './style/login'
 
 @connect((store) => {
   return {
@@ -54,12 +54,12 @@ export default class Login extends Component {
   render() {
     const { loginUser } = this.props;
     return (
-      <View style={styles.container}>
-        <Image source={background} style={styles.background} resizeMode="cover">
-          <View style={styles.markWrap}>
+      <View style={Styles.container}>
+        <Image source={background} style={Styles.background} resizeMode="cover">
+          <View style={Styles.markWrap}>
             <Icon name="book" size={120} color='white' />
           </View>
-          <View style={styles.form}>
+          <View style={Styles.form}>
             <FormIconTextInput 
               iconName='person'
               iconSize={25}
@@ -83,13 +83,13 @@ export default class Login extends Component {
             <FormCustomButton 
               activeOpacity={.5}
               text='登录'
-              styleView={styles.button}
-              styleText={styles.buttonText}
+              styleView={Styles.button}
+              styleText={Styles.buttonText}
               onPress={this._loginAccount}/>
           </View>
-          <View style={styles.container}>
-            <View style={styles.remarkWrap}>
-              <Text style={styles.remarkText}>Book Management</Text>
+          <View style={Styles.container}>
+            <View style={Styles.remarkWrap}>
+              <Text style={Styles.remarkText}>Book Management</Text>
             </View>
           </View>
         </Image>
@@ -98,39 +98,3 @@ export default class Login extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  markWrap: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  background: {
-    width,
-    height,
-  },
-  form: {
-    paddingVertical: 30,
-  },
-  button: {
-    backgroundColor: "#43A047",
-    paddingVertical: 20,
-    marginTop: 30,
-  },
-  buttonText: {
-    color: "#FFF",
-    fontSize: 18,
-  },
-  remarkWrap: {
-    backgroundColor: "transparent",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  remarkText: {
-    color: "#D8D8D8"
-  }
-});

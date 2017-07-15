@@ -12,15 +12,17 @@ import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CheckBox from 'react-native-check-box'
-import FormButton from './../../components-cell/form-button'
-import { getBookBorrowList, BookBorrowList, selectALL, unSelectALL } from '../../actions/book.borrow.action'
-import { getPermission } from '../../actions/account.action'
-import BookOperation from './../../components-cell/book-operation'
+import FormButton from './../components-cell/form-button'
+import { getBookBorrowList, BookBorrowList, selectALL, unSelectALL } from '../actions/book.borrow.action'
+import { getPermission } from '../actions/account.action'
+import BookOperation from './../components-cell/book-operation'
+import {changeData} from '../actions/common.action'
 
 @connect((store) => {
   return {
     BookBorrowList: store.bookBorrowReducer.BookBorrowList,
     permission: store.accountReducer.permission
+
   }
 })
 
@@ -72,7 +74,7 @@ export default class BookList extends Component {
   _onBorrowBook = () => {
     var BookCollectionList = this.props.BookBorrowList.filter(x => x.isCheck == true);
     if (BookCollectionList.length < 1) {
-      Alert.alert('', '请选择要借阅的图书', []);
+      Alert.alert('', '请选择要借阅的图书', [],{cancelable: true});
       return;
     }
     AsyncStorage.getItem('permission').then((value) => {
@@ -84,8 +86,10 @@ export default class BookList extends Component {
         BorrowDate: new Date()
       }
       BookBorrowList(data).then(() => {
-        alert("借阅成功");
-        this.props.dispatch(getBookBorrowList(permission.UserId));
+        Alert.alert('', '借阅成功', [],{cancelable: true});
+        //this.props.dispatch(getBookBorrowList(permission.UserId));
+        this.props.dispatch(changeData());
+
         this.setState({
           checkedAll: false,
           sum: 0

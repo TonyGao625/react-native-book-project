@@ -18,7 +18,8 @@ import { selectALL, unSelectALL } from '../actions/book.borrow.action';
 import BookOperation from '../components-cell/book-operation';
 @connect((store) => {
     return {
-        BookReturnListByUserId: store.bookReturnReducer.BookReturnListByUserId
+        BookReturnListByUserId: store.bookReturnReducer.BookReturnListByUserId,
+        Flag:store.commonReducer.Flag
     }
 })
 
@@ -35,6 +36,9 @@ export default class BookReturn extends Component {
             const permission = JSON.parse(value);
             this.props.dispatch(GetBookBorrowListByUserId(permission.UserId));
         });
+    }
+    componentWillReceiveProps(){
+        alert(1);
     }
     _onClick = (data) => {
         data.isCheck = !data.isCheck;
@@ -61,14 +65,14 @@ export default class BookReturn extends Component {
     _onReturnBook = () => {
         var BookReturnModelList = this.props.BookReturnListByUserId.filter(x => x.isCheck == true);
         if (BookReturnModelList.length < 1) {
-            Alert.alert('', '请选择要还的图书', []);
+            Alert.alert('', '请选择要还的图书', [],{cancelable: true});
             return;
         }
         var data = {
             BookReturnModelList: BookReturnModelList,
         }
         BookReturnList(data).then(() => {
-            alert("借阅成功");
+            Alert.alert('', '借阅成功', [],{cancelable: true});
             AsyncStorage.getItem('permission').then((value) => {
                 const permission = JSON.parse(value);
                 this.props.dispatch(GetBookBorrowListByUserId(permission.UserId));

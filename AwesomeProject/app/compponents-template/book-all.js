@@ -51,7 +51,7 @@ export default class BookAll extends Component {
         }
       };
       collectBook(data).then(() => {
-        Alert.alert('', '添加到借阅车成功', []);
+        Alert.alert('', '添加到借阅车成功', [],{cancelable: true});
       });
     });
   }
