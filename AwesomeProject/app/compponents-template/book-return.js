@@ -19,6 +19,7 @@ import BookOperation from '../components-cell/book-operation';
 @connect((store) => {
     return {
         BookReturnListByUserId: store.bookReturnReducer.BookReturnListByUserId,
+        permission: store.accountReducer.permission,
         Flag:store.commonReducer.Flag
     }
 })
@@ -32,13 +33,11 @@ export default class BookReturn extends Component {
         };
     }
     componentWillMount() {
-        AsyncStorage.getItem('permission').then((value) => {
-            const permission = JSON.parse(value);
-            this.props.dispatch(GetBookBorrowListByUserId(permission.UserId));
-        });
+        this.props.dispatch(getPermission());
     }
     componentWillReceiveProps(){
-        alert(1);
+        this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserId));
+        //alert("return");
     }
     _onClick = (data) => {
         data.isCheck = !data.isCheck;

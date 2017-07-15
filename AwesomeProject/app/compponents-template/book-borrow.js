@@ -21,8 +21,8 @@ import {changeData} from '../actions/common.action'
 @connect((store) => {
   return {
     BookBorrowList: store.bookBorrowReducer.BookBorrowList,
-    permission: store.accountReducer.permission
-
+    permission: store.accountReducer.permission,
+    Flag:store.commonReducer.Flag
   }
 })
 
@@ -35,13 +35,11 @@ export default class BookList extends Component {
     };
   }
   componentWillMount() {
-    getPermission().then(()=>{
-      alert(this.props.permission.UserId);
-    });
-    AsyncStorage.getItem('permission').then((value) => {
-      const permission = JSON.parse(value);
-      this.props.dispatch(getBookBorrowList(permission.UserId));
-    });
+    this.props.dispatch(getPermission());
+  }
+  componentWillReceiveProps(){
+      //alert("borrow");
+    this.props.dispatch(getBookBorrowList(this.props.permission.UserId));
   }
   _onClick = (data) => {
     data.isCheck = !data.isCheck;

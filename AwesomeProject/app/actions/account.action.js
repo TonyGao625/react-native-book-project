@@ -8,12 +8,12 @@ export function accountLogin(obj) {
             url: 'account/login',
             method: 'POST',
             data: obj
-        }).then((res) => { 
-            var permission={
-                IsAuthened:true,
-                RoleId:res.Data.RoleId,
-                UserId:res.Data.Id,
-                UserName:res.Data.UserName
+        }).then((res) => {
+            var permission = {
+                IsAuthened: true,
+                RoleId: res.Data.RoleId,
+                UserId: res.Data.Id,
+                UserName: res.Data.UserName
             };
             AsyncStorage.setItem('permission', JSON.stringify(permission));
             dispatch({
@@ -25,15 +25,15 @@ export function accountLogin(obj) {
 }
 
 export function getPermission() {
-    return new Promise(function (dispatch) {
+    return function (dispatch) {
         AsyncStorage.getItem('permission').then((value) => {
             const permission = JSON.parse(value);
-            return {
-            type: 'GET_PERMISSION',
-            payload: permission
-            }
+            dispatch({
+                type: 'GET_PERMISSION',
+                payload: permission
+            })
         })
-    });
+    }
 }
 
 export function editEmail(val) {

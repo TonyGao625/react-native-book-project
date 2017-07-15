@@ -14,20 +14,33 @@ import { getBookList, borrowBook, collectBook } from '../actions/book.action';
 import FormButton from './../components-cell/form-button'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import storage from 'store2';
+import { changeData } from '../actions/common.action'
+import { getPermission } from '../actions/account.action'
 
 @connect((store) => {
   return {
-    BookList: store.bookReducer.BookList
+    BookList: store.bookReducer.BookList,
+    Flag: store.commonReducer.Flag,
+    permission: store.accountReducer.permission
   }
 })
 
 export default class BookAll extends Component {
+  constructor(props) {
+    super(props);
+
+  }
   componentWillMount() {
+    this.props.dispatch(getPermission());
+  }
+  componentWillReceiveProps() {
+    // alert("all");
+
     var BookName = storage.session('BookName');
     var CategoryId = storage.session('CategoryId');
     var data = {
-      BookName: BookName == null?"":BookName,
-      CategoryId: CategoryId==null?0:CategoryId
+      BookName: BookName == null ? "" : BookName,
+      CategoryId: CategoryId == null ? 0 : CategoryId
     };
     this.props.dispatch(getBookList(data));
   }
@@ -42,7 +55,6 @@ export default class BookAll extends Component {
 
     AsyncStorage.getItem('permission').then((value) => {
       const permission = JSON.parse(value);
-
       var data = {
         BookCollectionModel: {
           BookId: val.Id,
@@ -51,7 +63,8 @@ export default class BookAll extends Component {
         }
       };
       collectBook(data).then(() => {
-        Alert.alert('', '添加到借阅车成功', [],{cancelable: true});
+        Alert.alert('', '添加到借阅车成功', [], { cancelable: true });
+        this.props.dispatch(changeData());
       });
     });
   }
