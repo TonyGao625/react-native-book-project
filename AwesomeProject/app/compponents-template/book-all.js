@@ -5,7 +5,8 @@ import {
   ListView,
   AsyncStorage,
   TouchableHighlight,
-  Alert
+  Alert,
+  TouchableOpacity
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
@@ -30,6 +31,7 @@ export default class BookAll extends Component {
     super(props);
     this.state = {
       initData: false,
+      disable: false
     };
   }
   componentWillMount() {
@@ -74,7 +76,12 @@ export default class BookAll extends Component {
       });
     });
   }
+  _preventClickTwice() {
+    this.setState({ disable: true });
+    setTimeout(() => { this.setState({ disable: false }) }, 2000)
+  }
   _showDetailBook = (id) => {
+    this._preventClickTwice();
     const { navigate } = this.props.navigation;
     navigate('BookDetail', { id: id })
   }
@@ -86,8 +93,10 @@ export default class BookAll extends Component {
             return <View
               key={val.Id}
               style={Styles.item}>
-              <Text style={Styles.title}
-                onPress={() => this._showDetailBook(val.Id)}>{val.BookName}</Text>
+              <TouchableOpacity onPress={() => this._showDetailBook(val.Id)} disabled={this.state.disable}>
+                <Text style={styles.title}
+                >{val.BookName}</Text>
+              </TouchableOpacity>
               <View style={Styles.statusIcon}>
                 <Icon
                   onPress={() => this._collectBook(val)}
