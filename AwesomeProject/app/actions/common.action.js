@@ -1,9 +1,8 @@
 export function changeData() {
-    
     return {
         type: 'CHANGE_DATA',
         payload: {
-            val: 1
+            val: new Date().getUTCMilliseconds()
         }
     }
 }

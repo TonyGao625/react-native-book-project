@@ -38,15 +38,11 @@ export default class BookList extends Component {
   }
   componentWillMount() {
     this.props.dispatch(getPermission());
+    this.props.dispatch(getBookBorrowList(this.props.permission.UserId));
   }
-  componentWillReceiveProps() {
-    //alert("borrow");
-    if (!this.state.initData) {
+  componentWillReceiveProps(nextProps) {
+    if (this.props.Flag !== nextProps.Flag)
       this.props.dispatch(getBookBorrowList(this.props.permission.UserId));
-      this.setState({
-        initData: true
-      });
-    }
   }
   _onClick = (data) => {
     data.isCheck = !data.isCheck;
