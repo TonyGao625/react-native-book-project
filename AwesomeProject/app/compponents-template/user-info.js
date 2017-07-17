@@ -17,11 +17,16 @@ import { accountLogin, editEmail, editPassword } from '../actions/account.action
 import BookAdd from './../components-page/book-add'
 import Styles from './style/user-info'
 
-export default class UserDeatil extends Component {
-  componentWillMount() {
-   
+@connect((store) => {
+  return { 
   }
-  _logout=()=>{
+})
+export default class UserDeatil extends Component {
+
+  componentWillMount() {
+
+  }
+  _logout = () => {
     AsyncStorage.removeItem('permission');
     this.props.dispatch(editEmail(''));
     this.props.dispatch(editPassword(''));
@@ -31,12 +36,12 @@ export default class UserDeatil extends Component {
   render() {
     return (
       <ScrollView contentContainerStyle={Styles.contentContainer}>
-           <FormButton 
-              title='退出' 
-              onPress={this._logout}
-          />
+        <FormButton
+          title='退出'
+          onPress={this._logout}
+        />
       </ScrollView>
-  );
+    );
   }
 }
 

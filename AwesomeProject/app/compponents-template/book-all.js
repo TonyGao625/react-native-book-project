@@ -60,7 +60,6 @@ export default class BookAll extends Component {
     if (!val.CanOrder) {
       return;
     }
-
     AsyncStorage.getItem('permission').then((value) => {
       const permission = JSON.parse(value);
       var data = {
