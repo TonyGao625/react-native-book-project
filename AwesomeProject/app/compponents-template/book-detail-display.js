@@ -29,8 +29,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 import { getBookById } from '../actions/book.detail.action';
 import Moment from 'moment';
 import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-view';
-var WINDOW_WIDTH = Dimensions.get('window').width;
-var BASE_PADDING = 10;
+import Styles from './style/book-detail-display'
 
 @connect((store) => {
     return {
@@ -47,59 +46,59 @@ class LightboxView extends Component {
         console.log(BookDetail);
         return (
             <ScrollableTabView
-                style={styles.container}
+                style={Styles.container}
                 renderTabBar={() => <DefaultTabBar backgroundColor='rgba(255, 255, 255, 0.7)' />}
                 tabBarPosition='overlayTop'
             >
                 <ScrollView tabLabel='简介'>
-                    <View style={styles.row}>
-                        <Lightbox style={styles.col}>
+                    <View style={Styles.row}>
+                        <Lightbox style={Styles.col}>
                             <Image
-                                style={styles.contain}
+                                style={Styles.contain}
                                 resizeMode="contain"
                                 source={{ uri: 'https://www.yayomg.com/wp-content/uploads/2014/04/yayomg-pig-wearing-party-hat.jpg' }}
                             />
                         </Lightbox>
                     </View>
-                    <Text style={styles.title}>{BookDetail.BookName}</Text>
-                    <View style={styles.content}>
+                    <Text style={Styles.title}>{BookDetail.BookName}</Text>
+                    <View style={Styles.content}>
                         <View >
-                            <View style={styles.rowDirection} >
+                            <View style={Styles.rowDirection} >
                                 <Icon
                                     name={'event-note'}
                                     color='black'
                                     size={20} />
-                                <Text style={styles.boldText} >图书介绍：</Text>
+                                <Text style={Styles.boldText} >图书介绍：</Text>
                             </View>
                             <Text>{BookDetail.Remark}</Text>
                         </View>
-                        <View style={styles.contentField} >
-                            <View style={styles.rowDirection} >
+                        <View style={Styles.contentField} >
+                            <View style={Styles.rowDirection} >
                                 <Icon
                                     name={'person'}
                                     color='black'
                                     size={20} />
-                                <Text style={styles.boldText}>作者：</Text>
+                                <Text style={Styles.boldText}>作者：</Text>
                             </View>
                             <Text>{BookDetail.Author}</Text>
                         </View>
-                        <View style={styles.contentField} >
-                            <View style={styles.rowDirection} >
+                        <View style={Styles.contentField} >
+                            <View style={Styles.rowDirection} >
                                 <Icon
                                     name={'date-range'}
                                     color='black'
                                     size={20} />
-                                <Text style={styles.boldText} >出版日期：</Text>
+                                <Text style={Styles.boldText} >出版日期：</Text>
                             </View>
                             <Text>{!BookDetail.PublicDate ? "无" : Moment(BookDetail.PublicDate).format('MM/DD/YYYY')}</Text>
                         </View>
-                        <View style={styles.contentField} >
-                            <View style={styles.rowDirection} >
+                        <View style={Styles.contentField} >
+                            <View style={Styles.rowDirection} >
                                 <Icon
                                     name={'art-track'}
                                     color='black'
                                     size={20} />
-                                <Text style={styles.boldText} >分类：</Text>
+                                <Text style={Styles.boldText} >分类：</Text>
                             </View>
                             <Text>{BookDetail.CategoryName}</Text>
                         </View>
@@ -108,26 +107,26 @@ class LightboxView extends Component {
                 <ScrollView tabLabel='借阅记录'>
                     <View style={{ flexDirection: 'row', marginTop: 70 }}>
                         <View style={{ flex: 1, marginLeft: 18, }}>
-                            <Text style={styles.boldText}>借阅起始日</Text>
+                            <Text style={Styles.boldText}>借阅起始日</Text>
                         </View>
                         <View style={{ flex: 1 ,}}>
-                            <Text style={styles.boldText}>还书日</Text>
+                            <Text style={Styles.boldText}>还书日</Text>
                         </View>
                         <View style={{ flex: 1, marginRight: 0, }}>
-                            <Text style={styles.boldText}>借阅人</Text>
+                            <Text style={Styles.boldText}>借阅人</Text>
                         </View>
                     </View>
 
                     {BookDetail.BookBorrowList && BookDetail.BookBorrowList.map((val) => {
                         return <View style={{ flexDirection: 'row', marginTop: 10 }}>
                             <View style={{ flex: 1, marginLeft: 18 }}>
-                                <Text style={styles.boldText}>{Moment(val.BorrowDate).format('MM/DD/YYYY')}</Text>
+                                <Text style={Styles.boldText}>{Moment(val.BorrowDate).format('MM/DD/YYYY')}</Text>
                             </View>
                             <View style={{ flex: 1 }}>
-                                <Text style={styles.boldText}>{!val.ReturnDate ? "未还" : Moment(val.ReturnDate).format('MM/DD/YYYY')}</Text>
+                                <Text style={Styles.boldText}>{!val.ReturnDate ? "未还" : Moment(val.ReturnDate).format('MM/DD/YYYY')}</Text>
                             </View>
                             <View style={{ flex: 1, marginRight: 0 }}>
-                                <Text style={styles.boldText}>{!val.UserName?"":val.UserName}</Text>
+                                <Text style={Styles.boldText}>{!val.UserName?"":val.UserName}</Text>
                             </View>
                         </View>
                     })}
@@ -158,116 +157,3 @@ export default class BookDetailDisplays extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    rowDirection: {
-        flexDirection: 'row'
-    },
-    boldText: {
-        fontWeight: "bold"
-    },
-    contentField: {
-        marginTop: 12
-    },
-    navigator: {
-        flex: 1,
-    },
-    container: {
-        paddingHorizontal: BASE_PADDING,
-    },
-    closeButton: {
-        color: 'white',
-        borderWidth: 1,
-        borderColor: 'white',
-        padding: 8,
-        borderRadius: 3,
-        textAlign: 'center',
-        margin: 10,
-        alignSelf: 'flex-end',
-    },
-    customHeaderBox: {
-        height: 150,
-        backgroundColor: '#6C7A89',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    row: {
-        flexDirection: 'row',
-        marginLeft: -BASE_PADDING,
-        marginRight: -BASE_PADDING,
-        marginTop: 70
-    },
-    col: {
-        flex: 1,
-    },
-    square: {
-        width: WINDOW_WIDTH / 2,
-        height: WINDOW_WIDTH / 2,
-        justifyContent: 'center',
-        alignSelf: 'center',
-    },
-    squareFirst: {
-        backgroundColor: '#C0392B',
-    },
-    squareSecond: {
-        backgroundColor: '#019875',
-    },
-    squareText: {
-        textAlign: 'center',
-        color: 'white',
-    },
-    carousel: {
-        height: WINDOW_WIDTH - BASE_PADDING * 2,
-        width: WINDOW_WIDTH - BASE_PADDING * 2,
-        backgroundColor: 'white',
-    },
-    contain: {
-        flex: 1,
-        height: 150,
-    },
-    text: {
-        marginVertical: BASE_PADDING * 2,
-    },
-    title: {
-        textAlign: 'center',
-        fontSize: 22,
-        fontWeight: '500',
-        marginTop: 10,
-    },
-    header: {
-        backgroundColor: '#F5FCFF',
-        padding: 10,
-    },
-    headerText: {
-        textAlign: 'center',
-        fontSize: 16,
-        fontWeight: '500',
-    },
-    content: {
-        padding: 20,
-        backgroundColor: '#fff',
-    },
-    active: {
-        backgroundColor: 'rgba(255,255,255,1)',
-    },
-    inactive: {
-        backgroundColor: 'rgba(245,252,255,1)',
-    },
-    selectors: {
-        marginBottom: 10,
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-    selector: {
-        backgroundColor: '#F5FCFF',
-        padding: 10,
-    },
-    activeSelector: {
-        fontWeight: 'bold',
-    },
-    selectTitle: {
-        fontSize: 14,
-        fontWeight: '500',
-        padding: 10,
-    },
-});

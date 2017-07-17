@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View, StyleSheet, Text, Image,
-  Dimensions,
+  View, Text, Image,
   TextInput,
   Button,
   TouchableOpacity,
@@ -17,7 +16,7 @@ import FormDatePicker from './../components-cell/form-date-picker'
 import FormModelPicker from './../components-cell/form-model-picker'
 import ModalPicker from 'react-native-modal-picker'
 import { batchActions, enableBatching } from 'redux-batched-actions';
-const { width, height } = Dimensions.get("window");
+import Styles from './style/book-add'
 
 @connect((store) => {
   return {
@@ -61,8 +60,8 @@ export default class BookAll extends Component {
   render() {
     const { Book, BookList } = this.props;
     return (
-      <ScrollView style={styles.container}>
-        <View style={styles.wrapper}>
+      <ScrollView style={Styles.container}>
+        <View style={Styles.wrapper}>
           <FormModelPicker
             initValue="分类"
             errorText={Book.CategoryIDError}
@@ -103,74 +102,11 @@ export default class BookAll extends Component {
             onChangeText={(val) => this.props.dispatch(editRemark(val))} />
         </View>
         <TouchableOpacity activeOpacity={.5} onPress={this._saveBook}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>保存</Text>
+          <View style={Styles.button}>
+            <Text style={Styles.buttonText}>保存</Text>
           </View>
         </TouchableOpacity>
       </ScrollView>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  mark: {
-    width: null,
-    height: null,
-    flex: 1,
-  },
-  background: {
-    width,
-    height,
-  },
-  wrapper: {
-    marginTop: 10
-  },
-  inputWrap: {
-    flexDirection: "row",
-    height: 80,
-    borderBottomWidth: 0
-  },
-  name: {
-    paddingHorizontal: 4,
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 15
-  },
-  input: {
-    flex: 1,
-    paddingHorizontal: 10,
-  },
-  button: {
-    backgroundColor: "#43A047",
-    paddingVertical: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 30,
-  },
-  buttonText: {
-    color: "#FFF",
-    fontSize: 18,
-  },
-  forgotPasswordText: {
-    color: "#D8D8D8",
-    backgroundColor: "transparent",
-    textAlign: "right",
-    paddingRight: 15,
-  },
-  signupWrap: {
-    backgroundColor: "transparent",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  accountText: {
-    color: "#D8D8D8"
-  },
-  signupLinkText: {
-    color: "#FFF",
-    marginLeft: 5,
-  }
-});

@@ -15,6 +15,7 @@ import axios from 'axios';
 import FormButton from './../components-cell/form-button'
 
 import BookAdd from './../components-page/book-add'
+import Styles from './style/borrow-history'
 
 @connect((store) => {
   return {
@@ -32,13 +33,13 @@ export default class BorrowHistory extends Component {
   }
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.contentContainer}>
+      <ScrollView contentContainerStyle={Styles.contentContainer}>
           <View>
             {
                 this.props.BookList.map((val) => {
                   return <View 
                   key={val.Id}
-                  style={styles.item}>
+                  style={Styles.item}>
                     <Text>{val.BookName}</Text>
                     <Text style={{color:'red'}}>张山</Text>
                   </View>
@@ -50,17 +51,5 @@ export default class BorrowHistory extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  item: {
-    flex: 1,
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-    height: 40,
-    paddingTop:10,
-    marginLeft: 15,
-    marginRight: 15
-  }
-});
 
 

@@ -16,6 +16,7 @@ import axios from 'axios';
 import FormButton from './../components-cell/form-button'
 
 import BookAdd from './../components-page/book-add'
+import Styles from './style/book-collection'
 
 @connect((store) => {
   return {
@@ -34,7 +35,7 @@ export default class BookCollection extends Component {
   }
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.contentContainer}>
+      <ScrollView contentContainerStyle={Styles.contentContainer}>
            <FormButton 
               title='退出' 
               onPress={this._logout}
@@ -44,17 +45,5 @@ export default class BookCollection extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  item: {
-    flex: 1,
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-    height: 40,
-    paddingTop:10,
-    marginLeft: 15,
-    marginRight: 15
-  }
-});
 
 

@@ -16,11 +16,14 @@ import FormButton from './../components-cell/form-button'
 import { GetBookBorrowListByUserId, BookReturnList } from '../actions/book.return.action'
 import { selectALL, unSelectALL } from '../actions/book.borrow.action';
 import BookOperation from '../components-cell/book-operation';
+import { getPermission } from '../actions/account.action'
+import Styles from './style/book-return'
+
 @connect((store) => {
     return {
         BookReturnListByUserId: store.bookReturnReducer.BookReturnListByUserId,
         permission: store.accountReducer.permission,
-        Flag:store.commonReducer.Flag
+        Flag: store.commonReducer.Flag
     }
 })
 
@@ -30,14 +33,20 @@ export default class BookReturn extends Component {
         this.state = {
             checkedAll: false,
             sum: 0,
+            initData: false,
         };
     }
     componentWillMount() {
         this.props.dispatch(getPermission());
     }
-    componentWillReceiveProps(){
-        this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserId));
+    componentWillReceiveProps() {
         //alert("return");
+        if (!this.state.initData) {
+            this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserId));
+            this.setState({
+                initData: true
+            });
+        }
     }
     _onClick = (data) => {
         data.isCheck = !data.isCheck;
@@ -64,14 +73,14 @@ export default class BookReturn extends Component {
     _onReturnBook = () => {
         var BookReturnModelList = this.props.BookReturnListByUserId.filter(x => x.isCheck == true);
         if (BookReturnModelList.length < 1) {
-            Alert.alert('', '请选择要还的图书', [],{cancelable: true});
+            Alert.alert('', '请选择要还的图书', [], { cancelable: true });
             return;
         }
         var data = {
             BookReturnModelList: BookReturnModelList,
         }
         BookReturnList(data).then(() => {
-            Alert.alert('', '借阅成功', [],{cancelable: true});
+            Alert.alert('', '借阅成功', [], { cancelable: true });
             AsyncStorage.getItem('permission').then((value) => {
                 const permission = JSON.parse(value);
                 this.props.dispatch(GetBookBorrowListByUserId(permission.UserId));
@@ -84,16 +93,16 @@ export default class BookReturn extends Component {
     }
     render() {
         return (
-            <View style={styles.return}>
+            <View style={Styles.return}>
                 <ScrollView>
-                    <View style={styles.container}>
+                    <View style={Styles.container}>
                         {
                             this.props.BookReturnListByUserId.map((val) => {
                                 return <View
                                     key={val.Id}
-                                    style={styles.item}>
-                                    <Text style={styles.title}>{val.BookName}</Text>
-                                    <View style={styles.statusIcon}>
+                                    style={Styles.item}>
+                                    <Text style={Styles.title}>{val.BookName}</Text>
+                                    <View style={Styles.statusIcon}>
                                         <Icon
                                             onPress={() => this._onClick(val)}
                                             name={val.isCheck ? 'check-box' : 'check-box-outline-blank'}
@@ -116,32 +125,5 @@ export default class BookReturn extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    return: {
-        flex: 1
-    },
-    item: {
-        flex: 1,
-        flexDirection: 'row',
-        borderBottomWidth: 1,
-        borderBottomColor: '#ddd',
-        paddingTop: 10,
-        paddingBottom: 10,
-        marginLeft: 15,
-        marginRight: 15
-    },
-    title: {
-        marginRight: 80
-    },
-    statusIcon: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        width: 200
-    },
-    icon: {
-        marginRight: 10
-    }
-});
 
 

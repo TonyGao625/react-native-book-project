@@ -15,6 +15,7 @@ import axios from 'axios';
 import FormButton from './../components-cell/form-button'
 import { accountLogin, editEmail, editPassword } from '../actions/account.action';
 import BookAdd from './../components-page/book-add'
+import Styles from './style/user-info'
 
 export default class UserDeatil extends Component {
   componentWillMount() {
@@ -29,7 +30,7 @@ export default class UserDeatil extends Component {
   }
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.contentContainer}>
+      <ScrollView contentContainerStyle={Styles.contentContainer}>
            <FormButton 
               title='退出' 
               onPress={this._logout}
@@ -39,18 +40,6 @@ export default class UserDeatil extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  item: {
-    flex: 1,
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-    height: 40,
-    paddingTop:10,
-    marginLeft: 15,
-    marginRight: 15
-  }
-});
 
 
 

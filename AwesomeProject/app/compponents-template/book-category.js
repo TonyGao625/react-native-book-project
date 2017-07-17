@@ -15,6 +15,7 @@ import { getBookCategoryList } from '../actions/book.action';
 import FormButton from './../components-cell/form-button'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import storage from 'store2';
+import Styles from './style/book-category'
 
 @connect((store) => {
     return {
@@ -40,9 +41,9 @@ export default class BookCategory extends Component {
                             key={val.Id}
                             activeOpacity={.5}
                             onPress={()=>this._onSelectCategory(val.Id)}>
-                            <View style={styles.item}>
-                                <View style={styles.button}>
-                                    <Text style={styles.buttonText}>{val.Name}</Text>
+                            <View style={Styles.item}>
+                                <View style={Styles.button}>
+                                    <Text style={Styles.buttonText}>{val.Name}</Text>
                                 </View>
                             </View> 
                         </TouchableOpacity>
@@ -52,20 +53,3 @@ export default class BookCategory extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    item: {
-        flex: 1,
-        flexDirection: 'row',
-        borderBottomWidth: 1,
-        borderBottomColor: '#43A047',
-        paddingTop: 10,
-        paddingBottom: 10,
-        marginLeft: 15,
-        marginRight: 15
-    },
-    button: {
-        alignItems: "center",
-        justifyContent: "center",
-    },
-});

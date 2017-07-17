@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   ListView,
@@ -16,6 +15,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import storage from 'store2';
 import { changeData } from '../actions/common.action'
 import { getPermission } from '../actions/account.action'
+import Styles from './style/book-all'
 
 @connect((store) => {
   return {
@@ -28,21 +28,27 @@ import { getPermission } from '../actions/account.action'
 export default class BookAll extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      initData: false,
+    };
   }
   componentWillMount() {
     this.props.dispatch(getPermission());
   }
   componentWillReceiveProps() {
-    // alert("all");
+    if (!this.state.initData) {
+      var BookName = storage.session('BookName');
+      var CategoryId = storage.session('CategoryId');
+      var data = {
+        BookName: BookName == null ? "" : BookName,
+        CategoryId: CategoryId == null ? 0 : CategoryId
+      };
+      this.props.dispatch(getBookList(data));
 
-    var BookName = storage.session('BookName');
-    var CategoryId = storage.session('CategoryId');
-    var data = {
-      BookName: BookName == null ? "" : BookName,
-      CategoryId: CategoryId == null ? 0 : CategoryId
-    };
-    this.props.dispatch(getBookList(data));
+      this.setState({
+        initData: true
+      });
+    }
   }
   _addBook = () => {
     const { navigate } = this.props.navigation;
@@ -79,10 +85,10 @@ export default class BookAll extends Component {
           this.props.BookList.map((val) => {
             return <View
               key={val.Id}
-              style={styles.item}>
-              <Text style={styles.title}
+              style={Styles.item}>
+              <Text style={Styles.title}
                 onPress={() => this._showDetailBook(val.Id)}>{val.BookName}</Text>
-              <View style={styles.statusIcon}>
+              <View style={Styles.statusIcon}>
                 <Icon
                   onPress={() => this._collectBook(val)}
                   name="add-shopping-cart"
@@ -96,28 +102,3 @@ export default class BookAll extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  item: {
-    flex: 1,
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-    paddingTop: 10,
-    paddingBottom: 10,
-    marginLeft: 15,
-    marginRight: 15
-  },
-  title: {
-    marginRight: 80
-  },
-  statusIcon: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    width: 200
-  },
-  icon: {
-    marginRight: 10
-  }
-});

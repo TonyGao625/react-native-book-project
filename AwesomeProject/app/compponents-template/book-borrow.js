@@ -16,13 +16,14 @@ import FormButton from './../components-cell/form-button'
 import { getBookBorrowList, BookBorrowList, selectALL, unSelectALL } from '../actions/book.borrow.action'
 import { getPermission } from '../actions/account.action'
 import BookOperation from './../components-cell/book-operation'
-import {changeData} from '../actions/common.action'
+import { changeData } from '../actions/common.action'
+import Styles from './style/book-borrow'
 
 @connect((store) => {
   return {
     BookBorrowList: store.bookBorrowReducer.BookBorrowList,
     permission: store.accountReducer.permission,
-    Flag:store.commonReducer.Flag
+    Flag: store.commonReducer.Flag
   }
 })
 
@@ -32,14 +33,20 @@ export default class BookList extends Component {
     this.state = {
       checkedAll: false,
       sum: 0,
+      initData: false,
     };
   }
   componentWillMount() {
     this.props.dispatch(getPermission());
   }
-  componentWillReceiveProps(){
-      //alert("borrow");
-    this.props.dispatch(getBookBorrowList(this.props.permission.UserId));
+  componentWillReceiveProps() {
+    //alert("borrow");
+    if (!this.state.initData) {
+      this.props.dispatch(getBookBorrowList(this.props.permission.UserId));
+      this.setState({
+        initData: true
+      });
+    }
   }
   _onClick = (data) => {
     data.isCheck = !data.isCheck;
@@ -72,7 +79,7 @@ export default class BookList extends Component {
   _onBorrowBook = () => {
     var BookCollectionList = this.props.BookBorrowList.filter(x => x.isCheck == true);
     if (BookCollectionList.length < 1) {
-      Alert.alert('', '请选择要借阅的图书', [],{cancelable: true});
+      Alert.alert('', '请选择要借阅的图书', [], { cancelable: true });
       return;
     }
     AsyncStorage.getItem('permission').then((value) => {
@@ -84,7 +91,7 @@ export default class BookList extends Component {
         BorrowDate: new Date()
       }
       BookBorrowList(data).then(() => {
-        Alert.alert('', '借阅成功', [],{cancelable: true});
+        Alert.alert('', '借阅成功', [], { cancelable: true });
         //this.props.dispatch(getBookBorrowList(permission.UserId));
         this.props.dispatch(changeData());
 
@@ -101,17 +108,17 @@ export default class BookList extends Component {
   }
   render() {
     return (
-      <View style={styles.borrow}>
+      <View style={Styles.borrow}>
         <ScrollView>
-          <View style={styles.container}>
+          <View style={Styles.container}>
             {
               this.props.BookBorrowList.map((val) => {
                 return <View
                   key={val.Id}
-                  style={styles.item}>
-                  <Text style={styles.title}
+                  style={Styles.item}>
+                  <Text style={Styles.title}
                     onPress={() => this._showDetailBook(val.Id)}>{val.BookName}</Text>
-                  <View style={styles.statusIcon}>
+                  <View style={Styles.statusIcon}>
                     <Icon
                       onPress={() => this._onClick(val)}
                       name={val.isCheck ? 'check-box' : 'check-box-outline-blank'}
@@ -133,33 +140,5 @@ export default class BookList extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  borrow: {
-    flex: 1
-  },
-  item: {
-    flex: 1,
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-    paddingTop: 10,
-    paddingBottom: 10,
-    marginLeft: 15,
-    marginRight: 15
-  },
-  title: {
-    marginRight: 80
-  },
-  statusIcon: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    width: 200
-  },
-  icon: {
-    marginRight: 10
-  }
-});
 
 
