@@ -69,7 +69,6 @@ export default class BookReturn extends Component {
             this.setState({ checkedAll: false, sum: 0 });
             this.props.dispatch(unSelectALL(this.props.BookReturnListByUserId));
         }
-
     }
     _onReturnBook = () => {
         var BookReturnModelList = this.props.BookReturnListByUserId.filter(x => x.isCheck == true);
@@ -81,7 +80,7 @@ export default class BookReturn extends Component {
             BookReturnModelList: BookReturnModelList,
         }
         BookReturnList(data).then(() => {
-            Alert.alert('', '借阅成功', [], { cancelable: true });
+            Alert.alert('', '还书成功', [], { cancelable: true });
             this.props.dispatch(changeData());
             this.setState({
                 checkedAll: false,

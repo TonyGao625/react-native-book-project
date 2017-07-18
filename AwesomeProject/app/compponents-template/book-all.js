@@ -35,6 +35,14 @@ export default class BookAll extends Component {
   }
   componentWillMount() {
     this.props.dispatch(getPermission());
+    this._search();
+  }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.Flag !== nextProps.Flag) {
+      this._search();
+    }
+  }
+  _search = () => {
     var BookName = storage.session('BookName');
     var CategoryId = storage.session('CategoryId');
     var data = {
@@ -42,18 +50,6 @@ export default class BookAll extends Component {
       CategoryId: CategoryId == null ? 0 : CategoryId
     };
     this.props.dispatch(getBookList(data));
-  }
-  componentWillReceiveProps(nextProps) {
-    
-    if (this.props.Flag !== nextProps.Flag) {
-      var BookName = storage.session('BookName');
-      var CategoryId = storage.session('CategoryId');
-      var data = {
-        BookName: BookName == null ? "" : BookName,
-        CategoryId: CategoryId == null ? 0 : CategoryId
-      };
-      this.props.dispatch(getBookList(data));
-    }
   }
   _addBook = () => {
     const { navigate } = this.props.navigation;
