@@ -44,7 +44,7 @@ export default class BookAll extends Component {
     this.props.dispatch(getBookList(data));
   }
   componentWillReceiveProps(nextProps) {
-    debugger;
+    
     if (this.props.Flag !== nextProps.Flag) {
       var BookName = storage.session('BookName');
       var CategoryId = storage.session('CategoryId');
@@ -71,8 +71,8 @@ export default class BookAll extends Component {
       }
     };
     collectBook(data).then(() => {
-      alert('添加到借阅车成功');
-     // Alert.alert('', '添加到借阅车成功', [], { cancelable: true });
+      //alert('添加到借阅车成功');
+      Alert.alert('', '添加到借阅车成功', [], { cancelable: true });
       this.props.dispatch(changeData());
     });
   }

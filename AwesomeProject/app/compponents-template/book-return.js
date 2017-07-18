@@ -18,6 +18,7 @@ import { selectALL, unSelectALL } from '../actions/book.borrow.action';
 import BookOperation from '../components-cell/book-operation';
 import { getPermission } from '../actions/account.action'
 import Styles from './style/book-return'
+import { changeData } from '../actions/common.action'
 
 @connect((store) => {
     return {
@@ -78,7 +79,7 @@ export default class BookReturn extends Component {
         }
         BookReturnList(data).then(() => {
             Alert.alert('', '借阅成功', [], { cancelable: true });
-
+            this.props.dispatch(changeData());
             this.setState({
                 checkedAll: false,
                 sum: 0

@@ -40,8 +40,9 @@ export default class BookList extends Component {
     this.props.dispatch(getBookBorrowList(this.props.permission.UserId));
   }
   componentWillReceiveProps(nextProps) {
-    if (this.props.Flag !== nextProps.Flag)
+    if (this.props.Flag !== nextProps.Flag){
       this.props.dispatch(getBookBorrowList(this.props.permission.UserId));
+    }
   }
   _onClick = (data) => {
     data.isCheck = !data.isCheck;
