@@ -32,8 +32,7 @@ export default class BookList extends Component {
     super(props);
     this.state = {
       checkedAll: false,
-      sum: 0,
-      initData: false,
+      sum: 0
     };
   }
   componentWillMount() {
@@ -78,23 +77,20 @@ export default class BookList extends Component {
       Alert.alert('', '请选择要借阅的图书', [], { cancelable: true });
       return;
     }
-    AsyncStorage.getItem('permission').then((value) => {
-      const permission = JSON.parse(value);
 
-      var data = {
-        BookCollectionList: BookCollectionList,
-        UserId: permission.UserId,
-        BorrowDate: new Date()
-      }
-      BookBorrowList(data).then(() => {
-        Alert.alert('', '借阅成功', [], { cancelable: true });
-        //this.props.dispatch(getBookBorrowList(permission.UserId));
-        this.props.dispatch(changeData());
+    var data = {
+      BookCollectionList: BookCollectionList,
+      UserId: this.props.permission.UserId,
+      BorrowDate: new Date()
+    }
+    BookBorrowList(data).then(() => {
+      // alert('借阅成功');
+      Alert.alert('', '借阅成功', [], { cancelable: true });
+      this.props.dispatch(changeData());
 
-        this.setState({
-          checkedAll: false,
-          sum: 0
-        });
+      this.setState({
+        checkedAll: false,
+        sum: 0
       });
     });
   }

@@ -30,15 +30,22 @@ export default class BookAll extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      initData: false,
       disable: false
     };
   }
   componentWillMount() {
     this.props.dispatch(getPermission());
+    var BookName = storage.session('BookName');
+    var CategoryId = storage.session('CategoryId');
+    var data = {
+      BookName: BookName == null ? "" : BookName,
+      CategoryId: CategoryId == null ? 0 : CategoryId
+    };
+    this.props.dispatch(getBookList(data));
   }
-  componentWillReceiveProps() {
-    if (!this.state.initData) {
+  componentWillReceiveProps(nextProps) {
+    debugger;
+    if (this.props.Flag !== nextProps.Flag) {
       var BookName = storage.session('BookName');
       var CategoryId = storage.session('CategoryId');
       var data = {
@@ -46,10 +53,6 @@ export default class BookAll extends Component {
         CategoryId: CategoryId == null ? 0 : CategoryId
       };
       this.props.dispatch(getBookList(data));
-
-      this.setState({
-        initData: true
-      });
     }
   }
   _addBook = () => {
@@ -60,19 +63,17 @@ export default class BookAll extends Component {
     if (!val.CanOrder) {
       return;
     }
-    AsyncStorage.getItem('permission').then((value) => {
-      const permission = JSON.parse(value);
-      var data = {
-        BookCollectionModel: {
-          BookId: val.Id,
-          UserId: permission.UserId,
-          CollectionDate: new Date()
-        }
-      };
-      collectBook(data).then(() => {
-        Alert.alert('', '添加到借阅车成功', [], { cancelable: true });
-        this.props.dispatch(changeData());
-      });
+    var data = {
+      BookCollectionModel: {
+        BookId: val.Id,
+        UserId: this.props.permission.UserId,
+        CollectionDate: new Date()
+      }
+    };
+    collectBook(data).then(() => {
+      alert('添加到借阅车成功');
+     // Alert.alert('', '添加到借阅车成功', [], { cancelable: true });
+      this.props.dispatch(changeData());
     });
   }
   _preventClickTwice() {

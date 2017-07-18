@@ -32,20 +32,17 @@ export default class BookReturn extends Component {
         super(props);
         this.state = {
             checkedAll: false,
-            sum: 0,
-            initData: false,
+            sum: 0
         };
     }
     componentWillMount() {
         this.props.dispatch(getPermission());
+        this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserId));
     }
-    componentWillReceiveProps() {
+    componentWillReceiveProps(nextProps) {
         //alert("return");
-        if (!this.state.initData) {
+        if (this.props.Flag !== nextProps.Flag) {
             this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserId));
-            this.setState({
-                initData: true
-            });
         }
     }
     _onClick = (data) => {
@@ -81,13 +78,10 @@ export default class BookReturn extends Component {
         }
         BookReturnList(data).then(() => {
             Alert.alert('', '借阅成功', [], { cancelable: true });
-            AsyncStorage.getItem('permission').then((value) => {
-                const permission = JSON.parse(value);
-                this.props.dispatch(GetBookBorrowListByUserId(permission.UserId));
-                this.setState({
-                    checkedAll: false,
-                    sum: 0
-                });
+
+            this.setState({
+                checkedAll: false,
+                sum: 0
             });
         });
     }
