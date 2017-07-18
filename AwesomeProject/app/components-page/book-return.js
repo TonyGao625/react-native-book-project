@@ -7,7 +7,7 @@ export default class BookBorrow extends Component {
  static navigationOptions = {
     tabBarLabel: '还书',
     tabBarIcon: <Icon 
-        name="remove-shopping-cart" 
+        name="assignment-return" 
         size={20} 
         color='white' />
   };

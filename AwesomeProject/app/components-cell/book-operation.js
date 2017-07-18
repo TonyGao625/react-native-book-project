@@ -14,7 +14,7 @@ export default class BookOperation extends Component {
               <View style={styles.checkView}>
                 <View style={styles.statusIcon}>
                     <Icon 
-                    name={this.props.isCheckAll?'check-box':'check-box-outline-blank'}
+                    name={this.props.isCheckAll?'check-circle':'radio-button-unchecked'}
                     color='black'
                     size={20} />
                 </View>

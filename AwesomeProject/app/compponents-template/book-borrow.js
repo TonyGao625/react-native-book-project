@@ -40,7 +40,11 @@ export default class BookList extends Component {
     this.props.dispatch(getBookBorrowList(this.props.permission.UserId));
   }
   componentWillReceiveProps(nextProps) {
-    if (this.props.Flag !== nextProps.Flag){
+    if (this.props.Flag !== nextProps.Flag) {
+      this.setState({
+        checkedAll: false,
+        sum: 0
+      });
       this.props.dispatch(getBookBorrowList(this.props.permission.UserId));
     }
   }
@@ -114,7 +118,7 @@ export default class BookList extends Component {
                   <View style={Styles.statusIcon}>
                     <Icon
                       onPress={() => this._onClick(val)}
-                      name={val.isCheck ? 'check-box' : 'check-box-outline-blank'}
+                      name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
                       color='black'
                       size={20} />
                   </View>

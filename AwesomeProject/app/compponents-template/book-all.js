@@ -71,8 +71,7 @@ export default class BookAll extends Component {
       }
     };
     collectBook(data).then(() => {
-      //alert('添加到借阅车成功');
-      Alert.alert('', '添加到借阅车成功', [], { cancelable: true });
+      Alert.alert('', '添加到借阅单成功', [], { cancelable: true });
       this.props.dispatch(changeData());
     });
   }
@@ -100,7 +99,7 @@ export default class BookAll extends Component {
               <View style={Styles.statusIcon}>
                 <Icon
                   onPress={() => this._collectBook(val)}
-                  name="add-shopping-cart"
+                  name="library-add"
                   color={val.CanOrder ? 'black' : '#ddd'}
                   size={20} />
               </View>

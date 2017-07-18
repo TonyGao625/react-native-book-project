@@ -41,8 +41,11 @@ export default class BookReturn extends Component {
         this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserId));
     }
     componentWillReceiveProps(nextProps) {
-        //alert("return");
         if (this.props.Flag !== nextProps.Flag) {
+            this.setState({
+                checkedAll: false,
+                sum: 0
+            });
             this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserId));
         }
     }
@@ -100,7 +103,7 @@ export default class BookReturn extends Component {
                                     <View style={Styles.statusIcon}>
                                         <Icon
                                             onPress={() => this._onClick(val)}
-                                            name={val.isCheck ? 'check-box' : 'check-box-outline-blank'}
+                                            name={val.isCheck ? 'check-circle':'radio-button-unchecked'}
                                             color='black'
                                             size={20} />
                                     </View>
