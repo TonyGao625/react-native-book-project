@@ -8,7 +8,7 @@ import BookReturn from './book-return';
 import UserInfo from './user-info';
 import SystemManage from './system-manage';
 
-const MenuBottom = TabNavigator({
+const MainScreen = TabNavigator({
   BookAll: {
     screen: BookAll,
   },
@@ -42,4 +42,4 @@ const MenuBottom = TabNavigator({
     tabBarPosition: 'bottom'
   });
 
-export default MenuBottom;
+export default MainScreen;

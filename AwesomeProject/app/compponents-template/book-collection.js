@@ -13,9 +13,6 @@ import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
 import { getBookList } from '../actions/book.action';
 import axios from 'axios';
-import FormButton from './../components-cell/form-button'
-
-import BookAdd from './../components-page/book-add'
 import Styles from './style/book-collection'
 
 @connect((store) => {

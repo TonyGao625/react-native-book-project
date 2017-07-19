@@ -50,7 +50,7 @@ class BookSearchButton extends Component {
   }
 }
 
-export default class Search extends Component {
+export default class SearchScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerTitle: <BookSearchText />,
     headerRight: <BookSearchButton navigation={navigation}/>
