@@ -69,18 +69,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
-    marginBottom: -20
+    marginBottom: -20,
+    marginRight: 30
   },
   searchText: {
-    paddingRight:50,
   },
   buttonView:{
-    width: 80,
+    width: 60,
     marginRight: 10
   },
   button: {
     backgroundColor: "#43A047",
-    paddingVertical: 10,
+    paddingVertical: 8,
     alignItems: "center",
     justifyContent: "center",
     borderRadius:20
