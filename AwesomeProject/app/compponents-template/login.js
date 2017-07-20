@@ -40,7 +40,7 @@ export default class Login extends Component {
       const { navigate } = this.props.navigation;
       accountLogin({
         UsersModel: {
-          UserName: this.props.loginUser.Email,
+          Email: this.props.loginUser.Email,
           Password: this.props.loginUser.Password
         }
       }).then(function () {

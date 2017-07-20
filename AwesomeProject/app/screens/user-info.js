@@ -32,8 +32,8 @@ export default class UserInfo extends Component {
       size={20}
       color='white' />,
     headerTitle: <HeadInfo />,
-    headerRight: (
-      <UserLogout navigation={navigation} />)
+    // headerRight: (
+    //   <UserLogout navigation={navigation} />)
   });
   render() {
     return (

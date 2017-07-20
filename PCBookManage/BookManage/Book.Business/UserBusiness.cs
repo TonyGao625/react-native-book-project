@@ -39,11 +39,11 @@ namespace Book.Business
             var result=new ViewResult<UsersModel>();
             try
             {
-                var user = await _usersAgent.FindUser(userModel.UserName);
+                var user = await _usersAgent.FindUser(userModel.Email);
                 if (user == null)
                 {
                     result.Status = -2;
-                    result.Message = "不存在该用户";
+                    result.Message = "不存在该邮箱";
                     return result;
                 }
 
