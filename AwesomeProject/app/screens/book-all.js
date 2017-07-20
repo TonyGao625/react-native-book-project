@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { AsyncStorage, ScrollView, StyleSheet, View, TouchableHighlight } from 'react-native';
+import { AsyncStorage, ScrollView, StyleSheet, View, TouchableOpacity, Text, TouchableHighlight } from 'react-native';
 import BookList from './../compponents-template/book-all'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FormTextInput from '../components-cell/form-text-input'
+import FormCustomButton from './../components-cell/form-custom-botton'
+import Styles from './style/book-all'
 
 class BookSearchText extends Component {
   constructor(props) {
@@ -17,22 +19,20 @@ class BookSearchText extends Component {
   }
   render() {
     return (
-      <View style={{
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 10,
-        marginBottom: -10
-      }}>
+      <View style={Styles.headView}>
         <Icon
-          style={{ marginLeft: 40, marginBottom: 20 }}
+          style={Styles.scanIcon}
           name="crop-free"
           size={25}
           color='#43A047' />
-        <FormTextInput
-          onFocus={this._onFocusSearch}
-          placeholder='search' />
+        <TouchableOpacity
+          style={Styles.searchView}
+          onPress={this._onFocusSearch}>
+          <Icon
+            name="search"
+            size={20}/>
+          <Text>search</Text>
+        </TouchableOpacity>
       </View>
     );
   }

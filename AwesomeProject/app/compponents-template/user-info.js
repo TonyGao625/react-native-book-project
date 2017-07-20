@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import FormButton from './../components-cell/form-button'
 import { accountLogin, editEmail, editPassword } from '../actions/account.action';
 import Styles from './style/user-info'
+import FormCustomButton from './../components-cell/form-custom-botton'
 
 @connect((store) => {
   return { 
@@ -34,10 +35,12 @@ export default class UserDeatil extends Component {
   render() {
     return (
       <ScrollView contentContainerStyle={Styles.contentContainer}>
-        <FormButton
-          title='退出'
-          onPress={this._logout}
-        />
+        <FormCustomButton 
+              activeOpacity={.5}
+              text='退出'
+              styleView={Styles.button}
+              styleText={Styles.buttonText}
+              onPress={this._logout}/>
       </ScrollView>
     );
   }

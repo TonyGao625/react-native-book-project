@@ -24,9 +24,9 @@ const MainScreen = TabNavigator({
   UserInfo: {
     screen: UserInfo,
   },
-  SystemManage:{
-    screen: SystemManage
-  }
+  // SystemManage:{
+  //   screen: SystemManage
+  // }
 }, {
     lazy: true,
     tabBarOptions: {

@@ -7,10 +7,18 @@ const Styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
     height: 40,
-    paddingTop:10,
+    paddingTop: 10,
     marginLeft: 15,
     marginRight: 15
-  }
+  },
+  button: {
+    backgroundColor: "#43A047",
+    paddingVertical: 20,
+  },
+  buttonText: {
+    color: "#FFF",
+    fontSize: 18,
+  },
 });
 
 export default Styles;

@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   Image,
-  Dimensions,
-  TouchableOpacity
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Octicons';
 import FormIconTextInput from './../components-cell/form-icon-text-input'
