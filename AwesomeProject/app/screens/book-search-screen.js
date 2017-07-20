@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import FormTextInput from '../components-cell/form-text-input'
 import BookCategory from './../compponents-template/book-category'
 import storage from 'store2';
+import Styles from './style/book-search'
 
 class BookSearchText extends Component {
   constructor(props) {
@@ -20,10 +21,10 @@ class BookSearchText extends Component {
   }
   render() {
     return (
-      <View style={styles.search}>
+      <View style={Styles.search}>
         <FormTextInput
           value={this.state.bookName}
-          style={styles.searchText}
+          style={Styles.searchText}
           onChangeText={(val)=>this._onChangeText(val)}
           placeholder='search'></FormTextInput>
       </View>
@@ -39,11 +40,11 @@ class BookSearchButton extends Component {
   render() {
     return (
       <TouchableOpacity 
-      style={styles.buttonView}
+      style={Styles.buttonView}
       activeOpacity={.5} 
       onPress={this._onSearchBook}>
-        <View style={styles.button}>
-          <Text style={styles.buttonText}>搜索</Text>
+        <View style={Styles.button}>
+          <Text style={Styles.buttonText}>搜索</Text>
         </View>
       </TouchableOpacity>
     );
@@ -61,35 +62,6 @@ export default class SearchScreen extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  search: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: -20,
-    marginRight: 30
-  },
-  searchText: {
-  },
-  buttonView:{
-    width: 60,
-    marginRight: 10
-  },
-  button: {
-    backgroundColor: "#43A047",
-    paddingVertical: 8,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius:20
-  },
-  buttonText: {
-    color: "#FFF",
-    fontWeight: 'bold'
-  },
-});
 
 
 

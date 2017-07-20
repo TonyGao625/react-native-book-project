@@ -33,7 +33,8 @@ export default class BookList extends Component {
     super(props);
     this.state = {
       checkedAll: false,
-      sum: 0
+      sum: 0,
+      disable: false
     };
   }
   componentWillMount() {
@@ -100,9 +101,14 @@ export default class BookList extends Component {
       });
     });
   }
+  _preventClickTwice() {
+    this.setState({ disable: true });
+    setTimeout(() => { this.setState({ disable: false }) }, 2000)
+  }
   _showDetailBook = (id) => {
+    this._preventClickTwice();
     const { navigate } = this.props.navigation;
-    navigate('BookAdd')
+    navigate('BookDetail', { id: id })
   }
   render() {
     return (
@@ -114,9 +120,10 @@ export default class BookList extends Component {
                 return <View
                   key={val.Id}
                   style={Styles.item}>
-                  <TouchableOpacity onPress={() => this._showDetailBook(val.Id)}
-                    style={Styles.titleView}>
-                    <Text style={Styles.title}>{val.BookName}</Text>
+                  <TouchableOpacity onPress={() => this._showDetailBook(val.BookId)}
+                    style={Styles.titleView}
+                    disabled={this.state.disable}>
+                    <Text style={styles.title}>{val.BookName}</Text>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={() => this._onCheck(val)}
                     style={Styles.statusIcon}>
