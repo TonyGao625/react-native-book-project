@@ -88,17 +88,18 @@ export default class BookAll extends Component {
             return <View
               key={val.Id}
               style={Styles.item}>
-              <TouchableOpacity onPress={() => this._showDetailBook(val.Id)} disabled={this.state.disable}>
-                <Text style={styles.title}
-                >{val.BookName}</Text>
+              <TouchableOpacity onPress={() => this._showDetailBook(val.Id)}
+                style={Styles.titleView}
+                disabled={this.state.disable}>
+                <Text style={styles.title}>{val.BookName}</Text>
               </TouchableOpacity>
-              <View style={Styles.statusIcon}>
+              <TouchableOpacity onPress={() => this._collectBook(val)}
+                style={Styles.statusIcon}>
                 <Icon
-                  onPress={() => this._collectBook(val)}
                   name="library-add"
                   color={val.CanOrder ? 'black' : '#ddd'}
                   size={20} />
-              </View>
+              </TouchableOpacity>
             </View>
           })
         }

@@ -6,7 +6,8 @@ import {
   AsyncStorage,
   ScrollView,
   TouchableHighlight,
-  Alert
+  Alert,
+  TouchableOpacity
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
@@ -48,7 +49,7 @@ export default class BookList extends Component {
       this.props.dispatch(getBookBorrowList(this.props.permission.UserId));
     }
   }
-  _onClick = (data) => {
+  _onCheck = (data) => {
     data.isCheck = !data.isCheck;
     if (data.isCheck) {
       this.setState({
@@ -113,15 +114,17 @@ export default class BookList extends Component {
                 return <View
                   key={val.Id}
                   style={Styles.item}>
-                  <Text style={Styles.title}
-                    onPress={() => this._showDetailBook(val.Id)}>{val.BookName}</Text>
-                  <View style={Styles.statusIcon}>
+                  <TouchableOpacity onPress={() => this._showDetailBook(val.Id)}
+                    style={Styles.titleView}>
+                    <Text style={Styles.title}>{val.BookName}</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => this._onCheck(val)}
+                    style={Styles.statusIcon}>
                     <Icon
-                      onPress={() => this._onClick(val)}
                       name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
                       color='black'
                       size={20} />
-                  </View>
+                  </TouchableOpacity>
                 </View>
               })
             }

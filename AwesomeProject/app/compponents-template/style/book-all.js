@@ -5,11 +5,13 @@ const Styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    borderBottomColor: '#ddd'
+  },
+  titleView:{
     paddingTop: 10,
     paddingBottom: 10,
-    marginLeft: 15,
-    marginRight: 15
+    paddingLeft:10,
+    width:'90%'
   },
   title: {
     marginRight: 80
@@ -18,10 +20,13 @@ const Styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    width: 200
+    width: 200,
+    paddingTop: 10,
+    paddingRight:10
   },
   icon: {
-    marginRight: 10
+   // marginRight: 10,
+    
   }
 });
 

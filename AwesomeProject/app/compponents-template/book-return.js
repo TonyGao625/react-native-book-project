@@ -6,7 +6,8 @@ import {
     AsyncStorage,
     ScrollView,
     TouchableHighlight,
-    Alert
+    Alert,
+    TouchableOpacity
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
@@ -49,7 +50,7 @@ export default class BookReturn extends Component {
             this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserId));
         }
     }
-    _onClick = (data) => {
+    _onCheck = (data) => {
         data.isCheck = !data.isCheck;
         if (data.isCheck) {
             this.setState({
@@ -88,6 +89,10 @@ export default class BookReturn extends Component {
             });
         });
     }
+    _showDetailBook = (id) => {
+        const { navigate } = this.props.navigation;
+        navigate('BookAdd')
+    }
     render() {
         return (
             <View style={Styles.return}>
@@ -98,14 +103,18 @@ export default class BookReturn extends Component {
                                 return <View
                                     key={val.Id}
                                     style={Styles.item}>
-                                    <Text style={Styles.title}>{val.BookName}</Text>
-                                    <View style={Styles.statusIcon}>
+                                    <TouchableOpacity onPress={() => this._showDetailBook(val.Id)}
+                                        style={Styles.titleView}
+                                        disabled={this.state.disable}>
+                                        <Text style={Styles.title}>{val.BookName}</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => this._onCheck(val)}
+                                        style={Styles.statusIcon}>
                                         <Icon
-                                            onPress={() => this._onClick(val)}
-                                            name={val.isCheck ? 'check-circle':'radio-button-unchecked'}
+                                            name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
                                             color='black'
                                             size={20} />
-                                    </View>
+                                    </TouchableOpacity>
                                 </View>
                             })
                         }
