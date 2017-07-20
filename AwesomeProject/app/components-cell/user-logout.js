@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, AsyncStorage } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
 export default class UserLogout extends Component {
   _logout=()=>{
@@ -13,7 +13,7 @@ export default class UserLogout extends Component {
       <Icon 
           onPress={this._logout}
           style={{marginRight:10, fontWeight:'bold'}}
-          name="power-settings-new" 
+          name="logout" 
           color='#43A047'
           size={20}/>
     );
