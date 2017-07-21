@@ -30,6 +30,7 @@ import { getBookById } from '../actions/book.detail.action';
 import Moment from 'moment';
 import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-view';
 import Styles from './style/book-detail-display'
+import themes from './../src/themes/themes'
 
 @connect((store) => {
     return {
@@ -48,6 +49,8 @@ class LightboxView extends Component {
                 style={Styles.container}
                 renderTabBar={() => <DefaultTabBar backgroundColor='rgba(255, 255, 255, 0.7)' />}
                 tabBarPosition='overlayTop'
+                tabBarActiveTextColor ={themes.color}
+                tabBarUnderlineStyle ={{backgroundColor:themes.color}}
             >
                 <ScrollView tabLabel='简介'>
                     <View style={Styles.row}>
