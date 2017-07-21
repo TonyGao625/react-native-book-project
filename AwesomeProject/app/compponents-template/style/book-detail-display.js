@@ -18,6 +18,10 @@ const Styles = StyleSheet.create({
     container: {
         paddingHorizontal: BASE_PADDING,
     },
+    containerTab:{
+        marginLeft:-10,
+        marginRight:-10
+    },
     closeButton: {
         color: 'white',
         borderWidth: 1,

@@ -52,7 +52,9 @@ class LightboxView extends Component {
                 tabBarActiveTextColor ={themes.color}
                 tabBarUnderlineStyle ={{backgroundColor:themes.color}}
             >
-                <ScrollView tabLabel='简介'>
+                <ScrollView 
+                style={Styles.containerTab}
+                tabLabel='简介'>
                     <View style={Styles.row}>
                         <Lightbox style={Styles.col}>
                             <Image
@@ -106,7 +108,9 @@ class LightboxView extends Component {
                         </View>
                     </View>
                 </ScrollView>
-                <ScrollView tabLabel='借阅记录'>
+                <ScrollView 
+                style={Styles.containerTab}
+                tabLabel='借阅记录'>
                     <View style={{ flexDirection: 'row', marginTop: 70 }}>
                         <View style={{ flex: 1, marginLeft: 18, }}>
                             <Text style={Styles.boldText}>借阅起始日</Text>
