@@ -3,6 +3,7 @@ import { View, StyleSheet, TouchableHighlight, Text } from 'react-native';
 import BookDetailDisplay from './../compponents-template/book-detail-display'
 import Icon from 'react-native-vector-icons/Octicons';
 import FormCustomButton from './../components-cell/form-custom-botton'
+import Themes from './../src/themes/themes'
 
 export default class BookDetailScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -23,7 +24,7 @@ export default class BookDetailScreen extends Component {
 
 styles = StyleSheet.create({
   button: {
-    backgroundColor: "#43A047",
+    backgroundColor: Themes.color,
     paddingVertical: 10,
     marginRight: 10,
     paddingLeft: 10,

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import Themes from './../../src/themes/themes'
 
 const Styles = StyleSheet.create({
     search: {
@@ -17,7 +18,7 @@ const Styles = StyleSheet.create({
         marginRight: 10
     },
     button: {
-        backgroundColor: "#43A047",
+        backgroundColor: Themes.color,
         paddingVertical: 8,
         alignItems: "center",
         justifyContent: "center",

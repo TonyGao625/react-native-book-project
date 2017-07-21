@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Themes from './../src/themes/themes'
 
 export default class MainAdd extends Component {
  _addBook = () => {
@@ -12,7 +13,7 @@ export default class MainAdd extends Component {
         name="add" 
         onPress={this._addBook}
         size={40} 
-        color='#43A047' />
+        color={Themes.color} />
     );
   }
 }

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import Themes from './../../src/themes/themes'
 
 const Styles = StyleSheet.create({
     headView: {
@@ -18,7 +19,7 @@ const Styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         borderBottomWidth: 1,
-        borderBottomColor: '#43A047',
+        borderBottomColor: Themes.color,
         marginBottom: 10,
         paddingTop: 5,
         paddingBottom: 5

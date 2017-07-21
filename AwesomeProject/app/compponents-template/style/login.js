@@ -4,6 +4,7 @@ import {
   Dimensions
 } from 'react-native';
 const { width, height } = Dimensions.get("window");
+import Themes from './../../src/themes/themes'
 
 const Styles = StyleSheet.create({
   container: {
@@ -23,7 +24,7 @@ const Styles = StyleSheet.create({
     paddingVertical: 30,
   },
   button: {
-    backgroundColor: "#43A047",
+    backgroundColor: Themes.color,
     paddingVertical: 20,
     marginTop: 30,
   },

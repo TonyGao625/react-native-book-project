@@ -7,6 +7,7 @@ import BookCollection from './book-collection';
 import BookReturn from './book-return';
 import UserInfo from './user-info';
 import SystemManage from './system-manage';
+import Themes from './../src/themes/themes'
 
 const MainScreen = TabNavigator({
   BookAll: {
@@ -35,7 +36,7 @@ const MainScreen = TabNavigator({
         fontWeight: 'bold'
       },
       style: {
-        backgroundColor: '#43A047',
+        backgroundColor: Themes.color,
       },
       showIcon: true
     },

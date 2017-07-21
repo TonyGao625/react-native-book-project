@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import FormTextInput from '../components-cell/form-text-input'
 import FormCustomButton from './../components-cell/form-custom-botton'
 import Styles from './style/book-all'
+import Themes from './../src/themes/themes'
 
 class BookSearchText extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class BookSearchText extends Component {
           style={Styles.scanIcon}
           name="crop-free"
           size={25}
-          color='#43A047' />
+          color={Themes.color} />
         <TouchableOpacity
           style={Styles.searchView}
           onPress={this._onFocusSearch}>
