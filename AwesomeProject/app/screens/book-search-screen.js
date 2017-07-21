@@ -13,19 +13,19 @@ class BookSearchText extends Component {
       bookName: ''
     };
   }
-  _onChangeText=(val)=>{
+  _onChangeText = (val) => {
     this.setState({
-      bookName:val
+      bookName: val
     });
-    storage.session('BookName', this.state.bookName);
   }
   render() {
+    storage.session('BookName', this.state.bookName);
     return (
       <View style={Styles.search}>
         <FormTextInput
           value={this.state.bookName}
           style={Styles.searchText}
-          onChangeText={(val)=>this._onChangeText(val)}
+          onChangeText={(val) => this._onChangeText(val)}
           placeholder='search'></FormTextInput>
       </View>
     );
@@ -39,10 +39,10 @@ class BookSearchButton extends Component {
   }
   render() {
     return (
-      <TouchableOpacity 
-      style={Styles.buttonView}
-      activeOpacity={.5} 
-      onPress={this._onSearchBook}>
+      <TouchableOpacity
+        style={Styles.buttonView}
+        activeOpacity={.5}
+        onPress={this._onSearchBook}>
         <View style={Styles.button}>
           <Text style={Styles.buttonText}>搜索</Text>
         </View>
@@ -54,11 +54,11 @@ class BookSearchButton extends Component {
 export default class SearchScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerTitle: <BookSearchText />,
-    headerRight: <BookSearchButton navigation={navigation}/>
+    headerRight: <BookSearchButton navigation={navigation} />
   });
   render() {
     return (
-        <BookCategory navigation={this.props.navigation}/>
+      <BookCategory navigation={this.props.navigation} />
     );
   }
 }

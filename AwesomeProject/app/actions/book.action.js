@@ -9,7 +9,6 @@ export function getBookList(obj) {
             data: obj
         }).then((res) => {
             storage.session('CategoryId', 0);
-            storage.session('BookName', "");
             dispatch({
                 type: 'GET_BOOK_LIST',
                 payload: res.Datas
