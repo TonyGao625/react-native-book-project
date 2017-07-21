@@ -73,6 +73,7 @@ export default class Login extends Component {
               color='white'
               placeholder='Password'
               keyboardType='phone-pad'
+              secure={true}
               submitted={this.state.submitted}
               errorText={loginUser.passwordError}
               value={loginUser.Password}

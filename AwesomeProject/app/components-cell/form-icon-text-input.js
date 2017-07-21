@@ -16,7 +16,7 @@ export default class FormIconTextInput extends Component {
                 <FormTextField
                     style={this.props.color}
                     value={this.props.value}
-                    secureTextEntry={this.props.secure}
+                    secure={this.props.secure}
                     placeholder={this.props.placeholder}
                     color={this.props.color}
                     keyboardType={this.props.keyboardType}

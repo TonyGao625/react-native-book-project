@@ -11,7 +11,7 @@ export default class FormTextInput extends Component {
                 <TextInput
                     value={this.props.value}
                     autoCorrect={false}
-                    keyboardType={this.props.keyboardType}
+                    /* keyboardType={this.props.keyboardType} */
                     placeholderTextColor={this.props.color}
                     selectionColor={this.props.selectionColor}
                     style={{ color: this.props.color }}
