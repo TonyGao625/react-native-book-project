@@ -73,7 +73,7 @@ export default class BookAll extends Component {
   }
   _preventClickTwice() {
     this.setState({ disable: true });
-    setTimeout(() => { this.setState({ disable: false }) }, 2000)
+    setTimeout(() => { this.setState({ disable: false }) }, 1000)
   }
   _showDetailBook = (id) => {
     this._preventClickTwice();
