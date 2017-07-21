@@ -18,7 +18,7 @@ class HeadInfo extends Component{
   }
   render(){
     return (
-      <Text style={{paddingLeft:10}}>{this.props.permission.UserName}</Text>
+      <Text style={{paddingLeft:10}}>{this.props.permission.RealName}</Text>
     )
   }
 }

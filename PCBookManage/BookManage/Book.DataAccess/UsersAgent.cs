@@ -20,11 +20,11 @@ namespace Book.DataAccess
             }
         }
 
-        public async Task<User> FindUser(string email)
+        public async Task<User> FindUser(string userName)
         {
             using (var context=new BookProjectEntities())
             {
-                return await context.Users.FirstOrDefaultAsync(x => x.Email == email);
+                return await context.Users.FirstOrDefaultAsync(x => x.UserName == userName);
             }
         } 
     }

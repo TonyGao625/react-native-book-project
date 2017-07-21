@@ -1,8 +1,8 @@
 export default function reducer(state = {
     loginUser: {
-        Email: '',
+        UserName: '',
         Password: '',
-        emailError:'',
+        userNameError:'',
         passwordError:''
     },
     loggedUser: {
@@ -10,13 +10,13 @@ export default function reducer(state = {
     permission:{}
 }, action) {
     switch (action.type) {
-        case 'EDIT_EMAIL':
+        case 'EDIT_USERNAME':
             return {
                 ...state,
                 loginUser: {
                     ...state.loginUser,
-                    Email: action.payload.val,
-                    emailError: action.payload.emailError,
+                    UserName: action.payload.val,
+                    userNameError: action.payload.userNameError,
                     
                 },
             }

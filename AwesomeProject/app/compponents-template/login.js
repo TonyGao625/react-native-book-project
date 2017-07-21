@@ -9,7 +9,7 @@ import FormIconTextInput from './../components-cell/form-icon-text-input'
 import FormCustomButton from './../components-cell/form-custom-botton'
 import Themes from './../src/themes/themes'
 import { connect } from 'react-redux'
-import { accountLogin, editEmail, editPassword } from '../actions/account.action';
+import { accountLogin, editUserName, editPassword } from '../actions/account.action';
 import { batchActions, enableBatching} from 'redux-batched-actions';
 
 const background = require("./../src/images/login_bg.png");
@@ -32,15 +32,15 @@ export default class Login extends Component {
     this.setState({
       submitted: true
     });
-    this.props.dispatch(batchActions([editEmail(this.props.loginUser.Email),editPassword(this.props.loginUser.Password)]))
+    this.props.dispatch(batchActions([editUserName(this.props.loginUser.UserName),editPassword(this.props.loginUser.Password)]))
     setTimeout(() => {
-      if (this.props.loginUser.emailError || this.props.loginUser.passwordError) {
+      if (this.props.loginUser.userNameError || this.props.loginUser.passwordError) {
         return;
       }
       const { navigate } = this.props.navigation;
       accountLogin({
         UsersModel: {
-          Email: this.props.loginUser.Email,
+          UserName: this.props.loginUser.UserName,
           Password: this.props.loginUser.Password
         }
       }).then(function () {
@@ -61,12 +61,12 @@ export default class Login extends Component {
               iconName='person'
               iconSize={25}
               color='white'
-              placeholder='Email'
+              placeholder='UserName'
               keyboardType='phone-pad'
               submitted={this.state.submitted}
-              errorText={loginUser.emailError}
-              value={loginUser.Email}
-              onChangeText={(val) => this.props.dispatch(editEmail(val))}/>
+              errorText={loginUser.userNameError}
+              value={loginUser.UserName}
+              onChangeText={(val) => this.props.dispatch(editUserName(val))}/>
             <FormIconTextInput 
               iconName='lock'
               iconSize={25}

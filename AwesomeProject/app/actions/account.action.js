@@ -13,7 +13,8 @@ export function accountLogin(obj) {
                 IsAuthened: true,
                 RoleId: res.Data.RoleId,
                 UserId: res.Data.Id,
-                UserName: res.Data.UserName
+                UserName: res.Data.UserName,
+                RealName: res.Data.RealName
             };
             AsyncStorage.setItem('permission', JSON.stringify(permission));
             dispatch({
@@ -36,18 +37,16 @@ export function getPermission() {
     }
 }
 
-export function editEmail(val) {
-    var emailError = '';
+export function editUserName(val) {
+    var userNameError = '';
     if (!val) {
-        emailError = 'Required'
-    } else if (!validator.isEmail(val)) {
-        emailError = 'Must be a valid email'
+        userNameError = 'Required'
     }
     return {
-        type: 'EDIT_EMAIL',
+        type: 'EDIT_USERNAME',
         payload: {
             val: val,
-            emailError: emailError
+            userNameError: userNameError
         }
     }
 }

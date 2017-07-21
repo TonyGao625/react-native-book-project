@@ -12,7 +12,7 @@ import {
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
 import FormButton from './../components-cell/form-button'
-import { accountLogin, editEmail, editPassword } from '../actions/account.action';
+import { accountLogin, editUserName, editPassword } from '../actions/account.action';
 import Styles from './style/user-info'
 import FormCustomButton from './../components-cell/form-custom-botton'
 
@@ -27,7 +27,7 @@ export default class UserDeatil extends Component {
   }
   _logout = () => {
     AsyncStorage.removeItem('permission');
-    this.props.dispatch(editEmail(''));
+    this.props.dispatch(editUserName(''));
     this.props.dispatch(editPassword(''));
     const { navigate } = this.props.navigation;
     navigate('Account')
