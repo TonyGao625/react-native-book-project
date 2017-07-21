@@ -43,7 +43,6 @@ class LightboxView extends Component {
     }
     render() {
         const { BookDetail } = this.props;
-        console.log(BookDetail);
         return (
             <ScrollableTabView
                 style={Styles.container}

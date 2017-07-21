@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import { View, StyleSheet, TouchableHighlight, Text } from 'react-native';
 import BookDetailDisplay from './../compponents-template/book-detail-display'
 import Icon from 'react-native-vector-icons/Octicons';
+import FormCustomButton from './../components-cell/form-custom-botton'
 
 export default class BookDetailScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerRight:
-    <View style={styles.PinButton} >
-      <View style={styles.PinIcon} >
-        <Icon name="pin" size={25} color='white' />
-      </View>
-      <Text style={styles.PinButtonText} >借阅</Text>
-    </View>
+    <FormCustomButton
+      activeOpacity={.5}
+      text='借阅'
+      styleView={styles.button}
+      styleText={styles.buttonText}
+      onPress={this._loginAccount} />
   })
   render() {
     return (
@@ -21,16 +22,15 @@ export default class BookDetailScreen extends Component {
 }
 
 styles = StyleSheet.create({
-  PinButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'navy',
-    padding: 5,
-    borderRadius: 5,
-    width: 70,
-    marginRight: 8
+  button: {
+    backgroundColor: "#43A047",
+    paddingVertical: 10,
+    marginRight: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderRadius: 10
   },
-  PinButtonText: {
-    color: 'white'
-  }
+  buttonText: {
+    color: "#FFF",
+  },
 })
