@@ -1,6 +1,6 @@
 export default function reducer(state = {
     BookBorrowList: [],
-    Opearation:{}
+    Opearation: {}
 }, action) {
     switch (action.type) {
         case 'GET_BOOK_BORROW_LIST':
@@ -12,12 +12,12 @@ export default function reducer(state = {
             return {
                 ...state,
                 BookBorrowList: action.payload
-            } 
+            }
         case 'UNSELECT_ALL_BOOK_LIST':
             return {
                 ...state,
                 BookBorrowList: action.payload
-            }    
+            }
         default:
             return state;
     }
