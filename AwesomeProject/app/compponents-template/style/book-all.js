@@ -1,33 +1,18 @@
 import { StyleSheet } from 'react-native';
 
 const Styles = StyleSheet.create({
-  item: {
-    flex: 1,
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd'
+  itemContainer: {
+   flex: 1, flexDirection: "row", paddingBottom: 10, paddingTop: 10, borderBottomColor: "lightgrey", borderBottomWidth: 6 
   },
-  titleView:{
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft:10,
-    width:'90%'
+  imageContainer:{
+   justifyContent: 'center', alignItems: "center", paddingLeft: 8, flex: 2
   },
-  title: {
-    marginRight: 80
+  bookContainer: {
+   paddingLeft: 15, paddingTop: 6, paddingBottom: 6, flex: 4
   },
   statusIcon: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    width: 200,
-    paddingTop: 10,
-    paddingRight:10
+   flex: 1, borderLeftWidth: 2, borderLeftColor: "grey", justifyContent: 'center', alignItems: "center" 
   },
-  icon: {
-   // marginRight: 10,
-    
-  }
 });
 
 export default Styles;

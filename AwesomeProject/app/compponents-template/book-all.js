@@ -18,7 +18,7 @@ import { changeData } from '../actions/common.action'
 import { getPermission } from '../actions/account.action'
 import Styles from './style/book-all'
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
-
+import ResponsiveImage from 'react-native-responsive-image';
 @connect((store) => {
   return {
     BookList: store.bookReducer.BookList,
@@ -86,21 +86,32 @@ export default class BookAll extends Component {
       <View>
         {
           this.props.BookList.map((val) => {
-            return <View
-              key={val.Id}
-              style={Styles.item}>
-              <TouchableOpacity onPress={() => this._showDetailBook(val.Id)}
-                style={Styles.titleView}
-                disabled={this.state.disable}>
-                <Text style={styles.title}>{val.BookName}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this._collectBook(val)}
-                style={Styles.statusIcon}>
-                <Icon
-                  name="library-add"
-                  color={val.CanOrder ? 'black' : '#ddd'}
-                  size={20} />
-              </TouchableOpacity>
+            return <View style={Styles.itemContainer} >
+              <View style={Styles.imageContainer} >
+                <TouchableOpacity onPress={() => this._showDetailBook(val.Id)}
+                  disabled={this.state.disable}>
+                  <ResponsiveImage source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} initWidth="100" initHeight="100" />
+                </TouchableOpacity>
+              </View>
+              <View style={Styles.bookContainer} >
+                <TouchableOpacity onPress={() => this._showDetailBook(val.Id)}
+                  disabled={this.state.disable}>
+                  <View style={{ paddingBottom: 6 }} >
+                    <Text style={{ fontWeight: "bold", fontStyle: "italic", fontSize: 15 }}>{val.BookName}</Text>
+                  </View>
+                  <View style={{ paddingBottom: 6 }}>
+                    <Text>作者：{val.Author}</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+              <View style={Styles.statusIcon} >
+                <TouchableOpacity onPress={() => this._collectBook(val)}>
+                  <Icon
+                    name="library-add"
+                    color={val.CanOrder ? 'black' : '#ddd'}
+                    size={25} />
+                </TouchableOpacity>
+              </View>
             </View>
           })
         }
