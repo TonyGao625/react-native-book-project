@@ -17,6 +17,7 @@ import storage from 'store2';
 import { changeData } from '../actions/common.action'
 import { getPermission } from '../actions/account.action'
 import Styles from './style/book-all'
+import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 
 @connect((store) => {
   return {
@@ -67,7 +68,7 @@ export default class BookAll extends Component {
       }
     };
     collectBook(data).then(() => {
-      Alert.alert('', '添加到借阅单成功', [], { cancelable: true });
+      Toast.success('添加到借阅单成功', 1);
       this.props.dispatch(changeData());
     });
   }

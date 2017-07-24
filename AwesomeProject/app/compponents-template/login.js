@@ -10,7 +10,7 @@ import FormCustomButton from './../components-cell/form-custom-botton'
 import Themes from './../src/themes/themes'
 import { connect } from 'react-redux'
 import { accountLogin, editUserName, editPassword } from '../actions/account.action';
-import { batchActions, enableBatching} from 'redux-batched-actions';
+import { batchActions, enableBatching } from 'redux-batched-actions';
 
 const background = require("./../src/images/login_bg.png");
 import Styles from './style/login'
@@ -32,7 +32,7 @@ export default class Login extends Component {
     this.setState({
       submitted: true
     });
-    this.props.dispatch(batchActions([editUserName(this.props.loginUser.UserName),editPassword(this.props.loginUser.Password)]))
+    this.props.dispatch(batchActions([editUserName(this.props.loginUser.UserName), editPassword(this.props.loginUser.Password)]))
     setTimeout(() => {
       if (this.props.loginUser.userNameError || this.props.loginUser.passwordError) {
         return;
@@ -57,7 +57,7 @@ export default class Login extends Component {
             <Icon name="book" size={120} color='white' />
           </View>
           <View style={Styles.form}>
-            <FormIconTextInput 
+            <FormIconTextInput
               iconName='person'
               iconSize={25}
               color='white'
@@ -66,8 +66,8 @@ export default class Login extends Component {
               submitted={this.state.submitted}
               errorText={loginUser.userNameError}
               value={loginUser.UserName}
-              onChangeText={(val) => this.props.dispatch(editUserName(val))}/>
-            <FormIconTextInput 
+              onChangeText={(val) => this.props.dispatch(editUserName(val))} />
+            <FormIconTextInput
               iconName='lock'
               iconSize={25}
               color='white'
@@ -78,12 +78,12 @@ export default class Login extends Component {
               errorText={loginUser.passwordError}
               value={loginUser.Password}
               onChangeText={(val) => this.props.dispatch(editPassword(val))} />
-            <FormCustomButton 
+            <FormCustomButton
               activeOpacity={.5}
               text='登录'
               styleView={Styles.button}
               styleText={Styles.buttonText}
-              onPress={this._loginAccount}/>
+              onPress={this._loginAccount} />
           </View>
           <View style={Styles.container}>
             <View style={Styles.remarkWrap}>

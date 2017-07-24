@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import { getBookList } from '../actions/book.action';
 import axios from 'axios';
 import Styles from './style/book-collection'
+import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 
 @connect((store) => {
   return {

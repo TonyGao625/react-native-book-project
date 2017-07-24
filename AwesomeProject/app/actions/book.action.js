@@ -29,7 +29,7 @@ export function getBookCategoryList(obj) {
                     key: index,
                     label: item.Name,
                     Name: item.Name,
-                    Id:item.Id
+                    Id: item.Id
                 }
             });
             dispatch({
@@ -61,7 +61,7 @@ export function collectBook(obj) {
             url: 'book/collectBook',
             method: 'Post',
             data: obj
-        }).then((res)=>{
+        }).then((res) => {
             dispatch({
                 type: 'BOOK_COLLECT',
                 payload: res
@@ -81,7 +81,6 @@ export function backBook(obj) {
 }
 
 export function VerifyBookName(val, BookList) {
-    debugger;
     var BookNameError = '';
     if (!val) {
         BookNameError = 'Book name is Required'
@@ -120,7 +119,7 @@ export function VerifyAuthor(val) {
 
 export function VerifyCategory(val) {
     var CategoryIDError = '';
-    if (!val || val==null) {
+    if (!val || val == null) {
         CategoryIDError = 'You must select a category for this book.'
     }
     return {

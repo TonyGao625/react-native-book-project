@@ -19,7 +19,7 @@ import { getPermission } from '../actions/account.action'
 import BookOperation from './../components-cell/book-operation'
 import { changeData } from '../actions/common.action'
 import Styles from './style/book-borrow'
-
+import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 @connect((store) => {
   return {
     BookBorrowList: store.bookBorrowReducer.BookBorrowList,
@@ -81,7 +81,7 @@ export default class BookList extends Component {
   _onBorrowBook = () => {
     var BookCollectionList = this.props.BookBorrowList.filter(x => x.isCheck == true);
     if (BookCollectionList.length < 1) {
-      Alert.alert('', '请选择要借阅的图书', [], { cancelable: true });
+      Toast.info('请选择要借阅的图书!', 1);
       return;
     }
 
@@ -91,8 +91,7 @@ export default class BookList extends Component {
       BorrowDate: new Date()
     }
     BookBorrowList(data).then(() => {
-      // alert('借阅成功');
-      Alert.alert('', '借阅成功', [], { cancelable: true });
+      Toast.success('借阅成功', 1);
       this.props.dispatch(changeData());
 
       this.setState({

@@ -20,6 +20,7 @@ import BookOperation from '../components-cell/book-operation';
 import { getPermission } from '../actions/account.action'
 import Styles from './style/book-return'
 import { changeData } from '../actions/common.action'
+import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 
 @connect((store) => {
     return {
@@ -75,14 +76,14 @@ export default class BookReturn extends Component {
     _onReturnBook = () => {
         var BookReturnModelList = this.props.BookReturnListByUserId.filter(x => x.isCheck == true);
         if (BookReturnModelList.length < 1) {
-            Alert.alert('', '请选择要还的图书', [], { cancelable: true });
+            Toast.info('请选择要还的图书!', 1);
             return;
         }
         var data = {
             BookReturnModelList: BookReturnModelList,
         }
         BookReturnList(data).then(() => {
-            Alert.alert('', '还书成功', [], { cancelable: true });
+            Toast.success('还书成功', 1);
             this.props.dispatch(changeData());
             this.setState({
                 checkedAll: false,
