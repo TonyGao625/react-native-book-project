@@ -104,10 +104,10 @@ export default class BookList extends Component {
     this.setState({ disable: true });
     setTimeout(() => { this.setState({ disable: false }) }, 2000)
   }
-  _showDetailBook = (id) => {
+  _showDetailBook = (id, CanOrder) => {
     this._preventClickTwice();
     const { navigate } = this.props.navigation;
-    navigate('BookDetail', { id: id })
+    navigate('BookDetail', { id: id, CanOrder: CanOrder })
   }
   render() {
     return (
@@ -119,7 +119,7 @@ export default class BookList extends Component {
                 return <View
                   key={val.Id}
                   style={Styles.item}>
-                  <TouchableOpacity onPress={() => this._showDetailBook(val.BookId)}
+                  <TouchableOpacity onPress={() => this._showDetailBook(val.BookId, val.CanOrder)}
                     style={Styles.titleView}
                     disabled={this.state.disable}>
                     <Text style={styles.title}>{val.BookName}</Text>
