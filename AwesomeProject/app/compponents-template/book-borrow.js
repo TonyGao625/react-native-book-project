@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CheckBox from 'react-native-check-box'
 import FormButton from './../components-cell/form-button'
-import { getBookBorrowList, BookBorrowList, selectALL, unSelectALL } from '../actions/book.borrow.action'
+import { getBookBorrowList, BookBorrowList, selectALL, unSelectALL, SureBorrowBook } from '../actions/book.borrow.action'
 import { getPermission } from '../actions/account.action'
 import BookOperation from './../components-cell/book-operation'
 import { changeData } from '../actions/common.action'
@@ -23,6 +23,7 @@ import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 @connect((store) => {
   return {
     BookBorrowList: store.bookBorrowReducer.BookBorrowList,
+    Opearation: store.bookBorrowReducer.Opearation,
     permission: store.accountReducer.permission,
     Flag: store.commonReducer.Flag
   }
@@ -90,14 +91,35 @@ export default class BookList extends Component {
       UserId: this.props.permission.UserId,
       BorrowDate: new Date()
     }
-    BookBorrowList(data).then(() => {
-      Toast.success('借阅成功', 1);
+    BookBorrowList(data).then((res) => {
+      if (res.result.Status == 1) {
+        Alert.alert('', '借阅成功', [], { cancelable: true });
+        this.props.dispatch(changeData());
+        this._cancelBorrow();
+      } else {
+        Alert.alert('',
+          res.result.Message,
+          [
+            { text: '取消', onPress: this._cancelBorrow },
+            { text: '继续', onPress: ()=>this._sureBorow(data) },
+          ],
+          { cancelable: false }
+        )
+      }
+    });
+  }
+  _cancelBorrow = () => {
+    this.props.dispatch(unSelectALL(this.props.BookBorrowList));
+    this.setState({
+      checkedAll: false,
+      sum: 0
+    });
+  }
+  _sureBorow = (data) => {
+    SureBorrowBook(data).then((res) => {
+      Alert.alert('', res.result.Message, [], { cancelable: true });
       this.props.dispatch(changeData());
-
-      this.setState({
-        checkedAll: false,
-        sum: 0
-      });
+      this._cancelBorrow();
     });
   }
   _preventClickTwice() {

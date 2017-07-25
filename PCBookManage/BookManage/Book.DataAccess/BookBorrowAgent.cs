@@ -13,7 +13,7 @@ namespace Book.DataAccess
     {
         public async Task AddOrUpdate(BookBorrow borrow)
         {
-            using (var context=new BookProjectEntities())
+            using (var context = new BookProjectEntities())
             {
                 context.BookBorrows.AddOrUpdate(borrow);
                 await context.SaveChangesAsync();
@@ -22,25 +22,27 @@ namespace Book.DataAccess
 
         public async Task<BookBorrow> GetBorrowBookByBookId(long bookId)
         {
-            using (var context=new BookProjectEntities())
+            using (var context = new BookProjectEntities())
             {
                 return
-                    await context.BookBorrows.Where(x => x.BookId == bookId && x.IsReturn == false)
+                    await context.BookBorrows
+                    .Where(x => x.BookId == bookId && x.IsReturn == false)
+                    .Include(x => x.BookInfo)
                         .FirstOrDefaultAsync();
             }
         }
 
-        public async Task<List<V_BookBorrow>> GetBookBorrowList(int  userId)
+        public async Task<List<V_BookBorrow>> GetBookBorrowList(int userId)
         {
-            using (var context=new BookProjectEntities())
+            using (var context = new BookProjectEntities())
             {
-                return await context.V_BookBorrow.Where(x=>x.IsReturn==false&&x.UserId== userId).ToListAsync();
+                return await context.V_BookBorrow.Where(x => x.IsReturn == false && x.UserId == userId).ToListAsync();
             }
         }
 
         public async Task<BookBorrow> GetBorrowById(long id)
         {
-            using (var context=new BookProjectEntities())
+            using (var context = new BookProjectEntities())
             {
                 return await context.BookBorrows.FirstOrDefaultAsync(x => x.Id == id);
             }
@@ -50,7 +52,7 @@ namespace Book.DataAccess
         {
             using (var context = new BookProjectEntities())
             {
-                return await context.BookBorrows.FirstOrDefaultAsync(x => x.Id==id);
+                return await context.BookBorrows.FirstOrDefaultAsync(x => x.Id == id);
             }
         }
     }

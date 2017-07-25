@@ -36,5 +36,15 @@ namespace Book.WebApi.Controllers
             var borrowDate = paramters["BorrowDate"].ToObject<DateTime>();
             return await _bookCollectionBusiness.BorrowBook(bookCollectionList, userId, borrowDate);
         }
+
+        [Route("sureBorrowBook")]
+        [HttpPost]
+        public async Task<Operate> SureBorrowBook(JObject paramters)
+        {
+            var bookCollectionList = paramters["BookCollectionList"].ToObject<List<BookCollectionModel>>();
+            var userId = paramters["UserId"].ToObject<int>();
+            var borrowDate = paramters["BorrowDate"].ToObject<DateTime>();
+            return await _bookCollectionBusiness.SureBorrowBook(bookCollectionList, userId, borrowDate);
+        }
     }
 }

@@ -23,8 +23,21 @@ export function BookBorrowList(obj) {
             data: obj
         }).then((res)=>{
             dispatch({
-                type: 'BOOK_BORROW',
-                payload: res
+               result:res
+            })
+        });
+    }); 
+}
+
+export function SureBorrowBook(obj) {
+    return new Promise(function (dispatch) {
+        thaxios({
+            url: 'collect/sureBorrowBook',
+            method: 'POST',
+            data: obj
+        }).then((res)=>{
+            dispatch({
+               result:res
             })
         });
     }); 
