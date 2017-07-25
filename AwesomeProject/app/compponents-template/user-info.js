@@ -17,7 +17,7 @@ import Styles from './style/user-info'
 import FormCustomButton from './../components-cell/form-custom-botton'
 
 @connect((store) => {
-  return { 
+  return {
   }
 })
 export default class UserDeatil extends Component {
@@ -27,20 +27,21 @@ export default class UserDeatil extends Component {
   }
   _logout = () => {
     AsyncStorage.removeItem('permission');
+    this.props.dispatch({
+      type: "REMOVE_PERMISSION"
+    })
     this.props.dispatch(editUserName(''));
     this.props.dispatch(editPassword(''));
-    const { navigate } = this.props.navigation;
-    navigate('Account')
   }
   render() {
     return (
       <ScrollView contentContainerStyle={Styles.contentContainer}>
-        <FormCustomButton 
-              activeOpacity={.5}
-              text='退出'
-              styleView={Styles.button}
-              styleText={Styles.buttonText}
-              onPress={this._logout}/>
+        <FormCustomButton
+          activeOpacity={.5}
+          text='退出'
+          styleView={Styles.button}
+          styleText={Styles.buttonText}
+          onPress={this._logout} />
       </ScrollView>
     );
   }

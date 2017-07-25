@@ -19,7 +19,7 @@ import { getPermission } from '../actions/account.action'
 import BookOperation from './../components-cell/book-operation'
 import { changeData } from '../actions/common.action'
 import Styles from './style/book-borrow'
-
+import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 @connect((store) => {
   return {
     BookBorrowList: store.bookBorrowReducer.BookBorrowList,
@@ -82,7 +82,7 @@ export default class BookList extends Component {
   _onBorrowBook = () => {
     var BookCollectionList = this.props.BookBorrowList.filter(x => x.isCheck == true);
     if (BookCollectionList.length < 1) {
-      Alert.alert('', '请选择要借阅的图书', [], { cancelable: true });
+      Toast.info('请选择要借阅的图书!', 1);
       return;
     }
 
@@ -91,7 +91,6 @@ export default class BookList extends Component {
       UserId: this.props.permission.UserId,
       BorrowDate: new Date()
     }
-    // this.props.dispatch(BookBorrowList(data));
     BookBorrowList(data).then((res) => {
       if (res.result.Status == 1) {
         Alert.alert('', '借阅成功', [], { cancelable: true });
@@ -127,10 +126,10 @@ export default class BookList extends Component {
     this.setState({ disable: true });
     setTimeout(() => { this.setState({ disable: false }) }, 2000)
   }
-  _showDetailBook = (id) => {
+  _showDetailBook = (id, CanOrder) => {
     this._preventClickTwice();
     const { navigate } = this.props.navigation;
-    navigate('BookDetail', { id: id })
+    navigate('BookDetail', { id: id, CanOrder: CanOrder })
   }
   render() {
     return (
@@ -142,7 +141,7 @@ export default class BookList extends Component {
                 return <View
                   key={val.Id}
                   style={Styles.item}>
-                  <TouchableOpacity onPress={() => this._showDetailBook(val.BookId)}
+                  <TouchableOpacity onPress={() => this._showDetailBook(val.BookId, val.CanOrder)}
                     style={Styles.titleView}
                     disabled={this.state.disable}>
                     <Text style={styles.title}>{val.BookName}</Text>

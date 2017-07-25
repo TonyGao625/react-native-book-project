@@ -11,7 +11,8 @@ export default class BookDetailScreen extends Component {
     <FormCustomButton
       activeOpacity={.5}
       text='借阅'
-      styleView={styles.button}
+      disabled={!navigation.state.params.CanOrder}
+      styleView={navigation.state.params.CanOrder ? styles.button : styles.disabledButton}
       styleText={styles.buttonText}
       onPress={this._loginAccount} />
   })
@@ -25,6 +26,14 @@ export default class BookDetailScreen extends Component {
 styles = StyleSheet.create({
   button: {
     backgroundColor: Themes.color,
+    paddingVertical: 10,
+    marginRight: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderRadius: 10
+  },
+  disabledButton: {
+    backgroundColor: "grey",
     paddingVertical: 10,
     marginRight: 10,
     paddingLeft: 10,

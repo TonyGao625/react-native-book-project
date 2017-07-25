@@ -17,6 +17,7 @@ import FormModelPicker from './../components-cell/form-model-picker'
 import ModalPicker from 'react-native-modal-picker'
 import { batchActions, enableBatching } from 'redux-batched-actions';
 import Styles from './style/book-add'
+import { Toast, WhiteSpace, WingBlank} from 'antd-mobile';
 
 @connect((store) => {
   return {

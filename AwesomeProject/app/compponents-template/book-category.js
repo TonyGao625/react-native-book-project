@@ -16,6 +16,7 @@ import FormButton from './../components-cell/form-button'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import storage from 'store2';
 import Styles from './style/book-category'
+import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 
 @connect((store) => {
     return {
@@ -40,12 +41,12 @@ export default class BookCategory extends Component {
                         return <TouchableOpacity
                             key={val.Id}
                             activeOpacity={.5}
-                            onPress={()=>this._onSelectCategory(val.Id)}>
+                            onPress={() => this._onSelectCategory(val.Id)}>
                             <View style={Styles.item}>
                                 <View style={Styles.button}>
                                     <Text style={Styles.buttonText}>{val.Name}</Text>
                                 </View>
-                            </View> 
+                            </View>
                         </TouchableOpacity>
                     })
                 }

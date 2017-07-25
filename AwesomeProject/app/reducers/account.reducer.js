@@ -2,12 +2,12 @@ export default function reducer(state = {
     loginUser: {
         UserName: '',
         Password: '',
-        userNameError:'',
-        passwordError:''
+        userNameError: '',
+        passwordError: ''
     },
     loggedUser: {
     },
-    permission:{}
+    permission: {}
 }, action) {
     switch (action.type) {
         case 'EDIT_USERNAME':
@@ -17,7 +17,7 @@ export default function reducer(state = {
                     ...state.loginUser,
                     UserName: action.payload.val,
                     userNameError: action.payload.userNameError,
-                    
+
                 },
             }
         case 'EDIT_PASSWORD':
@@ -26,7 +26,7 @@ export default function reducer(state = {
                 loginUser: {
                     ...state.loginUser,
                     Password: action.payload.val,
-                    passwordError:action.payload.passwordError,
+                    passwordError: action.payload.passwordError,
                 },
             }
         case 'USER_LOGIN':
@@ -38,6 +38,11 @@ export default function reducer(state = {
             return {
                 ...state,
                 permission: action.payload,
+            }
+        case "REMOVE_PERMISSION":
+            return {
+                ...state,
+                permission: {}
             }
         default:
             return state;

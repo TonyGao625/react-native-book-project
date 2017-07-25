@@ -31,6 +31,7 @@ import Moment from 'moment';
 import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-view';
 import Styles from './style/book-detail-display'
 import themes from './../src/themes/themes'
+import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 
 @connect((store) => {
     return {
