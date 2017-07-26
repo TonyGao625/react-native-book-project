@@ -9,9 +9,13 @@ const Styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 10,
         marginBottom: -20,
-        marginRight: 30
+        marginRight: 50,
+        marginLeft:20
     },
     searchText: {
+    },
+    clearView:{
+        marginBottom:25
     },
     buttonView: {
         width: 60,

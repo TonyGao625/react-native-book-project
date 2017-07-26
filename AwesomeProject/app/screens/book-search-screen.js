@@ -13,9 +13,20 @@ class BookSearchText extends Component {
       bookName: ''
     };
   }
+  componentWillMount() {
+     var BookName = storage.session('BookName');
+     this.setState({
+       bookName: BookName == null ? "" : BookName
+     });
+  }
   _onChangeText = (val) => {
     this.setState({
       bookName: val
+    });
+  }
+  _onClearText=()=>{
+    this.setState({
+      bookName: ""
     });
   }
   render() {
@@ -27,6 +38,11 @@ class BookSearchText extends Component {
           style={Styles.searchText}
           onChangeText={(val) => this._onChangeText(val)}
           placeholder='search'></FormTextInput>
+          <TouchableOpacity style={Styles.clearView} 
+          onPress={this._onClearText}>
+            <Icon name="clear"
+                  size={25} />
+          </TouchableOpacity>
       </View>
     );
   }

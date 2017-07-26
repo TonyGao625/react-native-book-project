@@ -17,7 +17,7 @@ const Styles = StyleSheet.create({
     searchView: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         borderBottomWidth: 1,
         borderBottomColor: Themes.color,
         marginBottom: 10,
