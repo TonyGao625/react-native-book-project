@@ -26,12 +26,13 @@ namespace Book.Business
         /// 获取所有图书信息
         /// </summary>
         /// <returns></returns>
-        public async Task<MuliResult<BookInfoModel>> GetBookList(string bookName="", int categoryId=0)
+        public async Task<MuliResult<BookInfoModel>> GetBookList(int userId, string bookName="", int categoryId=0)
         {
             var result = new MuliResult<BookInfoModel>();
             try
             {
                 var dataList = await _bookAgent.GetBookList();
+                //search paramter
                 if (bookName != "")
                 {
                     dataList = dataList.Where(x => x.BookName.Contains(bookName)).ToList();
@@ -40,7 +41,22 @@ namespace Book.Business
                 {
                     dataList = dataList.Where(x => x.CategoryId == categoryId).ToList();
                 }
-                result.Datas = dataList.Select(x => x.ToBookInfoModel()).ToList();
+
+                //disable book item which have been add to the book borrow list
+                var bookCollectionList = await _bookCollectionAgent.GetCollectionByUserId(userId);
+                foreach (var item in dataList)
+                {
+                    var existCollect = bookCollectionList.Find(x => x.BookId == item.Id);
+                    if (existCollect != null)
+                    {
+                        item.CanOrder = false;
+                    }
+                }
+
+                result.Datas = dataList.Select(x => x.ToBookInfoModel())
+                    .OrderByDescending(x => x.CanOrder)
+                    .ThenBy(x => x.BookName)
+                    .ToList();
             }
             catch (Exception ex)
             {

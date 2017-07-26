@@ -16,8 +16,6 @@ namespace Book.DataAccess
             using (var context = new BookProjectEntities())
             {
                 return await context.V_BookAll
-                    .OrderByDescending(x=>x.CanOrder)
-                    .ThenBy(x=>x.BookName)
                     .ToListAsync();
             }
         }

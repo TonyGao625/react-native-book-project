@@ -24,9 +24,10 @@ namespace Book.WebApi.Controllers
         [HttpPost]
         public async Task<MuliResult<BookInfoModel>> GetBookList(JObject paramters)
         {
+            var userId = paramters["UserId"].ToObject<int>();
             var bookName = paramters["BookName"].ToObject<string>();
             var categoryId= paramters["CategoryId"].ToObject<int>();
-            return await _bookBusiness.GetBookList(bookName, categoryId);
+            return await _bookBusiness.GetBookList(userId, bookName, categoryId);
         }
 
         [Route("addOrUpdate")]

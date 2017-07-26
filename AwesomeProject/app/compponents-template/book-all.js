@@ -38,17 +38,18 @@ export default class BookAll extends Component {
   }
   componentWillMount() {
     this.props.dispatch(getPermission());
-    this._search();
+    this._search(this.props.permission.UserId);
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.Flag !== nextProps.Flag) {
-      this._search();
+      this._search(this.props.permission.UserId);
     }
   }
-  _search = () => {
+  _search = (userId) => {
     var BookName = storage.session('BookName');
     var CategoryId = storage.session('CategoryId');
     var data = {
+      UserId:userId,
       BookName: BookName == null ? "" : BookName,
       CategoryId: CategoryId == null ? 0 : CategoryId
     };

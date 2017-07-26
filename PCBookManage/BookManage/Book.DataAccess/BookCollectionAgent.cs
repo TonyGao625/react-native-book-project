@@ -45,5 +45,11 @@ namespace Book.DataAccess
                 await context.SaveChangesAsync();
             }
         }
+
+        public async Task<List<BookCollection>> GetCollectionByUserId(int userId) {
+            using (var context = new BookProjectEntities()) {
+                return await context.BookCollections.Where(x => x.UserId == userId).ToListAsync();
+            }
+        }
     }
 }
