@@ -32,7 +32,8 @@ export default function reducer(state = {
         case 'USER_LOGIN':
             return {
                 ...state,
-                loggedUser: action.payload,
+                loggedUser: action.payload.data,
+                permission: action.payload.permission
             }
         case 'GET_PERMISSION':
             return {
@@ -42,7 +43,7 @@ export default function reducer(state = {
         case "REMOVE_PERMISSION":
             return {
                 ...state,
-                permission: {}
+                permission: action.payload,
             }
         default:
             return state;

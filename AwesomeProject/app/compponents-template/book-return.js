@@ -41,7 +41,6 @@ export default class BookReturn extends Component {
         };
     }
     componentWillMount() {
-        this.props.dispatch(getPermission());
         this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserId));
     }
     componentWillReceiveProps(nextProps) {

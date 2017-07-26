@@ -41,7 +41,6 @@ export default class BookList extends Component {
     };
   }
   componentWillMount() {
-    this.props.dispatch(getPermission());
     this.props.dispatch(getBookBorrowList(this.props.permission.UserId));
   }
   componentWillReceiveProps(nextProps) {

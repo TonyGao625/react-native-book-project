@@ -55,21 +55,7 @@ export default class BookAll extends Component {
         size={20} />
     </TouchableHighlight>
   });
-
-  componentWillMount() {
-    AsyncStorage.getItem('permission').then((value) => {
-      const { navigate } = this.props.navigation;
-      if (value == null) {
-        navigate('Account');
-      }
-      else {
-        const permission = JSON.parse(value);
-        if (!permission.IsAuthened) {
-          navigate('Account');
-        }
-      }
-    });
-  }
+  
   render() {
     return (
       <ScrollView>

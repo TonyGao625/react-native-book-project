@@ -3,7 +3,7 @@ import { AsyncStorage } from 'react-native';
 import validator from 'validator';
 
 export function accountLogin(obj) {
-    return new Promise(function (dispatch) {
+    return function (dispatch) {
         thaxios({
             url: 'account/login',
             method: 'POST',
@@ -19,10 +19,13 @@ export function accountLogin(obj) {
             AsyncStorage.setItem('permission', JSON.stringify(permission));
             dispatch({
                 type: 'USER_LOGIN',
-                payload: res.Data
+                payload:{
+                    data: res.Data,
+                    permission: permission
+                }
             })
         });
-    });
+    }
 }
 
 export function getPermission() {
@@ -33,6 +36,19 @@ export function getPermission() {
                 type: 'GET_PERMISSION',
                 payload: permission
             })
+        })
+    }
+}
+
+export function clearPermission(){
+    return function (dispatch) {
+        AsyncStorage.removeItem('permission');
+        var permission = {
+            IsAuthened: false
+        };
+        dispatch({
+            type: 'REMOVE_PERMISSION',
+            payload: permission
         })
     }
 }

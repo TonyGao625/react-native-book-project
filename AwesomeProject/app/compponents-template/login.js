@@ -37,15 +37,10 @@ export default class Login extends Component {
       if (this.props.loginUser.userNameError || this.props.loginUser.passwordError) {
         return;
       }
-      const { navigate } = this.props.navigation;
-      accountLogin({
-        UsersModel: {
-          UserName: this.props.loginUser.UserName,
-          Password: this.props.loginUser.Password
-        }
-      }).then(function () {
-        navigate('Main');
-      })
+      this.props.dispatch(
+        accountLogin({
+        UsersModel: this.props.loginUser
+      }));
     });
   }
   render() {

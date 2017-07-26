@@ -12,24 +12,19 @@ import {
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
 import FormButton from './../components-cell/form-button'
-import { accountLogin, editUserName, editPassword } from '../actions/account.action';
+import { accountLogin, editUserName, editPassword,clearPermission } from '../actions/account.action';
 import Styles from './style/user-info'
 import FormCustomButton from './../components-cell/form-custom-botton'
 
 @connect((store) => {
   return {
+    permission: store.accountReducer.permission
   }
 })
+
 export default class UserDeatil extends Component {
-
-  componentWillMount() {
-
-  }
   _logout = () => {
-    AsyncStorage.removeItem('permission');
-    this.props.dispatch({
-      type: "REMOVE_PERMISSION"
-    })
+    this.props.dispatch(clearPermission());
     this.props.dispatch(editUserName(''));
     this.props.dispatch(editPassword(''));
   }

@@ -37,7 +37,6 @@ export default class BookAll extends Component {
     };
   }
   componentWillMount() {
-    this.props.dispatch(getPermission());
     this._search(this.props.permission.UserId);
   }
   componentWillReceiveProps(nextProps) {

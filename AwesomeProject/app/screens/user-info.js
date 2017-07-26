@@ -13,9 +13,6 @@ import { getPermission } from '../actions/account.action'
 })
 
 class HeadInfo extends Component{
-  componentWillMount() {
-    this.props.dispatch(getPermission());
-  }
   render(){
     return (
       <Text style={{paddingLeft:10}}>{this.props.permission.RealName}</Text>

@@ -7,19 +7,32 @@ import BookDetailScreen from './screens/book-detail-screen';
 import SearchScreen from './screens/book-search-screen';
 import { connect } from 'react-redux'
 import { getPermission } from './actions/account.action'
+
 @connect((store) => {
   return {
-    IsAuthened: store.accountReducer.permission ? store.accountReducer.permission.IsAuthened : store.accountReducer.permission,
+    permission: store.accountReducer.permission
   }
 })
 
 export default class Route extends Component {
   constructor(props) {
     super(props);
+    this.state={
+      isAuthened:false
+    };
+  }
+  componentWillMount(){
     this.props.dispatch(getPermission());
   }
+  componentWillReceiveProps(nextProps) {
+    if(this.props.permission.IsAuthened != nextProps.permission.IsAuthened){
+      this.setState({
+        isAuthened : nextProps.permission.IsAuthened
+      });
+    }
+  }
   render() {
-    const RouteItem = CreateRootNavigator(this.props.IsAuthened)
+    const RouteItem = CreateRootNavigator(this.state.isAuthened);
     return (
       <RouteItem />
     );
