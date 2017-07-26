@@ -98,20 +98,19 @@ export default class BookAll extends Component {
                 </TouchableOpacity>
               </View>
               <View style={Styles.bookContainer} >
-                <View style={{ paddingBottom: 6 }} >
-                    <Text style={{ fontWeight: "bold", fontStyle: "italic", fontSize: 15 }}>{val.BookName}</Text>
+                  <View style={Styles.titleView} >
+                    <Text style={Styles.titleText}>{val.BookName}</Text>
                   </View>
-                  <View style={{ paddingBottom: 6 }}>
+                  <View style={Styles.authorView}>
                     <Text>作者：{val.Author}</Text>
                   </View>
-              </View>
-              <View style={Styles.statusIcon} >
-                <TouchableOpacity onPress={() => this._collectBook(val)}>
-                  <Icon
-                    name="library-add"
-                    color={val.CanOrder ? 'black' : '#ddd'}
-                    size={25} />
-                </TouchableOpacity>
+                  <TouchableOpacity style={Styles.iconView}
+                  onPress={() => this._collectBook(val)}>
+                    <Icon
+                      name="library-add"
+                      color={val.CanOrder ? 'black' : '#ddd'}
+                      size={20} />
+                  </TouchableOpacity>
               </View>
             </View>
           })
