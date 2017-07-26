@@ -88,21 +88,18 @@ export default class BookAll extends Component {
           this.props.BookList.map((val) => {
             return <View style={Styles.itemContainer} >
               <View style={Styles.imageContainer} >
-                <TouchableOpacity onPress={() => this._showDetailBook(val.Id.val.CanOrder)}
+                <TouchableOpacity onPress={() => this._showDetailBook(val.Id, val.CanOrder)}
                   disabled={this.state.disable}>
                   <ResponsiveImage source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} initWidth="100" initHeight="100" />
                 </TouchableOpacity>
               </View>
               <View style={Styles.bookContainer} >
-                <TouchableOpacity onPress={() => this._showDetailBook(val.Id,val.CanOrder)}
-                  disabled={this.state.disable}>
-                  <View style={{ paddingBottom: 6 }} >
+                <View style={{ paddingBottom: 6 }} >
                     <Text style={{ fontWeight: "bold", fontStyle: "italic", fontSize: 15 }}>{val.BookName}</Text>
                   </View>
                   <View style={{ paddingBottom: 6 }}>
                     <Text>作者：{val.Author}</Text>
                   </View>
-                </TouchableOpacity>
               </View>
               <View style={Styles.statusIcon} >
                 <TouchableOpacity onPress={() => this._collectBook(val)}>
