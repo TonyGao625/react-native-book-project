@@ -21,6 +21,7 @@ import { getPermission } from '../actions/account.action'
 import Styles from './style/book-return'
 import { changeData } from '../actions/common.action'
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
+import BookNoData from './../components-cell/book-nodata'
 
 @connect((store) => {
     return {
@@ -106,25 +107,32 @@ export default class BookReturn extends Component {
                 <ScrollView>
                     <View style={Styles.container}>
                         {
-                            this.props.BookReturnListByUserId.map((val) => {
-                                return <View
-                                    key={val.Id}
-                                    style={Styles.item}>
-                                    <TouchableOpacity onPress={() => this._showDetailBook(val.BookId)}
-                                        style={Styles.titleView}
-                                        disabled={this.state.disable}>
-                                        <Text style={styles.title}>{val.BookName}</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => this._onCheck(val)}
-                                        style={Styles.statusIcon}>
-                                        <Icon
-                                            name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
-                                            color='black'
-                                            size={20} />
-                                    </TouchableOpacity>
-                                </View>
-                            })
-                        }
+                        this.props.BookReturnListByUserId.length>0?
+                        <View>
+                            {
+                                this.props.BookReturnListByUserId.map((val) => {
+                                    return <View
+                                        key={val.Id}
+                                        style={Styles.item}>
+                                        <TouchableOpacity onPress={() => this._showDetailBook(val.BookId)}
+                                            style={Styles.titleView}
+                                            disabled={this.state.disable}>
+                                            <Text style={styles.title}>{val.BookName}</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity onPress={() => this._onCheck(val)}
+                                            style={Styles.statusIcon}>
+                                            <Icon
+                                                name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
+                                                color='black'
+                                                size={20} />
+                                        </TouchableOpacity>
+                                    </View>
+                                })
+                            }
+                        </View>
+                        :
+                        <BookNoData />
+                        }   
                     </View>
                 </ScrollView>
                 <BookOperation

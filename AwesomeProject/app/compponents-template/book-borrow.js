@@ -20,6 +20,8 @@ import BookOperation from './../components-cell/book-operation'
 import { changeData } from '../actions/common.action'
 import Styles from './style/book-borrow'
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
+import BookNoData from './../components-cell/book-nodata'
+
 @connect((store) => {
   return {
     BookBorrowList: store.bookBorrowReducer.BookBorrowList,
@@ -137,24 +139,31 @@ export default class BookList extends Component {
         <ScrollView>
           <View style={Styles.container}>
             {
-              this.props.BookBorrowList.map((val) => {
-                return <View
-                  key={val.Id}
-                  style={Styles.item}>
-                  <TouchableOpacity onPress={() => this._showDetailBook(val.BookId, val.CanOrder)}
-                    style={Styles.titleView}
-                    disabled={this.state.disable}>
-                    <Text style={styles.title}>{val.BookName}</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => this._onCheck(val)}
-                    style={Styles.statusIcon}>
-                    <Icon
-                      name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
-                      color='black'
-                      size={20} />
-                  </TouchableOpacity>
-                </View>
-              })
+              this.props.BookBorrowList.length>0?
+              <View>
+                {
+                  this.props.BookBorrowList.map((val) => {
+                    return <View
+                      key={val.Id}
+                      style={Styles.item}>
+                      <TouchableOpacity onPress={() => this._showDetailBook(val.BookId, val.CanOrder)}
+                        style={Styles.titleView}
+                        disabled={this.state.disable}>
+                        <Text style={styles.title}>{val.BookName}</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity onPress={() => this._onCheck(val)}
+                        style={Styles.statusIcon}>
+                        <Icon
+                          name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
+                          color='black'
+                          size={20} />
+                      </TouchableOpacity>
+                    </View>
+                  })
+                }
+              </View>
+            :
+            <BookNoData />
             }
           </View>
         </ScrollView>

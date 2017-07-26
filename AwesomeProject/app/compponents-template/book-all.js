@@ -19,6 +19,8 @@ import { getPermission } from '../actions/account.action'
 import Styles from './style/book-all'
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 import ResponsiveImage from 'react-native-responsive-image';
+import BookNoData from './../components-cell/book-nodata'
+
 @connect((store) => {
   return {
     BookList: store.bookReducer.BookList,
@@ -84,7 +86,9 @@ export default class BookAll extends Component {
   render() {
     return (
       <View>
-        {
+        {this.props.BookList.length>0?
+        <View>
+          {
           this.props.BookList.map((val) => {
             return <View style={Styles.itemContainer} >
               <View style={Styles.imageContainer} >
@@ -112,6 +116,9 @@ export default class BookAll extends Component {
             </View>
           })
         }
+        </View>
+        :
+        <BookNoData />}
       </View>
     );
   }
