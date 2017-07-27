@@ -43,5 +43,6 @@ namespace Book.EntityModel
         public DateTime? ReturnDate { get; set; }
         public bool CanOrder { get; set; }
         public string CategoryName { get; set; }
+        public string ImagePath { get; set; }
     }
 }

@@ -70,7 +70,8 @@ namespace Book.Business.ConvertModel
                 BorrowDate=book.BorrowDate,
                 IsReturn=book.IsReturn,
                 ReturnDate=book.ReturnDate,
-                CanOrder = book.CanOrder
+                CanOrder = book.CanOrder,
+                ImagePath = book.ImagePath
             };
         }
     }

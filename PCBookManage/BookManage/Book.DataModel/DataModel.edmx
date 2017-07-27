@@ -91,6 +91,9 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
           <Property Name="CanOrder" Type="bit" Nullable="false" />
+          <Property Name="IsCover" Type="bit" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“BookProject.dbo.V_BookBorrow”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -235,7 +238,10 @@
     [V_BookAll].[ReturnDate] AS [ReturnDate], 
     [V_BookAll].[UserName] AS [UserName], 
     [V_BookAll].[CreateBy] AS [CreateBy], 
-    [V_BookAll].[CanOrder] AS [CanOrder]
+    [V_BookAll].[CanOrder] AS [CanOrder], 
+    [V_BookAll].[IsCover] AS [IsCover], 
+    [V_BookAll].[SortOrder] AS [SortOrder], 
+    [V_BookAll].[ImagePath] AS [ImagePath]
     FROM [dbo].[V_BookAll] AS [V_BookAll]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_BookBorrow" EntityType="Self.V_BookBorrow" store:Type="Views" store:Schema="dbo">
@@ -435,6 +441,9 @@
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CanOrder" Type="Boolean" Nullable="false" />
+          <Property Name="IsCover" Type="Boolean" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="ImagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="V_BookBorrow">
           <Key>
@@ -631,6 +640,9 @@
           <EntitySetMapping Name="V_BookAll">
             <EntityTypeMapping TypeName="BookProjectModel.V_BookAll">
               <MappingFragment StoreEntitySet="V_BookAll">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="IsCover" ColumnName="IsCover" />
                 <ScalarProperty Name="CanOrder" ColumnName="CanOrder" />
                 <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />

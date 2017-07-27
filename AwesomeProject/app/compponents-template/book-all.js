@@ -20,6 +20,7 @@ import Styles from './style/book-all'
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 import ResponsiveImage from 'react-native-responsive-image';
 import BookNoData from './../components-cell/book-nodata'
+import Config from '../config/config'
 
 @connect((store) => {
   return {
@@ -84,6 +85,7 @@ export default class BookAll extends Component {
     navigate('BookDetail', { id: id,CanOrder:CanOrder})
   }
   render() {
+    
     return (
       <View>
         {this.props.BookList.length>0?
@@ -94,7 +96,7 @@ export default class BookAll extends Component {
               <View style={Styles.imageContainer} >
                 <TouchableOpacity onPress={() => this._showDetailBook(val.Id, val.CanOrder)}
                   disabled={this.state.disable}>
-                  <ResponsiveImage source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} initWidth="100" initHeight="100" />
+                  <ResponsiveImage source={{ uri: Config.APIUrl + val.ImagePath }} initWidth="100" initHeight="100" />
                 </TouchableOpacity>
               </View>
               <View style={Styles.bookContainer} >

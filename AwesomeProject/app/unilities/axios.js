@@ -6,13 +6,14 @@ import {
 } from 'react-native';
 import loading from 'fs-loading'
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
+import Config from '../config/config'
+
 export default (obj) => {
     loading.show()
     var p = new Promise((resolve, reject) => {
         axios({
             url: obj.url,
-            //baseURL: 'http://192.168.1.116:8001/api/',
-            baseURL: 'http://192.168.0.101:8001/api/',
+            baseURL: Config.APIUrl +'/api/',
             method: obj.method ? obj.method : 'GET',
             params: obj.params,
             data: obj.data
