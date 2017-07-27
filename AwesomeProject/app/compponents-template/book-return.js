@@ -23,6 +23,7 @@ import { changeData } from '../actions/common.action'
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 import BookNoData from './../components-cell/book-nodata'
 import ResponsiveImage from 'react-native-responsive-image';
+import moment from 'moment';
 
 @connect((store) => {
     return {
@@ -126,6 +127,9 @@ export default class BookReturn extends Component {
                                             </View>
                                             <View style={Styles.authorView}>
                                                 <Text>作者：{val.Author}</Text>
+                                            </View>
+                                            <View style={Styles.authorView}>
+                                                <Text>预定还书日期：{moment(val.NeedReturnDate).format('YYYY-MM-DD')}</Text>
                                             </View>
                                             <TouchableOpacity onPress={() => this._onCheck(val)}
                                                 style={Styles.iconView}>
