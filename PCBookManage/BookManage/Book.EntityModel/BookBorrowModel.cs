@@ -14,6 +14,8 @@ namespace Book.EntityModel
         public DateTime? BorrowDate { get; set; }
         public bool IsReturn { get; set; }
         public DateTime? ReturnDate { get; set; }
+        public DateTime? NeedReturnDate { get; set; }
+        public int IsOverTime { get; set; }
     }
 
     public partial class BookBorrowModel

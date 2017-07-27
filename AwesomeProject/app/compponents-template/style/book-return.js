@@ -4,31 +4,29 @@ const Styles = StyleSheet.create({
     return: {
         flex: 1
     },
-    item: {
-        flex: 1,
-        flexDirection: 'row',
-        borderBottomWidth: 1,
-        borderBottomColor: '#ddd',
+    itemContainer: {
+    flex: 1, flexDirection: "row", paddingBottom: 10, paddingTop: 10, borderBottomColor: "lightgrey", borderBottomWidth: 1
     },
-    titleView: {
-        paddingTop: 10,
-        paddingBottom: 10,
-        paddingLeft: 10,
-        width: '90%'
+    imageContainer:{
+    justifyContent: 'center', alignItems: "center",  flex: 2
     },
-    title: {
-        marginRight: 80
+    bookContainer: {
+    paddingRight:10, flex: 5
     },
-    statusIcon: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        width: 200,
-        paddingTop: 10,
-        paddingRight: 10
+    titleView:{
+        paddingBottom: 2
     },
-    icon: {
-        marginRight: 10
+    titleText:{
+        fontWeight: "bold", fontStyle: "italic", fontSize: 15
+    },
+    authorView:{
+        paddingBottom: 5
+    },
+    iconView:{
+        position:'absolute',
+        bottom:0,
+        flex:1,
+        flexDirection: "row"
     }
 });
 

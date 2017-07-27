@@ -15,6 +15,7 @@
           <Property Name="BorrowDate" Type="datetime" />
           <Property Name="IsReturn" Type="bit" Nullable="false" />
           <Property Name="ReturnDate" Type="datetime" />
+          <Property Name="NeedReturnDate" Type="datetime" />
         </EntityType>
         <EntityType Name="BookCategory">
           <Key>
@@ -68,8 +69,8 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'BookProject.dbo.V_BookAll' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“BookProject.dbo.V_BookAll”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_BookAll">
           <Key>
             <PropertyRef Name="Id" />
@@ -91,8 +92,8 @@ warning 6002: The table/view 'BookProject.dbo.V_BookAll' does not have a primary
           <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
           <Property Name="CanOrder" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'BookProject.dbo.V_BookBorrow' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“BookProject.dbo.V_BookBorrow”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_BookBorrow">
           <Key>
             <PropertyRef Name="Id" />
@@ -115,9 +116,10 @@ warning 6002: The table/view 'BookProject.dbo.V_BookBorrow' does not have a prim
           <Property Name="Remark" Type="nvarchar(max)" />
           <Property Name="CreateDate" Type="datetime" />
           <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="NeedReturnDate" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“BookProject.dbo.V_BookCollection”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_BookCollection">
           <Key>
             <PropertyRef Name="Id" />
@@ -252,7 +254,8 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
     [V_BookBorrow].[CategoryId] AS [CategoryId], 
     [V_BookBorrow].[Remark] AS [Remark], 
     [V_BookBorrow].[CreateDate] AS [CreateDate], 
-    [V_BookBorrow].[CreateBy] AS [CreateBy]
+    [V_BookBorrow].[CreateBy] AS [CreateBy], 
+    [V_BookBorrow].[NeedReturnDate] AS [NeedReturnDate]
     FROM [dbo].[V_BookBorrow] AS [V_BookBorrow]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_BookCollection" EntityType="Self.V_BookCollection" store:Type="Views" store:Schema="dbo">
@@ -348,6 +351,7 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
           <Property Name="ReturnDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="BookInfo" Relationship="BookProjectModel.FK_BookBorrow_Book" FromRole="BookBorrow" ToRole="BookInfo" />
           <NavigationProperty Name="User" Relationship="BookProjectModel.FK_BookBorrow_Users" FromRole="BookBorrow" ToRole="User" />
+          <Property Name="NeedReturnDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="BookCategory">
           <Key>
@@ -454,6 +458,7 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
           <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
           <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NeedReturnDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="V_BookCollection">
           <Key>
@@ -556,6 +561,7 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
           <EntitySetMapping Name="BookBorrows">
             <EntityTypeMapping TypeName="BookProjectModel.BookBorrow">
               <MappingFragment StoreEntitySet="BookBorrow">
+                <ScalarProperty Name="NeedReturnDate" ColumnName="NeedReturnDate" />
                 <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
                 <ScalarProperty Name="IsReturn" ColumnName="IsReturn" />
                 <ScalarProperty Name="BorrowDate" ColumnName="BorrowDate" />
@@ -646,6 +652,7 @@ warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a 
           <EntitySetMapping Name="V_BookBorrow">
             <EntityTypeMapping TypeName="BookProjectModel.V_BookBorrow">
               <MappingFragment StoreEntitySet="V_BookBorrow">
+                <ScalarProperty Name="NeedReturnDate" ColumnName="NeedReturnDate" />
                 <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />

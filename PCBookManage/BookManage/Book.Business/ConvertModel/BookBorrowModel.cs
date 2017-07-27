@@ -43,7 +43,7 @@ namespace Book.Business.ConvertModel
 
         public static BookBorrowModel ToBorrowModel(this V_BookBorrow borrow)
         {
-            return new BookBorrowModel()
+            var result = new BookBorrowModel()
             {
                 Id = borrow.Id,
                 BookId = borrow.BookId,
@@ -58,8 +58,15 @@ namespace Book.Business.ConvertModel
                 CategoryId = borrow.CategoryId,
                 Remark = borrow.Remark,
                 CreateDate = borrow.CreateDate,
-                CreateBy = borrow.CreateBy
+                CreateBy = borrow.CreateBy,
+                NeedReturnDate = borrow.NeedReturnDate,
+                IsOverTime= 0
             };
+            if (borrow.BorrowDate != null && borrow.NeedReturnDate != null)
+            {
+                result.IsOverTime = DateTime.Compare((DateTime) borrow.BorrowDate, (DateTime) borrow.NeedReturnDate);
+            }
+            return result;
         }
     }
 }

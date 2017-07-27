@@ -22,6 +22,7 @@ import Styles from './style/book-return'
 import { changeData } from '../actions/common.action'
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 import BookNoData from './../components-cell/book-nodata'
+import ResponsiveImage from 'react-native-responsive-image';
 
 @connect((store) => {
     return {
@@ -95,10 +96,10 @@ export default class BookReturn extends Component {
         this.setState({ disable: true });
         setTimeout(() => { this.setState({ disable: false }) }, 2000)
     }
-    _showDetailBook = (id) => {
+    _showDetailBook = (id,CanOrder) => {
         this._preventClickTwice();
         const { navigate } = this.props.navigation;
-        navigate('BookDetail', { id: id })
+        navigate('BookDetail', { id: id,CanOrder:CanOrder})
     }
     render() {
         return (
@@ -112,20 +113,37 @@ export default class BookReturn extends Component {
                                 this.props.BookReturnListByUserId.map((val) => {
                                     return <View
                                         key={val.Id}
-                                        style={Styles.item}>
-                                        <TouchableOpacity onPress={() => this._showDetailBook(val.BookId)}
-                                            style={Styles.titleView}
-                                            disabled={this.state.disable}>
-                                            <Text style={styles.title}>{val.BookName}</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity onPress={() => this._onCheck(val)}
-                                            style={Styles.statusIcon}>
-                                            <Icon
-                                                name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
-                                                color='black'
-                                                size={20} />
-                                        </TouchableOpacity>
-                                    </View>
+                                        style={Styles.itemContainer}>
+                                        <View style={Styles.imageContainer} >
+                                            <TouchableOpacity onPress={() => this._showDetailBook(val.BookId, false)}
+                                                disabled={this.state.disable}>
+                                                <ResponsiveImage source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} initWidth="100" initHeight="100" />
+                                            </TouchableOpacity>
+                                        </View>
+                                        <View style={Styles.bookContainer} >
+                                            <View style={Styles.titleView} >
+                                                <Text style={Styles.titleText}>{val.BookName}</Text>
+                                            </View>
+                                            <View style={Styles.authorView}>
+                                                <Text>作者：{val.Author}</Text>
+                                            </View>
+                                            <TouchableOpacity onPress={() => this._onCheck(val)}
+                                                style={Styles.iconView}>
+                                                <Icon
+                                                    name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
+                                                    color='black'
+                                                    size={20} />
+                                                {val.IsOverTime>=0? <Icon
+                                                    name='warning'
+                                                    color='red'
+                                                    size={20} />
+                                                    :
+                                                    <Text></Text>
+                                                }
+                                               
+                                            </TouchableOpacity>
+                                            </View>
+                                        </View>
                                 })
                             }
                         </View>
