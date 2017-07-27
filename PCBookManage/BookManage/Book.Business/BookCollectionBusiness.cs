@@ -98,7 +98,8 @@ namespace Book.Business
                             {
                                 BookId = item.BookId,
                                 UserId = userId,
-                                BorrowDate = borrowDate
+                                BorrowDate = borrowDate,
+                                NeedReturnDate = borrowDate.AddMonths(1) //1 month to return
                             };
                             //add book to borrow list
                             await _bookBorrowAgent.AddOrUpdate(borrow);
