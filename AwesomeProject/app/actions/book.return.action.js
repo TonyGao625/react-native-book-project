@@ -13,7 +13,10 @@ export function GetBookBorrowListByUserId(obj) {
             });
             dispatch({
                 type: 'GET_BOOK_BORROW_LISTBYUSERID',
-                payload: res.Datas
+                payload: {
+                    Datas: res.Datas,
+                    Total: res.Total
+                }
             })
         });
     }

@@ -1,11 +1,13 @@
 export default function reducer(state = {
     BookReturnListByUserId: [],
+    OverTimeCount: 0,
 }, action) {
     switch (action.type) {
         case 'GET_BOOK_BORROW_LISTBYUSERID':
             return {
                 ...state,
-                BookReturnListByUserId: action.payload
+                BookReturnListByUserId: action.payload.Datas,
+                OverTimeCount: action.payload.Total
             }
 
         case 'SELECT_ALL_BOOK_LIST':

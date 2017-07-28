@@ -97,7 +97,7 @@ export default class BookList extends Component {
     }
     BookBorrowList(data).then((res) => {
       if (res.result.Status == 1) {
-        Toast.success('借阅成功', 1);
+        Toast.success('借阅成功,请于30天内归还此书', 1);
         this.props.dispatch(changeData());
         this._cancelBorrow();
       } else {

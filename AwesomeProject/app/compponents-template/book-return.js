@@ -131,7 +131,7 @@ export default class BookReturn extends Component {
                                             </View>
                                             <View style={Styles.authorView}>
                                                 <Text>预定还书日期：{moment(val.NeedReturnDate).format('YYYY-MM-DD')}</Text>
-                                                {val.IsOverTime>=0? <Icon
+                                                {val.IsOverTime>0? <Icon
                                                     name='warning'
                                                     color='red'
                                                     size={20} />
