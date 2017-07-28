@@ -150,7 +150,7 @@ export default class BookList extends Component {
                         style={Styles.item}>
                           <View style={Styles.imageContainer} >
                             <TouchableOpacity onPress={() => this._showDetailBook(val.BookId, val.CanOrder)}   disabled={this.state.disable}>
-                              <ResponsiveImage source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} initWidth="100" initHeight="100" />
+                              <ResponsiveImage source={{ uri: Config.APIUrl + val.ImagePath }} initWidth="100" initHeight="100" />
                             </TouchableOpacity>
                           </View>
                           <View style={Styles.bookContainer} >

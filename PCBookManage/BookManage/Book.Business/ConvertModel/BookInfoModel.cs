@@ -47,6 +47,7 @@ namespace Book.Business.ConvertModel
             }
             if (IsLoaded(book, entity => entity.BookImages))
             {
+                result.ImagePath = book.BookImages.FirstOrDefault(x => x.IsCover == true)?.ImagePath;
                 result.BookImageList = book.BookImages.Select(x => x.ToBookImageModel()).ToList();
             }
             return result;

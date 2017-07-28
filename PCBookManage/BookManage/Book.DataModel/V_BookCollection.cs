@@ -27,5 +27,6 @@ namespace Book.DataModel
         public int UserId { get; set; }
         public string UserName { get; set; }
         public Nullable<System.DateTime> CollectionDate { get; set; }
+        public string ImagePath { get; set; }
     }
 }

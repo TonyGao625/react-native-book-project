@@ -32,6 +32,7 @@ import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-v
 import Styles from './style/book-detail-display'
 import themes from './../src/themes/themes'
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
+import Config from '../config/config'
 
 @connect((store) => {
     return {
@@ -61,7 +62,7 @@ class LightboxView extends Component {
                             <Image
                                 style={Styles.contain}
                                 resizeMode="contain"
-                                source={{ uri: 'https://www.yayomg.com/wp-content/uploads/2014/04/yayomg-pig-wearing-party-hat.jpg' }}
+                                source={{ uri: Config.APIUrl + BookDetail.ImagePath }}
                             />
                         </Lightbox>
                     </View>

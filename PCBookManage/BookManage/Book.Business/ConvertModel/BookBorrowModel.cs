@@ -60,7 +60,8 @@ namespace Book.Business.ConvertModel
                 CreateDate = borrow.CreateDate,
                 CreateBy = borrow.CreateBy,
                 NeedReturnDate = borrow.NeedReturnDate,
-                IsOverTime= 0
+                IsOverTime= 0,
+                ImagePath = borrow.ImagePath
             };
             if (borrow.BorrowDate != null && borrow.NeedReturnDate != null)
             {

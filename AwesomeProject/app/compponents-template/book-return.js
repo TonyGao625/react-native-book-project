@@ -24,6 +24,7 @@ import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 import BookNoData from './../components-cell/book-nodata'
 import ResponsiveImage from 'react-native-responsive-image';
 import moment from 'moment';
+import Config from '../config/config'
 
 @connect((store) => {
     return {
@@ -118,7 +119,7 @@ export default class BookReturn extends Component {
                                         <View style={Styles.imageContainer} >
                                             <TouchableOpacity onPress={() => this._showDetailBook(val.BookId, false)}
                                                 disabled={this.state.disable}>
-                                                <ResponsiveImage source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} initWidth="100" initHeight="100" />
+                                                <ResponsiveImage source={{ uri: Config.APIUrl + val.ImagePath }} initWidth="100" initHeight="100" />
                                             </TouchableOpacity>
                                         </View>
                                         <View style={Styles.bookContainer} >
@@ -130,36 +131,21 @@ export default class BookReturn extends Component {
                                             </View>
                                             <View style={Styles.authorView}>
                                                 <Text>预定还书日期：{moment(val.NeedReturnDate).format('YYYY-MM-DD')}</Text>
+                                                {val.IsOverTime>=0? <Icon
+                                                    name='warning'
+                                                    color='red'
+                                                    size={20} />
+                                                    :
+                                                    <Text></Text>
+                                                }
+                                            </View>                                       
                                             </View>
-                                            {/* <TouchableOpacity onPress={() => this._onCheck(val)}
-                                                style={Styles.iconView}>
+                                             <View style={Styles.IconContainer} >
+                                                <TouchableOpacity onPress={() => this._onCheck(val)}>
                                                 <Icon
                                                     name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
                                                     color='black'
                                                     size={20} />
-                                                {val.IsOverTime>=0? <Icon
-                                                    name='warning'
-                                                    color='red'
-                                                    size={20} />
-                                                    :
-                                                    <Text></Text>
-                                                }
-                                               
-                                            </TouchableOpacity> */}                                           
-                                            </View>
-                                             <View style={Styles.IconContainer} >
-                                                <TouchableOpacity onPress={() => this._onCheck(val)}>
-                                               <Icon
-                                                    name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
-                                                    color='black'
-                                                    size={20} />
-                                                {val.IsOverTime>=0? <Icon
-                                                    name='warning'
-                                                    color='red'
-                                                    size={20} />
-                                                    :
-                                                    <Text></Text>
-                                                }
                                                 </TouchableOpacity> 
                                             </View>
                                         </View>

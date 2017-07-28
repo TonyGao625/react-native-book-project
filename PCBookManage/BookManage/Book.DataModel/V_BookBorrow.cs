@@ -30,5 +30,6 @@ namespace Book.DataModel
         public Nullable<System.DateTime> CreateDate { get; set; }
         public string CreateBy { get; set; }
         public Nullable<System.DateTime> NeedReturnDate { get; set; }
+        public string ImagePath { get; set; }
     }
 }
