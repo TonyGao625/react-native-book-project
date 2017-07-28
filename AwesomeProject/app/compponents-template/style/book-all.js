@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const Styles = StyleSheet.create({
   itemContainer: {
-   flex: 1, flexDirection: "row", paddingBottom: 10, paddingTop: 10, borderBottomColor: "lightgrey", borderBottomWidth: 1
+   flex: 1, flexDirection: "row", paddingBottom: 10, paddingTop: 10, borderBottomColor: "lightgrey", borderBottomWidth: 1,
   },
   imageContainer:{
    justifyContent: 'center', alignItems: "center",  flex: 2,
@@ -12,6 +12,10 @@ const Styles = StyleSheet.create({
   },
   bookContainer: {
    paddingRight:10, flex: 5
+  },
+  statusIcon:{
+    flex:1,
+    justifyContent:"center"
   },
   titleView:{
     paddingBottom: 2

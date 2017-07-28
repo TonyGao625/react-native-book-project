@@ -72,8 +72,8 @@ export default class BookAll extends Component {
       })
       this.setState({
         dataSource: dataSource,
-        NoMoreData:false,
-        currentPage:1
+        NoMoreData: false,
+        currentPage: 1
       })
     });
   }
@@ -152,15 +152,12 @@ export default class BookAll extends Component {
         </TouchableOpacity>
       </View>
       <View style={Styles.bookContainer} >
-        <TouchableOpacity onPress={this._showDetailBook.bind(this, rowData.Id, rowData.CanOrder)}
-          disabled={this.state.disable}>
-          <View style={{ paddingBottom: 6 }} >
-            <Text style={{ fontWeight: "bold", fontStyle: "italic", fontSize: 15 }}>{rowData.BookName}</Text>
-          </View>
-          <View style={{ paddingBottom: 6 }}>
-            <Text>作者：{rowData.Author}</Text>
-          </View>
-        </TouchableOpacity>
+        <View style={{ paddingBottom: 6 }} >
+          <Text style={{ fontWeight: "bold", fontStyle: "italic", fontSize: 15 }}>{rowData.BookName}</Text>
+        </View>
+        <View style={{ paddingBottom: 6 }}>
+          <Text>作者：{rowData.Author}</Text>
+        </View>
       </View>
       <View style={Styles.statusIcon} >
         <TouchableOpacity onPress={this._collectBook.bind(this, rowData)}>

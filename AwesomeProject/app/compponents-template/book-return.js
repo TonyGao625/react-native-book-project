@@ -131,7 +131,7 @@ export default class BookReturn extends Component {
                                             <View style={Styles.authorView}>
                                                 <Text>预定还书日期：{moment(val.NeedReturnDate).format('YYYY-MM-DD')}</Text>
                                             </View>
-                                            <TouchableOpacity onPress={() => this._onCheck(val)}
+                                            {/* <TouchableOpacity onPress={() => this._onCheck(val)}
                                                 style={Styles.iconView}>
                                                 <Icon
                                                     name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
@@ -145,7 +145,22 @@ export default class BookReturn extends Component {
                                                     <Text></Text>
                                                 }
                                                
-                                            </TouchableOpacity>
+                                            </TouchableOpacity> */}                                           
+                                            </View>
+                                             <View style={Styles.IconContainer} >
+                                                <TouchableOpacity onPress={() => this._onCheck(val)}>
+                                               <Icon
+                                                    name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
+                                                    color='black'
+                                                    size={20} />
+                                                {val.IsOverTime>=0? <Icon
+                                                    name='warning'
+                                                    color='red'
+                                                    size={20} />
+                                                    :
+                                                    <Text></Text>
+                                                }
+                                                </TouchableOpacity> 
                                             </View>
                                         </View>
                                 })
