@@ -21,6 +21,9 @@ import { changeData } from '../actions/common.action'
 import Styles from './style/book-borrow'
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 import BookNoData from './../components-cell/book-nodata'
+import Config from '../config/config'
+import ResponsiveImage from 'react-native-responsive-image';
+
 
 @connect((store) => {
   return {
@@ -94,7 +97,7 @@ export default class BookList extends Component {
     }
     BookBorrowList(data).then((res) => {
       if (res.result.Status == 1) {
-        Alert.alert('', '借阅成功', [], { cancelable: true });
+        Toast.success('借阅成功', 1);
         this.props.dispatch(changeData());
         this._cancelBorrow();
       } else {
@@ -102,7 +105,7 @@ export default class BookList extends Component {
           res.result.Message,
           [
             { text: '取消', onPress: this._cancelBorrow },
-            { text: '继续', onPress: ()=>this._sureBorow(data) },
+            { text: '继续', onPress: () => this._sureBorow(data) },
           ],
           { cancelable: false }
         )
@@ -138,31 +141,40 @@ export default class BookList extends Component {
         <ScrollView>
           <View style={Styles.container}>
             {
-              this.props.BookBorrowList.length>0?
-              <View>
-                {
-                  this.props.BookBorrowList.map((val) => {
-                    return <View
-                      key={val.Id}
-                      style={Styles.item}>
-                      <TouchableOpacity onPress={() => this._showDetailBook(val.BookId, val.CanOrder)}
-                        style={Styles.titleView}
-                        disabled={this.state.disable}>
-                        <Text style={styles.title}>{val.BookName}</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={() => this._onCheck(val)}
-                        style={Styles.statusIcon}>
-                        <Icon
-                          name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
-                          color='black'
-                          size={20} />
-                      </TouchableOpacity>
-                    </View>
-                  })
-                }
-              </View>
-            :
-            <BookNoData />
+              this.props.BookBorrowList.length > 0 ?
+                <View>
+                  {
+                    this.props.BookBorrowList.map((val) => {
+                      return <View
+                        key={val.Id}
+                        style={Styles.item}>
+                          <View style={Styles.imageContainer} >
+                            <TouchableOpacity onPress={() => this._showDetailBook(val.BookId, val.CanOrder)}   disabled={this.state.disable}>
+                              <ResponsiveImage source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} initWidth="100" initHeight="100" />
+                            </TouchableOpacity>
+                          </View>
+                          <View style={Styles.bookContainer} >
+                            <View style={{ paddingBottom: 6 }} >
+                              <Text style={{ fontWeight: "bold", fontStyle: "italic", fontSize: 15 }}>{val.BookName}</Text>
+                            </View>
+                            <View style={{ paddingBottom: 6 }}>
+                              <Text>作者：{val.Author}</Text>
+                            </View>
+                          </View>
+                          <View style={Styles.statusIcon} >
+                             <TouchableOpacity onPress={() => this._onCheck(val)}>
+                              <Icon
+                               name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
+                                 color='black'
+                                size={20} />
+                            </TouchableOpacity> 
+                          </View>
+                        </View>
+                    })
+                  }
+                </View>
+                :
+                <BookNoData />
             }
           </View>
         </ScrollView>
