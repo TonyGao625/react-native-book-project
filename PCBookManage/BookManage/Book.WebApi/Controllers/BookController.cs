@@ -24,10 +24,11 @@ namespace Book.WebApi.Controllers
         [HttpPost]
         public async Task<MuliResult<BookInfoModel>> GetBookList(JObject paramters)
         {
+            var page = paramters["Page"].ToObject<int>();
             var userId = paramters["UserId"].ToObject<int>();
             var bookName = paramters["BookName"].ToObject<string>();
-            var categoryId= paramters["CategoryId"].ToObject<int>();
-            return await _bookBusiness.GetBookList(userId, bookName, categoryId);
+            var categoryId = paramters["CategoryId"].ToObject<int>();
+            return await _bookBusiness.GetBookList(userId, bookName, categoryId, page);
         }
 
         [Route("addOrUpdate")]
@@ -64,7 +65,7 @@ namespace Book.WebApi.Controllers
         [HttpPost]
         public async Task<Operate> BookReturn(JObject paramters)
         {
-            var bookReturnModelList= paramters["BookReturnModelList"].ToObject<List<BookBorrowModel>>();
+            var bookReturnModelList = paramters["BookReturnModelList"].ToObject<List<BookBorrowModel>>();
             return await _bookBusiness.BookReturn(bookReturnModelList);
         }
 

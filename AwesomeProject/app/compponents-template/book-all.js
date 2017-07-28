@@ -6,7 +6,9 @@ import {
   AsyncStorage,
   TouchableHighlight,
   Alert,
-  TouchableOpacity
+  TouchableOpacity,
+  RefreshControl,
+  ActivityIndicator
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
@@ -25,6 +27,7 @@ import Config from '../config/config'
 @connect((store) => {
   return {
     BookList: store.bookReducer.BookList,
+    BooKlistTotalPage: store.bookReducer.BooKlistTotalPage,
     Flag: store.commonReducer.Flag,
     permission: store.accountReducer.permission
   }
@@ -33,7 +36,12 @@ import Config from '../config/config'
 export default class BookAll extends Component {
   constructor(props) {
     super(props);
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
+      dataSource: ds.cloneWithRows(['row 1', 'row 2']),
+      isRefreshing: false,
+      currentPage: 1,
+      NoMoreData: false,
       disable: false
     };
   }
@@ -45,15 +53,29 @@ export default class BookAll extends Component {
       this._search(this.props.permission.UserId);
     }
   }
-  _search = (userId) => {
+  _search = (userId, page) => {
     var BookName = storage.session('BookName');
     var CategoryId = storage.session('CategoryId');
     var data = {
-      UserId:userId,
+      UserId: userId,
       BookName: BookName == null ? "" : BookName,
-      CategoryId: CategoryId == null ? 0 : CategoryId
+      CategoryId: CategoryId == null ? 0 : CategoryId,
+      Page: page ? page : 1
     };
-    this.props.dispatch(getBookList(data));
+    getBookList(data).then((res) => {
+      const ds = new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 });
+      var dataSource = ds.cloneWithRows(res.payload);
+      this.props.dispatch({
+        type: 'GET_BOOK_LIST',
+        payload: res.payload,
+        pageTotal: res.pageTotal
+      })
+      this.setState({
+        dataSource: dataSource,
+        NoMoreData:false,
+        currentPage:1
+      })
+    });
   }
   _addBook = () => {
     const { navigate } = this.props.navigation;
@@ -79,48 +101,110 @@ export default class BookAll extends Component {
     this.setState({ disable: true });
     setTimeout(() => { this.setState({ disable: false }) }, 1000)
   }
-  _showDetailBook = (id,CanOrder) => {
+  _showDetailBook = (id, CanOrder) => {
     this._preventClickTwice();
     const { navigate } = this.props.navigation;
-    navigate('BookDetail', { id: id,CanOrder:CanOrder})
+    navigate('BookDetail', { id: id, CanOrder: CanOrder })
+  }
+  _onRefresh = () => {
+    this._search(this.props.permission.UserId);
+  }
+  _onEndReached = () => {
+    if (this.state.currentPage < this.props.BooKlistTotalPage - 1) {
+      this.setState({
+        currentPage: this.state.currentPage + 1
+      });
+      let page;
+      if (this.state.currentPage === 1) {
+        page = 2;
+        this.setState({ currentPage: 2 })
+      } else {
+        page = this.state.currentPage + 1
+      }
+      var BookName = storage.session('BookName');
+      var CategoryId = storage.session('CategoryId');
+      var data = {
+        UserId: this.props.permission.UserId,
+        BookName: BookName == null ? "" : BookName,
+        CategoryId: CategoryId == null ? 0 : CategoryId,
+        Page: page
+      };
+      getBookList(data).then((res) => {
+        const data = this.props.BookList;
+        const newData = res.payload;
+        newData.map((item, index) => data.push(item));
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(this.props.BookList)
+        });
+      });
+    } else {
+      this.setState({
+        NoMoreData: true
+      })
+    }
+  }
+  _renderRow(rowData) {
+    return <View style={Styles.itemContainer} >
+      <View style={Styles.imageContainer} >
+        <TouchableOpacity onPress={this._showDetailBook.bind(this, rowData.Id, rowData.CanOrder)}
+          disabled={this.state.disable}>
+          <ResponsiveImage source={{ uri: Config.APIUrl + rowData.ImagePath }} initWidth="100" initHeight="100" />
+        </TouchableOpacity>
+      </View>
+      <View style={Styles.bookContainer} >
+        <TouchableOpacity onPress={this._showDetailBook.bind(this, rowData.Id, rowData.CanOrder)}
+          disabled={this.state.disable}>
+          <View style={{ paddingBottom: 6 }} >
+            <Text style={{ fontWeight: "bold", fontStyle: "italic", fontSize: 15 }}>{rowData.BookName}</Text>
+          </View>
+          <View style={{ paddingBottom: 6 }}>
+            <Text>作者：{rowData.Author}</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      <View style={Styles.statusIcon} >
+        <TouchableOpacity onPress={this._collectBook.bind(this, rowData)}>
+          <Icon
+            name="library-add"
+            color={rowData.CanOrder ? 'black' : '#ddd'}
+            size={25} />
+        </TouchableOpacity>
+      </View>
+    </View>
   }
   render() {
-    
+
     return (
-      <View>
-        {this.props.BookList.length>0?
-        <View>
-          {
-          this.props.BookList.map((val) => {
-            return <View style={Styles.itemContainer} >
-              <View style={Styles.imageContainer} >
-                <TouchableOpacity onPress={() => this._showDetailBook(val.Id, val.CanOrder)}
-                  disabled={this.state.disable}>
-                  <ResponsiveImage source={{ uri: Config.APIUrl + val.ImagePath }} initWidth="100" initHeight="100" />
-                </TouchableOpacity>
-              </View>
-              <View style={Styles.bookContainer} >
-                  <View style={Styles.titleView} >
-                    <Text style={Styles.titleText}>{val.BookName}</Text>
-                  </View>
-                  <View style={Styles.authorView}>
-                    <Text>作者：{val.Author}</Text>
-                  </View>
-                  <TouchableOpacity style={Styles.iconView}
-                  onPress={() => this._collectBook(val)}>
-                    <Icon
-                      name="library-add"
-                      color={val.CanOrder ? 'black' : '#ddd'}
-                      size={20} />
-                  </TouchableOpacity>
-              </View>
-            </View>
-          })
+      <ListView
+        style={{ flex: 1 }}
+        dataSource={this.state.dataSource}
+        renderRow={this._renderRow.bind(this)}
+        renderFooter={() => <View style={{ height: 50 }}>{this.state.NoMoreData ?
+          <View style={{ flex: 1, flexDirection: "row", justifyContent: "center", alignItems: 'center' }} ><Text style={{ color: 'red', fontSize: 17 }} >没有图书啦。。。</Text></View> : <ProgressBar />}</View>}
+        onEndReached={this._onEndReached}
+        onEndReachedThreshold={10}
+        enableEmptySections={true}
+        pageSize={10}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.isRefreshing}
+            onRefresh={this._onRefresh}
+            colors={['#EA0000']}
+            tintColor="white"
+            title="loading..."
+            titleColor="white"
+            progressBackgroundColor="white"
+          />
         }
-        </View>
-        :
-        <BookNoData />}
-      </View>
+      />
     );
   }
 }
+
+const ProgressBar = () => (
+  <View style={{
+    flex: 1, justifyContent: 'center'
+  }}>
+    <ActivityIndicator size="large" color={"#EA0000"} />
+  </View>
+);

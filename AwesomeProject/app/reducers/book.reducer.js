@@ -1,5 +1,6 @@
 export default function reducer(state = {
     BookList: [],
+    BooKlistTotalPage: 0,
     BookCategoryList: [],
     BookBorrowList: [],
     Book: {
@@ -18,13 +19,14 @@ export default function reducer(state = {
         case 'GET_BOOK_LIST':
             return {
                 ...state,
-                BookList: action.payload
+                BookList: action.payload,
+                BooKlistTotalPage: action.pageTotal
             }
         case 'GET_BOOK_CATEGORY_LIST':
             return {
                 ...state,
                 BookCategoryList: action.payload
-            }  
+            }
         case 'GET_BOOK_BORROW_LIST':
             return {
                 ...state,

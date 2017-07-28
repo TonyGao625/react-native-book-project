@@ -26,12 +26,13 @@ namespace Book.Business
         /// 获取所有图书信息
         /// </summary>
         /// <returns></returns>
-        public async Task<MuliResult<BookInfoModel>> GetBookList(int userId, string bookName="", int categoryId=0)
+        public async Task<MuliResult<BookInfoModel>> GetBookList(int userId, string bookName="", int categoryId=0,int page=1)
         {
             var result = new MuliResult<BookInfoModel>();
             try
             {
                 var dataList = await _bookAgent.GetBookList();
+                result.Total = (int)Math.Ceiling((decimal)dataList.Count / 20);
                 //search paramter
                 if (bookName != "")
                 {
@@ -55,7 +56,7 @@ namespace Book.Business
 
                 result.Datas = dataList.Select(x => x.ToBookInfoModel())
                     .OrderByDescending(x => x.CanOrder)
-                    .ThenBy(x => x.BookName)
+                    .ThenBy(x => x.BookName).Skip(page * 20).Take(20)
                     .ToList();
             }
             catch (Exception ex)
