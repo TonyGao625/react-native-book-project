@@ -172,7 +172,6 @@ export default class BookAll extends Component {
     </View>
   }
   render() {
-
     return (
       <ListView
         style={{ flex: 1 }}

@@ -9,7 +9,9 @@ import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 import Config from '../config/config'
 
 export default (obj) => {
-    loading.show()
+    if(obj.hideGlobalLoading){
+        loading.show()
+    }
     var p = new Promise((resolve, reject) => {
         axios({
             url: obj.url,
