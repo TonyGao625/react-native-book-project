@@ -2,7 +2,7 @@ import thaxios from '../unilities/axios';
 import storage from 'store2';
 
 export function getBookList(obj) {
-    return function (dispatch) {
+    return new Promise(function (dispatch) {
         thaxios({
             url: 'book/getList',
             method: 'POST',
@@ -11,10 +11,11 @@ export function getBookList(obj) {
             storage.session('CategoryId', 0);
             dispatch({
                 type: 'GET_BOOK_LIST',
-                payload: res.Datas
+                payload: res.Datas,
+                pageTotal: res.Total
             })
         });
-    };
+    })
 }
 
 export function getBookCategoryList(obj) {

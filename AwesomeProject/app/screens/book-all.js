@@ -31,7 +31,7 @@ class BookSearchText extends Component {
           onPress={this._onFocusSearch}>
           <Icon
             name="search"
-            size={20}/>
+            size={20} />
           <Text>search</Text>
         </TouchableOpacity>
       </View>
@@ -55,12 +55,10 @@ export default class BookAll extends Component {
         size={20} />
     </TouchableHighlight>
   });
-  
+
   render() {
     return (
-      <ScrollView>
-        <BookList navigation={this.props.navigation} />
-      </ScrollView>
+      <BookList navigation={this.props.navigation} />
     );
   }
 }
