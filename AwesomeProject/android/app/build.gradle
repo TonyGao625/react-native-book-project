@@ -97,7 +97,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.awesomeproject"
+        applicationId "com.BookManagement"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
@@ -108,7 +108,7 @@ android {
     }
       signingConfigs{
                 release{
-            storeFile file("F://ReactNativeProject/Book/react-native-book-project/AwesomeProject/android/app/SuperBigLw-key.keystore")
+            storeFile file("F://ReactNativeProject/Book/react-native-book-project/BookManagement/android/app/SuperBigLw-key.keystore")
             storePassword "8870925"
             keyAlias "SuperBigLw-key-alias"
             keyPassword "8870925"

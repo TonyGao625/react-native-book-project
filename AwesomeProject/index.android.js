@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {AppRegistry,View,Text} from 'react-native';
 import App from './app/app';
 
-export default class AwesomeProject extends Component {
+export default class BookManagement extends Component {
   render() {
     return (
       <App />
@@ -10,4 +10,4 @@ export default class AwesomeProject extends Component {
   }
 }
 
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
+AppRegistry.registerComponent('BookManagement', () => BookManagement);
