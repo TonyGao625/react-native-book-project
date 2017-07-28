@@ -6,7 +6,7 @@ import store from './store';
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 export default class App extends Component {
   render() {
-    console.disableYellowBox = true;
+    //console.disableYellowBox = true;
     return (
       <Provider store={store}>
         <Route />
