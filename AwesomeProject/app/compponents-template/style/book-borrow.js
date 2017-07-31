@@ -4,6 +4,9 @@ const Styles = StyleSheet.create({
   borrow: {
     flex: 1
   },
+  container: {
+    marginBottom: 55
+  },
   item: {
     flex: 1,
     flexDirection: 'row',
@@ -37,8 +40,8 @@ const Styles = StyleSheet.create({
     borderBottomColor: '#ddd', borderTopColor: '#ddd', borderLeftColor: '#ddd', borderRightColor: '#ddd',
     marginLeft: 10, marginRight: 10
   },
-    bookContainer: {
-   paddingRight:10, flex: 6
+  bookContainer: {
+    paddingRight: 10, flex: 6
   },
   statusIcon: {
     flex: 1,
