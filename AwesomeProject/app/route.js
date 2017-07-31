@@ -5,34 +5,36 @@ import AccountScreen from './screens/account-screen';
 import BookAddScreen from './screens/book-add-screen';
 import BookDetailScreen from './screens/book-detail-screen';
 import SearchScreen from './screens/book-search-screen';
+import AppIntroScreen from './screens/appIntro-screen';
 import { connect } from 'react-redux'
-import { getPermission } from './actions/account.action'
+import { getPermission, checkViewIntro } from './actions/account.action'
 
 @connect((store) => {
   return {
-    permission: store.accountReducer.permission
+    permission: store.accountReducer.permission,
   }
 })
 
 export default class Route extends Component {
   constructor(props) {
     super(props);
-    this.state={
-      isAuthened:false
+    this.state = {
+      isAuthened: false,
     };
   }
-  componentWillMount(){
+  componentWillMount() {
     this.props.dispatch(getPermission());
   }
   componentWillReceiveProps(nextProps) {
-    if(this.props.permission.IsAuthened != nextProps.permission.IsAuthened){
+    if (this.props.permission.IsAuthened != nextProps.permission.IsAuthened) {
       this.setState({
-        isAuthened : nextProps.permission.IsAuthened
+        isAuthened: nextProps.permission.IsAuthened,
       });
     }
   }
   render() {
     const RouteItem = CreateRootNavigator(this.state.isAuthened);
+    debugger
     return (
       <RouteItem />
     );
@@ -43,8 +45,9 @@ const CreateRootNavigator = (IsAuthened = true) => {
   if (IsAuthened) {
     initialRouteName = 'Main'
   } else {
-    initialRouteName = 'Account'
+    initialRouteName = 'AppIntro'
   }
+
 
   return StackNavigator({
     Account: {
@@ -57,6 +60,12 @@ const CreateRootNavigator = (IsAuthened = true) => {
       screen: MainScreen,
       navigationOptions: {
         headerLeft: null
+      }
+    },
+    AppIntro: {
+      screen: AppIntroScreen,
+      navigationOptions: {
+        header: null
       }
     },
     BookAdd: {
