@@ -6,6 +6,7 @@ import FormTextInput from '../components-cell/form-text-input'
 import FormCustomButton from './../components-cell/form-custom-botton'
 import Styles from './style/book-all'
 import Themes from './../src/themes/themes'
+import storage from 'store2';
 
 class BookSearchText extends Component {
   constructor(props) {
@@ -19,20 +20,22 @@ class BookSearchText extends Component {
     navigate('Search');
   }
   render() {
+    var BookName = storage.session('BookName');
+    BookName = BookName == null ? "search" : BookName;
     return (
       <View style={Styles.headView}>
-        <Icon
+        {/* <Icon
           style={Styles.scanIcon}
           name="crop-free"
           size={25}
-          color={Themes.color} />
+          color={Themes.color} /> */}
         <TouchableOpacity
           style={Styles.searchView}
           onPress={this._onFocusSearch}>
           <Icon
             name="search"
             size={20} />
-          <Text>search</Text>
+          <Text>{BookName}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -47,13 +50,13 @@ export default class BookAll extends Component {
       size={20}
       color='white' />,
     headerTitle: <BookSearchText navigation={navigation} />,
-    headerRight:
-    <TouchableHighlight>
-      <Icon
-        style={{ marginRight: 10 }}
-        name="dehaze"
-        size={20} />
-    </TouchableHighlight>
+    // headerRight:
+    // <TouchableHighlight>
+    //   <Icon
+    //     style={{ marginRight: 10 }}
+    //     name="dehaze"
+    //     size={20} />
+    // </TouchableHighlight>
   });
 
   render() {
