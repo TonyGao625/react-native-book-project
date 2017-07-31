@@ -11,7 +11,7 @@ import Themes from './../src/themes/themes'
 import { connect } from 'react-redux'
 import { accountLogin, editUserName, editPassword } from '../actions/account.action';
 import { batchActions, enableBatching } from 'redux-batched-actions';
-
+import SplashScreen from 'react-native-splash-screen'
 const background = require("./../src/images/login_bg.png");
 import Styles from './style/login'
 
@@ -39,9 +39,14 @@ export default class Login extends Component {
       }
       this.props.dispatch(
         accountLogin({
-        UsersModel: this.props.loginUser
-      }));
+          UsersModel: this.props.loginUser
+        }));
     });
+  }
+  componentDidMount() {
+    setTimeout(function () {
+      SplashScreen.hide();
+    }, 2000);
   }
   render() {
     const { loginUser } = this.props;

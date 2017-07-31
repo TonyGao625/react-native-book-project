@@ -26,15 +26,17 @@ export default class Route extends Component {
     this.props.dispatch(getPermission());
   }
   componentWillReceiveProps(nextProps) {
-    if (this.props.permission.IsAuthened != nextProps.permission.IsAuthened) {
-      this.setState({
-        isAuthened: nextProps.permission.IsAuthened,
-      });
-    }
+    // if (this.props.permission.IsAuthened != nextProps.permission.IsAuthened) {
+    //   this.setState({
+    //     isAuthened: nextProps.permission.IsAuthened,
+    //   });
+    // }
+    this.setState({
+      isAuthened: nextProps.permission.IsAuthened,
+    });
   }
   render() {
     const RouteItem = CreateRootNavigator(this.state.isAuthened);
-    debugger
     return (
       <RouteItem />
     );
@@ -45,7 +47,7 @@ const CreateRootNavigator = (IsAuthened = true) => {
   if (IsAuthened) {
     initialRouteName = 'Main'
   } else {
-    initialRouteName = 'AppIntro'
+    initialRouteName = 'Account'
   }
 
 
