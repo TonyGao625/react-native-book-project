@@ -6,10 +6,11 @@ import {
 } from 'react-native';
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 import Config from '../config/config'
+import loading from 'fs-loading'
 
 export default (obj) => {
     if(obj.hideGlobalLoading){
-        Toast.loading('loading...', 60)
+        loading.show()
     }
     var p = new Promise((resolve, reject) => {
         axios({
@@ -19,14 +20,14 @@ export default (obj) => {
             params: obj.params,
             data: obj.data
         }).then((response) => {
-            Toast.hide()
+            loading.hide()
             if (response.data.Status < 0) {
                 Toast.info(response.data.Message, 1);
             } else {
                 resolve(response.data);
             }
         }).catch((err) => {
-            Toast.hide()
+            loading.hide()
             Toast.offline('网络连接失败,我们会尽快解决', 1);
             reject(err);
         });
