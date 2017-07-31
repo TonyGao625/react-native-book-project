@@ -13,6 +13,7 @@ import {
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
 import { getBookList, borrowBook, collectBook } from '../actions/book.action';
+import { GetBookBorrowListByUserId } from '../actions/book.return.action'
 import FormButton from './../components-cell/form-button'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import storage from 'store2';
@@ -47,6 +48,7 @@ export default class BookAll extends Component {
   }
   componentWillMount() {
     this._search(this.props.permission.UserId);
+    this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserId));
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.Flag !== nextProps.Flag) {
@@ -170,7 +172,6 @@ export default class BookAll extends Component {
     </View>
   }
   render() {
-
     return (
       <ListView
         style={{ flex: 1 }}

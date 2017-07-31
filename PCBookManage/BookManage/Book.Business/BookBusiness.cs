@@ -175,6 +175,16 @@ namespace Book.Business
             {
                 var datalist = await _bookBorrowAgent.GetBookBorrowList(userId);
                 result.Datas = datalist.Select(x => x.ToBorrowModel()).ToList();
+
+                //get over return time result
+                result.Total = 0;
+                foreach (var item in result.Datas)
+                {
+                    if (item.IsOverTime >= 0)
+                    {
+                        result.Total = result.Total + 1;
+                    }
+                }
             }
             catch (Exception ex)
             {

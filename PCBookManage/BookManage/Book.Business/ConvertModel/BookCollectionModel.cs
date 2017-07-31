@@ -47,7 +47,8 @@ namespace Book.Business.ConvertModel
                 CategoryId = collect.CategoryId,
                 Remark = collect.Remark,
                 CreateDate = collect.CreateDate,
-                CreateBy = collect.CreateBy
+                CreateBy = collect.CreateBy,
+                ImagePath = collect.ImagePath
             };
         }
     }

@@ -29,5 +29,6 @@ namespace Book.EntityModel
         public DateTime? CreateDate { get; set; }
         public string CreateBy { get; set; }
         public string UserName { get; set; }
+        public string ImagePath { get; set; }
     }
 }

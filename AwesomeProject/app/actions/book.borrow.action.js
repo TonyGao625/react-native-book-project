@@ -5,6 +5,7 @@ export function getBookBorrowList(obj) {
         thaxios({
             url: 'collect/getCollectList?userId='+obj,
             method: 'GET',
+            hideGlobalLoading: true
             //params: obj
         }).then((res) => {
             dispatch({

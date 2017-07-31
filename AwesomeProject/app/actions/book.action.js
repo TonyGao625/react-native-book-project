@@ -23,7 +23,8 @@ export function getBookCategoryList(obj) {
         thaxios({
             url: 'category/getList',
             method: 'GET',
-            params: obj
+            params: obj,
+            hideGlobalLoading: true
         }).then((res) => {
             res.Datas = res.Datas.map(function (item, index) {
                 return {
