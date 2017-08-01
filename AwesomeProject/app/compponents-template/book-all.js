@@ -14,16 +14,12 @@ import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
 import { getBookList, borrowBook, collectBook } from '../actions/book.action';
 import { GetBookBorrowListByUserId } from '../actions/book.return.action'
-import FormButton from './../components-cell/form-button'
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import storage from 'store2';
 import { changeData } from '../actions/common.action'
 import { getPermission } from '../actions/account.action'
 import Styles from './style/book-all'
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
-import ResponsiveImage from 'react-native-responsive-image';
 import BookNoData from './../components-cell/book-nodata'
-import Config from '../config/config'
 import BookItem from './../components-cell/book-all-item'
 
 @connect((store) => {
@@ -157,11 +153,18 @@ export default class BookAll extends Component {
   render() {
     return (
       <ListView
-        style={{ flex: 1 }}
+        style={Styles.all}
         dataSource={this.state.dataSource}
         renderRow={this._renderRow.bind(this)}
-        renderFooter={() => <View style={{ height: 50 }}>{this.state.NoMoreData ?
-          <View style={{ flex: 1, flexDirection: "row", justifyContent: "center", alignItems: 'center' }} ><Text style={{ color: 'red', fontSize: 17 }} >没有图书啦。。。</Text></View> : <ProgressBar />}</View>}
+        renderFooter={() =>
+          <View style={Styles.bookFooter}>
+            {this.state.NoMoreData ?
+              <View style={Styles.noBookView} >
+                <Text style={Styles.noBookText} >没有图书啦。。。</Text></View>
+              :
+              <ProgressBar />}
+          </View>
+        }
         onEndReached={this._onEndReached}
         onEndReachedThreshold={10}
         enableEmptySections={true}

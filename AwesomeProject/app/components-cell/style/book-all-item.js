@@ -18,7 +18,7 @@ const Styles = StyleSheet.create({
     justifyContent:"center"
   },
   titleView:{
-    paddingBottom: 2
+    paddingBottom: 5
   },
   titleText:{
     fontWeight: "bold", fontStyle: "italic", fontSize: 15

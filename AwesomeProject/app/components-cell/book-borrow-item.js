@@ -38,10 +38,10 @@ export default class BookItem extends Component {
                 </View>
                 <View style={Styles.bookContainer} >
                     <TouchableOpacity onPress={this.props.onSelect}>
-                        <View style={{ paddingBottom: 6 }} >
-                            <Text style={{ fontWeight: "bold", fontStyle: "italic", fontSize: 15 }}>{data.BookName}</Text>
+                        <View style={Styles.titleView} >
+                            <Text style={Styles.titleText}>{data.BookName}</Text>
                         </View>
-                        <View style={{ paddingBottom: 6 }}>
+                        <View style={Styles.authorView}>
                             <Text>作者：{data.Author}</Text>
                         </View>
                     </TouchableOpacity>

@@ -11,9 +11,6 @@ import {
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import CheckBox from 'react-native-check-box'
-import FormButton from './../components-cell/form-button'
 import { getBookBorrowList, BookBorrowList, selectALL, unSelectALL, SureBorrowBook } from '../actions/book.borrow.action'
 import { getPermission } from '../actions/account.action'
 import BookOperation from './../components-cell/book-operation'
@@ -21,8 +18,6 @@ import { changeData } from '../actions/common.action'
 import Styles from './style/book-borrow'
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 import BookNoData from './../components-cell/book-nodata'
-import Config from '../config/config'
-import ResponsiveImage from 'react-native-responsive-image';
 import BookItem from './../components-cell/book-borrow-item'
 
 @connect((store) => {

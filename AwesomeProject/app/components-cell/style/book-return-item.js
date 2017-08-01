@@ -1,12 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 const Styles = StyleSheet.create({
-    return: {
-        flex: 1
-    },
-    container: {
-        marginBottom: 55
-    },
     itemContainer: {
         flex: 1, flexDirection: "row", paddingBottom: 10, paddingTop: 10, borderBottomColor: "lightgrey", borderBottomWidth: 1
     },
@@ -30,12 +24,6 @@ const Styles = StyleSheet.create({
     },
     authorView: {
         paddingBottom: 5
-    },
-    iconView: {
-        position: 'absolute',
-        bottom: 0,
-        flex: 1,
-        flexDirection: "row"
     }
 });
 
