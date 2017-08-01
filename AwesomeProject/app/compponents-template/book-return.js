@@ -25,6 +25,7 @@ import BookNoData from './../components-cell/book-nodata'
 import ResponsiveImage from 'react-native-responsive-image';
 import moment from 'moment';
 import Config from '../config/config'
+import BookItem from './../components-cell/book-return-item'
 
 @connect((store) => {
     return {
@@ -98,10 +99,10 @@ export default class BookReturn extends Component {
         this.setState({ disable: true });
         setTimeout(() => { this.setState({ disable: false }) }, 2000)
     }
-    _showDetailBook = (id,CanOrder) => {
+    _showDetailBook = (id, CanOrder) => {
         this._preventClickTwice();
         const { navigate } = this.props.navigation;
-        navigate('BookDetail', { id: id,CanOrder:CanOrder})
+        navigate('BookDetail', { id: id, CanOrder: CanOrder })
     }
     render() {
         return (
@@ -109,52 +110,20 @@ export default class BookReturn extends Component {
                 <ScrollView>
                     <View style={Styles.container}>
                         {
-                        this.props.BookReturnListByUserId.length>0?
-                        <View>
-                            {
-                                this.props.BookReturnListByUserId.map((val) => {
-                                    return <View
-                                        key={val.Id}
-                                        style={Styles.itemContainer}>
-                                        <View style={Styles.imageContainer} >
-                                            <TouchableOpacity onPress={() => this._showDetailBook(val.BookId, false)}
-                                                disabled={this.state.disable}>
-                                                <ResponsiveImage source={{ uri: Config.APIUrl + val.ImagePath }} initWidth="100" initHeight="100" />
-                                            </TouchableOpacity>
-                                        </View>
-                                        <View style={Styles.bookContainer} >
-                                            <View style={Styles.titleView} >
-                                                <Text style={Styles.titleText}>{val.BookName}</Text>
-                                            </View>
-                                            <View style={Styles.authorView}>
-                                                <Text>作者：{val.Author}</Text>
-                                            </View>
-                                            <View style={Styles.authorView}>
-                                                <Text>预定还书日期：{moment(val.NeedReturnDate).format('YYYY-MM-DD')}</Text>
-                                                {val.IsOverTime>0? <Icon
-                                                    name='warning'
-                                                    color='red'
-                                                    size={20} />
-                                                    :
-                                                    <Text></Text>
-                                                }
-                                            </View>                                       
-                                            </View>
-                                             <View style={Styles.IconContainer} >
-                                                <TouchableOpacity onPress={() => this._onCheck(val)}>
-                                                <Icon
-                                                    name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
-                                                    color='black'
-                                                    size={20} />
-                                                </TouchableOpacity> 
-                                            </View>
-                                        </View>
-                                })
-                            }
-                        </View>
-                        :
-                        <BookNoData />
-                        }   
+                            this.props.BookReturnListByUserId.length > 0 ?
+                                <View>
+                                    {
+                                        this.props.BookReturnListByUserId.map((val) => {
+                                            return <BookItem
+                                                onShowDetail={() => this._showDetailBook(val.BookId, false)}
+                                                onSelect={() => this._onCheck(val)}
+                                                data={val} />
+                                        })
+                                    }
+                                </View>
+                                :
+                                <BookNoData />
+                        }
                     </View>
                 </ScrollView>
                 <BookOperation
