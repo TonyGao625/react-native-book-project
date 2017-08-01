@@ -95,22 +95,34 @@ export default class BookList extends Component {
       UserId: this.props.permission.UserId,
       BorrowDate: new Date()
     }
-    BookBorrowList(data).then((res) => {
-      if (res.result.Status == 1) {
-        Toast.success('借阅成功,请于30天内归还此书', 1);
-        this.props.dispatch(changeData());
-        this._cancelBorrow();
-      } else {
-        Alert.alert('',
-          res.result.Message,
-          [
-            { text: '取消', onPress: this._cancelBorrow },
-            { text: '继续', onPress: () => this._sureBorow(data) },
-          ],
-          { cancelable: false }
-        )
-      }
-    });
+    Alert.alert('',
+      "确定要借书吗？",
+      [
+        { text: '取消', onPress: console.log("取消") },
+        {
+          text: '继续', onPress: () => {
+            BookBorrowList(data).then((res) => {
+              if (res.result.Status == 1) {
+                Toast.success('借阅成功,请于30天内归还此书', 1);
+                this.props.dispatch(changeData());
+                this._cancelBorrow();
+              } else {
+                Alert.alert('',
+                  res.result.Message,
+                  [
+                    { text: '取消', onPress: this._cancelBorrow },
+                    { text: '继续', onPress: () => this._sureBorow(data) },
+                  ],
+                  { cancelable: false }
+                )
+              }
+            });
+          }
+        },
+      ],
+      { cancelable: false }
+    )
+
   }
   _cancelBorrow = () => {
     this.props.dispatch(unSelectALL(this.props.BookBorrowList));
