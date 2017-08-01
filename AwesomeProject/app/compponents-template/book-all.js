@@ -39,7 +39,7 @@ export default class BookAll extends Component {
     super(props);
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
-      dataSource: ds.cloneWithRows(['row 1', 'row 2']),
+      dataSource: ds.cloneWithRows([]),
       isRefreshing: false,
       currentPage: 1,
       NoMoreData: false,
@@ -106,7 +106,7 @@ export default class BookAll extends Component {
   _showDetailBook = (id, CanOrder) => {
     this._preventClickTwice();
     const { navigate } = this.props.navigation;
-    navigate('BookDetail', { id: id, CanOrder: CanOrder })
+    navigate('BookDetail', { id: id, CanOrder: CanOrder, UserId: this.props.permission.UserId })
   }
   _onRefresh = () => {
     this._search(this.props.permission.UserId);
