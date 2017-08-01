@@ -105,7 +105,7 @@ export default class BookAll extends Component {
   _showDetailBook = (id, CanOrder) => {
     this._preventClickTwice();
     const { navigate } = this.props.navigation;
-    navigate('BookDetail', { id: id, CanOrder: CanOrder })
+    navigate('BookDetail', { id: id, CanOrder: CanOrder, UserId: this.props.permission.UserId })
   }
   _onRefresh = () => {
     this._search(this.props.permission.UserId);
