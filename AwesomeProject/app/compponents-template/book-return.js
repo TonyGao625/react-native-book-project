@@ -86,14 +86,25 @@ export default class BookReturn extends Component {
         var data = {
             BookReturnModelList: BookReturnModelList,
         }
-        BookReturnList(data).then(() => {
-            Toast.success('还书成功', 1);
-            this.props.dispatch(changeData());
-            this.setState({
-                checkedAll: false,
-                sum: 0
-            });
-        });
+        Alert.alert('',
+            "确定要还书吗？",
+            [
+                { text: '取消', onPress: console.log("取消") },
+                {
+                    text: '继续', onPress: () => {
+                        BookReturnList(data).then(() => {
+                            Toast.success('还书成功', 1);
+                            this.props.dispatch(changeData());
+                            this.setState({
+                                checkedAll: false,
+                                sum: 0
+                            });
+                        });
+                    }
+                },
+            ],
+            { cancelable: false }
+        )
     }
     _preventClickTwice() {
         this.setState({ disable: true });
