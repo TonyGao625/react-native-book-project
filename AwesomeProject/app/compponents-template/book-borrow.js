@@ -23,7 +23,7 @@ import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 import BookNoData from './../components-cell/book-nodata'
 import Config from '../config/config'
 import ResponsiveImage from 'react-native-responsive-image';
-
+import BookItem from './../components-cell/book-borrow-item'
 
 @connect((store) => {
   return {
@@ -145,31 +145,10 @@ export default class BookList extends Component {
                 <View>
                   {
                     this.props.BookBorrowList.map((val) => {
-                      return <View
-                        key={val.Id}
-                        style={Styles.item}>
-                          <View style={Styles.imageContainer} >
-                            <TouchableOpacity onPress={() => this._showDetailBook(val.BookId, val.CanOrder)}   disabled={this.state.disable}>
-                              <ResponsiveImage source={{ uri: Config.APIUrl + val.ImagePath }} initWidth="100" initHeight="100" />
-                            </TouchableOpacity>
-                          </View>
-                          <View style={Styles.bookContainer} >
-                            <View style={{ paddingBottom: 6 }} >
-                              <Text style={{ fontWeight: "bold", fontStyle: "italic", fontSize: 15 }}>{val.BookName}</Text>
-                            </View>
-                            <View style={{ paddingBottom: 6 }}>
-                              <Text>作者：{val.Author}</Text>
-                            </View>
-                          </View>
-                          <View style={Styles.statusIcon} >
-                             <TouchableOpacity onPress={() => this._onCheck(val)}>
-                              <Icon
-                               name={val.isCheck ? 'check-circle' : 'radio-button-unchecked'}
-                                 color='black'
-                                size={20} />
-                            </TouchableOpacity> 
-                          </View>
-                        </View>
+                      return <BookItem
+                        onShowDetail={() => this._showDetailBook(val.BookId, false)}
+                        onSelect={() => this._onCheck(val)}
+                        data={val} />
                     })
                   }
                 </View>
