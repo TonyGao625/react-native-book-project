@@ -21,7 +21,7 @@ export default class BookItem extends Component {
   componentDidMount() {
     this.setState({
       imageUrl: {
-       uri: Config.APIUrl + this.props.data.ImagePath
+        uri: Config.APIUrl + this.props.data.ImagePath
       }
     });
   }
@@ -40,14 +40,17 @@ export default class BookItem extends Component {
             <View style={Styles.titleView} >
               <Text style={Styles.titleText}>{data.BookName}</Text>
             </View>
-            <View style={Styles.authorView}>
+            <View style={Styles.dateView}>
               <Text>预定还书日期：{moment(data.NeedReturnDate).format('YYYY-MM-DD')}</Text>
               {
                 data.IsOverTime > 0 ?
-                  <Icon
-                    name='warning'
-                    color='red'
-                    size={20} />
+                  <View style={Styles.delayView}>
+                    <Icon
+                      name='warning'
+                      color='red'
+                      size={20} />
+                    <Text>已延迟{data.IsOverTime}天</Text>
+                  </View>
                   :
                   <Text></Text>
               }

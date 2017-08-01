@@ -21,7 +21,7 @@ class ReturnIcon extends Component {
                     name="assignment-return" 
                     size={20} 
                     color='white' />
-                    <Badge text={this.props.OverTimeCount} style={{position:'absolute',right:6,top:3}}></Badge>
+                    <Badge dot style={{position:'absolute',right:5,top:2}}></Badge>
                 </View> 
                 :
                 <Icon 

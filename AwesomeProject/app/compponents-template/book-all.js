@@ -44,21 +44,21 @@ export default class BookAll extends Component {
     };
   }
   componentWillMount() {
-    this._search(this.props.permission.UserId);
+    this._search();
 
     //get need book return item count
     this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserId));
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.Flag !== nextProps.Flag) {
-      this._search(this.props.permission.UserId);
+      this._search();
     }
   }
-  _search = (userId, page) => {
+  _search = (page) => {
     var BookName = storage.session('BookName');
     var CategoryId = storage.session('CategoryId');
     var data = {
-      UserId: userId,
+      UserId: this.props.permission.UserId,
       BookName: BookName == null ? "" : BookName,
       CategoryId: CategoryId == null ? 0 : CategoryId,
       Page: page ? page : 1
@@ -103,12 +103,13 @@ export default class BookAll extends Component {
     setTimeout(() => { this.setState({ disable: false }) }, 1000)
   }
   _showDetailBook = (id, CanOrder) => {
-    this._preventClickTwice();
+    //this._preventClickTwice();
+    
     const { navigate } = this.props.navigation;
     navigate('BookDetail', { id: id, CanOrder: CanOrder, UserId: this.props.permission.UserId })
   }
   _onRefresh = () => {
-    this._search(this.props.permission.UserId);
+    this._search();
   }
   _onEndReached = () => {
     if (this.state.currentPage < this.props.BooKlistTotalPage - 1) {

@@ -22,8 +22,11 @@ const Styles = StyleSheet.create({
     titleText: {
         fontWeight: "bold", fontStyle: "italic", fontSize: 15
     },
-    authorView: {
+    dateView: {
         paddingBottom: 5
+    },
+    delayView:{
+        flex:1,flexDirection: "row"
     }
 });
 
