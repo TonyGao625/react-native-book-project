@@ -24,6 +24,7 @@ import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 import ResponsiveImage from 'react-native-responsive-image';
 import BookNoData from './../components-cell/book-nodata'
 import Config from '../config/config'
+import BookItem from './../components-cell/book-all-item'
 
 @connect((store) => {
   return {
@@ -39,7 +40,7 @@ export default class BookAll extends Component {
     super(props);
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
-      dataSource: ds.cloneWithRows(['row 1', 'row 2']),
+      dataSource: ds.cloneWithRows([]),
       isRefreshing: false,
       currentPage: 1,
       NoMoreData: false,
@@ -48,6 +49,8 @@ export default class BookAll extends Component {
   }
   componentWillMount() {
     this._search(this.props.permission.UserId);
+
+    //get need book return item count
     this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserId));
   }
   componentWillReceiveProps(nextProps) {
@@ -146,30 +149,10 @@ export default class BookAll extends Component {
     }
   }
   _renderRow(rowData) {
-    return <View style={Styles.itemContainer} >
-      <View style={Styles.imageContainer} >
-        <TouchableOpacity onPress={this._showDetailBook.bind(this, rowData.Id, rowData.CanOrder)}
-          disabled={this.state.disable}>
-          <ResponsiveImage source={{ uri: Config.APIUrl + rowData.ImagePath }} initWidth="100" initHeight="100" />
-        </TouchableOpacity>
-      </View>
-      <View style={Styles.bookContainer} >
-        <View style={{ paddingBottom: 6 }} >
-          <Text style={{ fontWeight: "bold", fontStyle: "italic", fontSize: 15 }}>{rowData.BookName}</Text>
-        </View>
-        <View style={{ paddingBottom: 6 }}>
-          <Text>作者：{rowData.Author}</Text>
-        </View>
-      </View>
-      <View style={Styles.statusIcon} >
-        <TouchableOpacity onPress={this._collectBook.bind(this, rowData)}>
-          <Icon
-            name="library-add"
-            color={rowData.CanOrder ? 'black' : '#ddd'}
-            size={25} />
-        </TouchableOpacity>
-      </View>
-    </View>
+    return <BookItem
+      onShowDetail={() => this._showDetailBook(rowData.Id, rowData.CanOrder)}
+      onSelect={() => this._collectBook(rowData)}
+      data={rowData} />
   }
   render() {
     return (
