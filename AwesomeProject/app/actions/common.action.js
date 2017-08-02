@@ -6,3 +6,12 @@ export function changeData() {
         }
     }
 }
+
+export function changeEditStatus() {
+    return {
+        type: 'CHANGE_EDITSTATUS',
+        payload: {
+            val: new Date().getUTCMilliseconds()
+        }
+    }
+}
