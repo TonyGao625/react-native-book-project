@@ -16,6 +16,7 @@ import FormButton from './../components-cell/form-button'
 import { accountLogin, editUserName, editPassword, clearPermission } from '../actions/account.action';
 import Styles from './style/user-info'
 import FormCustomButton from './../components-cell/form-custom-botton'
+import Icon from 'react-native-vector-icons/Octicons';
 
 @connect((store) => {
   return {
@@ -41,15 +42,28 @@ export default class UserDeatil extends Component {
     )
 
   }
+  _onAbout=()=>{
+    const { navigate } = this.props.navigation;
+    navigate('BookAboutScreen')
+  }
   render() {
     return (
-      <ScrollView contentContainerStyle={Styles.contentContainer}>
-        <FormCustomButton
+      <ScrollView contentContainerStyle={Styles.user}>
+        <TouchableOpacity 
+        activeOpacity={1}
+        style={Styles.aboutView} 
+        onPress={this._onAbout}>
+          <Icon style={Styles.aboutIcon} name="versions" size={20}/>
+          <Text style={Styles.aboutText}>关于</Text>
+        </TouchableOpacity> 
+        <View style={Styles.bottomView}>
+          <FormCustomButton
           activeOpacity={.5}
           text='退出'
           styleView={Styles.button}
           styleText={Styles.buttonText}
-          onPress={this._logout} />
+          onPress={this._logout} /> 
+        </View>
       </ScrollView>
     );
   }

@@ -2,24 +2,36 @@ import { StyleSheet } from 'react-native';
 import Themes from './../../src/themes/themes'
 
 const Styles = StyleSheet.create({
-  item: {
-    flex: 1,
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-    height: 40,
-    paddingTop: 10,
-    marginLeft: 15,
-    marginRight: 15
+  user: {
+    height:'100%',
+    backgroundColor:'#f0f0f0',
+    justifyContent:'space-between',
+  },
+  aboutView:{
+    height:50,
+    backgroundColor:'white',
+    marginTop:10,
+    marginBottom:10,
+    flexDirection:'row',
+    justifyContent:'flex-start',
+    alignItems:'center'
+  },
+  aboutIcon:{
+    marginLeft:10
+  },
+  aboutText:{
+    fontSize: 16,
+  },
+  bottomView:{
+    marginBottom:10
   },
   button: {
-    backgroundColor: Themes.color,
-    paddingVertical: 20,
+    backgroundColor: '#FFF',
+    paddingVertical: 15,
   },
   buttonText: {
-    color: "#FFF",
     fontSize: 18,
-  },
+  }
 });
 
 export default Styles;

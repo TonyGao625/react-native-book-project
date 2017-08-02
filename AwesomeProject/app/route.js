@@ -6,6 +6,7 @@ import BookAddScreen from './screens/book-add-screen';
 import BookDetailScreen from './screens/book-detail-screen';
 import SearchScreen from './screens/book-search-screen';
 import AppIntroScreen from './screens/appIntro-screen';
+import BookAboutScreen from './screens/book-about-screen';
 import { connect } from 'react-redux'
 import { getPermission, checkViewIntro } from './actions/account.action'
 
@@ -26,11 +27,6 @@ export default class Route extends Component {
     this.props.dispatch(getPermission());
   }
   componentWillReceiveProps(nextProps) {
-    // if (this.props.permission.IsAuthened != nextProps.permission.IsAuthened) {
-    //   this.setState({
-    //     isAuthened: nextProps.permission.IsAuthened,
-    //   });
-    // }
     this.setState({
       isAuthened: nextProps.permission.IsAuthened,
     });
@@ -49,7 +45,6 @@ const CreateRootNavigator = (IsAuthened = true) => {
   } else {
     initialRouteName = 'Account'
   }
-
 
   return StackNavigator({
     Account: {
@@ -78,13 +73,15 @@ const CreateRootNavigator = (IsAuthened = true) => {
     },
     Search: {
       screen: SearchScreen
+    },
+    BookAboutScreen: {
+      screen: BookAboutScreen
     }
   }, {
       cardStyle: {
         backgroundColor: 'white'
       },
       initialRouteName: initialRouteName,
-      //headerMode:'none'
     });
 }
 
