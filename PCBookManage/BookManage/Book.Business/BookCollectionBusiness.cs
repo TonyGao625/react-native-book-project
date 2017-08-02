@@ -119,5 +119,28 @@ namespace Book.Business
             }
             return result;
         }
+
+
+        public async Task<Operate> DeleteCollectionByIds(int[] ids)
+        {
+            var result = new Operate();
+            try
+            {
+                using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    foreach (var id in ids)
+                    {
+                        await _bookCollectionAgent.DeleteById(id);
+                    }
+                    scope.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Status = -1;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
     }
 }

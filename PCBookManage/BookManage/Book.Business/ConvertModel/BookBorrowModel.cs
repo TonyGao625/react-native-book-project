@@ -65,7 +65,10 @@ namespace Book.Business.ConvertModel
             };
             if (borrow.BorrowDate != null && borrow.NeedReturnDate != null)
             {
-                result.IsOverTime = DateTime.Compare((DateTime) borrow.BorrowDate, (DateTime) borrow.NeedReturnDate);
+                var dataNow = DateTime.Now;
+                var needReturnData= (DateTime)borrow.NeedReturnDate;
+                TimeSpan timeSpan = dataNow - needReturnData;
+                result.IsOverTime = timeSpan.Days;
             }
             return result;
         }

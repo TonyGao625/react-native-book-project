@@ -46,5 +46,13 @@ namespace Book.WebApi.Controllers
             var borrowDate = paramters["BorrowDate"].ToObject<DateTime>();
             return await _bookCollectionBusiness.SureBorrowBook(bookCollectionList, userId, borrowDate);
         }
+
+        [Route("deleteByIds")]
+        [HttpPost]
+        public async Task<Operate> DeleteCollectByIds(JObject paramter)
+        {
+            var ids = paramter["Ids"].ToObject<int[]>();
+            return await _bookCollectionBusiness.DeleteCollectionByIds(ids);
+        }
     }
 }
