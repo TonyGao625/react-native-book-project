@@ -20,7 +20,7 @@ export function GetBookBorrowListByUserId(obj) {
                 }
             })
         });
-    }
+    };
 }
 
 export function BookReturnList(obj) {

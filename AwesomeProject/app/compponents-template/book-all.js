@@ -21,13 +21,18 @@ import Styles from './style/book-all'
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 import BookNoData from './../components-cell/book-nodata'
 import BookItem from './../components-cell/book-all-item'
+import Modal from 'react-native-modal'
+import FormCustomButton from './../components-cell/form-custom-botton'
+import BookModal from './../components-cell/show-modal'
+
 
 @connect((store) => {
   return {
     BookList: store.bookReducer.BookList,
     BooKlistTotalPage: store.bookReducer.BooKlistTotalPage,
     Flag: store.commonReducer.Flag,
-    permission: store.accountReducer.permission
+    permission: store.accountReducer.permission,
+    OverTimeCount: store.bookReturnReducer.OverTimeCount
   }
 })
 
@@ -40,14 +45,15 @@ export default class BookAll extends Component {
       isRefreshing: false,
       currentPage: 1,
       NoMoreData: false,
-      disable: false
+      disable: false,
+      isModalVisible: true
     };
   }
   componentWillMount() {
-    this._search();
-
-    //get need book return item count
     this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserId));
+  }
+  componentDidMount() {
+    this._search();
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.Flag !== nextProps.Flag) {
@@ -104,7 +110,7 @@ export default class BookAll extends Component {
   }
   _showDetailBook = (id, CanOrder) => {
     //this._preventClickTwice();
-    
+
     const { navigate } = this.props.navigation;
     navigate('BookDetail', { id: id, CanOrder: CanOrder, UserId: this.props.permission.UserId })
   }
@@ -151,37 +157,54 @@ export default class BookAll extends Component {
       onSelect={() => this._collectBook(rowData)}
       data={rowData} />
   }
+  _onClose = () => {
+    this.setState({
+      isModalVisible: false
+    });
+  }
+  _toBookReturn = () => {
+    this._onClose();
+    const { navigate } = this.props.navigation;
+    navigate('BookReturn')
+  }
   render() {
     return (
-      <ListView
-        style={Styles.all}
-        dataSource={this.state.dataSource}
-        renderRow={this._renderRow.bind(this)}
-        renderFooter={() =>
-          <View style={Styles.bookFooter}>
-            {this.state.NoMoreData ?
-              <View style={Styles.noBookView} >
-                <Text style={Styles.noBookText} >没有图书啦。。。</Text></View>
-              :
-              <ProgressBar />}
-          </View>
-        }
-        onEndReached={this._onEndReached}
-        onEndReachedThreshold={10}
-        enableEmptySections={true}
-        pageSize={10}
-        refreshControl={
-          <RefreshControl
-            refreshing={this.state.isRefreshing}
-            onRefresh={this._onRefresh}
-            colors={['#EA0000']}
-            tintColor="white"
-            title="loading..."
-            titleColor="white"
-            progressBackgroundColor="white"
-          />
-        }
-      />
+      <View style={Styles.all}>
+        <BookModal 
+        OverTimeCount={this.props.OverTimeCount} 
+        isVisible={this.state.isModalVisible}
+        onClose={this._onClose}
+        ToBookReturn={this._toBookReturn} />
+
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this._renderRow.bind(this)}
+          renderFooter={() =>
+            <View style={Styles.bookFooter}>
+              {this.state.NoMoreData ?
+                <View style={Styles.noBookView} >
+                  <Text style={Styles.noBookText} >没有图书啦。。。</Text></View>
+                :
+                <ProgressBar />}
+            </View>
+          }
+          onEndReached={this._onEndReached}
+          onEndReachedThreshold={10}
+          enableEmptySections={true}
+          pageSize={10}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.isRefreshing}
+              onRefresh={this._onRefresh}
+              colors={['#EA0000']}
+              tintColor="white"
+              title="loading..."
+              titleColor="white"
+              progressBackgroundColor="white"
+            />
+          }
+        />
+      </View>
     );
   }
 }

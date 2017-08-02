@@ -7,7 +7,6 @@ import {
 import Icon from 'react-native-vector-icons/Octicons';
 import FormIconTextInput from './../components-cell/form-icon-text-input'
 import FormCustomButton from './../components-cell/form-custom-botton'
-import Themes from './../src/themes/themes'
 import { connect } from 'react-redux'
 import { accountLogin, editUserName, editPassword } from '../actions/account.action';
 import { batchActions, enableBatching } from 'redux-batched-actions';
@@ -87,7 +86,7 @@ export default class Login extends Component {
           </View>
           <View style={Styles.container}>
             <View style={Styles.remarkWrap}>
-              <Text style={Styles.remarkText}>Book Management</Text>
+              <Text style={Styles.remarkText}>Copyright @2017 Shengande</Text>
             </View>
           </View>
         </Image>
