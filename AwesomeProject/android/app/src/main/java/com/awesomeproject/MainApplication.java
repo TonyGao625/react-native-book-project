@@ -1,5 +1,5 @@
 package com.BookManagement;
-
+import com.gnet.bottomsheet.RNBottomSheetPackage;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
@@ -25,7 +25,8 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new BottomSheetBehaviorPackage(),
-             new SplashScreenReactPackage() 
+             new SplashScreenReactPackage()
+              , new RNBottomSheetPackage() 
       );
     }
   };

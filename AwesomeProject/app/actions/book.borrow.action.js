@@ -3,7 +3,7 @@ import thaxios from '../unilities/axios';
 export function getBookBorrowList(obj) {
     return function (dispatch) {
         thaxios({
-            url: 'collect/getCollectList?userId='+obj,
+            url: 'collect/getCollectList?userId=' + obj,
             method: 'GET',
             hideGlobalLoading: true
             //params: obj
@@ -22,12 +22,26 @@ export function BookBorrowList(obj) {
             url: 'collect/borrowBook',
             method: 'POST',
             data: obj
-        }).then((res)=>{
+        }).then((res) => {
             dispatch({
-               result:res
+                result: res
             })
         });
-    }); 
+    });
+}
+
+export function RemoveBookBorrowList(obj) {
+    return new Promise(function (dispatch) {
+        thaxios({
+            url: 'collect/deleteByIds',
+            method: "POST",
+            data: obj
+        }).then((res) => {
+            dispatch({
+                result: res
+            })
+        })
+    })
 }
 
 export function SureBorrowBook(obj) {
@@ -36,17 +50,17 @@ export function SureBorrowBook(obj) {
             url: 'collect/sureBorrowBook',
             method: 'POST',
             data: obj
-        }).then((res)=>{
+        }).then((res) => {
             dispatch({
-               result:res
+                result: res
             })
         });
-    }); 
+    });
 }
 
 export function selectALL(datas) {
     datas = datas.map(function (item, index) {
-        item.isCheck=true;
+        item.isCheck = true;
         return item;
     });
     return {
@@ -55,9 +69,11 @@ export function selectALL(datas) {
     }
 }
 
+
+
 export function unSelectALL(datas) {
     datas = datas.map(function (item, index) {
-        item.isCheck=false;
+        item.isCheck = false;
         return item;
     });
     return {
