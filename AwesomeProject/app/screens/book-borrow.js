@@ -7,16 +7,24 @@ class EditText extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isEdit: false,
       text: '编辑',
     };
   }
-  _changeEdit=()=>{
-    this.setState({
-       text: '完成'
-    });
+  _changeEdit = () => {
+    if (this.state.isEdit) {
+      this.setState({
+        isEdit: false,
+        text: '编辑'
+      });
+    } else {
+      this.setState({
+        isEdit: true,
+        text: '完成'
+      });
+    }
   }
   render() {
-    var navigation=this.props.navigation;
     return (
       <TouchableOpacity onPress={this._changeEdit}>
         <Text style={{ color: "black", fontWeight: "bold", fontSize: 16, paddingRight: 10 }} >{this.state.text}</Text>
