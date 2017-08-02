@@ -1,4 +1,4 @@
-import { AsyncStorage} from 'react-native';
+import { AsyncStorage } from 'react-native';
 import { TabNavigator } from 'react-navigation'
 import BookAll from './book-all';
 import BookBorrow from './book-borrow';
@@ -8,6 +8,8 @@ import BookReturn from './book-return';
 import UserInfo from './user-info';
 import SystemManage from './system-manage';
 import Themes from './../src/themes/themes'
+
+
 
 const MainScreen = TabNavigator({
   BookAll: {
@@ -25,7 +27,7 @@ const MainScreen = TabNavigator({
   UserInfo: {
     screen: UserInfo,
   },
-  // SystemManage:{
+  // SystemManage: {
   //   screen: SystemManage
   // }
 }, {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation'
 import MainScreen from './screens/main-screen';
+import AdminMainScreen from './screens/admin-main-screen';
 import AccountScreen from './screens/account-screen';
 import BookAddScreen from './screens/book-add-screen';
 import BookDetailScreen from './screens/book-detail-screen';
@@ -29,19 +30,25 @@ export default class Route extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       isAuthened: nextProps.permission.IsAuthened,
+      IsAdmin: nextProps.permission.RoleId === 1
     });
   }
   render() {
-    const RouteItem = CreateRootNavigator(this.state.isAuthened);
+    const RouteItem = CreateRootNavigator(this.state.isAuthened, this.state.IsAdmin);
     return (
       <RouteItem />
     );
   }
 }
-const CreateRootNavigator = (IsAuthened = true) => {
+const CreateRootNavigator = (IsAuthened = true, IsAdmin) => {
+
   var initialRouteName = 'Main';
   if (IsAuthened) {
-    initialRouteName = 'Main'
+    if (IsAdmin) {
+      initialRouteName = "AdminMain"
+    } else {
+      initialRouteName = 'Main'
+    }
   } else {
     initialRouteName = 'Account'
   }
@@ -55,6 +62,12 @@ const CreateRootNavigator = (IsAuthened = true) => {
     },
     Main: {
       screen: MainScreen,
+      navigationOptions: {
+        headerLeft: null
+      }
+    },
+    AdminMain: {
+      screen: AdminMainScreen,
       navigationOptions: {
         headerLeft: null
       }

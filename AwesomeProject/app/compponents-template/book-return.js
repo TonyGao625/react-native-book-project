@@ -136,6 +136,7 @@ export default class BookReturn extends Component {
                     total={this.state.sum}
                     onCheckAll={this._onCheckAll}
                     onBorrowBook={this._onReturnBook}
+                    lableColor={"#ffa07a"}
                     lable={'还书'} />
             </View>
         );
