@@ -17,12 +17,21 @@ export default class SystemManage extends Component {
     const { navigate } = this.props.navigation;
       navigate('BookAdd')
   }
+  _takePhoto=()=>{
+    const { navigate } = this.props.navigation;
+    navigate('TakePhoto')
+  }
   render() {
     return (
       <ScrollView>
-           <FormButton 
+           {/* <FormButton 
               title='添加图书信息' 
               onPress={this._addBookInfo}
+          /> */}
+
+          <FormButton 
+              title='拍照' 
+              onPress={this._takePhoto}
           />
       </ScrollView>
   );

@@ -10,6 +10,7 @@ import AppIntroScreen from './screens/appIntro-screen';
 import BookAboutScreen from './screens/book-about-screen';
 import { connect } from 'react-redux'
 import { getPermission, checkViewIntro } from './actions/account.action'
+import TakePhoto from './compponents-template/take-photo';
 
 @connect((store) => {
   return {
@@ -89,6 +90,9 @@ const CreateRootNavigator = (IsAuthened = true, IsAdmin) => {
     },
     BookAboutScreen: {
       screen: BookAboutScreen
+    },
+    TakePhoto:{
+      screen: TakePhoto
     }
   }, {
       cardStyle: {
