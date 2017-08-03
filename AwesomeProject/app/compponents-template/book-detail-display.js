@@ -33,6 +33,7 @@ import Styles from './style/book-detail-display'
 import themes from './../src/themes/themes'
 import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 import Config from '../config/config'
+const bookImage = require("./../src/images/no-image.png");
 
 @connect((store) => {
     return {
@@ -41,8 +42,24 @@ import Config from '../config/config'
 })
 
 class LightboxView extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            imageUrl: bookImage
+        };
+    }
     componentWillMount() {
         this.props.dispatch(getBookById(this.props.id));
+    }
+    componentDidMount() {
+        debugger;
+        if (this.props.BookDetail.ImagePath != null) {
+            this.setState({
+                imageUrl: {
+                    uri: Config.APIUrl + this.props.BookDetail.ImagePath
+                }
+            });
+        }
     }
     render() {
         const { BookDetail } = this.props;
@@ -51,18 +68,18 @@ class LightboxView extends Component {
                 style={Styles.container}
                 renderTabBar={() => <DefaultTabBar backgroundColor='rgba(255, 255, 255, 0.7)' />}
                 tabBarPosition='overlayTop'
-                tabBarActiveTextColor ={themes.color}
-                tabBarUnderlineStyle ={{backgroundColor:themes.color}}
+                tabBarActiveTextColor={themes.color}
+                tabBarUnderlineStyle={{ backgroundColor: themes.color }}
             >
-                <ScrollView 
-                style={Styles.containerTab}
-                tabLabel='简介'>
+                <ScrollView
+                    style={Styles.containerTab}
+                    tabLabel='简介'>
                     <View style={Styles.row}>
                         <Lightbox style={Styles.col}>
                             <Image
                                 style={Styles.contain}
                                 resizeMode="contain"
-                                source={{ uri: Config.APIUrl + BookDetail.ImagePath }}
+                                source={this.state.imageUrl}
                             />
                         </Lightbox>
                     </View>
@@ -110,14 +127,14 @@ class LightboxView extends Component {
                         </View>
                     </View>
                 </ScrollView>
-                <ScrollView 
-                style={Styles.containerTab}
-                tabLabel='借阅记录'>
+                <ScrollView
+                    style={Styles.containerTab}
+                    tabLabel='借阅记录'>
                     <View style={{ flexDirection: 'row', marginTop: 70 }}>
                         <View style={{ flex: 1, marginLeft: 18, }}>
                             <Text style={Styles.boldText}>借阅起始日</Text>
                         </View>
-                        <View style={{ flex: 1 ,}}>
+                        <View style={{ flex: 1, }}>
                             <Text style={Styles.boldText}>还书日</Text>
                         </View>
                         <View style={{ flex: 1, marginRight: 0, }}>
@@ -134,7 +151,7 @@ class LightboxView extends Component {
                                 <Text style={Styles.boldText}>{!val.ReturnDate ? "未还" : Moment(val.ReturnDate).format('MM/DD/YYYY')}</Text>
                             </View>
                             <View style={{ flex: 1, marginRight: 0 }}>
-                                <Text style={Styles.boldText}>{!val.UserName?"":val.UserName}</Text>
+                                <Text style={Styles.boldText}>{!val.UserName ? "" : val.UserName}</Text>
                             </View>
                         </View>
                     })}

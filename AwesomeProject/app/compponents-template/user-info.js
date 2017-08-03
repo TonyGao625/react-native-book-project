@@ -65,6 +65,13 @@ export default class UserDeatil extends Component {
             <View></View>
           }
 
+          {/*<TouchableOpacity
+            activeOpacity={1}
+            style={Styles.aboutView}
+            onPress={this._onAbout}>
+            <Icon style={Styles.aboutIcon} name="versions" size={20} />
+            <Text style={Styles.aboutText}>借阅记录</Text>
+          </TouchableOpacity>*/}
 
           <TouchableOpacity
             activeOpacity={1}

@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Styles from './style/book-all-item'
 import moment from 'moment';
 import Config from '../config/config'
-const bookImage = require("./../src/images/book_item.png");
+const bookImage = require("./../src/images/no-image.png");
 
 export default class BookItem extends Component {
     constructor(props) {
@@ -19,11 +19,13 @@ export default class BookItem extends Component {
         };
     }
     componentDidMount() {
-        this.setState({
-            imageUrl: {
-                uri: Config.APIUrl + this.props.data.ImagePath
-            }
-        });
+        if (this.props.data.ImagePath != null) {
+            this.setState({
+                imageUrl: {
+                    uri: Config.APIUrl + this.props.data.ImagePath
+                }
+            });
+        }
     }
     render() {
         var data = this.props.data;

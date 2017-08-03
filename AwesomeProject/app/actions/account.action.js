@@ -9,7 +9,6 @@ export function login(obj) {
             method: 'POST',
             data: obj
         }).then((res) => {
-            debugger;
             var permission = {
                 IsAuthened: true,
                 RoleId: 1,
