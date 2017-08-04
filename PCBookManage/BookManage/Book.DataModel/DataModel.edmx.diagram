@@ -5,20 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a0b245a8a83a4aae8cf8fda7deb6a564" Name="Diagram1">
-        <EntityTypeShape EntityType="BookProjectModel.BookBorrow" Width="1.5" PointX="8.25" PointY="4.875" />
-        <EntityTypeShape EntityType="BookProjectModel.BookCategory" Width="1.5" PointX="0.75" PointY="5.375" />
-        <EntityTypeShape EntityType="BookProjectModel.BookCollection" Width="1.5" PointX="5.25" PointY="5" />
-        <EntityTypeShape EntityType="BookProjectModel.BookImage" Width="1.5" PointX="5.25" PointY="11.25" />
-        <EntityTypeShape EntityType="BookProjectModel.BookInfo" Width="1.5" PointX="3" PointY="4.375" />
-        <EntityTypeShape EntityType="BookProjectModel.User" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="BookProjectModel.V_BookAll" Width="1.5" PointX="7.75" PointY="8.375" />
-        <EntityTypeShape EntityType="BookProjectModel.V_BookBorrow" Width="1.5" PointX="0.75" PointY="9.375" />
-        <EntityTypeShape EntityType="BookProjectModel.V_BookCollection" Width="1.5" PointX="9.75" PointY="8.375" />
+        <EntityTypeShape EntityType="BookProjectModel.BookBorrow" Width="1.5" PointX="5.25" PointY="4" />
+        <EntityTypeShape EntityType="BookProjectModel.BookCategory" Width="1.5" PointX="0.75" PointY="4.5" />
+        <EntityTypeShape EntityType="BookProjectModel.BookCollection" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="BookProjectModel.BookImage" Width="1.5" PointX="5.25" PointY="7.25" />
+        <EntityTypeShape EntityType="BookProjectModel.BookInfo" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="BookProjectModel.User" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BookProjectModel.V_BookAll" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BookProjectModel.V_BookBorrow" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BookProjectModel.V_BookCollection" Width="1.5" PointX="9.75" PointY="0.75" />
         <AssociationConnector Association="BookProjectModel.FK_BookBorrow_Book" />
-        <AssociationConnector Association="BookProjectModel.FK_BookBorrow_Users" />
         <AssociationConnector Association="BookProjectModel.FK_Book_BookCategory" />
         <AssociationConnector Association="BookProjectModel.FK_BookCollection_BookInfo" />
-        <AssociationConnector Association="BookProjectModel.FK_BookCollection_Users" />
         <AssociationConnector Association="BookProjectModel.FK_BookImage_BookInfo" />
       </Diagram>
     </edmx:Diagrams>

@@ -46,11 +46,12 @@ export default class BookAll extends Component {
       currentPage: 1,
       NoMoreData: false,
       disable: false,
-      isModalVisible: true
+      isModalVisible: true,
+      isProgressVisible:true
     };
   }
   componentWillMount() {
-    this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserId));
+    this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserName));
   }
   componentDidMount() {
     this._search();
@@ -64,7 +65,7 @@ export default class BookAll extends Component {
     var BookName = storage.session('BookName');
     var CategoryId = storage.session('CategoryId');
     var data = {
-      UserId: this.props.permission.UserId,
+      UserName: this.props.permission.UserName,
       BookName: BookName == null ? "" : BookName,
       CategoryId: CategoryId == null ? 0 : CategoryId,
       Page: page ? page : 1
@@ -95,7 +96,7 @@ export default class BookAll extends Component {
     var data = {
       BookCollectionModel: {
         BookId: val.Id,
-        UserId: this.props.permission.UserId,
+        UserName: this.props.permission.UserName,
         CollectionDate: new Date()
       }
     };
@@ -104,15 +105,9 @@ export default class BookAll extends Component {
       this.props.dispatch(changeData());
     });
   }
-  _preventClickTwice() {
-    this.setState({ disable: true });
-    setTimeout(() => { this.setState({ disable: false }) }, 1000)
-  }
   _showDetailBook = (id, CanOrder) => {
-    //this._preventClickTwice();
-
     const { navigate } = this.props.navigation;
-    navigate('BookDetail', { id: id, CanOrder: CanOrder, UserId: this.props.permission.UserId })
+    navigate('BookDetail', { id: id, CanOrder: CanOrder, UserName: this.props.permission.UserName })
   }
   _onRefresh = () => {
     this._search();
@@ -132,7 +127,7 @@ export default class BookAll extends Component {
       var BookName = storage.session('BookName');
       var CategoryId = storage.session('CategoryId');
       var data = {
-        UserId: this.props.permission.UserId,
+        UserName: this.props.permission.UserName,
         BookName: BookName == null ? "" : BookName,
         CategoryId: CategoryId == null ? 0 : CategoryId,
         Page: page
@@ -185,7 +180,7 @@ export default class BookAll extends Component {
                 <View style={Styles.noBookView} >
                   <Text style={Styles.noBookText} >没有图书啦。。。</Text></View>
                 :
-                <ProgressBar />}
+                <View />}
             </View>
           }
           onEndReached={this._onEndReached}

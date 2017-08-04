@@ -38,7 +38,6 @@ export default class SystemManage extends Component {
     };
   }
   onChange = (files, type, index) => {
-    debugger;
     this.setState({
       files,
     });

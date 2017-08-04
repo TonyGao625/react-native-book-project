@@ -66,7 +66,6 @@ namespace Book.Business.ConvertModel
                 Remark = book.Remark,
                 CreateDate = book.CreateDate,
                 CreateBy = book.CreateBy,
-                UserId = book.UserId,
                 UserName = book.UserName,
                 BorrowDate=book.BorrowDate,
                 IsReturn=book.IsReturn,

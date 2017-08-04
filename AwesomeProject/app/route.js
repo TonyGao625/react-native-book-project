@@ -42,14 +42,9 @@ export default class Route extends Component {
   }
 }
 const CreateRootNavigator = (IsAuthened = true, IsAdmin) => {
-
   var initialRouteName = 'Main';
   if (IsAuthened) {
-    if (IsAdmin) {
-      initialRouteName = "AdminMain"
-    } else {
-      initialRouteName = 'Main'
-    }
+    initialRouteName = 'Main'
   } else {
     initialRouteName = 'Account'
   }

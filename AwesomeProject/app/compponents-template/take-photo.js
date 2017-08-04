@@ -24,11 +24,10 @@ export default class TakePhoto extends Component {
         this.camera.capture({ metadata: options })
             .then((data) => {
                 console.log(data)
-               
             })
             .catch(err => console.error(err));
              const { navigate } = this.props.navigation;
-                navigate('SystemManage');
+                navigate('SystemManage'); 
     }
 }
 

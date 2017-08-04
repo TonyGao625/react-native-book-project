@@ -39,7 +39,7 @@ export default class BookReturn extends Component {
         };
     }
     componentWillMount() {
-        this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserId));
+        this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserName));
     }
     componentWillReceiveProps(nextProps) {
         if (this.props.Flag !== nextProps.Flag) {
@@ -47,7 +47,7 @@ export default class BookReturn extends Component {
                 checkedAll: false,
                 sum: 0
             });
-            this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserId));
+            this.props.dispatch(GetBookBorrowListByUserId(this.props.permission.UserName));
         }
     }
     _onCheck = (data) => {

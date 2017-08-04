@@ -16,7 +16,7 @@ namespace Book.Business.ConvertModel
             {
                 Id = collect.Id,
                 BookId=collect.BookId,
-                UserId = collect.UserId,
+                UserName = collect.UserName,
                 CollectionDate = collect.CollectionDate
             };
         }
@@ -27,7 +27,7 @@ namespace Book.Business.ConvertModel
             {
                 Id = model.Id,
                 BookId = model.BookId,
-                UserId = model.UserId,
+                UserName = model.UserName,
                 CollectionDate = model.CollectionDate
             };
         }
@@ -38,7 +38,7 @@ namespace Book.Business.ConvertModel
             {
                 Id = collect.Id,
                 BookId = collect.BookId,
-                UserId = collect.UserId,
+                UserName = collect.UserName,
                 CollectionDate = collect.CollectionDate,
                 BookName = collect.BookName,
                 Author = collect.Author,

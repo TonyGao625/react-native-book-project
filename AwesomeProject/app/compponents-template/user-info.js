@@ -40,29 +40,48 @@ export default class UserDeatil extends Component {
       ],
       { cancelable: false }
     )
-
   }
-  _onAbout=()=>{
+  _onAbout = () => {
     const { navigate } = this.props.navigation;
     navigate('BookAboutScreen')
+  }
+  _onAddBook = () => {
+    const { navigate } = this.props.navigation;
+    navigate('BookAdd')
   }
   render() {
     return (
       <ScrollView contentContainerStyle={Styles.user}>
-        <TouchableOpacity 
-        activeOpacity={1}
-        style={Styles.aboutView} 
-        onPress={this._onAbout}>
-          <Icon style={Styles.aboutIcon} name="versions" size={20}/>
-          <Text style={Styles.aboutText}>关于</Text>
-        </TouchableOpacity> 
+        <View style={Styles.mainView}>
+          {this.props.permission.RoleId == 1 ?
+            <TouchableOpacity
+              activeOpacity={1}
+              style={Styles.aboutView}
+              onPress={this._onAddBook}>
+              <Icon style={Styles.aboutIcon} name="diff-added" size={20} />
+              <Text style={Styles.aboutText}>添加图书</Text>
+            </TouchableOpacity>
+            :
+            <View></View>
+          }
+
+
+          <TouchableOpacity
+            activeOpacity={1}
+            style={Styles.aboutView}
+            onPress={this._onAbout}>
+            <Icon style={Styles.aboutIcon} name="versions" size={20} />
+            <Text style={Styles.aboutText}>关于</Text>
+          </TouchableOpacity>
+        </View>
+
         <View style={Styles.bottomView}>
           <FormCustomButton
-          activeOpacity={.5}
-          text='退出'
-          styleView={Styles.button}
-          styleText={Styles.buttonText}
-          onPress={this._logout} /> 
+            activeOpacity={.5}
+            text='退出'
+            styleView={Styles.button}
+            styleText={Styles.buttonText}
+            onPress={this._logout} />
         </View>
       </ScrollView>
     );

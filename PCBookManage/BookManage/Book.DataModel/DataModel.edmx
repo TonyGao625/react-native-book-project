@@ -11,7 +11,7 @@
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BookId" Type="bigint" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="BorrowDate" Type="datetime" />
           <Property Name="IsReturn" Type="bit" Nullable="false" />
           <Property Name="ReturnDate" Type="datetime" />
@@ -30,7 +30,7 @@
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BookId" Type="bigint" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CollectionDate" Type="datetime" />
         </EntityType>
         <EntityType Name="BookImage">
@@ -61,7 +61,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="RealName" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
@@ -69,8 +69,8 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“BookProject.dbo.V_BookAll”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BookProject.dbo.V_BookAll' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="V_BookAll">
           <Key>
             <PropertyRef Name="Id" />
@@ -84,33 +84,31 @@
           <Property Name="CategoryId" Type="int" />
           <Property Name="Remark" Type="nvarchar(max)" />
           <Property Name="CreateDate" Type="datetime" />
-          <Property Name="UserId" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="BorrowDate" Type="datetime" />
           <Property Name="IsReturn" Type="bit" />
           <Property Name="ReturnDate" Type="datetime" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
           <Property Name="CanOrder" Type="bit" Nullable="false" />
           <Property Name="IsCover" Type="bit" />
           <Property Name="SortOrder" Type="int" />
           <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“BookProject.dbo.V_BookBorrow”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BookProject.dbo.V_BookBorrow' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="V_BookBorrow">
           <Key>
             <PropertyRef Name="Id" />
             <PropertyRef Name="BookId" />
-            <PropertyRef Name="UserId" />
+            <PropertyRef Name="UserName" />
             <PropertyRef Name="IsReturn" />
           </Key>
           <Property Name="Id" Type="bigint" Nullable="false" />
           <Property Name="BookId" Type="bigint" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="BorrowDate" Type="datetime" />
           <Property Name="IsReturn" Type="bit" Nullable="false" />
           <Property Name="ReturnDate" Type="datetime" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="BookName" Type="nvarchar" MaxLength="200" />
           <Property Name="Author" Type="nvarchar" MaxLength="50" />
           <Property Name="PublicDate" Type="datetime" />
@@ -122,13 +120,13 @@
           <Property Name="NeedReturnDate" Type="datetime" />
           <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“BookProject.dbo.V_BookCollection”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BookProject.dbo.V_BookCollection' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="V_BookCollection">
           <Key>
             <PropertyRef Name="Id" />
             <PropertyRef Name="BookId" />
-            <PropertyRef Name="UserId" />
+            <PropertyRef Name="UserName" />
           </Key>
           <Property Name="BookName" Type="nvarchar" MaxLength="200" />
           <Property Name="Author" Type="nvarchar" MaxLength="50" />
@@ -140,8 +138,7 @@
           <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
           <Property Name="Id" Type="bigint" Nullable="false" />
           <Property Name="BookId" Type="bigint" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CollectionDate" Type="datetime" />
           <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
         </EntityType>
@@ -169,18 +166,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BookBorrow_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="BookBorrow" Type="Self.BookBorrow" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BookBorrow">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_BookCollection_BookInfo">
           <End Role="BookInfo" Type="Self.BookInfo" Multiplicity="1" />
           <End Role="BookCollection" Type="Self.BookCollection" Multiplicity="*" />
@@ -190,18 +175,6 @@
             </Principal>
             <Dependent Role="BookCollection">
               <PropertyRef Name="BookId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BookCollection_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="BookCollection" Type="Self.BookCollection" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BookCollection">
-              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -234,11 +207,10 @@
     [V_BookAll].[CategoryId] AS [CategoryId], 
     [V_BookAll].[Remark] AS [Remark], 
     [V_BookAll].[CreateDate] AS [CreateDate], 
-    [V_BookAll].[UserId] AS [UserId], 
+    [V_BookAll].[UserName] AS [UserName], 
     [V_BookAll].[BorrowDate] AS [BorrowDate], 
     [V_BookAll].[IsReturn] AS [IsReturn], 
     [V_BookAll].[ReturnDate] AS [ReturnDate], 
-    [V_BookAll].[UserName] AS [UserName], 
     [V_BookAll].[CreateBy] AS [CreateBy], 
     [V_BookAll].[CanOrder] AS [CanOrder], 
     [V_BookAll].[IsCover] AS [IsCover], 
@@ -250,11 +222,10 @@
             <DefiningQuery>SELECT 
     [V_BookBorrow].[Id] AS [Id], 
     [V_BookBorrow].[BookId] AS [BookId], 
-    [V_BookBorrow].[UserId] AS [UserId], 
+    [V_BookBorrow].[UserName] AS [UserName], 
     [V_BookBorrow].[BorrowDate] AS [BorrowDate], 
     [V_BookBorrow].[IsReturn] AS [IsReturn], 
     [V_BookBorrow].[ReturnDate] AS [ReturnDate], 
-    [V_BookBorrow].[UserName] AS [UserName], 
     [V_BookBorrow].[BookName] AS [BookName], 
     [V_BookBorrow].[Author] AS [Author], 
     [V_BookBorrow].[PublicDate] AS [PublicDate], 
@@ -279,7 +250,6 @@
     [V_BookCollection].[CreateBy] AS [CreateBy], 
     [V_BookCollection].[Id] AS [Id], 
     [V_BookCollection].[BookId] AS [BookId], 
-    [V_BookCollection].[UserId] AS [UserId], 
     [V_BookCollection].[UserName] AS [UserName], 
     [V_BookCollection].[CollectionDate] AS [CollectionDate], 
     [V_BookCollection].[ImagePath] AS [ImagePath]
@@ -293,16 +263,8 @@
             <End Role="BookInfo" EntitySet="BookInfo" />
             <End Role="BookBorrow" EntitySet="BookBorrow" />
           </AssociationSet>
-          <AssociationSet Name="FK_BookBorrow_Users" Association="Self.FK_BookBorrow_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="BookBorrow" EntitySet="BookBorrow" />
-          </AssociationSet>
           <AssociationSet Name="FK_BookCollection_BookInfo" Association="Self.FK_BookCollection_BookInfo">
             <End Role="BookInfo" EntitySet="BookInfo" />
-            <End Role="BookCollection" EntitySet="BookCollection" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BookCollection_Users" Association="Self.FK_BookCollection_Users">
-            <End Role="Users" EntitySet="Users" />
             <End Role="BookCollection" EntitySet="BookCollection" />
           </AssociationSet>
           <AssociationSet Name="FK_BookImage_BookInfo" Association="Self.FK_BookImage_BookInfo">
@@ -328,20 +290,12 @@
             <End Role="BookInfo" EntitySet="BookInfoes" />
             <End Role="BookBorrow" EntitySet="BookBorrows" />
           </AssociationSet>
-          <AssociationSet Name="FK_BookBorrow_Users" Association="BookProjectModel.FK_BookBorrow_Users">
-            <End Role="User" EntitySet="Users" />
-            <End Role="BookBorrow" EntitySet="BookBorrows" />
-          </AssociationSet>
           <AssociationSet Name="FK_Book_BookCategory" Association="BookProjectModel.FK_Book_BookCategory">
             <End Role="BookCategory" EntitySet="BookCategories" />
             <End Role="BookInfo" EntitySet="BookInfoes" />
           </AssociationSet>
           <AssociationSet Name="FK_BookCollection_BookInfo" Association="BookProjectModel.FK_BookCollection_BookInfo">
             <End Role="BookInfo" EntitySet="BookInfoes" />
-            <End Role="BookCollection" EntitySet="BookCollections" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BookCollection_Users" Association="BookProjectModel.FK_BookCollection_Users">
-            <End Role="User" EntitySet="Users" />
             <End Role="BookCollection" EntitySet="BookCollections" />
           </AssociationSet>
           <AssociationSet Name="FK_BookImage_BookInfo" Association="BookProjectModel.FK_BookImage_BookInfo">
@@ -355,13 +309,12 @@
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BookId" Type="Int64" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BorrowDate" Type="DateTime" Precision="3" />
           <Property Name="IsReturn" Type="Boolean" Nullable="false" />
           <Property Name="ReturnDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="BookInfo" Relationship="BookProjectModel.FK_BookBorrow_Book" FromRole="BookBorrow" ToRole="BookInfo" />
-          <NavigationProperty Name="User" Relationship="BookProjectModel.FK_BookBorrow_Users" FromRole="BookBorrow" ToRole="User" />
           <Property Name="NeedReturnDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BookInfo" Relationship="BookProjectModel.FK_BookBorrow_Book" FromRole="BookBorrow" ToRole="BookInfo" />
         </EntityType>
         <EntityType Name="BookCategory">
           <Key>
@@ -377,10 +330,9 @@
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BookId" Type="Int64" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CollectionDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="BookInfo" Relationship="BookProjectModel.FK_BookCollection_BookInfo" FromRole="BookCollection" ToRole="BookInfo" />
-          <NavigationProperty Name="User" Relationship="BookProjectModel.FK_BookCollection_Users" FromRole="BookCollection" ToRole="User" />
         </EntityType>
         <EntityType Name="BookImage">
           <Key>
@@ -415,15 +367,13 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RealName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BookBorrows" Relationship="BookProjectModel.FK_BookBorrow_Users" FromRole="User" ToRole="BookBorrow" />
-          <NavigationProperty Name="BookCollections" Relationship="BookProjectModel.FK_BookCollection_Users" FromRole="User" ToRole="BookCollection" />
         </EntityType>
         <EntityType Name="V_BookAll">
           <Key>
@@ -438,11 +388,10 @@
           <Property Name="CategoryId" Type="Int32" />
           <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="UserId" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BorrowDate" Type="DateTime" Precision="3" />
           <Property Name="IsReturn" Type="Boolean" />
           <Property Name="ReturnDate" Type="DateTime" Precision="3" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CanOrder" Type="Boolean" Nullable="false" />
           <Property Name="IsCover" Type="Boolean" />
@@ -453,16 +402,15 @@
           <Key>
             <PropertyRef Name="Id" />
             <PropertyRef Name="BookId" />
-            <PropertyRef Name="UserId" />
+            <PropertyRef Name="UserName" />
             <PropertyRef Name="IsReturn" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" />
           <Property Name="BookId" Type="Int64" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BorrowDate" Type="DateTime" Precision="3" />
           <Property Name="IsReturn" Type="Boolean" Nullable="false" />
           <Property Name="ReturnDate" Type="DateTime" Precision="3" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BookName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PublicDate" Type="DateTime" Precision="3" />
@@ -478,7 +426,7 @@
           <Key>
             <PropertyRef Name="Id" />
             <PropertyRef Name="BookId" />
-            <PropertyRef Name="UserId" />
+            <PropertyRef Name="UserName" />
           </Key>
           <Property Name="BookName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -490,8 +438,7 @@
           <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Id" Type="Int64" Nullable="false" />
           <Property Name="BookId" Type="Int64" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CollectionDate" Type="DateTime" Precision="3" />
           <Property Name="ImagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -504,18 +451,6 @@
             </Principal>
             <Dependent Role="BookBorrow">
               <PropertyRef Name="BookId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BookBorrow_Users">
-          <End Type="BookProjectModel.User" Role="User" Multiplicity="1" />
-          <End Type="BookProjectModel.BookBorrow" Role="BookBorrow" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BookBorrow">
-              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -540,18 +475,6 @@
             </Principal>
             <Dependent Role="BookCollection">
               <PropertyRef Name="BookId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BookCollection_Users">
-          <End Type="BookProjectModel.User" Role="User" Multiplicity="1" />
-          <End Type="BookProjectModel.BookCollection" Role="BookCollection" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BookCollection">
-              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -580,7 +503,7 @@
                 <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
                 <ScalarProperty Name="IsReturn" ColumnName="IsReturn" />
                 <ScalarProperty Name="BorrowDate" ColumnName="BorrowDate" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="BookId" ColumnName="BookId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -598,7 +521,7 @@
             <EntityTypeMapping TypeName="BookProjectModel.BookCollection">
               <MappingFragment StoreEntitySet="BookCollection">
                 <ScalarProperty Name="CollectionDate" ColumnName="CollectionDate" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="BookId" ColumnName="BookId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -651,11 +574,10 @@
                 <ScalarProperty Name="IsCover" ColumnName="IsCover" />
                 <ScalarProperty Name="CanOrder" ColumnName="CanOrder" />
                 <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
                 <ScalarProperty Name="IsReturn" ColumnName="IsReturn" />
                 <ScalarProperty Name="BorrowDate" ColumnName="BorrowDate" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
@@ -680,11 +602,10 @@
                 <ScalarProperty Name="PublicDate" ColumnName="PublicDate" />
                 <ScalarProperty Name="Author" ColumnName="Author" />
                 <ScalarProperty Name="BookName" ColumnName="BookName" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
                 <ScalarProperty Name="IsReturn" ColumnName="IsReturn" />
                 <ScalarProperty Name="BorrowDate" ColumnName="BorrowDate" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="BookId" ColumnName="BookId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -696,7 +617,6 @@
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="CollectionDate" ColumnName="CollectionDate" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="BookId" ColumnName="BookId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />

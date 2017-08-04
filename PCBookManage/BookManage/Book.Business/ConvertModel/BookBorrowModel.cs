@@ -16,15 +16,11 @@ namespace Book.Business.ConvertModel
             {
                 Id = borrow.Id,
                 BookId = borrow.BookId,
-                UserId = borrow.UserId,
+                UserName = borrow.UserName,
                 BorrowDate = borrow.BorrowDate,
                 IsReturn = borrow.IsReturn,
                 ReturnDate = borrow.ReturnDate
             };
-            if (IsLoaded(borrow, entity => entity.User))
-            {
-                result.UserName = borrow.User?.UserName;
-            }
             return result;
         }
 
@@ -34,7 +30,7 @@ namespace Book.Business.ConvertModel
             {
                 Id = model.Id,
                 BookId = model.BookId,
-                UserId = model.UserId,
+                UserName = model.UserName,
                 BorrowDate = model.BorrowDate,
                 IsReturn = model.IsReturn,
                 ReturnDate = model.ReturnDate
@@ -47,7 +43,7 @@ namespace Book.Business.ConvertModel
             {
                 Id = borrow.Id,
                 BookId = borrow.BookId,
-                UserId = borrow.UserId,
+                UserName = borrow.UserName,
                 BorrowDate = borrow.BorrowDate,
                 IsReturn = borrow.IsReturn,
                 ReturnDate = borrow.ReturnDate,
@@ -63,7 +59,7 @@ namespace Book.Business.ConvertModel
                 IsOverTime= -1,
                 ImagePath = borrow.ImagePath
             };
-            if (borrow.BorrowDate != null && borrow.NeedReturnDate != null)
+            if (!borrow.IsReturn)
             {
                 var dataNow = DateTime.Now;
                 var needReturnData= (DateTime)borrow.NeedReturnDate;

@@ -20,19 +20,19 @@ namespace Book.DataAccess
             }
         }
 
-        public async Task<BookCollection> GetBookCollect(long bookId,int userId)
+        public async Task<BookCollection> GetBookCollect(long bookId,string UserName)
         {
             using (var context=new BookProjectEntities())
             {
-                return await context.BookCollections.Where(x => x.BookId == bookId && x.UserId == userId).FirstOrDefaultAsync();
+                return await context.BookCollections.Where(x => x.BookId == bookId && x.UserName == UserName).FirstOrDefaultAsync();
             }
         }
 
-        public async Task<List<V_BookCollection>> GetCollectList(int userId)
+        public async Task<List<V_BookCollection>> GetCollectList(string UserName)
         {
             using (var context=new BookProjectEntities())
             {
-                return await context.V_BookCollection.Where(x => x.UserId == userId).ToListAsync();
+                return await context.V_BookCollection.Where(x => x.UserName == UserName).ToListAsync();
             }
         }
 
@@ -46,9 +46,9 @@ namespace Book.DataAccess
             }
         }
 
-        public async Task<List<BookCollection>> GetCollectionByUserId(int userId) {
+        public async Task<List<BookCollection>> GetCollectionByUserId(string UserName) {
             using (var context = new BookProjectEntities()) {
-                return await context.BookCollections.Where(x => x.UserId == userId).ToListAsync();
+                return await context.BookCollections.Where(x => x.UserName == UserName).ToListAsync();
             }
         }
     }

@@ -26,7 +26,7 @@ namespace Book.Business
         /// 获取所有图书信息
         /// </summary>
         /// <returns></returns>
-        public async Task<MuliResult<BookInfoModel>> GetBookList(int userId, string bookName="", int categoryId=0,int page=1)
+        public async Task<MuliResult<BookInfoModel>> GetBookList(string userName, string bookName="", int categoryId=0,int page=1)
         {
             var result = new MuliResult<BookInfoModel>();
             try
@@ -44,7 +44,7 @@ namespace Book.Business
                 }
 
                 //disable book item which have been add to the book borrow list
-                var bookCollectionList = await _bookCollectionAgent.GetCollectionByUserId(userId);
+                var bookCollectionList = await _bookCollectionAgent.GetCollectionByUserId(userName);
                 foreach (var item in dataList)
                 {
                     var existCollect = bookCollectionList.Find(x => x.BookId == item.Id);
@@ -56,7 +56,7 @@ namespace Book.Business
 
                 result.Datas = dataList.Select(x => x.ToBookInfoModel())
                     .OrderByDescending(x => x.CanOrder)
-                    .ThenBy(x => x.BookName).Skip(page * 20).Take(20)
+                    .ThenBy(x => x.BookName).Skip((page-1) * 20).Take(20)
                     .ToList();
             }
             catch (Exception ex)
@@ -146,7 +146,7 @@ namespace Book.Business
             {
                 var collect = bookCollectionModel.ToBookCollection();
 
-                var hasCollect = await _bookCollectionAgent.GetBookCollect(collect.BookId, collect.UserId);
+                var hasCollect = await _bookCollectionAgent.GetBookCollect(collect.BookId, collect.UserName);
                 if (hasCollect != null)
                 {
                     result.Status = -2;
@@ -168,19 +168,19 @@ namespace Book.Business
         /// 查询借阅列表
         /// </summary>
         /// <returns></returns>
-        public async Task<MuliResult<BookBorrowModel>> GetBookBorrowListByUserId(int userId)
+        public async Task<MuliResult<BookBorrowModel>> GetBookBorrowListByUserId(string userName)
         {
             var result = new MuliResult<BookBorrowModel>();
             try
             {
-                var datalist = await _bookBorrowAgent.GetBookBorrowList(userId);
+                var datalist = await _bookBorrowAgent.GetBookBorrowList(userName);
                 result.Datas = datalist.Select(x => x.ToBorrowModel()).ToList();
 
                 //get over return time result
                 result.Total = 0;
                 foreach (var item in result.Datas)
                 {
-                    if (item.IsOverTime >= 0)
+                    if (item.IsOverTime > 0)
                     {
                         result.Total = result.Total + 1;
                     }

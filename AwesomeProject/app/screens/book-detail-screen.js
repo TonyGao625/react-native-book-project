@@ -23,7 +23,7 @@ export default class BookDetailScreen extends Component {
           var data = {
             BookCollectionModel: {
               BookId: navigation.state.params.id,
-              UserId: navigation.state.params.UserId,
+              UserName: navigation.state.params.UserName,
               CollectionDate: new Date()
             }
           };

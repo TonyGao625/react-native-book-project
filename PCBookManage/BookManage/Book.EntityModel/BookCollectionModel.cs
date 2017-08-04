@@ -10,7 +10,7 @@ namespace Book.EntityModel
     {
         public long Id { get; set; }
         public long BookId { get; set; }
-        public int UserId { get; set; }
+        public string UserName { get; set; }
         public DateTime? CollectionDate { get; set; }
     }
 

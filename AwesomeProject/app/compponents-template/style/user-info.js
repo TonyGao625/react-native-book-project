@@ -7,11 +7,14 @@ const Styles = StyleSheet.create({
     backgroundColor:'#f0f0f0',
     justifyContent:'space-between',
   },
+  mainView:{
+    marginTop:10,
+    marginBottom:10
+  },
   aboutView:{
     height:50,
     backgroundColor:'white',
-    marginTop:10,
-    marginBottom:10,
+    marginBottom:5,
     flexDirection:'row',
     justifyContent:'flex-start',
     alignItems:'center'

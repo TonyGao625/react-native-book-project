@@ -3,7 +3,7 @@ import thaxios from '../unilities/axios';
 export function GetBookBorrowListByUserId(obj) {
     return function (dispatch) {
         thaxios({
-            url: 'book/GetBookBorrowListByUserId?userId=' + obj,
+            url: 'book/GetBookBorrowListByUserId?userName=' + obj,
             method: 'GET',
             hideGlobalLoading: true
             // params: obj

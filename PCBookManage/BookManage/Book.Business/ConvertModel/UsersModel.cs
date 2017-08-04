@@ -14,7 +14,6 @@ namespace Book.Business.ConvertModel
         {
             return new UsersModel()
             {
-                Id = user.Id,
                 UserName = user.UserName,
                 RealName = user.RealName,
                 Password = user.Password,
@@ -28,7 +27,6 @@ namespace Book.Business.ConvertModel
         {
             return new User()
             {
-                Id = model.Id,
                 UserName = model.UserName,
                 RealName = model.RealName,
                 Password = model.Password,

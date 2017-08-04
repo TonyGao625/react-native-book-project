@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/Octicons';
 import FormIconTextInput from './../components-cell/form-icon-text-input'
 import FormCustomButton from './../components-cell/form-custom-botton'
 import { connect } from 'react-redux'
-import { accountLogin, editUserName, editPassword } from '../actions/account.action';
+import { editUserName, editPassword, login } from '../actions/account.action';
 import { batchActions, enableBatching } from 'redux-batched-actions';
 import SplashScreen from 'react-native-splash-screen'
 const background = require("./../src/images/login_bg.png");
@@ -37,8 +37,9 @@ export default class Login extends Component {
         return;
       }
       this.props.dispatch(
-        accountLogin({
-          UsersModel: this.props.loginUser
+        login({
+          userId: this.props.loginUser.UserName,
+          password: this.props.loginUser.Password
         }));
     });
   }

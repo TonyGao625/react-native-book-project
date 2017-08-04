@@ -42,11 +42,11 @@ export default class BookList extends Component {
     };
   }
   componentWillMount() {
-    this.props.dispatch(getBookBorrowList(this.props.permission.UserId));
+    this.props.dispatch(getBookBorrowList(this.props.permission.UserName));
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.Flag !== nextProps.Flag) {
-      this.props.dispatch(getBookBorrowList(this.props.permission.UserId));
+      this.props.dispatch(getBookBorrowList(this.props.permission.UserName));
       this.setState({
         checkedAll: false,
         sum: 0,
@@ -97,7 +97,7 @@ export default class BookList extends Component {
 
       let data = {
         BookCollectionList: BookCollectionList,
-        UserId: this.props.permission.UserId,
+        UserName: this.props.permission.UserName,
         BorrowDate: new Date()
       }
       Alert.alert('',
@@ -169,12 +169,7 @@ export default class BookList extends Component {
       this._cancelBorrow();
     });
   }
-  _preventClickTwice() {
-    this.setState({ disable: true });
-    setTimeout(() => { this.setState({ disable: false }) }, 2000)
-  }
   _showDetailBook = (id, CanOrder) => {
-    this._preventClickTwice();
     const { navigate } = this.props.navigation;
     navigate('BookDetail', { id: id, CanOrder: CanOrder })
   }

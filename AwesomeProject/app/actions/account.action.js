@@ -1,26 +1,27 @@
-import thaxios from '../unilities/axios';
+import thaxios from '../unilities/loginAxios';
 import { AsyncStorage } from 'react-native';
 import validator from 'validator';
 
-export function accountLogin(obj) {
+export function login(obj) {
     return function (dispatch) {
         thaxios({
             url: 'account/login',
             method: 'POST',
             data: obj
         }).then((res) => {
+            debugger;
             var permission = {
                 IsAuthened: true,
-                RoleId: res.Data.RoleId,
-                UserId: res.Data.Id,
-                UserName: res.Data.UserName,
-                RealName: res.Data.RealName
+                RoleId: 1,
+                UserName: obj.userId,
+                Email: res.Email,
+                RealName: res.Name
             };
             AsyncStorage.setItem('permission', JSON.stringify(permission));
             dispatch({
                 type: 'USER_LOGIN',
-                payload:{
-                    data: res.Data,
+                payload: {
+                    data: res,
                     permission: permission
                 }
             })
@@ -40,7 +41,7 @@ export function getPermission() {
     }
 }
 
-export function clearPermission(){
+export function clearPermission() {
     return function (dispatch) {
         AsyncStorage.removeItem('permission');
         var permission = {

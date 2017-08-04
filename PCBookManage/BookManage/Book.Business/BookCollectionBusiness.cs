@@ -23,12 +23,12 @@ namespace Book.Business
             _bookBorrowAgent = new BookBorrowAgent();
         }
 
-        public async Task<MuliResult<BookCollectionModel>> GetCollectionList(int userId)
+        public async Task<MuliResult<BookCollectionModel>> GetCollectionList(string userName)
         {
             var result = new MuliResult<BookCollectionModel>();
             try
             {
-                var datalist = await _bookCollectionAgent.GetCollectList(userId);
+                var datalist = await _bookCollectionAgent.GetCollectList(userName);
                 result.Datas = datalist.Select(x => x.ToBookCollectionModel()).ToList();
             }
             catch (Exception ex)
@@ -46,7 +46,7 @@ namespace Book.Business
         /// <param name="userId"></param>
         /// <param name="borrowDate"></param>
         /// <returns></returns>
-        public async Task<Operate> BorrowBook(List<BookCollectionModel> collectList, int userId, DateTime borrowDate)
+        public async Task<Operate> BorrowBook(List<BookCollectionModel> collectList, string userName, DateTime borrowDate)
         {
             var result = new Operate();
             try
@@ -70,7 +70,7 @@ namespace Book.Business
                     return result;
                 }
 
-                await SureBorrowBook(collectList, userId, borrowDate);
+                await SureBorrowBook(collectList, userName, borrowDate);
                 result.Status = 1;
             }
             catch (Exception ex)
@@ -81,7 +81,7 @@ namespace Book.Business
             return result;
         }
 
-        public async Task<Operate> SureBorrowBook(List<BookCollectionModel> collectList, int userId, DateTime borrowDate)
+        public async Task<Operate> SureBorrowBook(List<BookCollectionModel> collectList, string userName, DateTime borrowDate)
         {
             var result = new Operate();
             try
@@ -97,7 +97,7 @@ namespace Book.Business
                             var borrow = new BookBorrow()
                             {
                                 BookId = item.BookId,
-                                UserId = userId,
+                                UserName= userName,
                                 BorrowDate = borrowDate,
                                 NeedReturnDate = borrowDate.AddMonths(1) //1 month to return
                             };

@@ -10,7 +10,7 @@ export default (obj) => {
     var p = new Promise((resolve, reject) => {
         axios({
             url: obj.url,
-            baseURL: Config.APIUrl +'/api/',
+            baseURL: Config.LoginAPIUrl +'/api/',
             method: obj.method ? obj.method : 'GET',
             params: obj.params,
             data: obj.data

@@ -22,9 +22,9 @@ namespace Book.WebApi.Controllers
 
         [Route("getCollectList")]
         [HttpGet]
-        public async Task<MuliResult<BookCollectionModel>> GetCollectList(int userId)
+        public async Task<MuliResult<BookCollectionModel>> GetCollectList(string userName)
         {
-            return await _bookCollectionBusiness.GetCollectionList(userId);
+            return await _bookCollectionBusiness.GetCollectionList(userName);
         }
 
         [Route("borrowBook")]
@@ -32,9 +32,9 @@ namespace Book.WebApi.Controllers
         public async Task<Operate> BorrowBook(JObject paramters)
         {
             var bookCollectionList = paramters["BookCollectionList"].ToObject<List<BookCollectionModel>>();
-            var userId = paramters["UserId"].ToObject<int>();
+            var userName = paramters["UserName"].ToObject<string>();
             var borrowDate = paramters["BorrowDate"].ToObject<DateTime>();
-            return await _bookCollectionBusiness.BorrowBook(bookCollectionList, userId, borrowDate);
+            return await _bookCollectionBusiness.BorrowBook(bookCollectionList, userName, borrowDate);
         }
 
         [Route("sureBorrowBook")]
@@ -42,9 +42,9 @@ namespace Book.WebApi.Controllers
         public async Task<Operate> SureBorrowBook(JObject paramters)
         {
             var bookCollectionList = paramters["BookCollectionList"].ToObject<List<BookCollectionModel>>();
-            var userId = paramters["UserId"].ToObject<int>();
+            var userName = paramters["UserName"].ToObject<string>();
             var borrowDate = paramters["BorrowDate"].ToObject<DateTime>();
-            return await _bookCollectionBusiness.SureBorrowBook(bookCollectionList, userId, borrowDate);
+            return await _bookCollectionBusiness.SureBorrowBook(bookCollectionList, userName, borrowDate);
         }
 
         [Route("deleteByIds")]

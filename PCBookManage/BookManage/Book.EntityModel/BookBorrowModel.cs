@@ -10,7 +10,7 @@ namespace Book.EntityModel
     {
         public long Id { get; set; }
         public long BookId { get; set; }
-        public int UserId { get; set; }
+        public string UserName { get; set; }
         public DateTime? BorrowDate { get; set; }
         public bool IsReturn { get; set; }
         public DateTime? ReturnDate { get; set; }
@@ -28,7 +28,6 @@ namespace Book.EntityModel
         public string Remark { get; set; }
         public DateTime? CreateDate { get; set; }
         public string CreateBy { get; set; }
-        public string UserName { get; set; }
         public string ImagePath { get; set; }
     }
 }
