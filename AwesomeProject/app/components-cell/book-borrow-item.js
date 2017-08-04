@@ -43,7 +43,7 @@ export default class BookItem extends Component {
                         onPress={this.props.onSelect}
                         onLongPress={this.props.onRemoveItem}>
                         <View style={Styles.titleView} >
-                            <Text style={Styles.titleText}>{data.BookName}</Text>
+                            <Text style={Styles.titleText}>{data.ShortBookName}</Text>
                         </View>
                         <View style={Styles.authorView}>
                             <Text>作者：{data.Author}</Text>

@@ -41,7 +41,7 @@ export default class BookItem extends Component {
           <TouchableOpacity style={Styles.bookView} 
            onPress={this.props.onSelect}>
             <View style={Styles.titleView} >
-              <Text style={Styles.titleText}>{data.BookName}</Text>
+              <Text style={Styles.titleText}>{data.ShortBookName}</Text>
             </View>
             <View style={Styles.dateView}>
               <Text>预定还书日期：{moment(data.NeedReturnDate).format('YYYY-MM-DD')}</Text>

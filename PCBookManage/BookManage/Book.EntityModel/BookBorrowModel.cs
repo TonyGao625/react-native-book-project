@@ -21,6 +21,7 @@ namespace Book.EntityModel
     public partial class BookBorrowModel
     {
         public string BookName { get; set; }
+        public string ShortBookName { get; set; }
         public string Author { get; set; }
         public DateTime? PublicDate { get; set; }
         public string PublicAddress { get; set; }

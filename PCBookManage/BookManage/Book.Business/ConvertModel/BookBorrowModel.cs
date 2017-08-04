@@ -48,6 +48,7 @@ namespace Book.Business.ConvertModel
                 IsReturn = borrow.IsReturn,
                 ReturnDate = borrow.ReturnDate,
                 BookName = borrow.BookName,
+                ShortBookName = borrow.BookName.Length > 20 ? (borrow.BookName.Substring(0,20)+"...") : (borrow.BookName),
                 Author = borrow.Author,
                 PublicDate = borrow.PublicDate,
                 PublicAddress = borrow.PublicAddress,

@@ -41,6 +41,7 @@ namespace Book.Business.ConvertModel
                 UserName = collect.UserName,
                 CollectionDate = collect.CollectionDate,
                 BookName = collect.BookName,
+                ShortBookName = collect.BookName.Length > 20 ? (collect.BookName.Substring(0,20)+"...") : (collect.BookName),
                 Author = collect.Author,
                 PublicDate = collect.PublicDate,
                 PublicAddress = collect.PublicAddress,
