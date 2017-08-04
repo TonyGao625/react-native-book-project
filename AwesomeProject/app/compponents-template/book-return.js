@@ -35,7 +35,7 @@ export default class BookReturn extends Component {
         this.state = {
             checkedAll: false,
             sum: 0,
-            disable: false
+            disable: true
         };
     }
     componentWillMount() {
