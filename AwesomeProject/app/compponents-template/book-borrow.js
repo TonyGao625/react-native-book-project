@@ -64,12 +64,12 @@ export default class BookList extends Component {
     if (data.isCheck) {
       this.setState({
         sum: this.state.sum + 1,
-        disable:false
+        disable: false
       });
     } else {
       this.setState({
         sum: this.state.sum - 1,
-        disable:true
+        disable: this.state.sum == 1 ? true : false
       });
     }
   }
@@ -80,13 +80,13 @@ export default class BookList extends Component {
     if (!this.state.checkedAll) {//select all
       this.setState({
         sum: this.props.BookBorrowList.length,
-        disable:false
+        disable: false
       });
       this.props.dispatch(selectALL(this.props.BookBorrowList));
     } else {
       this.setState({//select all
         sum: 0,
-        disable:true
+        disable: true
       });
       this.props.dispatch(unSelectALL(this.props.BookBorrowList));
     }

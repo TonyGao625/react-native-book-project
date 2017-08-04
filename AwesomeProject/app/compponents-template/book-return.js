@@ -60,7 +60,7 @@ export default class BookReturn extends Component {
         } else {
             this.setState({
                 sum: this.state.sum - 1,
-                disable: true
+                disable: this.state.sum == 1 ? true : false
             });
         }
     }
