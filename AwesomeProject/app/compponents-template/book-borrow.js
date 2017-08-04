@@ -37,7 +37,7 @@ export default class BookList extends Component {
     this.state = {
       checkedAll: false,
       sum: 0,
-      disable: false,
+      disable: true,
       isEdit: false
     };
   }
@@ -63,11 +63,13 @@ export default class BookList extends Component {
     data.isCheck = !data.isCheck;
     if (data.isCheck) {
       this.setState({
-        sum: this.state.sum + 1
+        sum: this.state.sum + 1,
+        disable:false
       });
     } else {
       this.setState({
-        sum: this.state.sum - 1
+        sum: this.state.sum - 1,
+        disable:true
       });
     }
   }
@@ -77,12 +79,14 @@ export default class BookList extends Component {
     });
     if (!this.state.checkedAll) {//select all
       this.setState({
-        sum: this.props.BookBorrowList.length
+        sum: this.props.BookBorrowList.length,
+        disable:false
       });
       this.props.dispatch(selectALL(this.props.BookBorrowList));
     } else {
       this.setState({//select all
-        sum: 0
+        sum: 0,
+        disable:true
       });
       this.props.dispatch(unSelectALL(this.props.BookBorrowList));
     }
@@ -232,8 +236,9 @@ export default class BookList extends Component {
           isCheckAll={this.state.checkedAll}
           total={this.state.sum}
           onCheckAll={this._onCheckAll}
+          disabled={this.state.disable}
           onBorrowBook={this._onBorrowBook}
-          lableColor={!this.state.isEdit ? "#ffa07a" : "red"}
+          lableColor={!this.state.isEdit ? "#E65100" : "#F50057"}
           lable={this.state.isEdit ? "删除" : "借阅"}
         />
       </View>

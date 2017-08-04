@@ -54,20 +54,30 @@ export default class BookReturn extends Component {
         data.isCheck = !data.isCheck;
         if (data.isCheck) {
             this.setState({
-                sum: this.state.sum + 1
+                sum: this.state.sum + 1,
+                disable: false
             });
         } else {
             this.setState({
-                sum: this.state.sum - 1
+                sum: this.state.sum - 1,
+                disable: true
             });
         }
     }
     _onCheckAll = () => {
         if (!this.state.checkedAll) {
-            this.setState({ checkedAll: true, sum: this.props.BookReturnListByUserId.length })
+            this.setState({
+                checkedAll: true,
+                disable: false,
+                sum: this.props.BookReturnListByUserId.length
+            })
             this.props.dispatch(selectALL(this.props.BookReturnListByUserId));
         } else {
-            this.setState({ checkedAll: false, sum: 0 });
+            this.setState({
+                checkedAll: false,
+                disable: false,
+                sum: 0
+            });
             this.props.dispatch(unSelectALL(this.props.BookReturnListByUserId));
         }
     }
@@ -135,8 +145,9 @@ export default class BookReturn extends Component {
                     isCheckAll={this.state.checkedAll}
                     total={this.state.sum}
                     onCheckAll={this._onCheckAll}
+                    disabled={this.state.disable}
                     onBorrowBook={this._onReturnBook}
-                    lableColor={"#ffa07a"}
+                    lableColor={"#E65100"}
                     lable={'还书'} />
             </View>
         );

@@ -25,12 +25,15 @@ export default class BookOperation extends Component {
             <Text style={styles.totalText}>总计：{this.props.total}</Text>
           </View>
           <View style={styles.operate}>
-            <TouchableOpacity activeOpacity={.5} onPress={this.props.onBorrowBook}>
+            <TouchableOpacity
+              disabled={this.props.disabled}
+              activeOpacity={.5}
+              onPress={this.props.onBorrowBook}>
               <View style={{
                 paddingVertical: 15,
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: this.props.lableColor
+                backgroundColor: this.props.disabled? "gray":this.props.lableColor
               }} >
                 <Text style={styles.buttonText}>{this.props.lable}</Text>
               </View>
