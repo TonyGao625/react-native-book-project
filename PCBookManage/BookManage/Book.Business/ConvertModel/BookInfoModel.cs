@@ -55,10 +55,11 @@ namespace Book.Business.ConvertModel
 
         public static BookInfoModel ToBookInfoModel(this V_BookAll book)
         {
-            return new BookInfoModel()
+            var datalist = new BookInfoModel()
             {
                 Id = book.Id,
                 BookName = book.BookName,
+                ShortBookName = book.BookName.Length > 20 ? (book.BookName.Substring(0, 20) + "...") : (book.BookName),
                 Author = book.Author,
                 PublicDate = book.PublicDate,
                 PublicAddress = book.PublicAddress,
@@ -73,6 +74,7 @@ namespace Book.Business.ConvertModel
                 CanOrder = book.CanOrder,
                 ImagePath = book.ImagePath
             };
+            return datalist;
         }
     }
 }

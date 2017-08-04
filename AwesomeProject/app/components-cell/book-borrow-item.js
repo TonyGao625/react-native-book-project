@@ -39,7 +39,9 @@ export default class BookItem extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={Styles.bookContainer} >
-                    <TouchableOpacity onPress={this.props.onSelect} onLongPress={this.props.onRemoveItem}>
+                    <TouchableOpacity style={Styles.bookView}
+                        onPress={this.props.onSelect}
+                        onLongPress={this.props.onRemoveItem}>
                         <View style={Styles.titleView} >
                             <Text style={Styles.titleText}>{data.BookName}</Text>
                         </View>

@@ -37,9 +37,10 @@ export default class BookItem extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={Styles.bookContainer} >
-                    <TouchableOpacity onPress={this.props.onShowDetail}>
+                    <TouchableOpacity style={Styles.bookView}
+                        onPress={this.props.onShowDetail}>
                         <View style={Styles.titleView} >
-                            <Text style={Styles.titleText}>{data.BookName}</Text>
+                            <Text style={Styles.titleText}>{data.ShortBookName}</Text>
                         </View>
                         <View style={Styles.authorView}>
                             <Text>作者：{data.Author}</Text>

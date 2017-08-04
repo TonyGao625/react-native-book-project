@@ -13,6 +13,11 @@ const Styles = StyleSheet.create({
     bookContainer: {
         paddingRight: 10, flex: 6
     },
+    bookView: {
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "space-between"
+    },
     IconContainer: {
         flex: 1, justifyContent: "center"
     },
@@ -23,10 +28,10 @@ const Styles = StyleSheet.create({
         fontWeight: "bold", fontStyle: "italic", fontSize: 15
     },
     dateView: {
-        paddingBottom: 5
+        //paddingBottom: 5
     },
-    delayView:{
-        flex:1,flexDirection: "row"
+    delayView: {
+        flex: 1, flexDirection: "row"
     }
 });
 
