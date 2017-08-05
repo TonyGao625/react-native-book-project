@@ -33,7 +33,6 @@ export default class UserDeatil extends Component {
         {
           text: '继续', onPress: () => {
             this.props.dispatch(clearPermission());
-            this.props.dispatch(editUserName(''));
             this.props.dispatch(editPassword(''));
           }
         },
