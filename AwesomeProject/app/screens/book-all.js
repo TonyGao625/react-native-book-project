@@ -19,8 +19,8 @@ class BookSearchText extends Component {
     const { navigate } = this.props.navigation;
     navigate('Search');
   }
-  _goToScanner=()=>{
-     const { navigate } = this.props.navigation;
+  _goToScanner = () => {
+    const { navigate } = this.props.navigation;
     navigate('Scanner');
   }
   render() {

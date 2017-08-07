@@ -62,7 +62,10 @@ export default class BookList extends Component {
     }
     if (this.props.ResetStatus !== nextProps.ResetStatus) {
       this.setState({
-        isEdit: false,
+        checkedAll: false,
+        sum: 0,
+        disable: true,
+        isEdit: false
       })
     }
   }

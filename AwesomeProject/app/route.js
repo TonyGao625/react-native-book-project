@@ -8,6 +8,7 @@ import BookDetailScreen from './screens/book-detail-screen';
 import SearchScreen from './screens/book-search-screen';
 import AppIntroScreen from './screens/appIntro-screen';
 import BookAboutScreen from './screens/book-about-screen';
+import ScannerScreen from './screens/scanner-screen';
 import { connect } from 'react-redux'
 import { getPermission, checkViewIntro } from './actions/account.action'
 import TakePhoto from './compponents-template/take-photo';
@@ -83,10 +84,16 @@ const CreateRootNavigator = (IsAuthened = true, IsAdmin) => {
     Search: {
       screen: SearchScreen
     },
+    Scanner: {
+      screen: ScannerScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
     BookAboutScreen: {
       screen: BookAboutScreen
     },
-    TakePhoto:{
+    TakePhoto: {
       screen: TakePhoto
     }
   }, {

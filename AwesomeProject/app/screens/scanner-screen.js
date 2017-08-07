@@ -85,7 +85,9 @@ export default class Scan extends Component {
         this.setState({
             isEndAnimation: true,
         });
-        this.props.navigator.pop();
+        const { navigate } = this.props.navigation;
+        navigate("Main")
+        // this.props.navigator.pop();
     }
     //开灯关灯
     _changeFlash() {
