@@ -1,6 +1,7 @@
 import thaxios from '../unilities/loginAxios';
 import { AsyncStorage } from 'react-native';
 import validator from 'validator';
+import Config from '../config/config'
 
 export function login(obj) {
     return function (dispatch) {
@@ -9,9 +10,13 @@ export function login(obj) {
             method: 'POST',
             data: obj
         }).then((res) => {
+            var roleId = 2;
+            if (Config.ManageUserList.findIndex(x=>x.userId==obj.userId) > -1) {
+                roleId = 1;
+            }
             var permission = {
                 IsAuthened: true,
-                RoleId: 1,
+                RoleId: roleId,
                 UserName: obj.userId,
                 Email: res.Email,
                 RealName: res.Name
