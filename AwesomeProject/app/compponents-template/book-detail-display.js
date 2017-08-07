@@ -52,7 +52,6 @@ class LightboxView extends Component {
         this.props.dispatch(getBookById(this.props.id));
     }
     componentDidMount() {
-        debugger;
         if (this.props.BookDetail.ImagePath != null) {
             this.setState({
                 imageUrl: {

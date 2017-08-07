@@ -24,6 +24,7 @@ export function login(obj) {
                     permission: permission
                 }
             })
+
         });
     }
 }

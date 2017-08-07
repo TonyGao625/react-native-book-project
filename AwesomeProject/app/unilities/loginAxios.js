@@ -16,10 +16,10 @@ export default (obj) => {
             data: obj.data
         }).then((response) => {
             loading.hide()
-            if (response.data.Status < 0) {
-                Toast.info(response.data.Message, 1);
-            } else {
+            if(response.data!=null){
                 resolve(response.data);
+            }else{
+                Toast.offline('不存在该用户', 1);
             }
         }).catch((err) => {
             loading.hide()
